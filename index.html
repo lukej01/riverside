@@ -42,21 +42,37 @@
       background: transparent;
       box-shadow: none;
     }
+    #nav::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
     #nav.scrolled {
       background: var(--cream);
       box-shadow: 0 1px 0 var(--bdr), 0 4px 24px rgba(0,0,0,0.04);
     }
+    #nav.scrolled::before {
+      opacity: 0;
+    }
     .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: transform 0.18s; }
     .logo:hover { transform: scale(1.025); }
-    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; mix-blend-mode: multiply; filter: contrast(1.1); }
+    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; transition: filter 0.3s; filter: brightness(0) invert(1); }
+    #nav.scrolled .logo img { mix-blend-mode: multiply; filter: contrast(1.1); }
     .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
-    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; display: block; }
-    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mu); margin-top: 4px; display: block; }
+    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; letter-spacing: -0.025em; display: block; transition: color 0.3s; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+    #nav.scrolled .logo-name { color: var(--g); text-shadow: none; }
+    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-top: 4px; display: block; transition: color 0.3s; }
+    #nav.scrolled .logo-sub { color: var(--mu); }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx); padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
-    .nav-links a:hover { color: var(--g); }
-    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
-    .nav-cta:hover { background: var(--gd) !important; }
+    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: white; padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+    #nav.scrolled .nav-links a { color: var(--tx); text-shadow: none; }
+    .nav-links a:hover { color: rgba(255,255,255,0.7); }
+    #nav.scrolled .nav-links a:hover { color: var(--g); }
+    .nav-cta { background: white !important; color: var(--g) !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; text-shadow: none !important; }
+    .nav-cta:hover { background: rgba(255,255,255,0.9) !important; }
+    #nav.scrolled .nav-cta { background: var(--g) !important; color: white !important; }
+    #nav.scrolled .nav-cta:hover { background: var(--gd) !important; }
 
     /* ── HERO SLIDER ─────────────────────── */
     .hero { position: relative; height: 100dvh; overflow: hidden; }
@@ -481,14 +497,14 @@
         <h2 class="sec-h gs-reveal" style="font-size:clamp(1.8rem,2.8vw,3rem);font-weight:500;">Fresh out of the oven, <em style="font-style:italic;color:var(--g);">every time.</em></h2>
       </div>
       <div class="gallery-track" id="galleryTrack">
-        <div class="gallery-item wide"><img src="https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg" alt="Riverside Pizza Restaurant" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza" loading="lazy"></div>
-        <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Riverside Pizza" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Riverside Pizza" loading="lazy"></div>
-        <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Riverside Pizza" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Riverside Pizza" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Riverside Pizza" loading="lazy"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Cinnamon Bread" loading="lazy"></div>
+        <div class="gallery-item wide"><img src="https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg" alt="Riverside Pizza Restaurant"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza"></div>
+        <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Riverside Pizza"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Riverside Pizza"></div>
+        <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Riverside Pizza"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Riverside Pizza"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Riverside Pizza"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Cinnamon Bread"></div>
       </div>
       <div class="gallery-hint">Scroll to explore</div>
     </div>
@@ -711,14 +727,21 @@
 
   function autoScroll() {
     if (!isDown && !isHovered) {
-      track.scrollLeft += 1;
-      if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 1) {
-        track.scrollLeft = 0; // reset to start
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (maxScroll > 10) { // ensure images have loaded enough to give us a track
+        track.scrollLeft += 1;
+        if (track.scrollLeft >= maxScroll - 2) {
+          track.scrollLeft = 0; // reset to start
+        }
       }
     }
     autoScrollId = requestAnimationFrame(autoScroll);
   }
-  autoScrollId = requestAnimationFrame(autoScroll);
+  
+  // Start auto scroll once window is fully loaded so widths are correct
+  window.addEventListener('load', () => {
+    autoScrollId = requestAnimationFrame(autoScroll);
+  });
 
   track.addEventListener('mouseenter', () => isHovered = true);
   track.addEventListener('mouseleave', () => { isHovered = false; isDown = false; track.style.cursor = 'grab'; });
