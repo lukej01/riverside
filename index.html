@@ -701,18 +701,36 @@
     }
   });
 
-  // ── DRAG TO SCROLL GALLERY ───────────────────
+  // ── DRAG & AUTO SCROLL GALLERY ───────────────
   const track = document.getElementById('galleryTrack');
   let isDown = false;
   let startX;
   let scrollLeft;
+  let autoScrollId;
+  let isHovered = false;
+
+  function autoScroll() {
+    if (!isDown && !isHovered) {
+      track.scrollLeft += 1;
+      if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 1) {
+        track.scrollLeft = 0; // reset to start
+      }
+    }
+    autoScrollId = requestAnimationFrame(autoScroll);
+  }
+  autoScrollId = requestAnimationFrame(autoScroll);
+
+  track.addEventListener('mouseenter', () => isHovered = true);
+  track.addEventListener('mouseleave', () => { isHovered = false; isDown = false; track.style.cursor = 'grab'; });
+  track.addEventListener('touchstart', () => isHovered = true, {passive: true});
+  track.addEventListener('touchend', () => isHovered = false, {passive: true});
+  
   track.addEventListener('mousedown', (e) => {
     isDown = true;
     track.style.cursor = 'grabbing';
     startX = e.pageX - track.offsetLeft;
     scrollLeft = track.scrollLeft;
   });
-  track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
   track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
   track.addEventListener('mousemove', (e) => {
     if(!isDown) return;
