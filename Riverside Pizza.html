@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Takeout | Delivery | Restaurant - Riverside Pizza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --g:    #2e6b2e;
+      --gd:   #1a4820;
+      --gl:   #4a8c4a;
+      --gp:   #f1f7f1;
+      --gm:   #e4f0e4;
+      --br:   #7a4c28;
+      --br-l: #c4894d;
+      --cream:#fdfaf5;
+      --wh:   #ffffff;
+      --tx:   #1c1c1c;
+      --mu:   #5a5a5a;
+      --bdr:  #ddeadd;
+      --d: 'Playfair Display', serif;
+      --f: 'Barlow', sans-serif;
+      --m: 'IBM Plex Mono', monospace;
+    }
+    html { scroll-behavior: auto; }
+    body { font-family: var(--f); background: var(--wh); color: var(--tx); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
+
+    /* ── NAV ─────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 4rem; height: 72px;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: background 0.45s ease, box-shadow 0.45s ease;
+    }
+    #nav.solid { background: var(--gd); box-shadow: 0 2px 24px rgba(0,0,0,0.3); }
+    .logo { display: flex; align-items: center; gap: 0.7rem; }
+    .logo-icon { width: 38px; height: 38px; flex-shrink: 0; }
+    .logo-text { line-height: 1; }
+    .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 2px; display: block; }
+    .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); padding: 0.4rem 0.85rem; transition: color 0.2s; }
+    .nav-links a:hover { color: white; }
+    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.5rem 1.2rem !important; margin-left: 0.5rem; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--gl) !important; }
+
+    /* ── HERO SLIDER ─────────────────────── */
+    .hero { position: relative; height: 100dvh; overflow: hidden; }
+    .slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; will-change: opacity;
+    }
+    .slide.active { opacity: 1; }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(to top, rgba(20,44,20,0.88) 0%, rgba(20,44,20,0.4) 50%, rgba(20,44,20,0.2) 100%);
+      display: flex; align-items: flex-end;
+      padding: 0 6rem 5rem;
+    }
+    .hero-content { max-width: 700px; }
+    .hero-eyebrow {
+      font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(160,210,160,0.9);
+      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem;
+      opacity: 0; transform: translateY(20px);
+    }
+    .hero-eyebrow::before { content: ''; width: 2rem; height: 1px; background: currentColor; }
+    .hero-h1 {
+      font-family: var(--d); font-size: clamp(3rem, 6vw, 6.5rem);
+      font-weight: 400; letter-spacing: -0.025em; line-height: 0.96;
+      color: white; margin-bottom: 1.5rem;
+      opacity: 0; transform: translateY(30px);
+    }
+    .hero-h1 em { font-style: italic; color: rgba(180,220,180,0.95); }
+    .hero-tagline {
+      font-size: 1rem; font-weight: 300; line-height: 1.75;
+      color: rgba(255,255,255,0.78); max-width: 50ch; margin-bottom: 2.25rem;
+      opacity: 0; transform: translateY(20px);
+    }
+    .hero-btns { display: flex; gap: 0.85rem; opacity: 0; transform: translateY(20px); }
+    .btn { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; display: inline-block; transition: all 0.2s; border: none; cursor: pointer; }
+    .btn-white { background: white; color: var(--gd); }
+    .btn-white:hover { background: var(--gp); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn-outline-w { border: 1px solid rgba(255,255,255,0.45); color: white; }
+    .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: white; }
+    .btn-green { background: var(--g); color: white; }
+    .btn-green:hover { background: var(--gl); transform: translateY(-2px); }
+    .btn-outline-g { border: 1px solid var(--g); color: var(--g); }
+    .btn-outline-g:hover { background: var(--gp); }
+
+    .slider-dots { position: absolute; bottom: 2rem; right: 6rem; z-index: 3; display: flex; gap: 0.5rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
+    .dot.active { background: white; width: 24px; border-radius: 4px; }
+    .slider-arrows { position: absolute; bottom: 1.6rem; right: calc(6rem + 100px); z-index: 3; display: flex; gap: 0.35rem; }
+    .sarrow { background: rgba(255,255,255,0.15); border: none; color: white; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; transition: background 0.2s; }
+    .sarrow:hover { background: rgba(255,255,255,0.3); }
+
+    /* ── STATS ───────────────────────────── */
+    .stats { background: var(--gd); display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat { padding: 2rem 2.5rem; border-right: 1px solid rgba(255,255,255,0.08); text-align: center; }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: var(--d); font-size: 2.5rem; font-weight: 700; color: rgba(160,220,160,0.95); line-height: 1; }
+    .stat-label { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.4rem; }
+
+    /* ── MARQUEE ─────────────────────────── */
+    .marquee { background: var(--g); overflow: hidden; padding: 0.82rem 0; white-space: nowrap; }
+    .mq-track { display: inline-flex; animation: mq 28s linear infinite; }
+    .mq-track span { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.17em; text-transform: uppercase; color: rgba(255,255,255,0.85); padding: 0 2rem; }
+    .mq-track .sep { color: rgba(255,255,255,0.35); padding: 0; }
+    @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── DEALS ───────────────────────────── */
+    .deals { padding: 7rem 0; background: var(--wh); }
+    .deals .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .deal-card { position: relative; overflow: hidden; min-height: 480px; display: flex; align-items: flex-end; }
+    .deal-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
+    .deal-card:hover .deal-bg { transform: scale(1.04); }
+    .deal-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,72,32,0.96) 0%, rgba(26,72,32,0.5) 55%, rgba(26,72,32,0.1) 100%); }
+    .deal-body { position: relative; z-index: 2; padding: 2.5rem 3rem; width: 100%; }
+    .deal-tag { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(160,220,160,0.85); margin-bottom: 0.5rem; }
+    .deal-price { font-family: var(--d); font-size: 4rem; font-weight: 700; color: white; line-height: 1; }
+    .deal-name { font-family: var(--d); font-size: 1.4rem; font-weight: 500; color: white; margin: 0.3rem 0 0.75rem; letter-spacing: -0.01em; }
+    .deal-items { font-size: 0.82rem; color: rgba(255,255,255,0.7); font-weight: 300; line-height: 1.6; margin-bottom: 1.5rem; }
+    .deal-section-head { max-width: 1280px; margin: 0 auto; padding: 0 5rem 3rem; }
+
+    /* ── ANNIVERSARY ─────────────────────── */
+    .anniversary { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+    .ann-img-col { position: relative; overflow: hidden; min-height: 640px; }
+    .ann-img { position: absolute; inset: -20% 0; width: 100%; height: 140%; object-fit: cover; will-change: transform; }
+    .ann-content { background: var(--gm); padding: 6rem 5.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .ann-content .ey { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .ann-content .ey::before { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
+    .ann-h { font-family: var(--d); font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.5rem; }
+    .ann-h em { font-style: italic; color: var(--g); }
+    .ann-p { font-size: 0.9rem; line-height: 1.9; color: var(--mu); max-width: 48ch; margin-bottom: 0.9rem; font-weight: 300; }
+    .signature { font-family: var(--d); font-style: italic; font-size: 1.15rem; color: var(--g); margin-top: 0.5rem; }
+    .ann-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gd); color: white; padding: 0.6rem 1.2rem; margin-bottom: 1.5rem; align-self: flex-start; }
+    .ann-badge-num { font-family: var(--d); font-size: 1.5rem; font-weight: 700; line-height: 1; }
+    .ann-badge-lbl { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; }
+
+    /* ── INGREDIENTS ─────────────────────── */
+    .ingredients { padding: 7rem 0; background: var(--wh); }
+    .ing-head { padding: 0 5rem 4rem; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: end; }
+    .sec-ey { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
+    .sec-ey::before { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
+    .sec-h { font-family: var(--d); letter-spacing: -0.02em; line-height: 1.08; }
+    .sec-h em { font-style: italic; color: var(--g); }
+    .ing-head .sec-h { font-size: clamp(2rem, 3vw, 3.4rem); font-weight: 500; }
+    .ing-desc { font-size: 0.9rem; line-height: 1.9; color: var(--mu); font-weight: 300; }
+    .ing-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
+    .ing-card { background: var(--wh); padding: 2.25rem; border: 1px solid var(--bdr); display: flex; gap: 1.25rem; align-items: flex-start; transition: background 0.25s, border-color 0.25s; }
+    .ing-card:hover { background: var(--gp); border-color: var(--g); }
+    .ing-icon { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--bdr); }
+    .ing-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .ing-icon-blank { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; background: var(--gm); border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; }
+    .ing-num { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--g); margin-bottom: 0.35rem; }
+    .ing-title { font-family: var(--d); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.35rem; }
+    .ing-text { font-size: 0.8rem; line-height: 1.75; color: var(--mu); font-weight: 300; }
+    .ing-card.promise { background: var(--gd); border-color: var(--gd); }
+    .ing-card.promise .ing-num { color: rgba(160,220,160,0.8); }
+    .ing-card.promise .ing-title { color: white; }
+    .ing-card.promise .ing-text { color: rgba(255,255,255,0.7); }
+    .ing-card.promise:hover { background: var(--g); }
+
+    /* ── HORIZONTAL GALLERY ──────────────── */
+    .gallery-section { background: var(--cream); overflow: hidden; }
+    .gallery-pin { overflow: hidden; }
+    .gallery-inner { padding: 5rem 0; }
+    .gallery-label { padding: 0 0 2.5rem 5rem; }
+    .gallery-label .sec-ey { }
+    .gallery-label .sec-h { font-size: clamp(1.8rem, 2.8vw, 3rem); font-weight: 500; }
+    .gallery-track { display: flex; gap: 12px; padding: 0 5rem; will-change: transform; }
+    .gallery-item { flex-shrink: 0; height: 62vh; width: auto; overflow: hidden; position: relative; }
+    .gallery-item img { height: 100%; width: auto; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .gallery-item:hover img { transform: scale(1.03); }
+    .gallery-item.tall { height: 68vh; }
+    .gallery-item.wide { width: 700px; height: 62vh; }
+    .gallery-item.wide img { width: 100%; height: 100%; }
+    .gallery-hint { padding: 1.5rem 0 0 5rem; font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mu); display: flex; align-items: center; gap: 0.5rem; }
+    .gallery-hint::before { content: ''; width: 1rem; height: 1px; background: var(--mu); }
+
+    /* ── GUARANTEE ───────────────────────── */
+    .guarantee { background: var(--gd); padding: 7rem 0; }
+    .guar-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; }
+    .guar-ey { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(160,220,160,0.8); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
+    .guar-ey::before { content: ''; width: 1.5rem; height: 1px; background: rgba(160,220,160,0.8); }
+    .guar-h { font-family: var(--d); font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 500; color: white; margin-bottom: 1.5rem; line-height: 1.08; }
+    .guar-h em { font-style: italic; color: rgba(180,230,180,0.9); }
+    .guar-body { font-family: var(--d); font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.72); line-height: 1.7; margin-bottom: 1.5rem; }
+    .guar-bold { font-family: var(--d); font-size: 1.2rem; font-weight: 600; color: rgba(180,230,180,0.95); padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .quote-panel { border: 1px solid rgba(255,255,255,0.12); padding: 3rem; }
+    .qm { font-family: var(--d); font-size: 5rem; color: rgba(160,220,160,0.25); line-height: 0.6; margin-bottom: 1.5rem; }
+    .qt { font-family: var(--d); font-size: clamp(1.1rem, 1.9vw, 1.65rem); font-style: italic; color: white; line-height: 1.5; margin-bottom: 1.25rem; }
+    .qs { font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+
+    /* ── LOCATIONS ───────────────────────── */
+    .locations { padding: 7rem 0; background: var(--wh); }
+    .loc-head { max-width: 1280px; margin: 0 auto; padding: 0 5rem 3.5rem; display: flex; justify-content: space-between; align-items: flex-end; }
+    .loc-head .sec-h { font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 500; }
+    .loc-head-links { display: flex; gap: 1.5rem; }
+    .loc-link { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.35rem; transition: gap 0.2s; }
+    .loc-link:hover { gap: 0.6rem; }
+    .loc-link::after { content: '→'; }
+    .loc-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--bdr); border-left: 1px solid var(--bdr); }
+    .loc-card { padding: 1.75rem 1.75rem 1.5rem; border-right: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr); transition: background 0.22s; }
+    .loc-card:hover { background: var(--gp); }
+    .loc-name { font-family: var(--d); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.15rem; transition: color 0.2s; }
+    .loc-card:hover .loc-name { color: var(--g); }
+    .loc-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); margin-bottom: 0.8rem; }
+    .loc-addr { font-size: 0.78rem; line-height: 1.65; color: var(--mu); font-weight: 300; margin-bottom: 0.65rem; }
+    .loc-phone { font-family: var(--m); font-size: 0.7rem; color: var(--g); display: block; margin-bottom: 0.6rem; }
+    .loc-dir { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mu); display: inline-flex; align-items: center; gap: 0.3rem; transition: color 0.2s; }
+    .loc-dir:hover { color: var(--g); }
+    .loc-dir::after { content: '→'; }
+
+    /* ── CTA STRIP ───────────────────────── */
+    .cta-strip { background: var(--g); padding: 2.75rem 5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+    .cta-text { font-family: var(--d); font-size: 1.45rem; font-style: italic; color: white; }
+    .cta-links { display: flex; gap: 0.75rem; flex-shrink: 0; }
+
+    /* ── FOOTER ──────────────────────────── */
+    footer { background: var(--gd); padding: 4rem 5rem 2.5rem; }
+    .ft-top { display: flex; justify-content: space-between; gap: 4rem; padding-bottom: 3rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .ft-brand .fn { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; }
+    .ft-brand .fs { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    .ft-cols { display: grid; grid-template-columns: repeat(3, auto); gap: 4rem; }
+    .ft-col-title { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(160,220,160,0.7); margin-bottom: 1rem; }
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .ft-col a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; font-weight: 300; }
+    .ft-col a:hover { color: white; }
+    .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .ft-copy { font-family: var(--m); font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+
+    /* ── TWEAKS ──────────────────────────── */
+    #tweaks { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; background: var(--gd); border: 1px solid rgba(255,255,255,0.12); width: 220px; padding: 1.35rem; box-shadow: 0 8px 32px rgba(0,0,0,0.45); display: none; }
+    #tweaks.show { display: block; }
+    .tw-h { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(160,220,160,0.85); padding-bottom: 0.65rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 0.85rem; display: flex; justify-content: space-between; }
+    .tw-x { background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; }
+    .tw-row { margin-bottom: 0.75rem; }
+    .tw-lbl { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.38rem; }
+    .tw-bs { display: flex; gap: 0.35rem; }
+    .tw-b { flex: 1; padding: 0.36rem; font-family: var(--m); font-size: 0.44rem; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.55); cursor: pointer; transition: all 0.2s; }
+    .tw-b:hover, .tw-b.on { background: var(--g); border-color: var(--g); color: white; }
+    .tw-sw { display: flex; gap: 0.4rem; }
+    .tw-s { width: 1.8rem; height: 1.8rem; border: 2px solid transparent; cursor: pointer; transition: border-color 0.2s; }
+    .tw-s.on { border-color: white; }
+
+    /* ── MOBILE ──────────────────────────── */
+    @media (max-width: 960px) {
+      #nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hero-overlay { padding: 0 2rem 4rem; }
+      .hero-h1 { font-size: 2.8rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat:nth-child(2) { border-right: none; }
+      .deals .wrap { grid-template-columns: 1fr; }
+      .deal-section-head { padding: 0 2rem 2rem; }
+      .deal-card { min-height: 360px; }
+      .anniversary { grid-template-columns: 1fr; }
+      .ann-img-col { min-height: 320px; }
+      .ann-content { padding: 3.5rem 2rem; }
+      .ingredients { padding: 5rem 0; }
+      .ing-head { padding: 0 2rem 2.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
+      .ing-grid { padding: 0 2rem; grid-template-columns: 1fr; }
+      .gallery-track { padding: 0 2rem; }
+      .gallery-label { padding: 0 0 2rem 2rem; }
+      .gallery-hint { padding-left: 2rem; }
+      .guarantee { padding: 5rem 0; }
+      .guar-inner { padding: 0 2rem; grid-template-columns: 1fr; gap: 3rem; }
+      .locations { padding: 5rem 0; }
+      .loc-head { padding: 0 2rem 2.5rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .loc-grid { padding: 0 2rem; grid-template-columns: 1fr 1fr; }
+      .cta-strip { padding: 2rem; flex-direction: column; text-align: center; }
+      footer { padding: 3rem 2rem 2rem; }
+      .ft-top { flex-direction: column; }
+      .ft-cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .ft-bottom { flex-direction: column; gap: 0.75rem; }
+      .wrap { padding: 0 2rem; }
+    }
+    @media (max-width: 520px) {
+      .loc-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────── -->
+<nav id="nav">
+  <div class="logo">
+    <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
+      <circle cx="19" cy="19" r="18" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+      <path d="M19 4 L32 30 Q19 22 6 30 Z" fill="rgba(160,220,160,0.9)"/>
+      <circle cx="19" cy="19" r="4.5" fill="rgba(255,255,255,0.9)"/>
+      <circle cx="19" cy="19" r="2" fill="#1a4820"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#ingredients">Quality</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#locations">Locations</a></li>
+    <li><a href="https://riversidepizza.net/our-menu/" target="_blank">Menu</a></li>
+    <li><a href="https://riversidepizza.net/catering/" target="_blank">Catering</a></li>
+    <li><a href="https://riversidepizza.net/order-online/" target="_blank" class="nav-cta">Order Online</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO SLIDER ────────────────────────────── -->
+<section class="hero">
+  <div class="slide active" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg')"></div>
+  <div class="slide" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg')"></div>
+  <div class="slide" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg')"></div>
+  <div class="slide" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg')"></div>
+  <div class="slide" style="background-image:url('https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg')"></div>
+
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Family Owned &amp; Operated Since 1999</div>
+      <h1 class="hero-h1">Always fresh.<br><em>Always homemade.</em></h1>
+      <p class="hero-tagline">Owners operate every store. Ingredients prepared fresh, daily. Quality and standards that are never compromised.</p>
+      <div class="hero-btns">
+        <a href="https://riversidepizza.net/order-online/" target="_blank" class="btn btn-white">Order Online</a>
+        <a href="#locations" class="btn btn-outline-w">Find a Location</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-arrows">
+    <button class="sarrow" id="prev">&#8592;</button>
+    <button class="sarrow" id="next">&#8594;</button>
+  </div>
+  <div class="slider-dots" id="dots">
+    <button class="dot active"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+  </div>
+</section>
+
+<!-- ── STATS ──────────────────────────────────── -->
+<div class="stats">
+  <div class="stat"><div class="stat-num" data-target="25">0</div><div class="stat-label">Years in Georgia</div></div>
+  <div class="stat"><div class="stat-num" data-target="8">0</div><div class="stat-label">Locations</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Satisfaction Guaranteed</div></div>
+  <div class="stat"><div class="stat-num">Fresh</div><div class="stat-label">Dough Handmade Daily</div></div>
+</div>
+
+<!-- ── MARQUEE ────────────────────────────────── -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span>Family Owned &amp; Operated Since 1999</span><span class="sep">·</span>
+    <span>Celebrating 25 Years</span><span class="sep">·</span>
+    <span>Handmade Dough Daily</span><span class="sep">·</span>
+    <span>100% Real Mozzarella &amp; Provolone</span><span class="sep">·</span>
+    <span>Stanislaus Tomato Sauce</span><span class="sep">·</span>
+    <span>Fresh Cut Produce Every Morning</span><span class="sep">·</span>
+    <span>8 Metro Atlanta Locations</span><span class="sep">·</span>
+    <span>100% Satisfaction Guaranteed</span><span class="sep">·</span>
+    <span>Family Owned &amp; Operated Since 1999</span><span class="sep">·</span>
+    <span>Celebrating 25 Years</span><span class="sep">·</span>
+    <span>Handmade Dough Daily</span><span class="sep">·</span>
+    <span>100% Real Mozzarella &amp; Provolone</span><span class="sep">·</span>
+    <span>Stanislaus Tomato Sauce</span><span class="sep">·</span>
+    <span>Fresh Cut Produce Every Morning</span><span class="sep">·</span>
+    <span>8 Metro Atlanta Locations</span><span class="sep">·</span>
+    <span>100% Satisfaction Guaranteed</span><span class="sep">·</span>
+  </div>
+</div>
+
+<!-- ── DEALS ──────────────────────────────────── -->
+<section class="deals">
+  <div class="deal-section-head">
+    <div class="sec-ey">Featured Specials</div>
+    <h2 class="sec-h" style="font-size:clamp(2rem,3vw,3.2rem); font-weight:500;">Deals worth <em style="font-style:italic; color:var(--g);">sharing.</em></h2>
+  </div>
+  <div class="wrap">
+    <div class="deal-card">
+      <div class="deal-bg" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/get-attachment.aspx_11-e1384317042793.jpg')"></div>
+      <div class="deal-gradient"></div>
+      <div class="deal-body">
+        <div class="deal-tag">CarryOut Special · EA + Tax</div>
+        <div class="deal-price">$25.99</div>
+        <div class="deal-name">Ultimate Family Meal Deal</div>
+        <div class="deal-items">2 Large 1 Topping Pizzas · Breadsticks &amp; Sauce · Family Size Salad</div>
+        <a href="https://riversidepizza.net/order-online/" target="_blank" class="btn btn-white">Order Now</a>
+      </div>
+    </div>
+    <div class="deal-card">
+      <div class="deal-bg" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/8.jpg')"></div>
+      <div class="deal-gradient"></div>
+      <div class="deal-body">
+        <div class="deal-tag">Oven Baked</div>
+        <div class="deal-price">$5.99</div>
+        <div class="deal-name">Italian Sandwiches</div>
+        <div class="deal-items">Oven baked to perfection with the freshest ingredients.</div>
+        <a href="https://riversidepizza.net/our-menu/" target="_blank" class="btn btn-white">View Menu</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ANNIVERSARY ────────────────────────────── -->
+<section class="anniversary" id="about">
+  <div class="ann-img-col">
+    <img id="annImg" src="https://riversidepizza.net/wp-content/uploads/2026/03/Al-and-Sandy.jpg" alt="Al and Sandy Thompson" class="ann-img">
+  </div>
+  <div class="ann-content">
+    <div class="ann-badge">
+      <span class="ann-badge-num">25</span>
+      <span class="ann-badge-lbl">Years of Excellence</span>
+    </div>
+    <div class="ann-content .ey gs-reveal" style="font-family:var(--m);font-size:0.57rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+      <span style="width:1.5rem;height:1px;background:var(--g);display:block;flex-shrink:0;"></span>Celebrating 25 Years
+    </div>
+    <h2 class="ann-h gs-reveal">Family owned and operated <em>since 1999.</em></h2>
+    <p class="ann-p gs-reveal">As we proudly celebrate our 25th Anniversary, we want to take a moment to express our deepest gratitude to you, our cherished customers. Your unwavering support and loyalty have been the foundation of our journey, and we couldn't have reached this milestone without you.</p>
+    <p class="ann-p gs-reveal">Over the years, we have strived to provide you with exceptional meals, and it's your trust in us that has inspired us to continuously improve and innovate. This anniversary is more than just a celebration of time; it's a celebration of the relationships we've built and the memories we've created together.</p>
+    <p class="ann-p gs-reveal">Thank you for being a part of our story – here's to many more years of serving you with passion and dedication!</p>
+    <div class="signature gs-reveal">~Al &amp; Sandy Thompson</div>
+  </div>
+</section>
+
+<!-- ── INGREDIENTS ────────────────────────────── -->
+<section class="ingredients" id="ingredients">
+  <div class="ing-head">
+    <div>
+      <div class="sec-ey gs-reveal">Always Fresh · Quality Ingredients</div>
+      <h2 class="sec-h gs-reveal" style="font-size:clamp(2rem,3vw,3.4rem);font-weight:500;">Riverside Pizza is dedicated to<br><em>our high quality standards.</em></h2>
+    </div>
+    <p class="ing-desc gs-reveal">We understand that our success depends on the quality of food we serve and we couldn't give outstanding quality without investing in quality ingredients!</p>
+  </div>
+  <div class="ing-grid">
+    <div class="ing-card gs-stagger">
+      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/cheese.jpg" alt="Cheese" onerror="this.parentNode.className='ing-icon-blank'"></div>
+      <div><div class="ing-num">01 — Cheese</div><div class="ing-title">100% Real Mozzarella &amp; Provolone</div><div class="ing-text">Grated on site at each restaurant — never pre-shredded. What you taste was cut that morning.</div></div>
+    </div>
+    <div class="ing-card gs-stagger">
+      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/tomatoes.jpg" alt="Tomatoes" onerror="this.parentNode.className='ing-icon-blank'"></div>
+      <div><div class="ing-num">02 — Sauce</div><div class="ing-title">Stanislaus Pizza Sauce</div><div class="ing-text">The quality leader in the industry. Packed from fresh tomatoes only — never concentrated. Our homemade spice mix is blended in daily.</div></div>
+    </div>
+    <div class="ing-card gs-stagger">
+      <div class="ing-icon-blank"></div>
+      <div><div class="ing-num">03 — Dough</div><div class="ing-title">Handmade Every Morning</div><div class="ing-text">Made from scratch at each location daily using All Trumps flour, a General Mills Gold Medal product.</div></div>
+    </div>
+    <div class="ing-card gs-stagger">
+      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/vegies.jpg" alt="Vegetables" onerror="this.parentNode.className='ing-icon-blank'"></div>
+      <div><div class="ing-num">04 — Pepperoni</div><div class="ing-title">Hormel Pepperoni Only</div><div class="ing-text">The only pepperoni we use — one of the highest quality and most recognized name brands in the industry.</div></div>
+    </div>
+    <div class="ing-card gs-stagger">
+      <div class="ing-icon-blank"></div>
+      <div><div class="ing-num">05 — Produce</div><div class="ing-title">Cut Fresh Daily</div><div class="ing-text">The produce is cut daily in each restaurant to ensure the absolute freshest product on every pizza.</div></div>
+    </div>
+    <div class="ing-card promise gs-stagger">
+      <div class="ing-icon-blank" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(180,230,180,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div><div class="ing-num">Our Promise</div><div class="ing-title">100% Product Guarantee</div><div class="ing-text">If at any time you are not completely satisfied, we will replace the purchase or refund your money — Guaranteed!</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ─────────────────────────────────── -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-pin" id="galleryPin">
+    <div class="gallery-inner">
+      <div class="gallery-label">
+        <div class="sec-ey gs-reveal">From Our Kitchen</div>
+        <h2 class="sec-h gs-reveal" style="font-size:clamp(1.8rem,2.8vw,3rem);font-weight:500;">Fresh out of the oven, <em style="font-style:italic;color:var(--g);">every time.</em></h2>
+      </div>
+      <div class="gallery-track" id="galleryTrack">
+        <div class="gallery-item wide"><img src="https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg" alt="Riverside Pizza Restaurant" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza" loading="lazy"></div>
+        <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Riverside Pizza" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Riverside Pizza" loading="lazy"></div>
+        <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Riverside Pizza" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Riverside Pizza" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Riverside Pizza" loading="lazy"></div>
+        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Cinnamon Bread" loading="lazy"></div>
+      </div>
+      <div class="gallery-hint">Scroll to explore</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GUARANTEE + TESTIMONIAL ───────────────── -->
+<section class="guarantee">
+  <div class="guar-inner">
+    <div class="gs-reveal">
+      <div class="guar-ey">Our Commitment</div>
+      <h2 class="guar-h">100% Product <em>Guarantee.</em></h2>
+      <p class="guar-body">If at any time you are not completely satisfied, we will replace the purchase or refund your money.</p>
+      <p class="guar-bold">Guaranteed!</p>
+      <div style="margin-top:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="https://riversidepizza.net/order-online/" target="_blank" class="btn btn-white">Order Delivery</a>
+        <a href="https://riversidepizza.net/order-online/" target="_blank" class="btn btn-outline-w">Order Carryout</a>
+      </div>
+    </div>
+    <div class="quote-panel gs-reveal">
+      <div class="qm">"</div>
+      <p class="qt">I lived in New York for about 7 years and had tons of famous NY style pizza, but I just moved to Georgia and this is probably the best pizza I have ever had. AND the most affordable! You guys are amazing! Better than any chain or any other place around.</p>
+      <div class="qs">— Former New Yorker</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOCATIONS ──────────────────────────────── -->
+<section class="locations" id="locations">
+  <div class="loc-head gs-reveal">
+    <div>
+      <div class="sec-ey">Find Us Near You</div>
+      <h2 class="sec-h" style="font-size:clamp(2rem,3vw,3.5rem);font-weight:500;">8 Locations across <em style="font-style:italic;color:var(--g);">Metro Atlanta.</em></h2>
+    </div>
+    <div class="loc-head-links">
+      <a href="https://riversidepizza.net/locations/" target="_blank" class="loc-link">Map — All Locations</a>
+      <a href="https://riversidepizza.net/contact-us/" target="_blank" class="loc-link">Contact Us</a>
+    </div>
+  </div>
+  <div class="loc-grid">
+    <div class="loc-card gs-stagger"><div class="loc-name">Lawrenceville</div><div class="loc-sub">In Kroger Shopping Center</div><div class="loc-addr">2100 Riverside Pkwy @ Duluth Hwy 120<br>Lawrenceville, GA 30043</div><a href="tel:7708221500" class="loc-phone">770-822-1500</a><a href="https://www.google.com/maps?q=2100+Riverside+Pkwy,+Lawrenceville,+GA" target="_blank" class="loc-dir">Get Directions</a></div>
+    <div class="loc-card gs-stagger"><div class="loc-name">Sugarloaf (Lawrenceville)</div><div class="loc-sub">In Publix Shopping Center</div><div class="loc-addr">3330 Sugarloaf Pkwy @ Five Forks Trickum<br>Lawrenceville, GA 30044</div><a href="tel:7707717000" class="loc-phone">770-771-7000</a><a href="https://www.google.com/maps?q=3330+Sugarloaf+Pkwy,+Lawrenceville,+GA" target="_blank" class="loc-dir">Get Directions</a></div>
+    <div class="loc-card gs-stagger"><div class="loc-name">Suwanee</div><div class="loc-sub">Peachtree Industrial Blvd</div><div class="loc-addr">991 Peachtree Industrial Blvd @ Moore<br>Suwanee, GA 30024</div><a href="tel:7702719992" class="loc-phone">770-271-9992</a><a href="https://www.google.com/maps?q=991+Peachtree+Industrial+Blvd+Suwanee,+GA" target="_blank" class="loc-dir">Get Directions</a></div>
+    <div class="loc-card gs-stagger"><div class="loc-name">Grayson</div><div class="loc-sub">Grayson Highway</div><div class="loc-addr">1845 Grayson Hwy @ Rosebud<br>Grayson, GA 30017</div><a href="tel:7706822929" class="loc-phone">770-682-2929</a><a href="https://www.google.com/maps?q=1845+Grayson+Hwy,+Grayson,+GA" target="_blank" class="loc-dir">Get Directions</a></div>
+    <div class="loc-card gs-stagger"><div class="loc-name">Hamilton Mill</div><div class="loc-sub">Braselton Highway</div><div class="loc-addr">2463 Hamilton Mill Pkwy #320 @ Braselton Hwy<br>Dacula, GA 30005</div><a href="tel:7702718881" class="loc-phone">770-271-8881</a><a href="https://www.google.com/maps/search/Riverside+Pizza+2463+Hamilton+Mill" target="_blank" class="loc-dir">Get Directions</a></div>
+    <div class="loc-card gs-stagger"><div class="loc-name">Dacula</div><div class="loc-sub">Kroger Center</div><div class="loc-addr">Fence Rd. @ Dacula Rd., Kroger Center<br>Dacula, GA 30019</div><a href="tel:7709635000" class="loc-phone">770-963-5000</a><a href="https://www.google.com/maps?q=2515+Fence+Rd,+Dacula,+GA" target="_blank" class="loc-dir">Get Directions</a></div>
+    <div class="loc-card gs-stagger"><div class="loc-name">Johns Creek</div><div class="loc-sub">Douglas Road</div><div class="loc-addr">11877 Douglas Rd @ Jonesbridge<br>Johns Creek, GA 30005</div><a href="tel:7703600002" class="loc-phone">770-360-0002</a><a href="https://www.google.com/maps?q=11877+Douglas+Road,+Johns+Creek,+GA" target="_blank" class="loc-dir">Get Directions</a></div>
+    <div class="loc-card gs-stagger"><div class="loc-name">Cumming</div><div class="loc-sub">Down the Street from Publix</div><div class="loc-addr">3030 Old Atlanta Rd. @ Sharon Rd.<br>Cumming, GA 30041</div><a href="tel:4702394243" class="loc-phone">470-239-4243</a><a href="https://www.google.com/maps/place/3030+Old+Atlanta+Rd,+Cumming,+GA+30041" target="_blank" class="loc-dir">Get Directions</a></div>
+  </div>
+</section>
+
+<!-- ── CTA STRIP ──────────────────────────────── -->
+<div class="cta-strip">
+  <div class="cta-text">Ready to order? We make it easy.</div>
+  <div class="cta-links">
+    <a href="https://riversidepizza.net/order-online/" target="_blank" class="btn btn-white">Order Online</a>
+    <a href="https://riversidepizza.net/our-menu/" target="_blank" class="btn btn-outline-w">Our Menu</a>
+    <a href="https://riversidepizza.net/catering/" target="_blank" class="btn btn-outline-w">Catering</a>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────── -->
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
+    <div class="ft-cols">
+      <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="https://riversidepizza.net/our-menu/" target="_blank">Our Menu</a></li><li><a href="https://riversidepizza.net/lunch-specials/" target="_blank">Lunch Specials</a></li><li><a href="https://riversidepizza.net/gluten-free-information/" target="_blank">Gluten Free Info</a></li><li><a href="https://riversidepizza.net/catering/" target="_blank">Catering</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="https://riversidepizza.net/about-us-2/" target="_blank">About Us</a></li><li><a href="https://riversidepizza.net/about-us-2/fresh-ingredients/" target="_blank">Stanislaus</a></li><li><a href="https://riversidepizza.net/job-application/" target="_blank">Job Application</a></li><li><a href="https://riversidepizza.net/contact-us/" target="_blank">Contact Us</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="https://riversidepizza.net/order-online/" target="_blank">Order Delivery</a></li><li><a href="https://riversidepizza.net/order-online/" target="_blank">Order Carryout</a></li><li><a href="https://riversidepizza.net/locations/" target="_blank">Store Locator</a></li></ul></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+    <div class="ft-copy">Lawrenceville · Sugarloaf · Suwanee · Grayson · Hamilton Mill · Dacula · Johns Creek · Cumming</div>
+  </div>
+</footer>
+
+<!-- ── TWEAKS ─────────────────────────────────── -->
+<div id="tweaks">
+  <div class="tw-h">Tweaks <button class="tw-x" id="twX">✕</button></div>
+  <div class="tw-row">
+    <div class="tw-lbl">Green Shade</div>
+    <div class="tw-sw" id="gSw">
+      <div class="tw-s on" data-g="#2e6b2e" data-gd="#1a4820" style="background:#2e6b2e"></div>
+      <div class="tw-s" data-g="#2a6040" data-gd="#164030" style="background:#2a6040"></div>
+      <div class="tw-s" data-g="#387038" data-gd="#1e4a1e" style="background:#387038"></div>
+      <div class="tw-s" data-g="#4a6e28" data-gd="#2e4418" style="background:#4a6e28"></div>
+    </div>
+  </div>
+  <div class="tw-row">
+    <div class="tw-lbl">Hero Layout</div>
+    <div class="tw-bs" id="heroBs">
+      <button class="tw-b on" data-h="full">Full Photo</button>
+      <button class="tw-b" data-h="overlay">Dark Overlay</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "greenShade": "oklch(42% 0.16 145)",
+    "bg": "#ffffff",
+    "hero": "full",
+    "green": "#387038"
+  }/*EDITMODE-END*/;
+
+  // ── LENIS SMOOTH SCROLL ──────────────────────
+  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(time => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  // ── REGISTER SCROLLTRIGGER ───────────────────
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── NAV SOLID ON SCROLL ──────────────────────
+  lenis.on('scroll', ({ scroll }) => {
+    document.getElementById('nav').classList.toggle('solid', scroll > 60);
+  });
+
+  // ── HERO LOAD-IN ─────────────────────────────
+  const tl = gsap.timeline({ delay: 0.2 });
+  tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
+    .to('.hero-h1',       { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=0.5')
+    .to('.hero-tagline',  { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
+    .to('.hero-btns',     { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.5');
+
+  // ── HERO SLIDER ──────────────────────────────
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dots = Array.from(document.querySelectorAll('.dot'));
+  let cur = 0, timer;
+
+  function goTo(n, dir = 1) {
+    clearTimeout(timer);
+    const prev = slides[cur];
+    cur = ((n % slides.length) + slides.length) % slides.length;
+    const next = slides[cur];
+    gsap.set(next, { opacity: 0, zIndex: 2, scale: 1.04 });
+    gsap.set(prev, { zIndex: 1 });
+    gsap.to(next, { opacity: 1, scale: 1, duration: 1.4, ease: 'power2.inOut' });
+    gsap.to(prev, { opacity: 0, duration: 1.4, ease: 'power2.inOut', onComplete: () => gsap.set(prev, { zIndex: 0 }) });
+    dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+    timer = setTimeout(() => goTo(cur + 1), 5500);
+  }
+
+  timer = setTimeout(() => goTo(1), 5500);
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+  document.getElementById('prev').addEventListener('click', () => goTo(cur - 1));
+  document.getElementById('next').addEventListener('click', () => goTo(cur + 1));
+
+  // ── STATS COUNTER ────────────────────────────
+  document.querySelectorAll('[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    ScrollTrigger.create({
+      trigger: el, start: 'top 85%', once: true,
+      onEnter: () => {
+        const obj = { val: 0 };
+        gsap.to(obj, { val: target, duration: 2, ease: 'power2.out',
+          onUpdate() { el.textContent = Math.round(obj.val) + (target === 25 ? '' : ''); }
+        });
+      }
+    });
+  });
+
+  // ── ANNIVERSARY PARALLAX ─────────────────────
+  gsap.to('#annImg', {
+    y: '15%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.anniversary',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+
+  // ── SECTION REVEALS ──────────────────────────
+  gsap.utils.toArray('.gs-reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      }
+    );
+  });
+
+  // ── STAGGER GRIDS ────────────────────────────
+  ['ing-grid','loc-grid'].forEach(cls => {
+    const cards = document.querySelectorAll(`.${cls} .gs-stagger`);
+    if (!cards.length) return;
+    gsap.fromTo(cards,
+      { opacity: 0, y: 35 },
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.' + cls, start: 'top 85%', once: true }
+      }
+    );
+  });
+
+  // ── HORIZONTAL GALLERY ───────────────────────
+  const isMobile = window.innerWidth < 768;
+  if (!isMobile) {
+    const track = document.getElementById('galleryTrack');
+    const pin = document.getElementById('galleryPin');
+    function initGallery() {
+      const trackW = track.scrollWidth;
+      const vw = window.innerWidth;
+      const dist = trackW - vw + 80;
+      gsap.to(track, {
+        x: -dist,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: pin,
+          pin: true,
+          scrub: 1.2,
+          start: 'top top',
+          end: () => '+=' + dist,
+          invalidateOnRefresh: true
+        }
+      });
+    }
+    initGallery();
+  }
+
+  // ── DEAL CARDS REVEAL ────────────────────────
+  gsap.fromTo('.deal-card',
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0, duration: 0.9, stagger: 0.2, ease: 'power3.out',
+      scrollTrigger: { trigger: '.deals', start: 'top 80%', once: true }
+    }
+  );
+
+  // ── TWEAKS ───────────────────────────────────
+  window.addEventListener('message', e => {
+    if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks').classList.add('show');
+    if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks').classList.remove('show');
+  });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  document.getElementById('twX').addEventListener('click', () => {
+    document.getElementById('tweaks').classList.remove('show');
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  });
+
+  document.getElementById('gSw').addEventListener('click', e => {
+    const s = e.target.closest('.tw-s'); if (!s) return;
+    document.querySelectorAll('#gSw .tw-s').forEach(x => x.classList.remove('on')); s.classList.add('on');
+    document.documentElement.style.setProperty('--g', s.dataset.g);
+    document.documentElement.style.setProperty('--gd', s.dataset.gd);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { green: s.dataset.g } }, '*');
+  });
+
+  document.getElementById('heroBs').addEventListener('click', e => {
+    const b = e.target.closest('.tw-b'); if (!b) return;
+    document.querySelectorAll('#heroBs .tw-b').forEach(x => x.classList.remove('on')); b.classList.add('on');
+    const ov = document.querySelector('.hero-overlay');
+    if (b.dataset.h === 'overlay') {
+      ov.style.background = 'linear-gradient(rgba(20,44,20,0.75), rgba(20,44,20,0.75))';
+    } else {
+      ov.style.background = '';
+    }
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { hero: b.dataset.h } }, '*');
+  });
+</script>
+</body>
+</html>
