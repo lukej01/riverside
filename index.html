@@ -40,39 +40,24 @@
       display: flex; justify-content: space-between; align-items: center;
       transition: all 0.3s ease;
       background: transparent;
-      box-shadow: none;
-    }
-    #nav::before {
-      content: ''; position: absolute; inset: 0; z-index: -1;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-      transition: opacity 0.3s ease;
-      pointer-events: none;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     #nav.scrolled {
-      background: var(--cream);
-      box-shadow: 0 1px 0 var(--bdr), 0 4px 24px rgba(0,0,0,0.04);
-    }
-    #nav.scrolled::before {
-      opacity: 0;
+      background: var(--g);
+      border-bottom-color: transparent;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
     }
     .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: transform 0.18s; }
     .logo:hover { transform: scale(1.025); }
-    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; transition: filter 0.3s; filter: brightness(0) invert(1); }
-    #nav.scrolled .logo img { mix-blend-mode: multiply; filter: contrast(1.1); }
+    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4)); }
     .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
-    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; letter-spacing: -0.025em; display: block; transition: color 0.3s; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-    #nav.scrolled .logo-name { color: var(--g); text-shadow: none; }
-    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-top: 4px; display: block; transition: color 0.3s; }
-    #nav.scrolled .logo-sub { color: var(--mu); }
+    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; letter-spacing: -0.025em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 4px; display: block; }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: white; padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
-    #nav.scrolled .nav-links a { color: var(--tx); text-shadow: none; }
+    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: white; padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
     .nav-links a:hover { color: rgba(255,255,255,0.7); }
-    #nav.scrolled .nav-links a:hover { color: var(--g); }
-    .nav-cta { background: white !important; color: var(--g) !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; text-shadow: none !important; }
+    .nav-cta { background: white !important; color: var(--g) !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
     .nav-cta:hover { background: rgba(255,255,255,0.9) !important; }
-    #nav.scrolled .nav-cta { background: var(--g) !important; color: white !important; }
-    #nav.scrolled .nav-cta:hover { background: var(--gd) !important; }
 
     /* ── HERO SLIDER ─────────────────────── */
     .hero { position: relative; height: 100dvh; overflow: hidden; }
@@ -155,17 +140,14 @@
     .deal-section-head { max-width: 1280px; margin: 0 auto; padding: 0 5rem 3rem; }
 
     /* ── ANNIVERSARY ─────────────────────── */
-    .anniversary { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
-    .ann-img-col { position: relative; overflow: hidden; min-height: 640px; }
-    .ann-img { position: absolute; inset: -20% 0; width: 100%; height: 140%; object-fit: cover; will-change: transform; }
-    .ann-content { background: var(--gm); padding: 6rem 5.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .anniversary { background: var(--gm); padding: 7rem 5.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .ann-content { max-width: 800px; display: flex; flex-direction: column; align-items: center; }
     .ann-content .ey { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-    .ann-content .ey::before { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
-    .ann-h { font-family: var(--d); font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.5rem; }
+    .ann-h { font-family: var(--d); font-size: clamp(2rem, 4vw, 4rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.5rem; }
     .ann-h em { font-style: italic; color: var(--g); }
-    .ann-p { font-size: 0.9rem; line-height: 1.9; color: var(--mu); max-width: 48ch; margin-bottom: 0.9rem; font-weight: 300; }
-    .signature { font-family: var(--d); font-style: italic; font-size: 1.15rem; color: var(--g); margin-top: 0.5rem; }
-    .ann-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gd); color: white; padding: 0.6rem 1.2rem; margin-bottom: 1.5rem; align-self: flex-start; }
+    .ann-p { font-size: 0.9rem; line-height: 1.9; color: var(--mu); max-width: 55ch; margin-bottom: 0.9rem; font-weight: 300; }
+    .signature { font-family: var(--d); font-style: italic; font-size: 1.15rem; color: var(--g); margin-top: 1.5rem; }
+    .ann-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gd); color: white; padding: 0.6rem 1.2rem; margin-bottom: 1.5rem; }
     .ann-badge-num { font-family: var(--d); font-size: 1.5rem; font-weight: 700; line-height: 1; }
     .ann-badge-lbl { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; }
 
@@ -179,14 +161,11 @@
     .ing-head .sec-h { font-size: clamp(2rem, 3vw, 3.4rem); font-weight: 500; }
     .ing-desc { font-size: 0.9rem; line-height: 1.9; color: var(--mu); font-weight: 300; }
     .ing-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
-    .ing-card { background: var(--wh); padding: 2.25rem; border: 1px solid var(--bdr); display: flex; gap: 1.25rem; align-items: flex-start; transition: background 0.25s, border-color 0.25s; }
+    .ing-card { background: var(--wh); padding: 2.25rem; border: 1px solid var(--bdr); display: flex; flex-direction: column; align-items: flex-start; transition: background 0.25s, border-color 0.25s; }
     .ing-card:hover { background: var(--gp); border-color: var(--g); }
-    .ing-icon { width: 84px; height: 84px; border-radius: 12px; overflow: hidden; flex-shrink: 0; border: 2px solid var(--bdr); background: var(--gm); }
-    .ing-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .ing-icon-blank { width: 84px; height: 84px; border-radius: 12px; flex-shrink: 0; background: var(--gm); border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; }
-    .ing-num { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--g); margin-bottom: 0.35rem; }
-    .ing-title { font-family: var(--d); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.35rem; }
-    .ing-text { font-size: 0.8rem; line-height: 1.75; color: var(--mu); font-weight: 300; }
+    .ing-num { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--g); margin-bottom: 1rem; }
+    .ing-title { font-family: var(--d); font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .ing-text { font-size: 0.85rem; line-height: 1.75; color: var(--mu); font-weight: 300; }
     .ing-card.promise { background: var(--gd); border-color: var(--gd); }
     .ing-card.promise .ing-num { color: rgba(160,220,160,0.8); }
     .ing-card.promise .ing-title { color: white; }
@@ -288,12 +267,12 @@
       .deals .wrap { grid-template-columns: 1fr; }
       .deal-section-head { padding: 0 2rem 2rem; }
       .deal-card { min-height: 360px; }
-      .anniversary { grid-template-columns: 1fr; }
-      .ann-img-col { min-height: 320px; }
-      .ann-content { padding: 3.5rem 2rem; }
+      .anniversary { padding: 5rem 2rem; }
+      .ann-content { padding: 0; }
       .ingredients { padding: 5rem 0; }
       .ing-head { padding: 0 2rem 2.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
       .ing-grid { padding: 0 2rem; grid-template-columns: 1fr; }
+      .ing-card { align-items: center; text-align: center; }
       .gallery-track { padding: 0 2rem; }
       .gallery-label { padding: 0 0 2rem 2rem; }
       .gallery-hint { padding-left: 2rem; }
@@ -320,7 +299,7 @@
 <!-- ── NAV ───────────────────────────────────── -->
 <nav id="nav">
   <div class="logo">
-    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza" style="height: 48px; border-radius: 4px;">
+    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
     <div class="logo-text">
       <span class="logo-name">Riverside Pizza</span>
       <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
@@ -432,16 +411,13 @@
 
 <!-- ── ANNIVERSARY ────────────────────────────── -->
 <section class="anniversary" id="about">
-  <div class="ann-img-col">
-    <img id="annImg" src="https://riversidepizza.net/wp-content/uploads/2026/03/Al-and-Sandy.jpg" alt="Al and Sandy Thompson" class="ann-img">
-  </div>
   <div class="ann-content">
     <div class="ann-badge">
       <span class="ann-badge-num">25</span>
       <span class="ann-badge-lbl">Years of Excellence</span>
     </div>
-    <div class="ey gs-reveal" style="font-family:var(--m);font-size:0.57rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
-      <span style="width:1.5rem;height:1px;background:var(--g);display:block;flex-shrink:0;"></span>Celebrating 25 Years
+    <div class="ey gs-reveal" style="font-family:var(--m);font-size:0.57rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1rem;">
+      Celebrating 25 Years
     </div>
     <h2 class="ann-h gs-reveal">Family owned and operated <em>since 1999.</em></h2>
     <p class="ann-p gs-reveal">As we proudly celebrate our 25th Anniversary, we want to take a moment to express our deepest gratitude to you, our cherished customers. Your unwavering support and loyalty have been the foundation of our journey, and we couldn't have reached this milestone without you.</p>
@@ -462,28 +438,22 @@
   </div>
   <div class="ing-grid">
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/cheese.jpg" alt="Cheese" onerror="this.parentNode.className='ing-icon-blank'"></div>
-      <div><div class="ing-num">01 — Cheese</div><div class="ing-title">100% Real Mozzarella &amp; Provolone</div><div class="ing-text">Grated on site at each restaurant — never pre-shredded. What you taste was cut that morning.</div></div>
+      <div class="ing-num">01 — Cheese</div><div class="ing-title">100% Real Mozzarella &amp; Provolone</div><div class="ing-text">Grated on site at each restaurant — never pre-shredded. What you taste was cut that morning.</div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/tomatoes.jpg" alt="Tomatoes" onerror="this.parentNode.className='ing-icon-blank'"></div>
-      <div><div class="ing-num">02 — Sauce</div><div class="ing-title">Stanislaus Pizza Sauce</div><div class="ing-text">The quality leader in the industry. Packed from fresh tomatoes only — never concentrated. Our homemade spice mix is blended in daily.</div></div>
+      <div class="ing-num">02 — Sauce</div><div class="ing-title">Stanislaus Pizza Sauce</div><div class="ing-text">The quality leader in the industry. Packed from fresh tomatoes only — never concentrated. Our homemade spice mix is blended in daily.</div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Dough" onerror="this.parentNode.className='ing-icon-blank'"></div>
-      <div><div class="ing-num">03 — Dough</div><div class="ing-title">Handmade Every Morning</div><div class="ing-text">Made from scratch at each location daily using All Trumps flour, a General Mills Gold Medal product.</div></div>
+      <div class="ing-num">03 — Dough</div><div class="ing-title">Handmade Every Morning</div><div class="ing-text">Made from scratch at each location daily using All Trumps flour, a General Mills Gold Medal product.</div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=400&q=80" alt="Pepperoni" onerror="this.parentNode.className='ing-icon-blank'"></div>
-      <div><div class="ing-num">04 — Pepperoni</div><div class="ing-title">Hormel Pepperoni Only</div><div class="ing-text">The only pepperoni we use — one of the highest quality and most recognized name brands in the industry.</div></div>
+      <div class="ing-num">04 — Pepperoni</div><div class="ing-title">Hormel Pepperoni Only</div><div class="ing-text">The only pepperoni we use — one of the highest quality and most recognized name brands in the industry.</div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/vegies.jpg" alt="Produce" onerror="this.parentNode.className='ing-icon-blank'"></div>
-      <div><div class="ing-num">05 — Produce</div><div class="ing-title">Cut Fresh Daily</div><div class="ing-text">The produce is cut daily in each restaurant to ensure the absolute freshest product on every pizza.</div></div>
+      <div class="ing-num">05 — Produce</div><div class="ing-title">Cut Fresh Daily</div><div class="ing-text">The produce is cut daily in each restaurant to ensure the absolute freshest product on every pizza.</div>
     </div>
     <div class="ing-card promise gs-stagger">
-      <div class="ing-icon-blank" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(180,230,180,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div><div class="ing-num">Our Promise</div><div class="ing-title">100% Product Guarantee</div><div class="ing-text">If at any time you are not completely satisfied, we will replace the purchase or refund your money — Guaranteed!</div></div>
+      <div class="ing-num">Our Promise</div><div class="ing-title">100% Product Guarantee</div><div class="ing-text">If at any time you are not completely satisfied, we will replace the purchase or refund your money — Guaranteed!</div>
     </div>
   </div>
 </section>
@@ -520,8 +490,8 @@
       <p class="guar-body">If at any time you are not completely satisfied, we will replace the purchase or refund your money.</p>
       <p class="guar-bold">Guaranteed!</p>
       <div style="margin-top:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
-        <a href="order.html" class="btn btn-white">Order Delivery</a>
-        <a href="order.html" class="btn btn-outline-w">Order Carryout</a>
+        <a href="locations.html" class="btn btn-white">Find a Location</a>
+        <a href="menu.html" class="btn btn-outline-w">View Menu</a>
       </div>
     </div>
     <div class="quote-panel gs-reveal">
@@ -558,9 +528,9 @@
 
 <!-- ── CTA STRIP ──────────────────────────────── -->
 <div class="cta-strip">
-  <div class="cta-text">Ready to order? We make it easy.</div>
+  <div class="cta-text">Ready to order? Find your nearest location.</div>
   <div class="cta-links">
-    <a href="order.html" class="btn btn-white">Order Online</a>
+    <a href="locations.html" class="btn btn-white">Find a Location</a>
     <a href="menu.html" class="btn btn-outline-w">Our Menu</a>
     <a href="catering.html" class="btn btn-outline-w">Catering</a>
   </div>
@@ -624,10 +594,8 @@
   // ── REGISTER SCROLLTRIGGER ───────────────────
   gsap.registerPlugin(ScrollTrigger);
 
-  // ── NAV SOLID ON SCROLL ──────────────────────
-  lenis.on('scroll', ({ scroll }) => {
-    document.getElementById('nav').classList.toggle('solid', scroll > 60);
-  });
+  // ── NAV SCROLL STATE ─────────────────────────
+  // (handled by window scroll listener below)
 
   // ── HERO LOAD-IN ─────────────────────────────
   const tl = gsap.timeline({ delay: 0.2 });
@@ -673,17 +641,7 @@
     });
   });
 
-  // ── ANNIVERSARY PARALLAX ─────────────────────
-  gsap.to('#annImg', {
-    y: '15%',
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.anniversary',
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: 1
-    }
-  });
+  // ── ANNIVERSARY: no parallax image (editorial layout) ───
 
   // ── SECTION REVEALS ──────────────────────────
   gsap.utils.toArray('.gs-reveal').forEach(el => {
@@ -709,13 +667,10 @@
 
   // ── NAV SCROLL STATE ─────────────────────────
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > window.innerHeight * 0.9) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
+  const heroH = () => window.innerHeight * 0.88;
+  const checkNav = () => nav.classList.toggle('scrolled', window.scrollY > heroH());
+  window.addEventListener('scroll', checkNav, { passive: true });
+  checkNav(); // run once on load
 
   // ── DRAG & AUTO SCROLL GALLERY ───────────────
   const track = document.getElementById('galleryTrack');
@@ -729,7 +684,7 @@
     if (!isDown && !isHovered) {
       const maxScroll = track.scrollWidth - track.clientWidth;
       if (maxScroll > 10) { // ensure images have loaded enough to give us a track
-        track.scrollLeft += 1;
+        track.scrollLeft += 0.6;
         if (track.scrollLeft >= maxScroll - 2) {
           track.scrollLeft = 0; // reset to start
         }
