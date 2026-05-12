@@ -38,20 +38,31 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 0 3rem; height: 80px;
       display: flex; justify-content: space-between; align-items: center;
+      transition: all 0.3s ease;
+      background: transparent;
+      box-shadow: none;
+    }
+    #nav.scrolled {
       background: var(--cream);
       box-shadow: 0 1px 0 var(--bdr), 0 4px 24px rgba(0,0,0,0.04);
     }
     .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: transform 0.18s; }
     .logo:hover { transform: scale(1.025); }
-    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; mix-blend-mode: multiply; filter: contrast(1.1); }
+    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; transition: filter 0.3s; filter: brightness(0) invert(1); }
+    #nav.scrolled .logo img { mix-blend-mode: multiply; filter: contrast(1.1); }
     .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
-    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; display: block; }
-    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mu); margin-top: 4px; display: block; }
+    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; letter-spacing: -0.025em; display: block; transition: color 0.3s; }
+    #nav.scrolled .logo-name { color: var(--g); }
+    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 4px; display: block; transition: color 0.3s; }
+    #nav.scrolled .logo-sub { color: var(--mu); }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx); padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
-    .nav-links a:hover { color: var(--g); }
-    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
-    .nav-cta:hover { background: var(--gd) !important; }
+    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: white; padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
+    #nav.scrolled .nav-links a { color: var(--tx); }
+    .nav-links a:hover { color: var(--g) !important; }
+    .nav-cta { background: white !important; color: var(--g) !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
+    .nav-cta:hover { background: rgba(255,255,255,0.9) !important; }
+    #nav.scrolled .nav-cta { background: var(--g) !important; color: white !important; }
+    #nav.scrolled .nav-cta:hover { background: var(--gd) !important; }
 
     /* ── HERO SLIDER ─────────────────────── */
     .hero { position: relative; height: 100dvh; overflow: hidden; }
@@ -179,8 +190,9 @@
     .gallery-label { padding: 0 0 2.5rem 5rem; }
     .gallery-label .sec-ey { }
     .gallery-label .sec-h { font-size: clamp(1.8rem, 2.8vw, 3rem); font-weight: 500; }
-    .gallery-track { display: flex; gap: 12px; padding: 0 5rem; will-change: transform; }
-    .gallery-item { flex-shrink: 0; height: 62vh; width: auto; overflow: hidden; position: relative; }
+    .gallery-track { display: flex; gap: 12px; padding: 0 5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2rem; cursor: grab; }
+    .gallery-track::-webkit-scrollbar { display: none; }
+    .gallery-item { flex-shrink: 0; height: 62vh; width: auto; position: relative; }
     .gallery-item img { height: 100%; width: auto; object-fit: cover; display: block; transition: transform 0.5s ease; }
     .gallery-item:hover img { transform: scale(1.03); }
     .gallery-item.tall { height: 68vh; }
@@ -685,30 +697,36 @@
     );
   });
 
-  // ── HORIZONTAL GALLERY ───────────────────────
-  const isMobile = window.innerWidth < 768;
-  if (!isMobile) {
-    const track = document.getElementById('galleryTrack');
-    const pin = document.getElementById('galleryPin');
-    function initGallery() {
-      const trackW = track.scrollWidth;
-      const vw = window.innerWidth;
-      const dist = trackW - vw + 80;
-      gsap.to(track, {
-        x: -dist,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: pin,
-          pin: true,
-          scrub: 1.2,
-          start: 'top top',
-          end: () => '+=' + dist,
-          invalidateOnRefresh: true
-        }
-      });
+  // ── NAV SCROLL STATE ─────────────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > window.innerHeight * 0.9) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
     }
-    initGallery();
-  }
+  });
+
+  // ── DRAG TO SCROLL GALLERY ───────────────────
+  const track = document.getElementById('galleryTrack');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  track.addEventListener('mousedown', (e) => {
+    isDown = true;
+    track.style.cursor = 'grabbing';
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+  track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
+  track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+  track.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 2;
+    track.scrollLeft = scrollLeft - walk;
+  });
 
   // ── DEAL CARDS REVEAL ────────────────────────
   gsap.fromTo('.deal-card',
