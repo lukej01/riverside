@@ -10,16 +10,18 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --g:    #2e6b2e;
-      --gd:   #1a4820;
-      --gl:   #4a8c4a;
+      /* ── Brand greens (OG site #336c2c) ── */
+      --g:    #336c2c;
+      --gd:   #1e4a18;
+      --gl:   #448a3c;
       --gp:   #f1f7f1;
       --gm:   #e4f0e4;
-      --cream:#fdfaf5;
+      --cream:#fdfcfb;
       --wh:   #ffffff;
       --tx:   #1c1c1c;
       --mu:   #5a5a5a;
       --bdr:  #ddeadd;
+      /* ── Typography ── */
       --d: 'Playfair Display', serif;
       --f: 'Barlow', sans-serif;
       --m: 'IBM Plex Mono', monospace;
@@ -38,10 +40,11 @@
       transition: background 0.45s ease, box-shadow 0.45s ease;
       background: var(--gd); box-shadow: 0 2px 24px rgba(0,0,0,0.3);
     }
-    .logo { display: flex; align-items: center; gap: 0.7rem; }
-    .logo-text { line-height: 1; }
+    .logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+    .logo img { height: 44px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 4px; }
+    .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
     .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
-    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 2px; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 3px; display: block; }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
     .nav-links a { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); padding: 0.4rem 0.85rem; transition: color 0.2s; }
     .nav-links a:hover { color: white; }
@@ -126,13 +129,13 @@
 <body>
 
 <nav id="nav" class="solid">
-  <div class="logo">
-    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza" style="height: 48px; border-radius: 4px;">
+  <a href="index.html" class="logo">
+    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
     <div class="logo-text">
       <span class="logo-name">Riverside Pizza</span>
       <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
     </div>
-  </div>
+  </a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="menu.html">Menu</a></li>

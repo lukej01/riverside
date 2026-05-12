@@ -13,21 +13,14 @@
       /* ── Brand greens (OG site #336c2c) ── */
       --g:    #336c2c;
       --gd:   #1e4a18;
-      --gl:   #4e8a42;
-      --gp:   #f2f8f1;
-      --gm:   #e6f2e4;
-      /* ── Warm retro accents ── */
-      --red:  #c0392b;
-      --red-l:#e05545;
-      --amber:#d4691e;
-      --amber-l:#e8833a;
-      /* ── Neutrals / cream ── */
-      --cream:#fef9f2;
-      --warm: #fdf4e8;
+      --gl:   #448a3c;
+      --gp:   #f1f7f1;
+      --gm:   #e4f0e4;
+      --cream:#fdfcfb;
       --wh:   #ffffff;
-      --tx:   #1a1a18;
-      --mu:   #5c5850;
-      --bdr:  #dce9db;
+      --tx:   #1c1c1c;
+      --mu:   #5a5a5a;
+      --bdr:  #ddeadd;
       /* ── Typography ── */
       --d: 'Playfair Display', serif;
       --f: 'Barlow', sans-serif;
@@ -47,8 +40,11 @@
       transition: background 0.45s ease, box-shadow 0.45s ease;
     }
     #nav.solid { background: var(--gd); box-shadow: 0 2px 32px rgba(0,0,0,0.35); }
-    .logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
-    .logo img { height: 54px; width: auto; object-fit: contain; display: block; flex-shrink: 0; }
+    .logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+    .logo img { height: 44px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 4px; }
+    .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
+    .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 3px; display: block; }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
     .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); padding: 0.4rem 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: white; }
@@ -422,7 +418,7 @@
       <span class="ann-badge-num">25</span>
       <span class="ann-badge-lbl">Years of Excellence</span>
     </div>
-    <div class="ann-content .ey gs-reveal" style="font-family:var(--m);font-size:0.57rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+    <div class="ey gs-reveal" style="font-family:var(--m);font-size:0.57rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
       <span style="width:1.5rem;height:1px;background:var(--g);display:block;flex-shrink:0;"></span>Celebrating 25 Years
     </div>
     <h2 class="ann-h gs-reveal">Family owned and operated <em>since 1999.</em></h2>
