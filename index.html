@@ -10,18 +10,25 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --g:    #2e6b2e;
-      --gd:   #1a4820;
-      --gl:   #4a8c4a;
-      --gp:   #f1f7f1;
-      --gm:   #e4f0e4;
-      --br:   #7a4c28;
-      --br-l: #c4894d;
-      --cream:#fdfaf5;
+      /* ── Brand greens (OG site #336c2c) ── */
+      --g:    #336c2c;
+      --gd:   #1e4a18;
+      --gl:   #4e8a42;
+      --gp:   #f2f8f1;
+      --gm:   #e6f2e4;
+      /* ── Warm retro accents ── */
+      --red:  #c0392b;
+      --red-l:#e05545;
+      --amber:#d4691e;
+      --amber-l:#e8833a;
+      /* ── Neutrals / cream ── */
+      --cream:#fef9f2;
+      --warm: #fdf4e8;
       --wh:   #ffffff;
-      --tx:   #1c1c1c;
-      --mu:   #5a5a5a;
-      --bdr:  #ddeadd;
+      --tx:   #1a1a18;
+      --mu:   #5c5850;
+      --bdr:  #dce9db;
+      /* ── Typography ── */
       --d: 'Playfair Display', serif;
       --f: 'Barlow', sans-serif;
       --m: 'IBM Plex Mono', monospace;
@@ -35,21 +42,18 @@
     /* ── NAV ─────────────────────────────── */
     #nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0 4rem; height: 72px;
+      padding: 0 3rem; height: 76px;
       display: flex; justify-content: space-between; align-items: center;
       transition: background 0.45s ease, box-shadow 0.45s ease;
     }
-    #nav.solid { background: var(--gd); box-shadow: 0 2px 24px rgba(0,0,0,0.3); }
-    .logo { display: flex; align-items: center; gap: 0.7rem; }
-    .logo-icon { width: 38px; height: 38px; flex-shrink: 0; }
-    .logo-text { line-height: 1; }
-    .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
-    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 2px; display: block; }
+    #nav.solid { background: var(--gd); box-shadow: 0 2px 32px rgba(0,0,0,0.35); }
+    .logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
+    .logo img { height: 54px; width: auto; object-fit: contain; display: block; flex-shrink: 0; }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-    .nav-links a { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); padding: 0.4rem 0.85rem; transition: color 0.2s; }
+    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); padding: 0.4rem 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: white; }
-    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.5rem 1.2rem !important; margin-left: 0.5rem; transition: background 0.2s !important; }
-    .nav-cta:hover { background: var(--gl) !important; }
+    .nav-cta { background: var(--red) !important; color: white !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
+    .nav-cta:hover { background: var(--red-l) !important; }
 
     /* ── HERO SLIDER ─────────────────────── */
     .hero { position: relative; height: 100dvh; overflow: hidden; }
@@ -391,7 +395,7 @@
         <div class="deal-price">$25.99</div>
         <div class="deal-name">Ultimate Family Meal Deal</div>
         <div class="deal-items">2 Large 1 Topping Pizzas · Breadsticks &amp; Sauce · Family Size Salad</div>
-        <a href="https://riversidepizza.net/order-online/" target="_blank" class="btn btn-white">Order Now</a>
+        <a href="order.html" class="btn btn-white">Order Now</a>
       </div>
     </div>
     <div class="deal-card">
@@ -402,7 +406,7 @@
         <div class="deal-price">$5.99</div>
         <div class="deal-name">Italian Sandwiches</div>
         <div class="deal-items">Oven baked to perfection with the freshest ingredients.</div>
-        <a href="https://riversidepizza.net/our-menu/" target="_blank" class="btn btn-white">View Menu</a>
+        <a href="menu.html" class="btn btn-white">View Menu</a>
       </div>
     </div>
   </div>
@@ -518,8 +522,8 @@
       <h2 class="sec-h" style="font-size:clamp(2rem,3vw,3.5rem);font-weight:500;">8 Locations across <em style="font-style:italic;color:var(--g);">Metro Atlanta.</em></h2>
     </div>
     <div class="loc-head-links">
-      <a href="https://riversidepizza.net/locations/" target="_blank" class="loc-link">Map — All Locations</a>
-      <a href="https://riversidepizza.net/contact-us/" target="_blank" class="loc-link">Contact Us</a>
+      <a href="locations.html" class="loc-link">Map — All Locations</a>
+      <a href="#" class="loc-link">Contact Us</a>
     </div>
   </div>
   <div class="loc-grid">
@@ -549,8 +553,8 @@
   <div class="ft-top">
     <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
     <div class="ft-cols">
-      <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="https://riversidepizza.net/lunch-specials/" target="_blank">Lunch Specials</a></li><li><a href="https://riversidepizza.net/gluten-free-information/" target="_blank">Gluten Free Info</a></li><li><a href="catering.html">Catering</a></li></ul></div>
-      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="https://riversidepizza.net/about-us-2/" target="_blank">About Us</a></li><li><a href="https://riversidepizza.net/about-us-2/fresh-ingredients/" target="_blank">Stanislaus</a></li><li><a href="https://riversidepizza.net/job-application/" target="_blank">Job Application</a></li><li><a href="https://riversidepizza.net/contact-us/" target="_blank">Contact Us</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="#">Lunch Specials</a></li><li><a href="#">Gluten Free Info</a></li><li><a href="catering.html">Catering</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="#">About Us</a></li><li><a href="#">Stanislaus</a></li><li><a href="#">Job Application</a></li><li><a href="#">Contact Us</a></li></ul></div>
       <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="order.html">Order Delivery</a></li><li><a href="order.html">Order Carryout</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
     </div>
   </div>
