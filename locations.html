@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locations - Riverside Pizza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --g:    #2e6b2e;
+      --gd:   #1a4820;
+      --gl:   #4a8c4a;
+      --gp:   #f1f7f1;
+      --gm:   #e4f0e4;
+      --cream:#fdfaf5;
+      --wh:   #ffffff;
+      --tx:   #1c1c1c;
+      --mu:   #5a5a5a;
+      --bdr:  #ddeadd;
+      --d: 'Playfair Display', serif;
+      --f: 'Barlow', sans-serif;
+      --m: 'IBM Plex Mono', monospace;
+    }
+    html { scroll-behavior: auto; }
+    body { font-family: var(--f); background: var(--wh); color: var(--tx); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
+
+    /* ── NAV ─────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 4rem; height: 72px;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: background 0.45s ease, box-shadow 0.45s ease;
+      background: var(--gd); box-shadow: 0 2px 24px rgba(0,0,0,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 0.7rem; }
+    .logo-text { line-height: 1; }
+    .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 2px; display: block; }
+    .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); padding: 0.4rem 0.85rem; transition: color 0.2s; }
+    .nav-links a:hover { color: white; }
+    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.5rem 1.2rem !important; margin-left: 0.5rem; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--gl) !important; }
+
+    /* ── HEADER ───────────────────────────── */
+    .loc-header { padding: 10rem 0 4rem; background: var(--wh); border-bottom: 1px solid var(--bdr); text-align: center; }
+    .lh-eyebrow { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: inline-flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .lh-eyebrow::before, .lh-eyebrow::after { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
+    .lh-title { font-family: var(--d); font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; }
+    .lh-title em { font-style: italic; color: var(--g); }
+
+    /* ── LOCATIONS LIST ───────────────────── */
+    .loc-list { padding: 5rem 0; background: var(--wh); }
+    .loc-card-wrap { display: flex; flex-direction: column; gap: 4rem; }
+    .loc-item { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; border: 1px solid var(--bdr); background: var(--cream); }
+    .loc-item:nth-child(even) { direction: rtl; }
+    .loc-item:nth-child(even) > * { direction: ltr; }
+    
+    .li-map { height: 100%; min-height: 400px; width: 100%; filter: grayscale(40%) contrast(1.1) brightness(1.1); border-right: 1px solid var(--bdr); }
+    .loc-item:nth-child(even) .li-map { border-right: none; border-left: 1px solid var(--bdr); }
+    
+    .li-content { padding: 4rem 4rem 4rem 0; display: flex; flex-direction: column; justify-content: center; }
+    .loc-item:nth-child(even) .li-content { padding: 4rem 0 4rem 4rem; }
+    
+    .li-name { font-family: var(--d); font-size: 2.2rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--tx); }
+    .li-sub { font-family: var(--m); font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--g); margin-bottom: 2rem; }
+    .li-info { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
+    
+    .li-row { display: flex; gap: 1rem; align-items: flex-start; }
+    .li-icon { color: var(--g); padding-top: 2px; }
+    .li-text { font-size: 0.95rem; line-height: 1.6; color: var(--mu); font-weight: 300; }
+    .li-text strong { font-weight: 500; color: var(--tx); }
+    .li-phone { font-family: var(--m); font-size: 1.1rem; color: var(--g); font-weight: 500; }
+    
+    .li-actions { display: flex; gap: 1rem; }
+
+    /* ── CTA STRIP & FOOTER ─────────────────────── */
+    .cta-strip { background: var(--g); padding: 2.75rem 5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+    .cta-text { font-family: var(--d); font-size: 1.45rem; font-style: italic; color: white; }
+    .btn { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; display: inline-block; transition: all 0.2s; border: none; cursor: pointer; text-align: center; }
+    .btn-white { background: white; color: var(--gd); }
+    .btn-white:hover { background: var(--gp); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn-outline-w { border: 1px solid rgba(255,255,255,0.45); color: white; }
+    .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: white; }
+    .btn-green { background: var(--g); color: white; border: 1px solid var(--g); }
+    .btn-green:hover { background: var(--gl); transform: translateY(-2px); border-color: var(--gl); }
+    .btn-outline-g { border: 1px solid var(--g); color: var(--g); }
+    .btn-outline-g:hover { background: var(--gp); }
+
+    footer { background: var(--gd); padding: 4rem 5rem 2.5rem; }
+    .ft-top { display: flex; justify-content: space-between; gap: 4rem; padding-bottom: 3rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .ft-brand .fn { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; }
+    .ft-brand .fs { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    .ft-cols { display: grid; grid-template-columns: repeat(3, auto); gap: 4rem; }
+    .ft-col-title { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(160,220,160,0.7); margin-bottom: 1rem; }
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .ft-col a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; font-weight: 300; }
+    .ft-col a:hover { color: white; }
+    .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .ft-copy { font-family: var(--m); font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+
+    @media (max-width: 960px) {
+      .loc-item { grid-template-columns: 1fr; gap: 0; }
+      .loc-item:nth-child(even) { direction: ltr; }
+      .li-map { min-height: 250px; border-right: none; border-bottom: 1px solid var(--bdr); }
+      .loc-item:nth-child(even) .li-map { border-left: none; border-bottom: 1px solid var(--bdr); }
+      .li-content, .loc-item:nth-child(even) .li-content { padding: 3rem; }
+      .li-actions { flex-direction: column; }
+      #nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .wrap { padding: 0 2rem; }
+      .cta-strip { padding: 2rem; flex-direction: column; text-align: center; }
+      footer { padding: 3rem 2rem 2rem; }
+      .ft-top { flex-direction: column; }
+      .ft-cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .ft-bottom { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" class="solid">
+  <div class="logo">
+    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza" style="height: 48px; border-radius: 4px;">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="catering.html">Catering</a></li>
+    <li><a href="locations.html">Locations</a></li>
+    <li><a href="order.html" class="nav-cta">Order Online</a></li>
+  </ul>
+</nav>
+
+<header class="loc-header gs-reveal">
+  <div class="wrap">
+    <div class="lh-eyebrow">Find Us Near You</div>
+    <h1 class="lh-title">8 Locations across<br><em>Metro Atlanta.</em></h1>
+  </div>
+</header>
+
+<section class="loc-list">
+  <div class="wrap loc-card-wrap">
+    
+    <!-- 1. Lawrenceville -->
+    <div class="loc-item gs-reveal">
+      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.1234567!2d-83.962192!3d33.898589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzU0LjkiTiA4M8KwNTcnNDMuOSJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="li-content">
+        <h2 class="li-name">Lawrenceville</h2>
+        <div class="li-sub">In Kroger Shopping Center</div>
+        <div class="li-info">
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div class="li-text">2100 Riverside Pkwy @ Duluth Hwy 120<br>Lawrenceville, GA 30043</div>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <a href="tel:7708221500" class="li-phone">770-822-1500</a>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="li-text">Open Daily: <strong>10:30am - 10:00pm</strong></div>
+          </div>
+        </div>
+        <div class="li-actions">
+          <a href="order.html" class="btn btn-green">Order Online</a>
+          <a href="https://www.google.com/maps?q=2100+Riverside+Pkwy,+Lawrenceville,+GA" target="_blank" class="btn btn-outline-g">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Sugarloaf -->
+    <div class="loc-item gs-reveal">
+      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.1234567!2d-84.092004!3d34.047143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAyJzQ5LjciTiA4NMKwMDUnMzEuMiJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="li-content">
+        <h2 class="li-name">Sugarloaf <span style="font-size:0.5em;color:var(--mu);font-family:var(--f);font-weight:400;">(Lawrenceville)</span></h2>
+        <div class="li-sub">In Publix Shopping Center</div>
+        <div class="li-info">
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div class="li-text">3330 Sugarloaf Pkwy @ Five Forks Trickum<br>Lawrenceville, GA 30044</div>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <a href="tel:7707717000" class="li-phone">770-771-7000</a>
+          </div>
+        </div>
+        <div class="li-actions">
+          <a href="order.html" class="btn btn-green">Order Online</a>
+          <a href="https://www.google.com/maps?q=3330+Sugarloaf+Pkwy,+Lawrenceville,+GA" target="_blank" class="btn btn-outline-g">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Suwanee -->
+    <div class="loc-item gs-reveal">
+      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5!2d-83.990822!3d34.040143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAyJzI0LjUiTiA4M8KwNTknMjcuMCJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="li-content">
+        <h2 class="li-name">Suwanee</h2>
+        <div class="li-sub">Peachtree Industrial Blvd</div>
+        <div class="li-info">
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div class="li-text">991 Peachtree Industrial Blvd @ Moore<br>Suwanee, GA 30024</div>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <a href="tel:7702719992" class="li-phone">770-271-9992</a>
+          </div>
+        </div>
+        <div class="li-actions">
+          <a href="order.html" class="btn btn-green">Order Online</a>
+          <a href="https://www.google.com/maps?q=991+Peachtree+Industrial+Blvd+Suwanee,+GA+30024" target="_blank" class="btn btn-outline-g">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Grayson -->
+    <div class="loc-item gs-reveal">
+      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.123!2d-83.962192!3d33.898589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzU0LjkiTiA4M8KwNTcnNDMuOSJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="li-content">
+        <h2 class="li-name">Grayson</h2>
+        <div class="li-sub">Grayson Highway</div>
+        <div class="li-info">
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div class="li-text">1845 Grayson Hwy @ Rosebud<br>Grayson, GA 30017</div>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <a href="tel:7706822929" class="li-phone">770-682-2929</a>
+          </div>
+        </div>
+        <div class="li-actions">
+          <a href="order.html" class="btn btn-green">Order Online</a>
+          <a href="https://www.google.com/maps?q=1845+Grayson+Hwy,+Grayson,+GA" target="_blank" class="btn btn-outline-g">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Hamilton Mill -->
+    <div class="loc-item gs-reveal">
+      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.5!2d-83.929625!3d33.985793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDU5JzA4LjkiTiA4M8KwNTUnNDYuNyJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="li-content">
+        <h2 class="li-name">Hamilton Mill</h2>
+        <div class="li-sub">Braselton Highway</div>
+        <div class="li-info">
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div class="li-text">2463 Hamilton Mill Pkwy #320<br>Dacula, GA 30005</div>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <a href="tel:7702718881" class="li-phone">770-271-8881</a>
+          </div>
+        </div>
+        <div class="li-actions">
+          <a href="order.html" class="btn btn-green">Order Online</a>
+          <a href="https://www.google.com/maps?q=Riverside+Pizza,+2463+Hamilton+Mill+Parkway+%23320,+Dacula,+GA" target="_blank" class="btn btn-outline-g">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Dacula -->
+    <div class="loc-item gs-reveal">
+      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.5!2d-83.929539!3d33.985787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDU5JzA4LjgiTiA4M8KwNTUnNDYuMyJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="li-content">
+        <h2 class="li-name">Dacula</h2>
+        <div class="li-sub">Kroger Center</div>
+        <div class="li-info">
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div class="li-text">2515 Fence Rd @ Dacula Rd<br>Dacula, GA 30019</div>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <a href="tel:7709635000" class="li-phone">770-963-5000</a>
+          </div>
+        </div>
+        <div class="li-actions">
+          <a href="order.html" class="btn btn-green">Order Online</a>
+          <a href="https://www.google.com/maps?q=2515+Fence+Rd,+Dacula,+GA" target="_blank" class="btn btn-outline-g">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Johns Creek -->
+    <div class="loc-item gs-reveal">
+      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.12!2d-84.092016!3d34.047139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAyJzQ5LjciTiA4NMKwMDUnMzEuMyJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="li-content">
+        <h2 class="li-name">Johns Creek</h2>
+        <div class="li-sub">Douglas Road</div>
+        <div class="li-info">
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div class="li-text">11877 Douglas Rd @ Jonesbridge<br>Johns Creek, GA 30005</div>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <a href="tel:7703600002" class="li-phone">770-360-0002</a>
+          </div>
+        </div>
+        <div class="li-actions">
+          <a href="order.html" class="btn btn-green">Order Online</a>
+          <a href="https://www.google.com/maps?q=11877+Douglas+Road,+Johns+Creek,+GA" target="_blank" class="btn btn-outline-g">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Cumming -->
+    <div class="loc-item gs-reveal">
+      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.5!2d-84.1572023!3d34.1132416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f59bdabcf61ff1%3A0xaf68a9b47be67fbc!2s3030%20Old%20Atlanta%20Rd%2C%20Cumming%2C%20GA%2030041!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="li-content">
+        <h2 class="li-name">Cumming</h2>
+        <div class="li-sub">Down the Street from Publix</div>
+        <div class="li-info">
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div class="li-text">3030 Old Atlanta Rd. @ Sharon Rd.<br>Cumming, GA 30041</div>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <a href="tel:4702394243" class="li-phone">470-239-4243</a>
+          </div>
+        </div>
+        <div class="li-actions">
+          <a href="order.html" class="btn btn-green">Order Online</a>
+          <a href="https://www.google.com/maps/place/3030+Old+Atlanta+Rd,+Cumming,+GA+30041/@34.113246,-84.1572023,17z/data=!3m1!4b1!4m5!3m4!1s0x88f59bdabcf61ff1:0xaf68a9b47be67fbc!8m2!3d34.1132416!4d-84.1550136" target="_blank" class="btn btn-outline-g">Get Directions</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="cta-text">Call your nearest location to order.</div>
+  <div class="cta-links">
+    <a href="order.html" class="btn btn-white">Order Online</a>
+    <a href="menu.html" class="btn btn-outline-w">View Menu</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
+    <div class="ft-cols">
+      <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="#">Lunch Specials</a></li><li><a href="#">Gluten Free Info</a></li><li><a href="catering.html">Catering</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="#">About Us</a></li><li><a href="#">Stanislaus</a></li><li><a href="#">Job Application</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="order.html">Order Delivery</a></li><li><a href="order.html">Order Carryout</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+    <div class="ft-copy">Lawrenceville · Sugarloaf · Suwanee · Grayson · Hamilton Mill · Dacula · Johns Creek · Cumming</div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  // ── LENIS SMOOTH SCROLL ──────────────────────
+  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(time => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── SECTION REVEALS ──────────────────────────
+  gsap.utils.toArray('.gs-reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      }
+    );
+  });
+</script>
+</body>
+</html>

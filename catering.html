@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catering - Riverside Pizza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --g:    #2e6b2e;
+      --gd:   #1a4820;
+      --gl:   #4a8c4a;
+      --gp:   #f1f7f1;
+      --gm:   #e4f0e4;
+      --cream:#fdfaf5;
+      --wh:   #ffffff;
+      --tx:   #1c1c1c;
+      --mu:   #5a5a5a;
+      --bdr:  #ddeadd;
+      --d: 'Playfair Display', serif;
+      --f: 'Barlow', sans-serif;
+      --m: 'IBM Plex Mono', monospace;
+    }
+    html { scroll-behavior: auto; }
+    body { font-family: var(--f); background: var(--wh); color: var(--tx); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
+
+    /* ── NAV ─────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 4rem; height: 72px;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: background 0.45s ease, box-shadow 0.45s ease;
+    }
+    #nav.solid { background: var(--gd); box-shadow: 0 2px 24px rgba(0,0,0,0.3); }
+    .logo { display: flex; align-items: center; gap: 0.7rem; }
+    .logo-text { line-height: 1; }
+    .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 2px; display: block; }
+    .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); padding: 0.4rem 0.85rem; transition: color 0.2s; }
+    .nav-links a:hover { color: white; }
+    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.5rem 1.2rem !important; margin-left: 0.5rem; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--gl) !important; }
+
+    /* ── CATERING HERO ────────────────────────── */
+    .hero { position: relative; height: 100vh; display: flex; align-items: flex-end; padding-bottom: 6rem; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-image: url('https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg'); background-size: cover; background-position: center; z-index: -2; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,44,20,0.95) 0%, rgba(20,44,20,0.6) 40%, rgba(20,44,20,0.3) 100%); z-index: -1; }
+    .hero-content { max-width: 900px; }
+    .hero-eyebrow { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(160,210,160,0.9); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; }
+    .hero-eyebrow::before { content: ''; width: 2rem; height: 1px; background: currentColor; }
+    .hero-h1 { font-family: var(--d); font-size: clamp(3rem, 6vw, 6rem); font-weight: 500; letter-spacing: -0.025em; line-height: 0.95; color: white; margin-bottom: 1.5rem; }
+    .hero-h1 em { font-style: italic; color: rgba(180,220,180,0.95); }
+
+    /* ── CATERING STORY ───────────────────────── */
+    .story { padding: 8rem 0; background: var(--wh); }
+    .story-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .story-h2 { font-family: var(--d); font-size: 2.5rem; font-weight: 500; margin-bottom: 1.5rem; line-height: 1.1; }
+    .story-p { font-size: 1.05rem; line-height: 1.8; color: var(--mu); font-weight: 300; margin-bottom: 1.5rem; }
+    .story-card { background: var(--cream); padding: 3rem; border: 1px solid var(--bdr); border-radius: 4px; }
+    .sc-title { font-family: var(--m); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--g); margin-bottom: 1rem; }
+    .sc-value { font-family: var(--d); font-size: 4rem; font-weight: 700; color: var(--tx); line-height: 1; margin-bottom: 0.5rem; }
+    .sc-sub { font-size: 0.9rem; color: var(--mu); }
+
+    /* ── WHY US GRID ──────────────────────────── */
+    .why { padding: 6rem 0; background: var(--cream); border-top: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; }
+    .why-item { }
+    .wi-icon { width: 48px; height: 48px; background: var(--gm); border: 1px solid var(--g); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--g); font-family: var(--d); font-size: 1.5rem; font-weight: 700; }
+    .wi-title { font-family: var(--d); font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+    .wi-p { font-size: 0.9rem; line-height: 1.6; color: var(--mu); font-weight: 300; }
+
+    /* ── CTA STRIP & FOOTER ─────────────────────── */
+    .cta-strip { background: var(--g); padding: 2.75rem 5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+    .cta-text { font-family: var(--d); font-size: 1.45rem; font-style: italic; color: white; }
+    .btn { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; display: inline-block; transition: all 0.2s; border: none; cursor: pointer; }
+    .btn-white { background: white; color: var(--gd); }
+    .btn-white:hover { background: var(--gp); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn-outline-w { border: 1px solid rgba(255,255,255,0.45); color: white; }
+    .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    footer { background: var(--gd); padding: 4rem 5rem 2.5rem; }
+    .ft-top { display: flex; justify-content: space-between; gap: 4rem; padding-bottom: 3rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .ft-brand .fn { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; }
+    .ft-brand .fs { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    .ft-cols { display: grid; grid-template-columns: repeat(3, auto); gap: 4rem; }
+    .ft-col-title { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(160,220,160,0.7); margin-bottom: 1rem; }
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .ft-col a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; font-weight: 300; }
+    .ft-col a:hover { color: white; }
+    .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .ft-copy { font-family: var(--m); font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+
+    @media (max-width: 960px) {
+      .story-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      #nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .wrap { padding: 0 2rem; }
+      .cta-strip { padding: 2rem; flex-direction: column; text-align: center; }
+      footer { padding: 3rem 2rem 2rem; }
+      .ft-top { flex-direction: column; }
+      .ft-cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .ft-bottom { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="logo">
+    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza" style="height: 48px; border-radius: 4px;">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="catering.html">Catering</a></li>
+    <li><a href="locations.html">Locations</a></li>
+    <li><a href="order.html" class="nav-cta">Order Online</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="wrap" style="width: 100%;">
+    <div class="hero-content gs-reveal">
+      <div class="hero-eyebrow">We are the experts with large orders!</div>
+      <h1 class="hero-h1">We fed 325 pizzas to Gwinnett Technical College.<br><em>We'll feed your group too.</em></h1>
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="wrap story-inner">
+    <div class="gs-reveal">
+      <h2 class="story-h2">No matter what size your group, we work hard to ensure your order is perfect every time.</h2>
+      <p class="story-p">Our largest order to date was 325 pizzas to Gwinnett Technical College. They were delivered on time and hot, and we were written up in the Atlanta Journal for our performance that day.</p>
+      <p class="story-p">From corporate lunches to massive school events, our 25 years of experience means we know how to handle the logistics so you don't have to worry.</p>
+    </div>
+    <div class="story-card gs-reveal">
+      <div class="sc-title">Planning Guide</div>
+      <div class="sc-value">3:1</div>
+      <div class="sc-sub">When planning your needs, figure <strong>one large pizza for every three people.</strong> Call your nearest location to setup your order.</div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap why-grid">
+    <div class="why-item gs-reveal">
+      <div class="wi-icon">01</div>
+      <h3 class="wi-title">Owner Operated</h3>
+      <p class="wi-p">Every store is owner-operated, ensuring the highest standards of quality and service are met for your large event.</p>
+    </div>
+    <div class="why-item gs-reveal">
+      <div class="wi-icon">02</div>
+      <h3 class="wi-title">On-Time Guarantee</h3>
+      <p class="wi-p">We coordinate carefully to make sure your food arrives exactly when your event needs it, hot and fresh out of the oven.</p>
+    </div>
+    <div class="why-item gs-reveal">
+      <div class="wi-icon">03</div>
+      <h3 class="wi-title">100% Satisfaction</h3>
+      <p class="wi-p">If at any time you are not completely satisfied, we will replace the purchase or refund your money — Guaranteed!</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="cta-text">Call your nearest location to set up catering.</div>
+  <div class="cta-links">
+    <a href="locations.html" class="btn btn-white">Find a Location</a>
+    <a href="menu.html" class="btn btn-outline-w">View Menu</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
+    <div class="ft-cols">
+      <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="#">Lunch Specials</a></li><li><a href="#">Gluten Free Info</a></li><li><a href="catering.html">Catering</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="#">About Us</a></li><li><a href="#">Stanislaus</a></li><li><a href="#">Job Application</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="order.html">Order Delivery</a></li><li><a href="order.html">Order Carryout</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+    <div class="ft-copy">Lawrenceville · Sugarloaf · Suwanee · Grayson · Hamilton Mill · Dacula · Johns Creek · Cumming</div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  // ── LENIS SMOOTH SCROLL ──────────────────────
+  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(time => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── NAV SOLID ON SCROLL ──────────────────────
+  lenis.on('scroll', ({ scroll }) => {
+    document.getElementById('nav').classList.toggle('solid', scroll > 60);
+  });
+
+  // ── HERO PARALLAX ────────────────────────────
+  gsap.to('#heroBg', {
+    y: '20%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+
+  // ── SECTION REVEALS ──────────────────────────
+  gsap.utils.toArray('.gs-reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      }
+    );
+  });
+</script>
+</body>
+</html>

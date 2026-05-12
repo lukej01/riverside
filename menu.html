@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Riverside Pizza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --g:    #2e6b2e;
+      --gd:   #1a4820;
+      --gl:   #4a8c4a;
+      --gp:   #f1f7f1;
+      --gm:   #e4f0e4;
+      --br:   #7a4c28;
+      --br-l: #c4894d;
+      --cream:#fdfaf5;
+      --wh:   #ffffff;
+      --tx:   #1c1c1c;
+      --mu:   #5a5a5a;
+      --bdr:  #ddeadd;
+      --d: 'Playfair Display', serif;
+      --f: 'Barlow', sans-serif;
+      --m: 'IBM Plex Mono', monospace;
+    }
+    html { scroll-behavior: auto; }
+    body { font-family: var(--f); background: var(--wh); color: var(--tx); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
+
+    /* ── NAV ─────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 4rem; height: 72px;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: background 0.45s ease, box-shadow 0.45s ease;
+      background: var(--gd); box-shadow: 0 2px 24px rgba(0,0,0,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 0.7rem; }
+    .logo-icon { width: 38px; height: 38px; flex-shrink: 0; }
+    .logo-text { line-height: 1; }
+    .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 2px; display: block; }
+    .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); padding: 0.4rem 0.85rem; transition: color 0.2s; }
+    .nav-links a:hover { color: white; }
+    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.5rem 1.2rem !important; margin-left: 0.5rem; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--gl) !important; }
+
+    /* ── MENU PAGE HEADER ───────────────────────── */
+    .menu-header { padding: 10rem 0 5rem; background: var(--wh); border-bottom: 1px solid var(--bdr); }
+    .menu-header-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .mh-eyebrow { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .mh-eyebrow::before { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
+    .mh-title { font-family: var(--d); font-size: clamp(3rem, 5vw, 5rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1; margin-bottom: 1.5rem; }
+    .mh-title em { font-style: italic; color: var(--g); }
+    .mh-desc { font-size: 1rem; line-height: 1.8; color: var(--mu); font-weight: 300; max-width: 45ch; }
+    .mh-image { border-radius: 4px; overflow: hidden; height: 400px; }
+    .mh-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── STICKY CATEGORY NAV ─────────────────────── */
+    .menu-nav { position: sticky; top: 72px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); z-index: 90; border-bottom: 1px solid var(--bdr); padding: 1.5rem 0; }
+    .mn-list { display: flex; gap: 2rem; list-style: none; overflow-x: auto; scrollbar-width: none; }
+    .mn-list::-webkit-scrollbar { display: none; }
+    .mn-link { font-family: var(--m); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mu); transition: color 0.2s; white-space: nowrap; }
+    .mn-link:hover, .mn-link.active { color: var(--g); }
+    
+    /* ── MENU CONTENT ───────────────────────────── */
+    .menu-section { padding: 6rem 0; border-bottom: 1px solid var(--bdr); }
+    .menu-section:nth-child(even) { background: var(--cream); }
+    .ms-head { margin-bottom: 3.5rem; }
+    .ms-title { font-family: var(--d); font-size: 3rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .ms-desc { font-size: 0.9rem; color: var(--mu); font-weight: 300; }
+    
+    .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem 4rem; }
+    .m-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; }
+    .m-info { flex: 1; }
+    .m-name { font-family: var(--d); font-size: 1.3rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--tx); }
+    .m-desc { font-size: 0.85rem; line-height: 1.6; color: var(--mu); font-weight: 300; }
+    .m-price { font-family: var(--m); font-size: 0.9rem; font-weight: 500; color: var(--g); white-space: nowrap; }
+    .m-subprice { font-size: 0.65rem; color: var(--mu); display: block; margin-top: 0.2rem; }
+
+    /* ── MENU HIGHLIGHT CARD ────────────────────── */
+    .m-highlight { background: var(--gd); color: white; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 3rem; margin-top: 3rem; border-radius: 4px; }
+    .m-hl-content { flex: 1; }
+    .m-hl-tag { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(160,220,160,0.9); margin-bottom: 1rem; }
+    .m-hl-title { font-family: var(--d); font-size: 2.5rem; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.1; }
+    .m-hl-desc { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; font-weight: 300; }
+    .m-hl-price { font-family: var(--d); font-size: 3.5rem; font-weight: 700; color: white; line-height: 1; text-align: right; }
+
+    /* ── CTA STRIP & FOOTER ─────────────────────── */
+    .cta-strip { background: var(--g); padding: 2.75rem 5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+    .cta-text { font-family: var(--d); font-size: 1.45rem; font-style: italic; color: white; }
+    .btn { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; display: inline-block; transition: all 0.2s; border: none; cursor: pointer; }
+    .btn-white { background: white; color: var(--gd); }
+    .btn-white:hover { background: var(--gp); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn-outline-w { border: 1px solid rgba(255,255,255,0.45); color: white; }
+    .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    footer { background: var(--gd); padding: 4rem 5rem 2.5rem; }
+    .ft-top { display: flex; justify-content: space-between; gap: 4rem; padding-bottom: 3rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .ft-brand .fn { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; }
+    .ft-brand .fs { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    .ft-cols { display: grid; grid-template-columns: repeat(3, auto); gap: 4rem; }
+    .ft-col-title { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(160,220,160,0.7); margin-bottom: 1rem; }
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .ft-col a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; font-weight: 300; }
+    .ft-col a:hover { color: white; }
+    .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .ft-copy { font-family: var(--m); font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+
+    @media (max-width: 960px) {
+      .menu-header-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .menu-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .m-highlight { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem; }
+      .m-hl-price { text-align: center; }
+      #nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .wrap { padding: 0 2rem; }
+      .cta-strip { padding: 2rem; flex-direction: column; text-align: center; }
+      footer { padding: 3rem 2rem 2rem; }
+      .ft-top { flex-direction: column; }
+      .ft-cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .ft-bottom { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" class="solid">
+  <div class="logo">
+    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza" style="height: 48px; border-radius: 4px;">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="catering.html">Catering</a></li>
+    <li><a href="locations.html">Locations</a></li>
+    <li><a href="order.html" class="nav-cta">Order Online</a></li>
+  </ul>
+</nav>
+
+<header class="menu-header">
+  <div class="wrap menu-header-inner">
+    <div class="gs-reveal">
+      <div class="mh-eyebrow">Our Menu</div>
+      <h1 class="mh-title">Fresh ingredients.<br><em>Handmade daily.</em></h1>
+      <p class="mh-desc">From our 100% real mozzarella to our Stanislaus tomato sauce and handmade dough, every item is prepared with uncompromising quality.</p>
+    </div>
+    <div class="mh-image gs-reveal">
+      <img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza">
+    </div>
+  </div>
+</header>
+
+<nav class="menu-nav">
+  <div class="wrap">
+    <ul class="mn-list">
+      <li><a href="#pizzas" class="mn-link active">Pizzas</a></li>
+      <li><a href="#detroit" class="mn-link">Detroit Style</a></li>
+      <li><a href="#sandwiches" class="mn-link">Sandwiches</a></li>
+      <li><a href="#pasta" class="mn-link">Pasta</a></li>
+      <li><a href="#wings" class="mn-link">Wings & Sides</a></li>
+      <li><a href="#salads" class="mn-link">Salads</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="menu-section" id="pizzas">
+  <div class="wrap">
+    <div class="ms-head gs-reveal">
+      <h2 class="ms-title">Premium Pizzas</h2>
+      <p class="ms-desc">Large 14" • Choose Original or Thin Crust</p>
+    </div>
+    <div class="menu-grid">
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Favorite 5</h3>
+          <p class="m-desc">Pepperoni, Italian Sausage, Mushrooms, Onions, Green Peppers</p>
+        </div>
+        <div class="m-price">$13.29</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Supreme</h3>
+          <p class="m-desc">Pepperoni, Ham, Beef, Italian Sausage, Mushrooms, Onions, Green Peppers, Black Olives</p>
+        </div>
+        <div class="m-price">$13.29</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Meatzza</h3>
+          <p class="m-desc">Pepperoni, Ham, Bacon, Beef, Italian Sausage</p>
+        </div>
+        <div class="m-price">$13.29</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Riverside Special</h3>
+          <p class="m-desc">Pepperoni, Mushrooms, Onions, Green Peppers</p>
+        </div>
+        <div class="m-price">$13.29</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Veggie</h3>
+          <p class="m-desc">Mushrooms, Onions, Green Peppers, Black Olives, Tomatoes</p>
+        </div>
+        <div class="m-price">$13.29</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Greek Chicken</h3>
+          <p class="m-desc">Chicken, Feta Cheese, Tomatoes, Onions, Black Olives, Banana Peppers</p>
+        </div>
+        <div class="m-price">$13.29</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Chicken Trio</h3>
+          <p class="m-desc">Chicken, Bacon, Tomatoes, Onions, Garlic Sauce Base</p>
+        </div>
+        <div class="m-price">$13.29</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">BBQ Chicken</h3>
+          <p class="m-desc">Chicken, Bacon, Onions, BBQ Sauce Base</p>
+        </div>
+        <div class="m-price">$13.29</div>
+      </div>
+    </div>
+
+    <div class="m-highlight gs-reveal">
+      <div class="m-hl-content">
+        <div class="m-hl-tag">Carryout Special</div>
+        <h3 class="m-hl-title">Ultimate Family Meal Deal</h3>
+        <p class="m-hl-desc">2 Large 1-Topping Pizzas • Breadsticks & Sauce • Family Size Salad</p>
+      </div>
+      <div class="m-hl-price">$25.99</div>
+    </div>
+
+    <div class="ms-head gs-reveal" style="margin-top: 5rem;">
+      <h2 class="ms-title">Build Your Own</h2>
+      <p class="ms-desc">Additional Toppings $1.70 ea</p>
+    </div>
+    <div class="menu-grid">
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Large 1-Topping Pizza</h3>
+          <p class="m-desc">Original or Thin & Crispy</p>
+        </div>
+        <div class="m-price">$7.99</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Fresh N Fast</h3>
+          <p class="m-desc">Large Pepperoni & Cheese or Just Cheese</p>
+        </div>
+        <div class="m-price">$6.99</div>
+      </div>
+      <div class="m-item gs-reveal" style="grid-column: 1 / -1;">
+        <div class="m-info">
+          <h3 class="m-name">Toppings</h3>
+          <p class="m-desc">Pepperoni, Ham, Bacon, Italian Sausage, Beef, Mushrooms, Green Peppers, Onions, Black Olives, Jalapeños, Tomatoes, Pineapple, Green Olives, Anchovies, Banana Pepper Rings.<br><em>Double Price: Chicken & Feta Cheese</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="detroit">
+  <div class="wrap">
+    <div class="ms-head gs-reveal">
+      <h2 class="ms-title">Detroit Style Pan</h2>
+      <p class="ms-desc">Sicilian Deep Dish with 3 creamy cheeses</p>
+    </div>
+    <div class="menu-grid">
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Pappa Pan</h3>
+          <p class="m-desc">Cheese or 1 Topping</p>
+        </div>
+        <div class="m-price">$9.49 <span class="m-subprice">Premium $14.49</span></div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Jr Pan</h3>
+          <p class="m-desc">Cheese or 1 Topping</p>
+        </div>
+        <div class="m-price">$4.99 <span class="m-subprice">Premium $8.49</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="sandwiches">
+  <div class="wrap">
+    <div class="ms-head gs-reveal">
+      <h2 class="ms-title">Oven Baked Sandwiches</h2>
+      <p class="ms-desc">Fresh baked pizza dough, loaded with cheese and your favorite deli meats.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="m-item gs-reveal">
+        <div class="m-info"><h3 class="m-name">Italian</h3></div>
+        <div class="m-price">$5.99</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info"><h3 class="m-name">Club</h3></div>
+        <div class="m-price">$5.99</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info"><h3 class="m-name">Ham & Cheese</h3></div>
+        <div class="m-price">$5.99</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info"><h3 class="m-name">Turkey</h3></div>
+        <div class="m-price">$5.99</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info"><h3 class="m-name">Tuna</h3></div>
+        <div class="m-price">$5.99</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="pasta">
+  <div class="wrap">
+    <div class="ms-head gs-reveal">
+      <h2 class="ms-title">Pasta Dinners</h2>
+      <p class="ms-desc">All dinners come with an 8 piece order of bread sticks</p>
+    </div>
+    <div class="menu-grid">
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Chicken Parmesan</h3>
+          <p class="m-desc">Chicken breast hand breaded with panko bread crumbs, on spaghetti with marinara, mozzarella & provolone.</p>
+        </div>
+        <div class="m-price">$8.99</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Meat Lasagna</h3>
+          <p class="m-desc">Layer of noodles, ground beef, marinara sauce and melted mozzarella & provolone cheese.</p>
+        </div>
+        <div class="m-price">$8.99</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Baked Ziti</h3>
+          <p class="m-desc">Ziti noodles covered with marinara sauce, ground beef, melted cheese, and an Italian sausage link.</p>
+        </div>
+        <div class="m-price">$8.99</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Macaroni & Cheese</h3>
+          <p class="m-desc">Macaroni noodles baked in a cheddar cheese sauce and covered with melted cheddar cheese.</p>
+        </div>
+        <div class="m-price">$7.99</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="wings">
+  <div class="wrap">
+    <div class="ms-head gs-reveal">
+      <h2 class="ms-title">Wings & Sides</h2>
+      <p class="ms-desc">Baked to perfection</p>
+    </div>
+    <div class="menu-grid">
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Jumbo Chicken Wings (Baked)</h3>
+          <p class="m-desc">Mild, Medium, Hot, Extreme, BBQ, Sweet & Spicy, Lemon Pepper, Teriyaki. With Blue Cheese or Ranch.</p>
+        </div>
+        <div class="m-price">$6.99 <span class="m-subprice">5 pcs</span><br>$12.99 <span class="m-subprice">10 pcs</span></div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Bread Sticks</h3>
+          <p class="m-desc">Baked Bread, topped with Garlic, Butter & Parmesan Cheese.</p>
+        </div>
+        <div class="m-price">$3.59</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Cheese Bread</h3>
+          <p class="m-desc">10 sticks of fresh baked bread, smothered with 2 types of cheese & finished with Garlic.</p>
+        </div>
+        <div class="m-price">$5.79</div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Cinnamon Bread</h3>
+          <p class="m-desc">Drizzled with Cream Cheese Icing.</p>
+        </div>
+        <div class="m-price">$4.99</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="salads">
+  <div class="wrap">
+    <div class="ms-head gs-reveal">
+      <h2 class="ms-title">Fresh Salads</h2>
+      <p class="ms-desc">Side (1) • Individual (1-2) • Family (3-5)</p>
+    </div>
+    <div class="menu-grid">
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Greek</h3>
+          <p class="m-desc">Lettuce, Feta Cheese, Tomatoes, Red Onions, Black Olives & Banana Peppers.</p>
+        </div>
+        <div class="m-price">$3.99 <span class="m-subprice">Side</span><br>$6.29 <span class="m-subprice">Ind</span><br>$9.99 <span class="m-subprice">Fam</span></div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Antipasto</h3>
+          <p class="m-desc">Lettuce, Ham, Pepperoni, Tomatoes, Provolone, Red Onions, Black Olives & Banana Peppers.</p>
+        </div>
+        <div class="m-price">$3.99 <span class="m-subprice">Side</span><br>$6.29 <span class="m-subprice">Ind</span><br>$9.99 <span class="m-subprice">Fam</span></div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Caesar</h3>
+          <p class="m-desc">Lettuce, Parmesan & Croutons.</p>
+        </div>
+        <div class="m-price">$3.99 <span class="m-subprice">Side</span><br>$6.29 <span class="m-subprice">Ind</span><br>$9.99 <span class="m-subprice">Fam</span></div>
+      </div>
+      <div class="m-item gs-reveal">
+        <div class="m-info">
+          <h3 class="m-name">Tossed</h3>
+          <p class="m-desc">Lettuce, Carrots, Cabbage, Tomatoes, Red Onions & Croutons.</p>
+        </div>
+        <div class="m-price">$3.99 <span class="m-subprice">Side</span><br>$6.29 <span class="m-subprice">Ind</span><br>$9.99 <span class="m-subprice">Fam</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="cta-text">Ready to order? We make it easy.</div>
+  <div class="cta-links">
+    <a href="order.html" class="btn btn-white">Order Online</a>
+    <a href="catering.html" class="btn btn-outline-w">Catering</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
+    <div class="ft-cols">
+      <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="#">Lunch Specials</a></li><li><a href="#">Gluten Free Info</a></li><li><a href="catering.html">Catering</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="#">About Us</a></li><li><a href="#">Stanislaus</a></li><li><a href="#">Job Application</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="order.html">Order Delivery</a></li><li><a href="order.html">Order Carryout</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+    <div class="ft-copy">Lawrenceville · Sugarloaf · Suwanee · Grayson · Hamilton Mill · Dacula · Johns Creek · Cumming</div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  // ── LENIS SMOOTH SCROLL ──────────────────────
+  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(time => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── SECTION REVEALS ──────────────────────────
+  gsap.utils.toArray('.gs-reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      }
+    );
+  });
+
+  // ── ACTIVE NAV STATE ──────────────────────────
+  const sections = document.querySelectorAll('.menu-section');
+  const navLinks = document.querySelectorAll('.mn-link');
+  
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      if (window.scrollY >= top - 150) {
+        current = sec.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+</body>
+</html>
