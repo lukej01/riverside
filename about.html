@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Riverside Pizza | Family Owned Since 1999</title>
+  <meta name="description" content="Learn about Riverside Pizza, family-owned since 1999 serving Metro Atlanta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--g:#1e5f2c;--gd:#143f1d;--gl:#2a7a38;--gp:#f0f6f1;--gm:#ddeadf;--gold:#f0ad4e;--cream:#fef9f2;--wh:#fff;--tx:#2b2826;--mu:#66615b;--bdr:#ebe4d8;--d:'Playfair Display',serif;--f:'Barlow',sans-serif;--m:'IBM Plex Mono',monospace}
+    html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--wh);color:var(--tx);overflow-x:hidden}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}.wrap{max-width:1280px;margin:0 auto;padding:0 5rem}
+
+    #nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 3rem;height:80px;display:flex;justify-content:space-between;align-items:center;background:var(--cream);box-shadow:0 1px 0 var(--bdr),0 4px 24px rgba(0,0,0,.04)}
+    .logo{display:flex;align-items:center;gap:1rem;transition:transform .18s}.logo:hover{transform:scale(1.025)}.logo img{height:62px;width:auto;object-fit:contain;mix-blend-mode:multiply;filter:contrast(1.1)}
+    .logo-text{line-height:1;display:flex;flex-direction:column}.logo-name{font-family:var(--d);font-size:1.4rem;font-weight:700;color:var(--g);letter-spacing:-.025em}.logo-sub{font-family:var(--m);font-size:.44rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mu);margin-top:4px}
+    .nav-links{display:flex;gap:0;list-style:none;align-items:center}.nav-links a{font-family:var(--m);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);padding:.4rem .9rem;transition:color .2s;font-weight:500}.nav-links a:hover{color:var(--g)}
+    .nav-cta{background:var(--g)!important;color:#fff!important;padding:.55rem 1.4rem!important;margin-left:.6rem;border-radius:2px}
+
+    .hero{margin-top:80px;padding:clamp(5rem,10vw,9rem) 0 clamp(4rem,8vw,7rem);background:var(--g);position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,var(--gd),transparent);pointer-events:none}
+    .hero .wrap{position:relative;z-index:1}
+    .hero-ey{font-family:var(--m);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+    .hero-ey::before{content:'';width:2rem;height:1px;background:var(--gold)}
+    .hero h1{font-family:var(--d);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:500;color:#fff;line-height:1.08;margin-bottom:1.5rem}
+    .hero h1 em{font-style:italic;color:rgba(255,255,255,.7)}
+    .hero-desc{font-size:1.1rem;color:rgba(255,255,255,.75);max-width:560px;line-height:1.8}
+
+    .story{padding:clamp(5rem,8vw,8rem) 0;background:var(--wh)}
+    .story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,5vw,6rem);align-items:center}
+    .story-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
+    .sec-ey{font-family:var(--m);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+    .sec-ey::before{content:'';width:1.5rem;height:1px;background:var(--g)}
+    .sec-h{font-family:var(--d);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:500;line-height:1.1;margin-bottom:1.5rem}
+    .sec-h em{font-style:italic;color:var(--g)}
+    .story p{font-size:1rem;line-height:1.9;color:var(--mu);margin-bottom:1.25rem}
+    .story p strong{color:var(--tx);font-weight:600}
+
+    .values{padding:clamp(5rem,8vw,8rem) 0;background:#f4f4f4}
+    .val-head{text-align:center;margin-bottom:clamp(3rem,5vw,4.5rem)}
+    .val-head h2{font-family:var(--d);font-size:clamp(2rem,3vw,3rem);font-weight:500;margin-bottom:1rem}
+    .val-head p{font-size:1rem;color:var(--mu);max-width:500px;margin:0 auto}
+    .val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+    .val-card{background:var(--wh);border:1px solid var(--bdr);padding:2.5rem;border-radius:4px;transition:transform .3s,box-shadow .3s}
+    .val-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+    .val-icon{width:48px;height:48px;background:var(--gp);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;color:var(--g)}
+    .val-card h3{font-family:var(--d);font-size:1.3rem;font-weight:600;margin-bottom:.75rem}
+    .val-card p{font-size:.88rem;color:var(--mu);line-height:1.8}
+
+    .stan{padding:clamp(5rem,8vw,8rem) 0;background:var(--g)}
+    .stan .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,5vw,6rem);align-items:center}
+    .stan-ey{font-family:var(--m);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+    .stan-ey::before{content:'';width:1.5rem;height:1px;background:var(--gold)}
+    .stan h2{font-family:var(--d);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:500;color:#fff;line-height:1.1;margin-bottom:1.5rem}
+    .stan h2 em{font-style:italic;color:rgba(240,173,78,.8)}
+    .stan p{font-size:1rem;line-height:1.9;color:rgba(255,255,255,.75);margin-bottom:1.25rem}
+    .stan-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
+    .btn-gold{display:inline-block;font-family:var(--m);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:1rem 2rem;background:var(--gold);color:var(--gd);border-radius:2px;transition:background .2s;margin-top:.5rem}
+    .btn-gold:hover{background:#d4942e}
+
+    footer{background:var(--gd);padding:4rem 0 2rem}
+    .ft-wrap{max-width:1280px;margin:0 auto;padding:0 5rem;display:flex;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+    .ft-brand .fn{font-family:var(--d);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+    .ft-brand .fs{font-family:var(--m);font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+    .ft-col-title{font-family:var(--m);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1rem}
+    .ft-col ul{list-style:none}.ft-col li{margin-bottom:.6rem}.ft-col a{font-size:.88rem;color:rgba(255,255,255,.7);transition:color .2s}.ft-col a:hover{color:#fff}
+    .ft-bottom{max-width:1280px;margin:3rem auto 0;padding:2rem 5rem 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}
+    .ft-copy{font-family:var(--m);font-size:.45rem;letter-spacing:.1em;color:rgba(255,255,255,.3)}
+
+    @media(max-width:960px){.story .wrap,.stan .wrap{grid-template-columns:1fr}.val-grid{grid-template-columns:1fr}#nav{padding:0 1.5rem}.nav-links{display:none}.wrap{padding:0 2rem}}
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="logo"><img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza"><div class="logo-text"><span class="logo-name">Riverside Pizza</span><span class="logo-sub">Est. 1999 · Metro Atlanta</span></div></a>
+  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="locations.html">Locations</a></li><li><a href="about.html">About</a></li><li><a href="order.html" class="nav-cta">Order Online</a></li></ul>
+</nav>
+
+<section class="hero"><div class="wrap"><div class="hero-ey">Our Story</div><h1>Family Owned &amp;<br><em>Proudly Local</em></h1><p class="hero-desc">Since 1999, the Thompson family has been serving Metro Atlanta the freshest, most delicious pizza made with love, real ingredients, and recipes perfected over 25 years.</p></div></section>
+
+<section class="story"><div class="wrap">
+  <div class="story-img"><img src="https://riversidepizza.net/wp-content/uploads/2026/03/Al-and-Sandy.jpg" alt="Al and Sandy Thompson"></div>
+  <div><div class="sec-ey">How It Started</div><h2 class="sec-h">A Pizza Dream <em>Born in Georgia</em></h2>
+    <p>In 1999, <strong>Al and Sandy Thompson</strong> opened the very first Riverside Pizza in Lawrenceville, Georgia. Their vision was simple: serve the freshest, highest-quality pizza with genuine hospitality.</p>
+    <p>What began as a single storefront has grown into <strong>eight thriving locations</strong> across Metro Atlanta. But one thing has never changed — every pizza is still made with the same care, the same fresh ingredients, and the same family recipes.</p>
+    <p>Al and Sandy remain deeply involved in every location, ensuring that the quality and warmth that built Riverside Pizza continues in every single pie.</p>
+  </div>
+</div></section>
+
+<section class="values"><div class="wrap">
+  <div class="val-head"><h2>What We Stand For</h2><p>Every decision we make comes back to three principles that have guided us since day one.</p></div>
+  <div class="val-grid">
+    <div class="val-card"><div class="val-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Community First</h3><p>We sponsor local teams, hire local staff, and source local produce. Eight locations, eight neighborhoods we call home.</p></div>
+    <div class="val-card"><div class="val-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Real Ingredients</h3><p>100% real mozzarella cheese. Premium Stanislaus tomatoes. Dough made fresh daily. We never cut corners.</p></div>
+    <div class="val-card"><div class="val-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h3>Made with Love</h3><p>Every pizza is hand-tossed, every sub is oven-baked, and every order is prepared with care you'd give your own family.</p></div>
+  </div>
+</div></section>
+
+<section class="stan"><div class="wrap">
+  <div><div class="stan-ey">Our Secret Ingredient</div><h2>Stanislaus <em>Premium Tomatoes</em></h2>
+    <p>While most pizza shops use cheap canned sauce, we insist on Stanislaus — the gold standard. Grown in California's San Joaquin Valley, vine-ripened and packed within hours of harvest.</p>
+    <p>The result? A rich, sweet, naturally balanced sauce you can taste in every bite. It's more expensive, but our customers are worth it.</p>
+    <a href="stanislaus.html" class="btn-gold">Learn More →</a>
+  </div>
+  <div class="stan-img"><img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?q=80&w=800&auto=format&fit=crop" alt="Fresh tomatoes"></div>
+</div></section>
+
+<footer>
+  <div class="ft-wrap">
+    <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
+    <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Lunch Specials</a></li><li><a href="gluten-free.html">Gluten Free</a></li><li><a href="catering.html">Catering</a></li></ul></div>
+    <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Jobs</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="order.html">Order Online</a></li><li><a href="locations.html">Locations</a></li></ul></div>
+  </div>
+  <div class="ft-bottom"><span class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</span><span class="ft-copy">Lawrenceville · Sugarloaf · Suwanee · Grayson · Hamilton Mill · Dacula · Johns Creek · Cumming</span></div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>gsap.registerPlugin(ScrollTrigger);gsap.utils.toArray('.story,.val-card,.stan').forEach(el=>{gsap.from(el,{opacity:0,y:40,duration:.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'}})});</script>
+</body>
+</html>

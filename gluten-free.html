@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gluten Free Options - Riverside Pizza</title>
+  <meta name="description" content="Gluten free pizza and menu options at Riverside Pizza. Learn about our gluten free crust and preparation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--g:#1e5f2c;--gd:#143f1d;--gp:#f0f6f1;--gm:#ddeadf;--gold:#f0ad4e;--cream:#fef9f2;--wh:#fff;--tx:#2b2826;--mu:#66615b;--bdr:#ebe4d8;--d:'Playfair Display',serif;--f:'Barlow',sans-serif;--m:'IBM Plex Mono',monospace}
+    html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--cream);color:var(--tx);overflow-x:hidden}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}.wrap{max-width:1280px;margin:0 auto;padding:0 5rem}
+
+    #nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 3rem;height:80px;display:flex;justify-content:space-between;align-items:center;background:var(--cream);box-shadow:0 1px 0 var(--bdr),0 4px 24px rgba(0,0,0,.04)}
+    .logo{display:flex;align-items:center;gap:1rem;transition:transform .18s}.logo:hover{transform:scale(1.025)}.logo img{height:62px;width:auto;object-fit:contain;mix-blend-mode:multiply;filter:contrast(1.1)}
+    .logo-text{line-height:1;display:flex;flex-direction:column}.logo-name{font-family:var(--d);font-size:1.4rem;font-weight:700;color:var(--g)}.logo-sub{font-family:var(--m);font-size:.44rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mu);margin-top:4px}
+    .nav-links{display:flex;gap:0;list-style:none;align-items:center}.nav-links a{font-family:var(--m);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);padding:.4rem .9rem;transition:color .2s;font-weight:500}.nav-links a:hover{color:var(--g)}
+    .nav-cta{background:var(--g)!important;color:#fff!important;padding:.55rem 1.4rem!important;margin-left:.6rem;border-radius:2px}
+
+    .header{margin-top:80px;padding:5rem 0 3rem;background:var(--wh);border-bottom:1px solid var(--bdr);text-align:center}
+    .header h1{font-family:var(--d);font-size:clamp(2.5rem,4vw,3.5rem);font-weight:500;margin-bottom:.75rem}
+    .header h1 em{font-style:italic;color:var(--g)}
+    .header p{font-size:1rem;color:var(--mu);max-width:550px;margin:0 auto;line-height:1.7}
+
+    .info{padding:clamp(4rem,6vw,6rem) 0;background:var(--wh)}
+    .info .wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    .info-card{background:var(--gp);border:1px solid var(--gm);border-radius:4px;padding:2.5rem}
+    .info-card h2{font-family:var(--d);font-size:1.5rem;font-weight:600;margin-bottom:1rem;color:var(--g)}
+    .info-card p{font-size:.95rem;line-height:1.8;color:var(--mu);margin-bottom:1rem}
+    .info-card ul{list-style:none;margin-top:1rem}
+    .info-card li{font-size:.9rem;color:var(--tx);padding:.6rem 0;border-bottom:1px solid var(--gm);display:flex;align-items:center;gap:.75rem}
+    .info-card li::before{content:'✓';color:var(--g);font-weight:700;font-size:1rem}
+
+    .warn{padding:3rem 0;background:var(--gold);text-align:center}
+    .warn .wrap{max-width:800px}
+    .warn h3{font-family:var(--d);font-size:1.3rem;font-weight:600;margin-bottom:.75rem;color:var(--gd)}
+    .warn p{font-size:.9rem;line-height:1.7;color:rgba(20,63,29,.8)}
+
+    .menu-sec{padding:clamp(4rem,6vw,6rem) 0;background:var(--cream)}
+    .menu-sec h2{font-family:var(--d);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:500;text-align:center;margin-bottom:3rem}
+    .gf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+    .gf-item{background:var(--wh);border:1px solid var(--bdr);padding:1.75rem;border-radius:4px;display:flex;justify-content:space-between;align-items:center;transition:transform .2s,box-shadow .2s}
+    .gf-item:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.04)}
+    .gf-item h3{font-family:var(--d);font-size:1.1rem;font-weight:600}
+    .gf-item p{font-size:.8rem;color:var(--mu);margin-top:.25rem}
+    .gf-badge{font-family:var(--m);font-size:.45rem;letter-spacing:.15em;text-transform:uppercase;background:var(--gp);color:var(--g);padding:.35rem .75rem;border-radius:2px;white-space:nowrap}
+
+    footer{background:var(--gd);padding:4rem 0 2rem}
+    .ft-wrap{max-width:1280px;margin:0 auto;padding:0 5rem;display:flex;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+    .ft-brand .fn{font-family:var(--d);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+    .ft-brand .fs{font-family:var(--m);font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+    .ft-col-title{font-family:var(--m);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1rem}
+    .ft-col ul{list-style:none}.ft-col li::before{content:none}.ft-col li{margin-bottom:.6rem;border:none;padding:0}.ft-col a{font-size:.88rem;color:rgba(255,255,255,.7);transition:color .2s}.ft-col a:hover{color:#fff}
+    .ft-bottom{max-width:1280px;margin:3rem auto 0;padding:2rem 5rem 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}
+    .ft-copy{font-family:var(--m);font-size:.45rem;letter-spacing:.1em;color:rgba(255,255,255,.3)}
+    @media(max-width:960px){.info .wrap{grid-template-columns:1fr}#nav{padding:0 1.5rem}.nav-links{display:none}.wrap{padding:0 2rem}}
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="logo"><img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza"><div class="logo-text"><span class="logo-name">Riverside Pizza</span><span class="logo-sub">Est. 1999 · Metro Atlanta</span></div></a>
+  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="locations.html">Locations</a></li><li><a href="about.html">About</a></li><li><a href="order.html" class="nav-cta">Order Online</a></li></ul>
+</nav>
+
+<section class="header">
+  <h1>Gluten Free <em>Options</em></h1>
+  <p>We offer a gluten-free crust option so everyone at the table can enjoy Riverside Pizza together.</p>
+</section>
+
+<section class="info"><div class="wrap">
+  <div class="info-card">
+    <h2>Our Gluten Free Crust</h2>
+    <p>Our gluten-free pizza crust is available in a 10-inch personal size. It's made with a rice flour blend and is certified gluten-free before preparation.</p>
+    <ul>
+      <li>Available at all 8 locations</li>
+      <li>10-inch personal size</li>
+      <li>Rice flour blend crust</li>
+      <li>Any toppings available</li>
+      <li>Same great Stanislaus sauce</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h2>Other GF-Friendly Items</h2>
+    <p>Beyond our gluten-free crust, several items on our menu are naturally gluten-free or can be modified.</p>
+    <ul>
+      <li>Wings (no breading)</li>
+      <li>Garden Salad</li>
+      <li>Greek Salad</li>
+      <li>Chef Salad</li>
+      <li>Most dipping sauces</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="warn"><div class="wrap">
+  <h3>Important Allergen Notice</h3>
+  <p>While we offer gluten-free crust, our kitchens are <strong>not</strong> gluten-free environments. Pizzas are prepared in the same area as our regular dough. We cannot guarantee zero cross-contamination. Please inform your server of any severe allergies.</p>
+</div></section>
+
+<section class="menu-sec"><div class="wrap">
+  <h2>Gluten Free Menu Items</h2>
+  <div class="gf-grid">
+    <div class="gf-item"><div><h3>GF Cheese Pizza</h3><p>10" with mozzarella &amp; Stanislaus sauce</p></div><span class="gf-badge">GF Crust</span></div>
+    <div class="gf-item"><div><h3>GF Pepperoni Pizza</h3><p>10" with premium pepperoni</p></div><span class="gf-badge">GF Crust</span></div>
+    <div class="gf-item"><div><h3>GF Veggie Pizza</h3><p>10" loaded with fresh vegetables</p></div><span class="gf-badge">GF Crust</span></div>
+    <div class="gf-item"><div><h3>GF Meat Lovers</h3><p>10" with pepperoni, sausage, ham, bacon</p></div><span class="gf-badge">GF Crust</span></div>
+    <div class="gf-item"><div><h3>Traditional Wings</h3><p>Bone-in wings, no breading, choice of sauce</p></div><span class="gf-badge">Naturally GF</span></div>
+    <div class="gf-item"><div><h3>Garden Salad</h3><p>Mixed greens, tomato, cucumber, onion</p></div><span class="gf-badge">Naturally GF</span></div>
+    <div class="gf-item"><div><h3>Greek Salad</h3><p>Romaine, feta, olives, pepperoncini</p></div><span class="gf-badge">Naturally GF</span></div>
+    <div class="gf-item"><div><h3>Chef Salad</h3><p>Ham, turkey, cheese, egg, mixed greens</p></div><span class="gf-badge">Naturally GF</span></div>
+  </div>
+</div></section>
+
+<footer>
+  <div class="ft-wrap">
+    <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
+    <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Lunch Specials</a></li><li><a href="gluten-free.html">Gluten Free</a></li><li><a href="catering.html">Catering</a></li></ul></div>
+    <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Jobs</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="order.html">Order Online</a></li><li><a href="locations.html">Locations</a></li></ul></div>
+  </div>
+  <div class="ft-bottom"><span class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</span><span class="ft-copy">Metro Atlanta · 8 Locations</span></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Riverside Pizza</title>
+  <meta name="description" content="Get in touch with Riverside Pizza. Contact any of our 8 Metro Atlanta locations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--g:#1e5f2c;--gd:#143f1d;--gp:#f0f6f1;--gm:#ddeadf;--gold:#f0ad4e;--cream:#fef9f2;--wh:#fff;--tx:#2b2826;--mu:#66615b;--bdr:#ebe4d8;--d:'Playfair Display',serif;--f:'Barlow',sans-serif;--m:'IBM Plex Mono',monospace}
+    html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--cream);color:var(--tx);overflow-x:hidden}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}.wrap{max-width:1280px;margin:0 auto;padding:0 5rem}
+    button,input,textarea,select{font-family:inherit}
+
+    #nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 3rem;height:80px;display:flex;justify-content:space-between;align-items:center;background:var(--cream);box-shadow:0 1px 0 var(--bdr),0 4px 24px rgba(0,0,0,.04)}
+    .logo{display:flex;align-items:center;gap:1rem;transition:transform .18s}.logo:hover{transform:scale(1.025)}.logo img{height:62px;width:auto;object-fit:contain;mix-blend-mode:multiply;filter:contrast(1.1)}
+    .logo-text{line-height:1;display:flex;flex-direction:column}.logo-name{font-family:var(--d);font-size:1.4rem;font-weight:700;color:var(--g)}.logo-sub{font-family:var(--m);font-size:.44rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mu);margin-top:4px}
+    .nav-links{display:flex;gap:0;list-style:none;align-items:center}.nav-links a{font-family:var(--m);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);padding:.4rem .9rem;transition:color .2s;font-weight:500}.nav-links a:hover{color:var(--g)}
+    .nav-cta{background:var(--g)!important;color:#fff!important;padding:.55rem 1.4rem!important;margin-left:.6rem;border-radius:2px}
+
+    .header{margin-top:80px;padding:5rem 0 3rem;background:var(--wh);border-bottom:1px solid var(--bdr);text-align:center}
+    .header h1{font-family:var(--d);font-size:clamp(2.5rem,4vw,3.5rem);font-weight:500;margin-bottom:.75rem}
+    .header h1 em{font-style:italic;color:var(--g)}
+    .header p{font-size:1rem;color:var(--mu);max-width:550px;margin:0 auto;line-height:1.7}
+
+    .contact-sec{padding:clamp(4rem,6vw,6rem) 0}
+    .contact-sec .wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+
+    .form-card{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;padding:3rem}
+    .form-card h2{font-family:var(--d);font-size:1.5rem;font-weight:600;margin-bottom:.5rem}
+    .form-card .sub{font-size:.88rem;color:var(--mu);margin-bottom:2rem}
+    .field{margin-bottom:1.5rem}
+    .field label{display:block;font-family:var(--m);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:.5rem}
+    .field input,.field select,.field textarea{width:100%;padding:.85rem 1rem;border:1px solid var(--bdr);border-radius:4px;font-size:.95rem;background:var(--cream);transition:border-color .2s;color:var(--tx)}
+    .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--g)}
+    .field textarea{resize:vertical;min-height:120px}
+    .submit-btn{width:100%;padding:1.1rem;background:var(--g);color:#fff;border:none;border-radius:4px;font-family:var(--m);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+    .submit-btn:hover{background:var(--gd)}
+
+    .info-side h2{font-family:var(--d);font-size:1.5rem;font-weight:600;margin-bottom:2rem}
+    .loc-list{display:flex;flex-direction:column;gap:1.5rem}
+    .loc-item{padding:1.5rem;background:var(--wh);border:1px solid var(--bdr);border-radius:4px;transition:border-color .2s}
+    .loc-item:hover{border-color:var(--g)}
+    .loc-item h3{font-family:var(--d);font-size:1.1rem;font-weight:600;margin-bottom:.35rem}
+    .loc-item p{font-size:.82rem;color:var(--mu);line-height:1.5;margin-bottom:.35rem}
+    .loc-item a{font-family:var(--m);font-size:.55rem;letter-spacing:.1em;color:var(--g);font-weight:500}
+    .loc-item a:hover{text-decoration:underline}
+
+    footer{background:var(--gd);padding:4rem 0 2rem}
+    .ft-wrap{max-width:1280px;margin:0 auto;padding:0 5rem;display:flex;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+    .ft-brand .fn{font-family:var(--d);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+    .ft-brand .fs{font-family:var(--m);font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+    .ft-col-title{font-family:var(--m);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1rem}
+    .ft-col ul{list-style:none}.ft-col li{margin-bottom:.6rem}.ft-col a{font-size:.88rem;color:rgba(255,255,255,.7);transition:color .2s}.ft-col a:hover{color:#fff}
+    .ft-bottom{max-width:1280px;margin:3rem auto 0;padding:2rem 5rem 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}
+    .ft-copy{font-family:var(--m);font-size:.45rem;letter-spacing:.1em;color:rgba(255,255,255,.3)}
+    @media(max-width:960px){.contact-sec .wrap{grid-template-columns:1fr}#nav{padding:0 1.5rem}.nav-links{display:none}.wrap{padding:0 2rem}}
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="logo"><img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza"><div class="logo-text"><span class="logo-name">Riverside Pizza</span><span class="logo-sub">Est. 1999 · Metro Atlanta</span></div></a>
+  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="locations.html">Locations</a></li><li><a href="about.html">About</a></li><li><a href="order.html" class="nav-cta">Order Online</a></li></ul>
+</nav>
+
+<section class="header">
+  <h1>Contact <em>Us</em></h1>
+  <p>Have a question, comment, or just want to say hi? We'd love to hear from you.</p>
+</section>
+
+<section class="contact-sec"><div class="wrap">
+  <div class="form-card">
+    <h2>Send Us a Message</h2>
+    <p class="sub">We typically respond within 24 hours.</p>
+    <form id="contactForm">
+      <div class="field"><label for="name">Your Name</label><input type="text" id="name" name="name" required placeholder="John Smith"></div>
+      <div class="field"><label for="email">Email Address</label><input type="email" id="email" name="email" required placeholder="john@example.com"></div>
+      <div class="field"><label for="phone">Phone (Optional)</label><input type="tel" id="phone" name="phone" placeholder="(770) 555-1234"></div>
+      <div class="field"><label for="location">Regarding Location</label>
+        <select id="location" name="location">
+          <option value="">General Inquiry</option>
+          <option value="lawrenceville">Lawrenceville</option>
+          <option value="sugarloaf">Sugarloaf (Lawrenceville)</option>
+          <option value="suwanee">Suwanee</option>
+          <option value="grayson">Grayson</option>
+          <option value="hamilton-mill">Hamilton Mill</option>
+          <option value="dacula">Dacula</option>
+          <option value="johns-creek">Johns Creek</option>
+          <option value="cumming">Cumming</option>
+        </select>
+      </div>
+      <div class="field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="How can we help you?"></textarea></div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </div>
+  <div class="info-side">
+    <h2>Our Locations</h2>
+    <div class="loc-list">
+      <div class="loc-item"><h3>Lawrenceville</h3><p>2100 Riverside Pkwy @ Duluth Hwy 120</p><a href="tel:7708221500">770-822-1500</a></div>
+      <div class="loc-item"><h3>Sugarloaf</h3><p>3330 Sugarloaf Pkwy @ Five Forks Trickum</p><a href="tel:7707717000">770-771-7000</a></div>
+      <div class="loc-item"><h3>Suwanee</h3><p>991 Peachtree Industrial Blvd</p><a href="tel:7702719992">770-271-9992</a></div>
+      <div class="loc-item"><h3>Grayson</h3><p>1845 Grayson Hwy @ Rosebud</p><a href="tel:7706822929">770-682-2929</a></div>
+      <div class="loc-item"><h3>Hamilton Mill</h3><p>2463 Hamilton Mill Pkwy #320</p><a href="tel:7702718881">770-271-8881</a></div>
+      <div class="loc-item"><h3>Dacula</h3><p>Fence Rd. @ Dacula Rd., Kroger Center</p><a href="tel:7709635000">770-963-5000</a></div>
+      <div class="loc-item"><h3>Johns Creek</h3><p>11877 Douglas Rd @ Jonesbridge</p><a href="tel:7703600002">770-360-0002</a></div>
+      <div class="loc-item"><h3>Cumming</h3><p>3030 Old Atlanta Rd. @ Sharon Rd.</p><a href="tel:4702394243">470-239-4243</a></div>
+    </div>
+  </div>
+</div></section>
+
+<footer>
+  <div class="ft-wrap">
+    <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
+    <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Lunch Specials</a></li><li><a href="gluten-free.html">Gluten Free</a></li><li><a href="catering.html">Catering</a></li></ul></div>
+    <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Jobs</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="order.html">Order Online</a></li><li><a href="locations.html">Locations</a></li></ul></div>
+  </div>
+  <div class="ft-bottom"><span class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</span><span class="ft-copy">Metro Atlanta · 8 Locations</span></div>
+</footer>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.submit-btn');
+  btn.textContent = 'Message Sent ✓';
+  btn.style.background = '#2a7a38';
+  setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; }, 3000);
+});
+</script>
+</body>
+</html>
