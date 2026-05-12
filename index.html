@@ -48,21 +48,15 @@
     }
     .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: transform 0.18s; }
     .logo:hover { transform: scale(1.025); }
-    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; transition: filter 0.3s; filter: brightness(0) invert(1); }
-    #nav.scrolled .logo img { mix-blend-mode: multiply; filter: contrast(1.1); }
+    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; mix-blend-mode: multiply; filter: contrast(1.1); }
     .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
-    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; letter-spacing: -0.025em; display: block; transition: color 0.3s; }
-    #nav.scrolled .logo-name { color: var(--g); }
-    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 4px; display: block; transition: color 0.3s; }
-    #nav.scrolled .logo-sub { color: var(--mu); }
+    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mu); margin-top: 4px; display: block; }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: white; padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
-    #nav.scrolled .nav-links a { color: var(--tx); }
-    .nav-links a:hover { color: var(--g) !important; }
-    .nav-cta { background: white !important; color: var(--g) !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
-    .nav-cta:hover { background: rgba(255,255,255,0.9) !important; }
-    #nav.scrolled .nav-cta { background: var(--g) !important; color: white !important; }
-    #nav.scrolled .nav-cta:hover { background: var(--gd) !important; }
+    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx); padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
+    .nav-links a:hover { color: var(--g); }
+    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
+    .nav-cta:hover { background: var(--gd) !important; }
 
     /* ── HERO SLIDER ─────────────────────── */
     .hero { position: relative; height: 100dvh; overflow: hidden; }
