@@ -14,13 +14,14 @@
       --g:    #336c2c;
       --gd:   #1e4a18;
       --gl:   #448a3c;
-      --gp:   #f1f7f1;
-      --gm:   #e4f0e4;
-      --cream:#fdfcfb;
+      --gp:   #f4f8f4;
+      --gm:   #e8f0e8;
+      /* ── Warm retro accents ── */
+      --cream:#fef9f2;
       --wh:   #ffffff;
-      --tx:   #1c1c1c;
-      --mu:   #5a5a5a;
-      --bdr:  #ddeadd;
+      --tx:   #2b2826;
+      --mu:   #66615b;
+      --bdr:  #ebe4d8;
       /* ── Typography ── */
       --d: 'Playfair Display', serif;
       --f: 'Barlow', sans-serif;
@@ -40,8 +41,9 @@
       transition: background 0.45s ease, box-shadow 0.45s ease;
     }
     #nav.solid { background: var(--gd); box-shadow: 0 2px 32px rgba(0,0,0,0.35); }
-    .logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
-    .logo img { height: 44px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 4px; }
+    .logo { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; transition: transform 0.2s; }
+    .logo:hover { transform: scale(1.02); }
+    .logo img { height: 56px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
     .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
     .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
     .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 3px; display: block; }
@@ -444,19 +446,19 @@
       <div><div class="ing-num">01 — Cheese</div><div class="ing-title">100% Real Mozzarella &amp; Provolone</div><div class="ing-text">Grated on site at each restaurant — never pre-shredded. What you taste was cut that morning.</div></div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/tomatoes.jpg" alt="Tomatoes" onerror="this.parentNode.className='ing-icon-blank'"></div>
+      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/tomatoes.jpg" alt="Tomatoes" onerror="this.parentNode.className='ing-icon-blank'"></div>
       <div><div class="ing-num">02 — Sauce</div><div class="ing-title">Stanislaus Pizza Sauce</div><div class="ing-text">The quality leader in the industry. Packed from fresh tomatoes only — never concentrated. Our homemade spice mix is blended in daily.</div></div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon-blank"></div>
+      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/dough.jpg" alt="Dough" onerror="this.parentNode.className='ing-icon-blank'"></div>
       <div><div class="ing-num">03 — Dough</div><div class="ing-title">Handmade Every Morning</div><div class="ing-text">Made from scratch at each location daily using All Trumps flour, a General Mills Gold Medal product.</div></div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/vegies.jpg" alt="Vegetables" onerror="this.parentNode.className='ing-icon-blank'"></div>
+      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/pepperoni.jpg" alt="Pepperoni" onerror="this.parentNode.className='ing-icon-blank'"></div>
       <div><div class="ing-num">04 — Pepperoni</div><div class="ing-title">Hormel Pepperoni Only</div><div class="ing-text">The only pepperoni we use — one of the highest quality and most recognized name brands in the industry.</div></div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon-blank"></div>
+      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/vegies.jpg" alt="Produce" onerror="this.parentNode.className='ing-icon-blank'"></div>
       <div><div class="ing-num">05 — Produce</div><div class="ing-title">Cut Fresh Daily</div><div class="ing-text">The produce is cut daily in each restaurant to ensure the absolute freshest product on every pizza.</div></div>
     </div>
     <div class="ing-card promise gs-stagger">
