@@ -36,22 +36,22 @@
     /* ── NAV ─────────────────────────────── */
     #nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0 3rem; height: 76px;
+      padding: 0 3rem; height: 80px;
       display: flex; justify-content: space-between; align-items: center;
-      transition: background 0.45s ease, box-shadow 0.45s ease;
+      background: var(--cream);
+      box-shadow: 0 1px 0 var(--bdr), 0 4px 24px rgba(0,0,0,0.04);
     }
-    #nav.solid { background: var(--gd); box-shadow: 0 2px 32px rgba(0,0,0,0.35); }
-    .logo { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; transition: transform 0.2s; }
-    .logo:hover { transform: scale(1.02); }
-    .logo img { height: 56px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: transform 0.18s; }
+    .logo:hover { transform: scale(1.025); }
+    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; mix-blend-mode: multiply; filter: contrast(1.1); }
     .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
-    .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
-    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 3px; display: block; }
+    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mu); margin-top: 4px; display: block; }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); padding: 0.4rem 0.9rem; transition: color 0.2s; }
-    .nav-links a:hover { color: white; }
-    .nav-cta { background: var(--red) !important; color: white !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
-    .nav-cta:hover { background: var(--red-l) !important; }
+    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx); padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
+    .nav-links a:hover { color: var(--g); }
+    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
+    .nav-cta:hover { background: var(--gd) !important; }
 
     /* ── HERO SLIDER ─────────────────────── */
     .hero { position: relative; height: 100dvh; overflow: hidden; }
@@ -160,9 +160,9 @@
     .ing-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
     .ing-card { background: var(--wh); padding: 2.25rem; border: 1px solid var(--bdr); display: flex; gap: 1.25rem; align-items: flex-start; transition: background 0.25s, border-color 0.25s; }
     .ing-card:hover { background: var(--gp); border-color: var(--g); }
-    .ing-icon { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--bdr); }
-    .ing-icon img { width: 100%; height: 100%; object-fit: cover; }
-    .ing-icon-blank { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; background: var(--gm); border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; }
+    .ing-icon { width: 84px; height: 84px; border-radius: 12px; overflow: hidden; flex-shrink: 0; border: 2px solid var(--bdr); background: var(--gm); }
+    .ing-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ing-icon-blank { width: 84px; height: 84px; border-radius: 12px; flex-shrink: 0; background: var(--gm); border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; }
     .ing-num { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--g); margin-bottom: 0.35rem; }
     .ing-title { font-family: var(--d); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.35rem; }
     .ing-text { font-size: 0.8rem; line-height: 1.75; color: var(--mu); font-weight: 300; }
@@ -446,19 +446,19 @@
       <div><div class="ing-num">01 — Cheese</div><div class="ing-title">100% Real Mozzarella &amp; Provolone</div><div class="ing-text">Grated on site at each restaurant — never pre-shredded. What you taste was cut that morning.</div></div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/tomatoes.jpg" alt="Tomatoes" onerror="this.parentNode.className='ing-icon-blank'"></div>
+      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/tomatoes.jpg" alt="Tomatoes" onerror="this.parentNode.className='ing-icon-blank'"></div>
       <div><div class="ing-num">02 — Sauce</div><div class="ing-title">Stanislaus Pizza Sauce</div><div class="ing-text">The quality leader in the industry. Packed from fresh tomatoes only — never concentrated. Our homemade spice mix is blended in daily.</div></div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/dough.jpg" alt="Dough" onerror="this.parentNode.className='ing-icon-blank'"></div>
+      <div class="ing-icon"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Dough" onerror="this.parentNode.className='ing-icon-blank'"></div>
       <div><div class="ing-num">03 — Dough</div><div class="ing-title">Handmade Every Morning</div><div class="ing-text">Made from scratch at each location daily using All Trumps flour, a General Mills Gold Medal product.</div></div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/pepperoni.jpg" alt="Pepperoni" onerror="this.parentNode.className='ing-icon-blank'"></div>
+      <div class="ing-icon"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=400&q=80" alt="Pepperoni" onerror="this.parentNode.className='ing-icon-blank'"></div>
       <div><div class="ing-num">04 — Pepperoni</div><div class="ing-title">Hormel Pepperoni Only</div><div class="ing-text">The only pepperoni we use — one of the highest quality and most recognized name brands in the industry.</div></div>
     </div>
     <div class="ing-card gs-stagger">
-      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/06/vegies.jpg" alt="Produce" onerror="this.parentNode.className='ing-icon-blank'"></div>
+      <div class="ing-icon"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/vegies.jpg" alt="Produce" onerror="this.parentNode.className='ing-icon-blank'"></div>
       <div><div class="ing-num">05 — Produce</div><div class="ing-title">Cut Fresh Daily</div><div class="ing-text">The produce is cut daily in each restaurant to ensure the absolute freshest product on every pizza.</div></div>
     </div>
     <div class="ing-card promise gs-stagger">

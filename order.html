@@ -36,22 +36,22 @@
     /* ── NAV ─────────────────────────────── */
     #nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0 4rem; height: 72px;
+      padding: 0 4rem; height: 80px;
       display: flex; justify-content: space-between; align-items: center;
-      transition: background 0.45s ease, box-shadow 0.45s ease;
-      background: var(--gd); box-shadow: 0 2px 24px rgba(0,0,0,0.3);
+      background: var(--cream);
+      box-shadow: 0 1px 0 var(--bdr), 0 4px 24px rgba(0,0,0,0.04);
     }
-    .logo { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; transition: transform 0.2s; }
-    .logo:hover { transform: scale(1.02); }
-    .logo img { height: 56px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: transform 0.18s; }
+    .logo:hover { transform: scale(1.025); }
+    .logo img { height: 62px; width: auto; object-fit: contain; display: block; flex-shrink: 0; mix-blend-mode: multiply; filter: contrast(1.1); }
     .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
-    .logo-name { font-family: var(--d); font-size: 1.25rem; font-weight: 700; color: white; letter-spacing: -0.02em; display: block; }
-    .logo-sub { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 3px; display: block; }
+    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mu); margin-top: 4px; display: block; }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-    .nav-links a { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); padding: 0.4rem 0.85rem; transition: color 0.2s; }
-    .nav-links a:hover { color: white; }
+    .nav-links a { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx); padding: 0.4rem 0.85rem; transition: color 0.2s; font-weight: 500; }
+    .nav-links a:hover { color: var(--g); }
     .nav-cta { background: var(--g) !important; color: white !important; padding: 0.5rem 1.2rem !important; margin-left: 0.5rem; transition: background 0.2s !important; }
-    .nav-cta:hover { background: var(--gl) !important; }
+    .nav-cta:hover { background: var(--gd) !important; }
 
     /* ── SPLIT LAYOUT ───────────────────── */
     .order-wrap { flex: 1; display: flex; padding-top: 72px; min-height: 100vh; }
