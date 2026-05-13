@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Order Takeout - Riverside Pizza</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,8 +25,8 @@
       --m: 'IBM Plex Mono', monospace;
     }
     
-    html { scroll-behavior: auto; height: 100%; }
-    body { font-family: var(--f); background: var(--gp); color: var(--tx); overflow-x: hidden; height: 100%; display: flex; flex-direction: column; }
+    html { scroll-behavior: auto; height: 100%; -webkit-tap-highlight-color: transparent; }
+    body { font-family: var(--f); background: var(--gp); color: var(--tx); overflow-x: hidden; min-height: 100%; display: flex; flex-direction: column; }
     img { display: block; max-width: 100%; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
     
@@ -47,6 +47,13 @@
     .cart-badge { position: absolute; top: -2px; right: -2px; background: #e74c3c; color: white; font-family: var(--m); font-size: 0.6rem; font-weight: 600; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--wh); opacity: 0; transform: scale(0); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .cart-badge.active { opacity: 1; transform: scale(1); }
 
+    /* ── LOADER ────────────────────────── */
+    .loader-wrap { position: fixed; inset: 0; background: var(--gp); z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.4s; }
+    .loader-wrap.hidden { opacity: 0; pointer-events: none; }
+    .spinner { width: 40px; height: 40px; border: 3px solid rgba(30,95,44,0.2); border-top-color: var(--g); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 1rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text { font-family: var(--m); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--g); text-transform: uppercase; }
+
     /* ── MAIN LAYOUT ───────────────────── */
     .app-main { display: flex; flex: 1; max-width: 1440px; margin: 0 auto; width: 100%; padding: 2rem; gap: 3rem; }
     
@@ -60,7 +67,7 @@
     .cat-btn.active::before { transform: scaleY(1); }
 
     /* ── MENU GRID ─────────────────────── */
-    .menu-content { flex: 1; }
+    .menu-content { flex: 1; padding-bottom: 80px; } /* padding for mobile cart bar */
     .cat-header { font-family: var(--d); font-size: 2.5rem; font-weight: 600; color: var(--tx); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--bdr); display: flex; justify-content: space-between; align-items: flex-end; }
     .cat-count { font-family: var(--m); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--mu); text-transform: uppercase; font-weight: 400; margin-bottom: 0.5rem; }
     
@@ -68,7 +75,7 @@
     
     .item-card { background: var(--wh); border-radius: 8px; overflow: hidden; border: 1px solid var(--bdr); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s; display: flex; flex-direction: column; cursor: pointer; }
     .item-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(30,95,44,0.08); border-color: rgba(30,95,44,0.2); }
-    .item-img-wrap { position: relative; padding-top: 75%; overflow: hidden; background: var(--gp); }
+    .item-img-wrap { position: relative; padding-top: 70%; overflow: hidden; background: var(--gp); border-bottom: 1px solid var(--bdr); }
     .item-img-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .item-card:hover .item-img-wrap img { transform: scale(1.08); }
     .item-info { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
@@ -114,6 +121,14 @@
     .checkout-btn { width: 100%; padding: 1.2rem; background: var(--g); color: var(--wh); font-family: var(--m); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; border-radius: 4px; transition: background 0.2s; position: relative; overflow: hidden; }
     .checkout-btn:hover { background: var(--gd); }
 
+    /* ── MOBILE CART BAR ───────────────── */
+    .mobile-cart-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--wh); border-top: 1px solid var(--bdr); padding: 1rem; z-index: 90; box-shadow: 0 -4px 24px rgba(0,0,0,0.06); transform: translateY(100%); transition: transform 0.3s; }
+    .mobile-cart-bar.visible { transform: translateY(0); }
+    .mcb-btn { width: 100%; padding: 1.2rem; background: var(--g); color: var(--wh); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+    .mcb-qty { background: rgba(255,255,255,0.2); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-family: var(--m); }
+    .mcb-label { font-family: var(--m); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .mcb-total { font-family: var(--m); font-size: 1.1rem; }
+
     /* ── ITEM MODAL ────────────────────── */
     .modal-overlay { position: fixed; inset: 0; background: rgba(20,44,20,0.6); backdrop-filter: blur(8px); z-index: 110; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 2rem; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
@@ -140,12 +155,6 @@
     .radio-label input { display: none; }
     .radio-label:has(input:checked) { border-color: var(--g); background: rgba(30,95,44,0.05); color: var(--g); box-shadow: 0 0 0 1px var(--g); }
     
-    .check-list { display: flex; flex-direction: column; gap: 0.5rem; }
-    .check-item { display: flex; align-items: center; justify-content: space-between; padding: 1rem; border: 1px solid var(--bdr); border-radius: 6px; cursor: pointer; transition: all 0.2s; }
-    .check-item:has(input:checked) { border-color: var(--g); background: rgba(30,95,44,0.05); }
-    .ci-left { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; font-weight: 500; }
-    .ci-price { font-family: var(--m); font-size: 0.8rem; color: var(--mu); }
-    
     .im-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--bdr); background: var(--wh); display: flex; gap: 1rem; }
     .im-qty { display: flex; align-items: center; gap: 1rem; background: var(--gp); border-radius: 6px; padding: 0.5rem; }
     .im-qty button { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: var(--wh); border-radius: 4px; font-weight: 500; }
@@ -153,21 +162,64 @@
     .im-add-btn:hover { background: var(--gd); }
     .im-add-price { font-size: 0.85rem; font-weight: 400; opacity: 0.9; }
 
+    /* ── MOBILE RESPONSIVE TWEAKS ──────── */
     @media (max-width: 960px) {
-      .app-main { flex-direction: column; padding: 1.5rem; }
-      .sidebar { width: 100%; position: static; display: flex; overflow-x: auto; padding-bottom: 1rem; margin-bottom: -1rem; border-bottom: 1px solid var(--bdr); }
-      .cat-list { flex-direction: row; }
-      .cat-btn { white-space: nowrap; padding: 0.5rem 1rem; border: 1px solid transparent; }
-      .cat-btn.active { background: var(--wh); border-color: var(--bdr); box-shadow: none; }
+      .app-nav { padding: 0 1.25rem; height: 70px; }
+      .brand img { height: 36px; }
+      .b-name { font-size: 1.1rem; }
+      .b-sub { display: none; }
+      .loc-picker { display: none; }
+      .cart-btn { display: none; } /* Hide desktop cart btn on mobile */
+      
+      .app-main { flex-direction: column; padding: 0; gap: 0; }
+      .sidebar { width: 100%; position: sticky; top: 70px; z-index: 40; background: var(--wh); padding: 0; border-bottom: 1px solid var(--bdr); }
+      .cat-list { flex-direction: row; overflow-x: auto; padding: 0.75rem 1rem; gap: 0.5rem; scrollbar-width: none; }
+      .cat-list::-webkit-scrollbar { display: none; }
+      .cat-btn { white-space: nowrap; padding: 0.5rem 1rem; border: 1px solid var(--bdr); border-radius: 30px; font-size: 0.95rem; font-family: var(--f); }
+      .cat-btn.active { background: var(--g); color: var(--wh); border-color: var(--g); box-shadow: none; font-weight: 500; }
       .cat-btn::before { display: none; }
-      .item-modal { flex-direction: column; max-height: 95vh; }
-      .im-left { flex: none; height: 250px; }
-      .im-right { width: 100%; flex: 1; }
+      
+      .menu-content { padding: 1.5rem 1.25rem 100px; }
+      .cat-header { font-size: 1.75rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; }
+      .grid { grid-template-columns: 1fr; gap: 1.25rem; }
+      
+      .item-card { flex-direction: row; height: 130px; border-radius: 12px; }
+      .item-img-wrap { width: 130px; padding-top: 0; height: 100%; border-bottom: none; border-right: 1px solid var(--bdr); }
+      .item-info { padding: 1rem; justify-content: space-between; }
+      .item-name { font-size: 1.1rem; margin-bottom: 0.25rem; }
+      .item-desc { font-size: 0.75rem; margin-bottom: 0; -webkit-line-clamp: 2; }
+      .item-price { font-size: 0.95rem; }
+      .item-add { width: 30px; height: 30px; }
+      .item-add svg { width: 16px; height: 16px; }
+
+      .modal-overlay { padding: 0; align-items: flex-end; }
+      .item-modal { flex-direction: column; max-height: 90vh; border-radius: 16px 16px 0 0; transform: translateY(100%); }
+      .modal-overlay.active .item-modal { transform: translateY(0); }
+      .im-left { flex: none; height: 200px; }
+      .im-right { width: 100%; flex: 1; overflow-y: auto; }
+      .im-header { padding: 1.5rem; }
+      .im-title { font-size: 1.5rem; }
+      .im-body { padding: 1.5rem; }
+      .im-footer { padding: 1.25rem 1.5rem; padding-bottom: calc(1.25rem + env(safe-area-inset-bottom)); flex-direction: column; }
+      .im-qty { justify-content: space-between; }
+      
       .cart-drawer { max-width: 100%; }
+      .cart-header { padding: 1.5rem; }
+      .cart-title { font-size: 1.5rem; }
+      .cart-items { padding: 1.5rem; }
+      .cart-footer { padding: 1.5rem; padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
+      
+      .mobile-cart-bar { display: block; padding-bottom: calc(1rem + env(safe-area-inset-bottom)); }
     }
   </style>
 </head>
 <body>
+
+  <!-- LOADER -->
+  <div class="loader-wrap" id="loader">
+    <div class="spinner"></div>
+    <div class="loader-text">Loading Menu...</div>
+  </div>
 
   <!-- APP NAV -->
   <nav class="app-nav">
@@ -205,7 +257,7 @@
     <div class="menu-content">
       <div class="cat-header">
         <span id="currentCatName">Specialty Pizzas</span>
-        <span class="cat-count" id="currentCatCount">8 Items</span>
+        <span class="cat-count" id="currentCatCount">0 Items</span>
       </div>
       <div class="grid" id="menuGrid">
         <!-- Injected via JS -->
@@ -213,6 +265,15 @@
     </div>
     
   </main>
+
+  <!-- MOBILE CART BAR (Hidden on Desktop) -->
+  <div class="mobile-cart-bar" id="mobileCartBar">
+    <button class="mcb-btn" id="openCartMobile">
+      <div class="mcb-qty" id="mcbQty">0</div>
+      <div class="mcb-label">View Order</div>
+      <div class="mcb-total" id="mcbTotal">$0.00</div>
+    </button>
+  </div>
 
   <!-- CART DRAWER -->
   <div class="cart-overlay" id="cartOverlay"></div>
@@ -274,7 +335,16 @@
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script>
-    // ── DEMO DATA ───────────────────────────────────────────
+    // ── API CONFIGURATION ───────────────────────────────────
+    // When ready to go live, plug in the real Toast/Deliverect API credentials here.
+    const CONFIG = {
+      USE_REAL_API: false, // Set to true to bypass mock data
+      API_KEY: "YOUR_TOAST_OR_DELIVERECT_API_KEY",
+      LOCATION_ID: "LAWRENCEVILLE_01",
+      API_URL: "https://api.yourmiddleware.com/v1/menu"
+    };
+
+    // ── DEMO DATA FALLBACK ──────────────────────────────────
     const MOCK_DB = {
       categories: ["Specialty Pizzas", "Build Your Own", "Subs & Sandwiches", "Wings & Sides", "Salads"],
       items: [
@@ -282,21 +352,18 @@
         { id: 2, cat: "Specialty Pizzas", name: "Meat Lovers", desc: "Pepperoni, Italian sausage, beef, ham, and bacon.", price: 19.99, img: "https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" },
         { id: 3, cat: "Specialty Pizzas", name: "Greek Pizza", desc: "Feta cheese, fresh spinach, black olives, tomatoes, and garlic.", price: 17.99, img: "https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" },
         { id: 4, cat: "Specialty Pizzas", name: "BBQ Chicken", desc: "Grilled chicken, BBQ sauce, onions, and bacon.", price: 18.99, img: "https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" },
-        
         { id: 5, cat: "Build Your Own", name: "Cheese Pizza", desc: "Start with our classic cheese and add your favorite toppings.", price: 12.99, img: "https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" },
-        
         { id: 6, cat: "Subs & Sandwiches", name: "Italian Sub", desc: "Ham, salami, pepperoni, provolone, lettuce, tomato, Italian dressing.", price: 8.99, img: null },
         { id: 7, cat: "Subs & Sandwiches", name: "Meatball Parmesan", desc: "Homemade meatballs, marinara, melted provolone.", price: 9.49, img: null },
-        
         { id: 8, cat: "Wings & Sides", name: "Jumbo Baked Wings", desc: "10 pieces. Mild, Hot, Lemon Pepper, or BBQ. Served with Ranch or Blue Cheese.", price: 14.99, img: null },
         { id: 9, cat: "Wings & Sides", name: "Cheese Bread", desc: "Fresh dough baked with mozzarella, garlic, and parmesan.", price: 7.99, img: null },
         { id: 10, cat: "Wings & Sides", name: "Cinnamon Bread", desc: "Warm breadsticks covered in cinnamon and sweet icing.", price: 6.99, img: "https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" },
-        
         { id: 11, cat: "Salads", name: "Antipasto Salad", desc: "Fresh greens, ham, salami, pepperoni, provolone, black olives, tomatoes.", price: 10.99, img: null },
       ]
     };
 
     // ── STATE ───────────────────────────────────────────────
+    let menuData = null; // Will hold the fetched data (or mock data)
     let cart = [];
     let currentCategory = "Specialty Pizzas";
     let activeModalItem = null;
@@ -315,6 +382,11 @@
     const cartItems = document.getElementById('cartItems');
     const cartBadge = document.getElementById('cartBadge');
     
+    // Mobile Cart Bar
+    const mobileCartBar = document.getElementById('mobileCartBar');
+    const mcbQty = document.getElementById('mcbQty');
+    const mcbTotal = document.getElementById('mcbTotal');
+
     // Modal DOM
     const modalOverlay = document.getElementById('modalOverlay');
     const modalImg = document.getElementById('modalImg');
@@ -324,20 +396,44 @@
     const modalQtyVal = document.getElementById('modalQtyVal');
     const modalAddPrice = document.getElementById('modalAddPrice');
 
-    // ── INITIALIZE ──────────────────────────────────────────
-    function init() {
+    // ── INITIALIZE & FETCH API ──────────────────────────────
+    async function init() {
       // Lenis Smooth Scroll
-      const lenis = new Lenis({ lerp: 0.1 });
-      gsap.ticker.add(t => lenis.raf(t * 1000));
-      gsap.ticker.lagSmoothing(0);
+      if (window.innerWidth > 960) {
+        const lenis = new Lenis({ lerp: 0.1 });
+        gsap.ticker.add(t => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
 
+      await fetchMenuData();
+      
+      document.getElementById('loader').classList.add('hidden');
       renderCategories();
       renderMenu();
       bindEvents();
     }
 
+    async function fetchMenuData() {
+      if (CONFIG.USE_REAL_API) {
+        try {
+          const res = await fetch(`${CONFIG.API_URL}?location=${CONFIG.LOCATION_ID}`, {
+            headers: { 'Authorization': `Bearer ${CONFIG.API_KEY}` }
+          });
+          menuData = await res.json();
+        } catch (e) {
+          console.error("API Fetch failed, falling back to mock data.", e);
+          menuData = MOCK_DB;
+        }
+      } else {
+        // Simulate network delay for demo
+        await new Promise(r => setTimeout(r, 600));
+        menuData = MOCK_DB;
+      }
+    }
+
+    // ── RENDER ENGINE ───────────────────────────────────────
     function renderCategories() {
-      elCatList.innerHTML = MOCK_DB.categories.map(cat => `
+      elCatList.innerHTML = menuData.categories.map(cat => `
         <li>
           <button class="cat-btn ${cat === currentCategory ? 'active' : ''}" data-cat="${cat}">
             ${cat}
@@ -347,7 +443,7 @@
     }
 
     function renderMenu() {
-      const items = MOCK_DB.items.filter(i => i.cat === currentCategory);
+      const items = menuData.items.filter(i => i.cat === currentCategory);
       elCatName.textContent = currentCategory;
       elCatCount.textContent = `${items.length} Items`;
       
@@ -365,13 +461,12 @@
         </div>
       `).join('');
       
-      // Animate entry
-      gsap.from('.item-card', { opacity: 0, y: 20, duration: 0.5, stagger: 0.05, ease: 'power2.out', clearProps: 'all' });
+      gsap.from('.item-card', { opacity: 0, y: 20, duration: 0.4, stagger: 0.05, ease: 'power2.out', clearProps: 'all' });
     }
 
     // ── MODAL LOGIC ─────────────────────────────────────────
     function openModal(id) {
-      const item = MOCK_DB.items.find(i => i.id == id);
+      const item = menuData.items.find(i => i.id == id);
       if (!item) return;
       activeModalItem = item;
       modalQty = 1;
@@ -388,7 +483,7 @@
         document.querySelector('.im-left').style.display = 'none';
       }
       
-      // Inject dummy options based on category
+      // Inject dummy options based on category (This would come from API modifiers)
       let optsHTML = '';
       if (item.cat.includes('Pizza')) {
         optsHTML = `
@@ -416,7 +511,6 @@
     }
 
     function updateModalPrice() {
-      // Simulate size upcharge logic
       let upcharge = 0;
       const sizeInput = document.querySelector('input[name="size"]:checked');
       if (sizeInput && sizeInput.value === '14') upcharge = 3;
@@ -427,7 +521,6 @@
     }
 
     function addToCart() {
-      // Build cart item
       let options = [];
       const sizeInput = document.querySelector('input[name="size"]:checked');
       if (sizeInput) options.push(`Size: ${sizeInput.parentElement.textContent.trim().split(' ')[0]}`);
@@ -446,25 +539,36 @@
       document.body.style.overflow = '';
       updateCartUI();
       
-      // Briefly open cart to show it was added
-      setTimeout(() => {
-        cartOverlay.classList.add('active');
-        cartDrawer.classList.add('active');
-      }, 300);
+      if (window.innerWidth > 960) {
+        setTimeout(() => {
+          cartOverlay.classList.add('active');
+          cartDrawer.classList.add('active');
+        }, 300);
+      }
     }
 
     // ── CART LOGIC ──────────────────────────────────────────
     function updateCartUI() {
-      // Badge
       const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      const sub = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const tax = sub * 0.08;
+      const total = sub + tax;
+
+      // Desktop Badge
       cartBadge.textContent = totalQty;
+      if (totalQty > 0) cartBadge.classList.add('active');
+      else cartBadge.classList.remove('active');
+      
+      // Mobile Bar
       if (totalQty > 0) {
-        cartBadge.classList.add('active');
+        mobileCartBar.classList.add('visible');
+        mcbQty.textContent = totalQty;
+        mcbTotal.textContent = `$${total.toFixed(2)}`;
       } else {
-        cartBadge.classList.remove('active');
+        mobileCartBar.classList.remove('visible');
       }
       
-      // Items
+      // Items list
       if (cart.length === 0) {
         cartItems.innerHTML = `
           <div class="cart-empty">
@@ -497,17 +601,11 @@
         </div>
       `).join('');
       
-      // Totals
-      const sub = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      const tax = sub * 0.08;
-      const total = sub + tax;
-      
       document.getElementById('cartSub').textContent = `$${sub.toFixed(2)}`;
       document.getElementById('cartTax').textContent = `$${tax.toFixed(2)}`;
       document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
     }
 
-    // Must be global for inline onclick
     window.updateQty = (cartId, delta) => {
       const idx = cart.findIndex(i => i.id === cartId);
       if (idx > -1) {
@@ -519,77 +617,55 @@
 
     // ── EVENTS ──────────────────────────────────────────────
     function bindEvents() {
-      // Category switching
       elCatList.addEventListener('click', e => {
         const btn = e.target.closest('.cat-btn');
         if (btn) {
           currentCategory = btn.dataset.cat;
           renderCategories();
           renderMenu();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (window.innerWidth <= 960) window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       });
       
-      // Open item modal
       elMenuGrid.addEventListener('click', e => {
         const card = e.target.closest('.item-card');
         if (card) openModal(card.dataset.id);
       });
       
-      // Close modal
-      document.getElementById('closeModal').addEventListener('click', () => {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-      modalOverlay.addEventListener('click', e => {
-        if (e.target === modalOverlay) {
-          modalOverlay.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
+      const closeModal = () => { modalOverlay.classList.remove('active'); document.body.style.overflow = ''; };
+      document.getElementById('closeModal').addEventListener('click', closeModal);
+      modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
       
-      // Modal qty
-      document.getElementById('modalQtyMinus').addEventListener('click', () => {
-        if (modalQty > 1) { modalQty--; updateModalPrice(); }
-      });
-      document.getElementById('modalQtyPlus').addEventListener('click', () => {
-        modalQty++; updateModalPrice();
-      });
-      
-      // Modal options change
+      document.getElementById('modalQtyMinus').addEventListener('click', () => { if (modalQty > 1) { modalQty--; updateModalPrice(); } });
+      document.getElementById('modalQtyPlus').addEventListener('click', () => { modalQty++; updateModalPrice(); });
       modalBody.addEventListener('change', updateModalPrice);
-      
-      // Add to cart
       document.getElementById('modalAddBtn').addEventListener('click', addToCart);
       
-      // Open/Close Cart
-      document.getElementById('openCart').addEventListener('click', () => {
-        cartOverlay.classList.add('active');
-        cartDrawer.classList.add('active');
-      });
-      document.getElementById('closeCart').addEventListener('click', () => {
-        cartOverlay.classList.remove('active');
-        cartDrawer.classList.remove('active');
-      });
-      cartOverlay.addEventListener('click', () => {
-        cartOverlay.classList.remove('active');
-        cartDrawer.classList.remove('active');
-      });
+      const openCart = () => { cartOverlay.classList.add('active'); cartDrawer.classList.add('active'); };
+      const closeCart = () => { cartOverlay.classList.remove('active'); cartDrawer.classList.remove('active'); };
       
-      // Checkout fake action
+      document.getElementById('openCart').addEventListener('click', openCart);
+      document.getElementById('openCartMobile').addEventListener('click', openCart);
+      document.getElementById('closeCart').addEventListener('click', closeCart);
+      cartOverlay.addEventListener('click', closeCart);
+      
       document.getElementById('checkoutBtn').addEventListener('click', () => {
         if (cart.length === 0) return;
-        const btn = document.getElementById('checkoutBtn');
-        btn.textContent = 'Processing API...';
-        btn.style.opacity = '0.7';
-        setTimeout(() => {
-          btn.textContent = 'Demo Only (API Not Connected)';
-          setTimeout(() => btn.textContent = 'Proceed to Checkout', 2000);
-        }, 1000);
+        if (CONFIG.USE_REAL_API) {
+          alert('Submitting order to Toast API...');
+        } else {
+          const btn = document.getElementById('checkoutBtn');
+          btn.textContent = 'Processing API...';
+          btn.style.opacity = '0.7';
+          setTimeout(() => {
+            btn.textContent = 'Demo Only (API Disconnected)';
+            setTimeout(() => btn.textContent = 'Proceed to Checkout', 2000);
+          }, 1000);
+        }
       });
     }
 
-    init();
+    window.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
