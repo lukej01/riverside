@@ -146,5 +146,20 @@
     { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: 0.2, delay: 0.2 }
   );
 </script>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+  if (typeof Lenis !== "undefined") {
+    const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+    if (typeof ScrollTrigger !== "undefined") { lenis.on("scroll", ScrollTrigger.update); }
+    if (typeof gsap !== "undefined") {
+      gsap.ticker.add(time => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    }
+  }
+</script>
 </body>
 </html>

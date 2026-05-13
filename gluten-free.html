@@ -122,5 +122,20 @@
   </div>
   <div class="ft-bottom"><span class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</span><span class="ft-copy">Metro Atlanta · 8 Locations</span></div>
 </footer>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+  if (typeof Lenis !== "undefined") {
+    const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+    if (typeof ScrollTrigger !== "undefined") { lenis.on("scroll", ScrollTrigger.update); }
+    if (typeof gsap !== "undefined") {
+      gsap.ticker.add(time => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    }
+  }
+</script>
 </body>
 </html>
