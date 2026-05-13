@@ -40,24 +40,24 @@
       display: flex; justify-content: space-between; align-items: center;
       transition: all 0.3s ease;
       background: transparent;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid transparent;
     }
     #nav.scrolled {
-      background: var(--g);
-      border-bottom-color: transparent;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      background: var(--cream);
+      border-bottom-color: var(--bdr);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
     }
     .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: transform 0.18s; }
     .logo:hover { transform: scale(1.025); }
-    .logo img { height: 56px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+    .logo img { height: 56px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
     .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
-    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; letter-spacing: -0.025em; display: block; }
-    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 4px; display: block; }
+    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mu); margin-top: 4px; display: block; }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: white; padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
-    .nav-links a:hover { color: rgba(255,255,255,0.7); }
-    .nav-cta { background: white !important; color: var(--g) !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
-    .nav-cta:hover { background: rgba(255,255,255,0.9) !important; }
+    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx); padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
+    .nav-links a:hover { color: var(--g); }
+    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
+    .nav-cta:hover { background: var(--gd) !important; }
 
     /* ── HERO SLIDER ─────────────────────── */
     .hero { position: relative; height: 100dvh; overflow: hidden; }
@@ -674,21 +674,23 @@
 
   // ── DRAG & AUTO SCROLL GALLERY ───────────────
   const track = document.getElementById('galleryTrack');
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+  let scrollLeftFloat = 0;
   let autoScrollId;
   let isHovered = false;
 
   function autoScroll() {
-    if (!isDown && !isHovered) {
+    if (!isHovered) {
       const maxScroll = track.scrollWidth - track.clientWidth;
       if (maxScroll > 10) { // ensure images have loaded enough to give us a track
-        track.scrollLeft += 0.6;
+        scrollLeftFloat += 1.0;
+        track.scrollLeft = scrollLeftFloat;
         if (track.scrollLeft >= maxScroll - 2) {
+          scrollLeftFloat = 0;
           track.scrollLeft = 0; // reset to start
         }
       }
+    } else {
+      scrollLeftFloat = track.scrollLeft;
     }
     autoScrollId = requestAnimationFrame(autoScroll);
   }
@@ -699,24 +701,9 @@
   });
 
   track.addEventListener('mouseenter', () => isHovered = true);
-  track.addEventListener('mouseleave', () => { isHovered = false; isDown = false; track.style.cursor = 'grab'; });
+  track.addEventListener('mouseleave', () => isHovered = false);
   track.addEventListener('touchstart', () => isHovered = true, {passive: true});
   track.addEventListener('touchend', () => isHovered = false, {passive: true});
-  
-  track.addEventListener('mousedown', (e) => {
-    isDown = true;
-    track.style.cursor = 'grabbing';
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-  });
-  track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mousemove', (e) => {
-    if(!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    const walk = (x - startX) * 2;
-    track.scrollLeft = scrollLeft - walk;
-  });
 
   // ── DEAL CARDS REVEAL ────────────────────────
   gsap.fromTo('.deal-card',
