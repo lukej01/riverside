@@ -780,10 +780,14 @@
 
     /* ── CONFIG ─────────────────────────────────────────────── */
     const CONFIG = {
-      USE_REAL_API: false,
-      API_KEY: '',
-      LOCATION_ID: 'LAWRENCEVILLE_01',
-      API_URL: 'https://api.yourmiddleware.com/v1/menu'
+      // ── Sanity CMS ─────────────────────────────────────────
+      // 1. cd studio && npm install
+      // 2. Replace REPLACE_WITH_YOUR_PROJECT_ID with your real ID
+      // 3. Run: npm run deploy  (hosts the editor at sanity.io)
+      // 4. Flip USE_SANITY to true here and redeploy to Vercel
+      USE_SANITY:        false,
+      SANITY_PROJECT_ID: 'REPLACE_WITH_YOUR_PROJECT_ID',
+      SANITY_DATASET:    'production',
     };
 
     /* ── DATA ───────────────────────────────────────────────── */
@@ -866,13 +870,24 @@
     }
 
     async function loadMenu() {
-      if (CONFIG.USE_REAL_API) {
+      if (CONFIG.USE_SANITY && CONFIG.SANITY_PROJECT_ID !== 'REPLACE_WITH_YOUR_PROJECT_ID') {
         try {
-          const r = await fetch(`${CONFIG.API_URL}?location=${CONFIG.LOCATION_ID}`, {
-            headers: { Authorization: `Bearer ${CONFIG.API_KEY}` }
-          });
-          menuData = await r.json();
-        } catch { menuData = MOCK_DB; }
+          const q = encodeURIComponent(
+            `*[_type == "menuItem" && available != false] | order(sortOrder asc) {
+              "id": _id, "cat": category, name, price, "desc": description,
+              "img": image.asset->url
+            }`
+          );
+          const url = `https://${CONFIG.SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${CONFIG.SANITY_DATASET}?query=${q}`;
+          const r   = await fetch(url);
+          const d   = await r.json();
+          const items      = d.result;
+          const categories = [...new Set(items.map(i => i.cat))];
+          menuData = { categories, items };
+        } catch (e) {
+          console.warn('Sanity fetch failed, using local data', e);
+          menuData = MOCK_DB;
+        }
       } else {
         await new Promise(r => setTimeout(r, 480));
         menuData = MOCK_DB;
