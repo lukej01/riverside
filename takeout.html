@@ -77,21 +77,21 @@
     .brand-text { display: flex; flex-direction: column; }
     .b-name { font-family: var(--d); font-size: 1.2rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; line-height: 1.1; }
     .b-sub  { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu); margin-top: 4px; }
+    .b-sub .b-carryout { color: var(--g); font-weight: 600; }
 
     .nav-right { display: flex; align-items: center; gap: 0.875rem; }
 
     /* Order type toggle */
-    .ot-wrap {
-      display: flex; background: var(--gp); border: 1px solid var(--bdr);
-      border-radius: 30px; padding: 3px; gap: 2px;
+    .dd-btn {
+      display: flex; align-items: center; gap: 0.45rem;
+      padding: 0.42rem 1rem; border-radius: 30px;
+      background: #ff3008; color: #fff;
+      font-family: var(--m); font-size: 0.55rem; letter-spacing: 0.07em;
+      text-transform: uppercase; font-weight: 600; text-decoration: none;
+      transition: background 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      white-space: nowrap;
     }
-    .ot-btn {
-      padding: 0.35rem 0.9rem; border-radius: 28px;
-      font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.08em;
-      text-transform: uppercase; font-weight: 500; color: var(--mu);
-      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .ot-btn.active { background: var(--g); color: var(--wh); box-shadow: 0 2px 8px rgba(30,95,44,0.28); }
+    .dd-btn:hover { background: #d92800; transform: scale(1.04); }
 
     .cart-btn {
       position: relative; width: 44px; height: 44px; border-radius: 50%;
@@ -228,10 +228,12 @@
       background: var(--gm);
     }
     /* Category placeholder colors */
-    .ic-img.ph-pizza  { background: linear-gradient(135deg, #f5e8d4 0%, #e2c98c 100%); }
-    .ic-img.ph-subs   { background: linear-gradient(135deg, #f5e8d4 0%, #f0c07a 100%); }
-    .ic-img.ph-wings  { background: linear-gradient(135deg, #f2dfd8 0%, #d4a890 100%); }
-    .ic-img.ph-salads { background: linear-gradient(135deg, #daf0d5 0%, #9ecc92 100%); }
+    .ic-img.ph-pizza   { background: linear-gradient(135deg, #f5e8d4 0%, #e2c98c 100%); }
+    .ic-img.ph-subs    { background: linear-gradient(135deg, #f5e8d4 0%, #f0c07a 100%); }
+    .ic-img.ph-wings   { background: linear-gradient(135deg, #f2dfd8 0%, #d4a890 100%); }
+    .ic-img.ph-salads  { background: linear-gradient(135deg, #daf0d5 0%, #9ecc92 100%); }
+    .ic-img.ph-detroit { background: linear-gradient(135deg, #f0ead4 0%, #d4b87a 100%); }
+    .ic-img.ph-dessert { background: linear-gradient(135deg, #f9e8e0 0%, #e8a888 100%); }
 
     .ic-img img {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
@@ -528,7 +530,8 @@
       .app-nav { padding: 0 1rem; }
       .brand img { height: 36px; }
       .b-name { font-size: 1.1rem; }
-      .b-sub, .ot-wrap, .cart-btn { display: none; }
+      .b-sub, .cart-btn { display: none; }
+      .dd-btn { font-size: 0.5rem; padding: 0.38rem 0.7rem; gap: 0.3rem; }
 
       /* Info strip */
       .info-strip { padding: 0 1rem; gap: 1rem; overflow-x: auto; scrollbar-width: none; }
@@ -648,14 +651,14 @@
       <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
       <div class="brand-text">
         <span class="b-name">Riverside Pizza</span>
-        <span class="b-sub">Online Ordering</span>
+        <span class="b-sub">Carryout Ordering</span>
       </div>
     </a>
     <div class="nav-right">
-      <div class="ot-wrap">
-        <button class="ot-btn active" data-type="pickup">Pickup</button>
-        <button class="ot-btn" data-type="delivery">Delivery</button>
-      </div>
+      <a href="javascript:void(0)" class="dd-btn" id="doorDashBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Delivery via DoorDash
+      </a>
       <button class="cart-btn" id="openCartBtn" aria-label="View cart">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
@@ -681,7 +684,7 @@
     <div class="is-sep"></div>
     <div class="is-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-1.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <b>(412) 361-8889</b>
+      <b>(770) 360-0002</b>
     </div>
     <div class="is-open">Open Now</div>
   </div>
@@ -729,7 +732,7 @@
       <div class="cf-row"><span>Tax (8%)</span><span id="cartTax">$0.00</span></div>
       <div class="cf-row total"><span>Total</span><span id="cartTotal">$0.00</span></div>
       <button class="co-btn" id="checkoutBtn">
-        <span id="coBtnLabel">Place Order</span>
+        <span id="coBtnLabel">Order on Toast</span>
         <div class="co-arrow">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
@@ -780,41 +783,98 @@
 
     /* ── CONFIG ─────────────────────────────────────────────── */
     const CONFIG = {
-      // ── Sanity CMS ─────────────────────────────────────────
-      // 1. cd studio && npm install
-      // 2. Replace REPLACE_WITH_YOUR_PROJECT_ID with your real ID
-      // 3. Run: npm run deploy  (hosts the editor at sanity.io)
-      // 4. Flip USE_SANITY to true here and redeploy to Vercel
       USE_SANITY:        false,
       SANITY_PROJECT_ID: 'REPLACE_WITH_YOUR_PROJECT_ID',
       SANITY_DATASET:    'production',
     };
 
+    /* ── DOORDASH ───────────────────────────────────────────── */
+    // Replace with your actual DoorDash store URL
+    const DOORDASH_URL = 'https://www.doordash.com/store/riverside-pizza-johns-creek-44822/';
+
     /* ── DATA ───────────────────────────────────────────────── */
+    const IMG = {
+      p1: 'https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg',
+      p2: 'https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg',
+      p3: 'https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg',
+      p4: 'https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg',
+      p5: 'https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg',
+      p6: 'https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg',
+      p7: 'https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg',
+      cin:'https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg',
+    };
+
     const MOCK_DB = {
-      categories: ['Specialty Pizzas','Build Your Own','Subs & Sandwiches','Wings & Sides','Salads'],
+      categories: ['Specialty Pizzas','Fresh N Fast','Build Your Own','Detroit Style','Wings & Sides','Subs & Sandwiches','Salads','Desserts'],
       items: [
-        { id:1,  cat:'Specialty Pizzas',    name:'Riverside Special',   price:18.99, img:'https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg', desc:'Pepperoni, Italian sausage, beef, mushrooms, onions, green peppers, black olives.' },
-        { id:2,  cat:'Specialty Pizzas',    name:'Meat Lovers',         price:19.99, img:'https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg', desc:'Pepperoni, Italian sausage, ground beef, ham, and applewood-smoked bacon.' },
-        { id:3,  cat:'Specialty Pizzas',    name:'Greek Pizza',         price:17.99, img:'https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg', desc:'Feta cheese, fresh spinach, Kalamata olives, Roma tomatoes, roasted garlic.' },
-        { id:4,  cat:'Specialty Pizzas',    name:'BBQ Chicken',         price:18.99, img:'https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg', desc:'Grilled chicken breast, house BBQ sauce, red onion, and applewood bacon.' },
-        { id:5,  cat:'Build Your Own',      name:'Classic Cheese',      price:12.99, img:'https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg', desc:'Hand-tossed dough, San Marzano tomato sauce, whole-milk mozzarella. Your canvas.' },
-        { id:6,  cat:'Subs & Sandwiches',   name:'Italian Sub',         price:8.99,  img:null, desc:'Ham, Genoa salami, pepperoni, provolone, shredded lettuce, tomato, Italian dressing.' },
-        { id:7,  cat:'Subs & Sandwiches',   name:'Meatball Parmesan',   price:9.49,  img:null, desc:'House-made meatballs, San Marzano marinara, melted provolone on a toasted hoagie roll.' },
-        { id:8,  cat:'Wings & Sides',       name:'Jumbo Baked Wings',   price:14.99, img:null, desc:'10 pieces. Mild, Hot, Lemon Pepper, or BBQ. Served with Ranch or Blue Cheese.' },
-        { id:9,  cat:'Wings & Sides',       name:'Cheese Bread',        price:7.99,  img:null, desc:'Hand-rolled dough baked with whole-milk mozzarella, roasted garlic, and parmesan.' },
-        { id:10, cat:'Wings & Sides',       name:'Cinnamon Bread',      price:6.99,  img:'https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg', desc:'Pillowy breadsticks, cinnamon sugar, finished with sweet icing.' },
-        { id:11, cat:'Salads',              name:'Antipasto Salad',     price:10.99, img:null, desc:'Mixed greens, ham, salami, pepperoni, provolone, Kalamata olives, tomatoes, house Italian.' }
+        /* ── Specialty Pizzas ───────────────────────────────── */
+        { id:1,  cat:'Specialty Pizzas', name:'Favorite 5',              price:13.29, img:IMG.p1, desc:'Our most-ordered pizza — pepperoni, sausage, beef, mushrooms & green peppers.' },
+        { id:2,  cat:'Specialty Pizzas', name:'Supreme',                 price:13.29, img:IMG.p2, desc:'Pepperoni, Italian sausage, beef, mushrooms, onions, green peppers, black olives.' },
+        { id:3,  cat:'Specialty Pizzas', name:'Meatzza',                 price:13.29, img:IMG.p3, desc:'Pepperoni, Italian sausage, ground beef, ham, and applewood-smoked bacon.' },
+        { id:4,  cat:'Specialty Pizzas', name:'Riverside Special',       price:13.29, img:IMG.p4, desc:'The house signature. A local favorite since day one.' },
+        { id:5,  cat:'Specialty Pizzas', name:'Veggie',                  price:13.29, img:IMG.p5, desc:'Mushrooms, onions, green peppers, black olives, banana peppers, and tomatoes.' },
+        { id:6,  cat:'Specialty Pizzas', name:'Greek Chicken',           price:13.29, img:IMG.p6, desc:'Grilled chicken, feta cheese, Kalamata olives, red onion, and tomatoes.' },
+        { id:7,  cat:'Specialty Pizzas', name:'Chicken Trio',            price:13.29, img:IMG.p7, desc:'Three ways of chicken — grilled, buffalo, and BBQ — on a white garlic base.' },
+        { id:8,  cat:'Specialty Pizzas', name:'BBQ Chicken',             price:13.29, img:IMG.p1, desc:'Grilled chicken breast, house BBQ sauce, red onion, and applewood bacon.' },
+        { id:9,  cat:'Specialty Pizzas', name:'Hawaiian Chicken',        price:13.29, img:IMG.p2, desc:'Grilled chicken, ham, pineapple, and mozzarella on a sweet tomato base.' },
+        { id:10, cat:'Specialty Pizzas', name:'Tandoori Chicken (Halal)',price:13.57, img:IMG.p4, desc:'Halal chicken breast, hand-cut and marinated with tandoori paste.' },
+
+        /* ── Fresh N Fast ───────────────────────────────────── */
+        { id:11, cat:'Fresh N Fast', name:'Large Pepperoni',             price:10.00, img:IMG.p3, desc:'A large 14" classic pepperoni — ready fast, priced right.' },
+        { id:12, cat:'Fresh N Fast', name:'Large Cheese',                price:10.00, img:IMG.p5, desc:'A large 14" classic cheese pizza. Simple and perfect.' },
+
+        /* ── Build Your Own ─────────────────────────────────── */
+        { id:13, cat:'Build Your Own', name:'Large 1-Topping',           price:7.99,  img:IMG.p6, desc:'Start with our 14" large and choose your perfect topping.' },
+        { id:14, cat:'Build Your Own', name:'Large — Build Your Own',    price:8.99,  img:IMG.p2, desc:'Full 14" pizza, fully customizable with any toppings you like.' },
+        { id:15, cat:'Build Your Own', name:'Half & Half (Large)',        price:6.56,  img:IMG.p1, desc:'Two different pizzas in one — split a large 14" any way you want.' },
+        { id:16, cat:'Build Your Own', name:'8" Personal Pizza',          price:2.99,  img:null,   desc:'Individual 8" pizza. Pepperoni & cheese or just cheese.' },
+        { id:17, cat:'Build Your Own', name:'Gluten-Free 8" — 1 Topping',price:9.49,  img:IMG.p5, desc:'8" gluten-free crust with your choice of topping. Light and crispy.' },
+        { id:18, cat:'Build Your Own', name:'10" Gluten-Free — Premium', price:17.15, img:null,   desc:'10" gluten-free crust loaded with premium toppings.' },
+
+        /* ── Detroit Style ──────────────────────────────────── */
+        { id:19, cat:'Detroit Style', name:'Pappa Pan — Cheese/1 Topping',price:9.49,  img:IMG.p4, desc:'Detroit-style deep dish — thick, airy, with a signature crispy caramelized edge.' },
+        { id:20, cat:'Detroit Style', name:'Pappa Pan — Premium',         price:14.49, img:IMG.p6, desc:'Our Detroit-style pan loaded with your choice of premium toppings.' },
+        { id:21, cat:'Detroit Style', name:'Pappa Pan — Build Your Own',  price:11.14, img:IMG.p7, desc:'Full Detroit pan, fully customizable. Make it exactly yours.' },
+        { id:22, cat:'Detroit Style', name:'Jr Pan — Cheese/1 Topping',   price:4.99,  img:null,   desc:'The junior Detroit pan. Same great crust — perfect single-serving size.' },
+        { id:23, cat:'Detroit Style', name:'Jr Pan — Premium',             price:8.49,  img:null,   desc:'Jr-sized Detroit pan loaded with premium toppings.' },
+
+        /* ── Wings & Sides ──────────────────────────────────── */
+        { id:24, cat:'Wings & Sides', name:'Jumbo Wings — 5 pc',         price:6.99,  img:null, desc:'Always baked, never fried. Mild, medium, hot, extreme, BBQ, sweet & spicy, lemon pepper, or teriyaki.' },
+        { id:25, cat:'Wings & Sides', name:'Jumbo Wings — 10 pc',        price:12.99, img:null, desc:'Always baked, never fried. Served with ranch or blue cheese.' },
+        { id:26, cat:'Wings & Sides', name:'Cheese Bread',               price:5.79,  img:IMG.p7, desc:'10 sticks of fresh-baked bread smothered in two types of cheese and finished with garlic.' },
+        { id:27, cat:'Wings & Sides', name:'Pepperoni Cheese Bread',     price:5.99,  img:null, desc:'Our cheese bread loaded with pepperoni. The ultimate side.' },
+        { id:28, cat:'Wings & Sides', name:'Breadsticks',                price:3.59,  img:null, desc:'8 pieces of baked bread topped with garlic butter and parmesan. Served with dipping sauce.' },
+        { id:29, cat:'Wings & Sides', name:'Breadsticks Combo',          price:4.29,  img:null, desc:'8 pieces with pizza sauce or garlic butter.' },
+
+        /* ── Subs & Sandwiches ──────────────────────────────── */
+        { id:30, cat:'Subs & Sandwiches', name:'Italian',                price:5.99, img:null, desc:'Ham, salami, pepperoni, cheese, onion, banana peppers, lettuce, tomato, Italian dressing.' },
+        { id:31, cat:'Subs & Sandwiches', name:'Club',                   price:5.99, img:null, desc:'Turkey, ham, bacon, cheese, lettuce, tomato, and mayo on a toasted hoagie.' },
+        { id:32, cat:'Subs & Sandwiches', name:'Ham & Cheese',           price:5.99, img:null, desc:'Thick-cut ham and melted cheese on a fresh-baked hoagie roll.' },
+        { id:33, cat:'Subs & Sandwiches', name:'Turkey',                 price:5.99, img:null, desc:'Sliced turkey breast with lettuce, tomato, and your choice of dressing.' },
+        { id:34, cat:'Subs & Sandwiches', name:'Tuna',                   price:5.99, img:null, desc:'House tuna salad with lettuce and tomato on a toasted hoagie.' },
+
+        /* ── Salads ─────────────────────────────────────────── */
+        { id:35, cat:'Salads', name:'Greek Salad',                       price:6.29, img:null, desc:'Romaine, tomatoes, cucumber, Kalamata olives, feta, red onion, and Greek dressing.' },
+        { id:36, cat:'Salads', name:'Antipasto Salad',                   price:6.29, img:null, desc:'Mixed greens, ham, salami, pepperoni, provolone, olives, tomatoes, and house Italian.' },
+        { id:37, cat:'Salads', name:'Caesar Salad',                      price:6.29, img:null, desc:'Crisp romaine, house Caesar dressing, parmesan shavings, and croutons.' },
+        { id:38, cat:'Salads', name:'Tossed Salad',                      price:6.29, img:null, desc:'Fresh mixed greens with your choice of dressing.' },
+        { id:39, cat:'Salads', name:'Family Salad',                      price:9.99, img:null, desc:'A large family-sized salad. Serves 4–6. Add chicken for $2.00.' },
+
+        /* ── Desserts ───────────────────────────────────────── */
+        { id:40, cat:'Desserts', name:'Cinnamon Sugar Sticks',           price:4.99, img:IMG.cin, desc:'Drizzled with cream cheese icing. Extra icing available for $0.50.' },
       ]
     };
 
     /* Category → placeholder CSS class */
     const PH = {
       'Specialty Pizzas':  'ph-pizza',
+      'Fresh N Fast':      'ph-pizza',
       'Build Your Own':    'ph-pizza',
+      'Detroit Style':     'ph-detroit',
       'Subs & Sandwiches': 'ph-subs',
       'Wings & Sides':     'ph-wings',
-      'Salads':            'ph-salads'
+      'Salads':            'ph-salads',
+      'Desserts':          'ph-dessert',
     };
 
     /* Placeholder icon SVG */
@@ -1175,28 +1235,23 @@
       $('closeCartBtn').addEventListener('click', closeCart);
       cartScrimEl.addEventListener('click', closeCart);
 
-      /* Order type toggle */
-      document.querySelectorAll('.ot-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.ot-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-        });
+      /* DoorDash delivery link */
+      $('doorDashBtn').addEventListener('click', () => {
+        window.open(DOORDASH_URL, '_blank', 'noopener,noreferrer');
       });
 
-      /* Checkout */
+      /* Checkout → redirect to Toast */
       $('checkoutBtn').addEventListener('click', () => {
         if (cart.length === 0) return;
         const btn   = $('checkoutBtn');
         const label = $('coBtnLabel');
-        btn.disabled  = true;
-        label.textContent = 'Placing Order...';
+        btn.disabled = true;
+        label.textContent = 'Opening Toast...';
         setTimeout(() => {
-          label.textContent = 'Order Received';
-          setTimeout(() => {
-            label.textContent  = 'Place Order';
-            btn.disabled = false;
-          }, 2400);
-        }, 1600);
+          window.open('https://order.toasttab.com/online/riverside-pizza-johnscreek', '_blank', 'noopener,noreferrer');
+          label.textContent = 'Place Order';
+          btn.disabled = false;
+        }, 600);
       });
     }
 
