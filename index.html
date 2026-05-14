@@ -79,7 +79,7 @@
     .slide.active { opacity: 1; }
     .hero-overlay {
       position: absolute; inset: 0; z-index: 2;
-      background: linear-gradient(to top, rgba(20,44,20,0.88) 0%, rgba(20,44,20,0.4) 50%, rgba(20,44,20,0.2) 100%);
+      background: linear-gradient(to top, rgba(10,22,10,0.94) 0%, rgba(10,22,10,0.52) 45%, transparent 100%);
       display: flex; align-items: flex-end;
       padding: 0 6rem 5rem;
     }
@@ -191,11 +191,11 @@
     .gallery-label .sec-h { font-size: clamp(1.8rem, 2.8vw, 3rem); font-weight: 500; }
     .gallery-track { display: flex; gap: 12px; padding: 0 5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2rem; cursor: grab; }
     .gallery-track::-webkit-scrollbar { display: none; }
-    .gallery-item { flex-shrink: 0; height: 62vh; width: auto; position: relative; }
+    .gallery-item { flex-shrink: 0; height: 56vh; width: auto; position: relative; }
     .gallery-item img { height: 100%; width: auto; object-fit: cover; display: block; transition: transform 0.5s ease; }
     .gallery-item:hover img { transform: scale(1.03); }
-    .gallery-item.tall { height: 68vh; }
-    .gallery-item.wide { width: 700px; height: 62vh; }
+    .gallery-item.tall { height: 56vh; }
+    .gallery-item.wide { width: 700px; height: 56vh; }
     .gallery-item.wide img { width: 100%; height: 100%; }
     .gallery-hint { padding: 1.5rem 0 0 5rem; font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mu); display: flex; align-items: center; gap: 0.5rem; }
     .gallery-hint::before { content: ''; width: 1rem; height: 1px; background: var(--mu); }
@@ -252,26 +252,79 @@
     .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
     .ft-copy { font-family: var(--m); font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 
-    /* ── TWEAKS ──────────────────────────── */
-    #tweaks { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; background: var(--gd); border: 1px solid rgba(255,255,255,0.12); width: 220px; padding: 1.35rem; box-shadow: 0 8px 32px rgba(0,0,0,0.45); display: none; }
-    #tweaks.show { display: block; }
-    .tw-h { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(160,220,160,0.85); padding-bottom: 0.65rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 0.85rem; display: flex; justify-content: space-between; }
-    .tw-x { background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; }
-    .tw-row { margin-bottom: 0.75rem; }
-    .tw-lbl { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.38rem; }
-    .tw-bs { display: flex; gap: 0.35rem; }
-    .tw-b { flex: 1; padding: 0.36rem; font-family: var(--m); font-size: 0.44rem; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.55); cursor: pointer; transition: all 0.2s; }
-    .tw-b:hover, .tw-b.on { background: var(--g); border-color: var(--g); color: white; }
-    .tw-sw { display: flex; gap: 0.4rem; }
-    .tw-s { width: 1.8rem; height: 1.8rem; border: 2px solid transparent; cursor: pointer; transition: border-color 0.2s; }
-    .tw-s.on { border-color: white; }
+    /* ── HAMBURGER NAV ──────────────────────── */
+    .nav-ham {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 200;
+    }
+    .nav-ham span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--tx);
+      transition: transform 0.32s cubic-bezier(0.32,0.72,0,1), opacity 0.2s;
+      transform-origin: center;
+    }
+    #nav.hero-nav .nav-ham span { background: white; }
+    .nav-ham.open span:first-child { transform: translateY(6.5px) rotate(45deg); }
+    .nav-ham.open span:last-child { transform: translateY(-6.5px) rotate(-45deg); }
+    .mob-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 150;
+      background: var(--cream);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+    }
+    .mob-overlay.open { display: flex; }
+    .mob-overlay a {
+      font-family: var(--d);
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 500;
+      color: var(--tx);
+      padding: 1rem 2rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: color 0.2s;
+    }
+    .mob-overlay.open a { opacity: 1; transform: translateY(0); }
+    .mob-overlay a:nth-child(1) { transition-delay: 0.06s; }
+    .mob-overlay a:nth-child(2) { transition-delay: 0.12s; }
+    .mob-overlay a:nth-child(3) { transition-delay: 0.18s; }
+    .mob-overlay a:nth-child(4) { transition-delay: 0.24s; }
+    .mob-overlay a:nth-child(5) { transition-delay: 0.30s; }
+    .mob-overlay a.mob-cta {
+      font-family: var(--m);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--g);
+      color: white;
+      padding: 1rem 2.5rem;
+      margin-top: 1.5rem;
+      border-radius: 2px;
+      font-weight: 500;
+      font-style: normal;
+      opacity: 0;
+      transform: translateY(16px);
+      transition-delay: 0.36s;
+    }
 
-    /* ── MOBILE ──────────────────────────── */
     @media (max-width: 960px) {
-      .hero-overlay { background: linear-gradient(to top, rgba(15,35,15,0.95) 0%, rgba(15,35,15,0.6) 100%) !important; }
+      .nav-ham { display: flex; }
+      .nav-links { display: none !important; }
       #nav { padding: 0 1.5rem; }
-      .nav-links { display: none; }
       .hero-overlay { padding: 0 2rem 4rem; }
+      .hero-overlay { background: linear-gradient(to top, rgba(10,22,10,0.96) 0%, rgba(10,22,10,0.55) 50%, transparent 100%) !important; }
       .hero-h1 { font-size: 2.8rem; }
       .stats { grid-template-columns: 1fr 1fr; }
       .stat:nth-child(2) { border-right: none; }
@@ -308,7 +361,7 @@
 <body>
 
 <!-- ── NAV ───────────────────────────────────── -->
-<nav id="nav">
+<nav id="nav" class="hero-nav">
   <div class="logo">
     <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
     <div class="logo-text">
@@ -324,6 +377,18 @@
     <li><a href="locations.html" class="nav-cta">Order Online</a></li>
   </ul>
 </nav>
+
+<button class="nav-ham" id="navHam" aria-label="Open menu">
+  <span></span><span></span>
+</button>
+
+<div class="mob-overlay" id="mobOverlay">
+  <a href="menu.html">Menu</a>
+  <a href="catering.html">Catering</a>
+  <a href="locations.html">Locations</a>
+  <a href="about.html">About</a>
+  <a href="locations.html" class="mob-cta">Order Online</a>
+</div>
 
 <!-- ── HERO SLIDER ────────────────────────────── -->
 <section class="hero">
@@ -563,39 +628,12 @@
   </div>
 </footer>
 
-<!-- ── TWEAKS ─────────────────────────────────── -->
-<div id="tweaks">
-  <div class="tw-h">Tweaks <button class="tw-x" id="twX">✕</button></div>
-  <div class="tw-row">
-    <div class="tw-lbl">Green Shade</div>
-    <div class="tw-sw" id="gSw">
-      <div class="tw-s on" data-g="#2e6b2e" data-gd="#1a4820" style="background:#2e6b2e"></div>
-      <div class="tw-s" data-g="#2a6040" data-gd="#164030" style="background:#2a6040"></div>
-      <div class="tw-s" data-g="#387038" data-gd="#1e4a1e" style="background:#387038"></div>
-      <div class="tw-s" data-g="#4a6e28" data-gd="#2e4418" style="background:#4a6e28"></div>
-    </div>
-  </div>
-  <div class="tw-row">
-    <div class="tw-lbl">Hero Layout</div>
-    <div class="tw-bs" id="heroBs">
-      <button class="tw-b on" data-h="full">Full Photo</button>
-      <button class="tw-b" data-h="overlay">Dark Overlay</button>
-    </div>
-  </div>
-</div>
 
 <!-- SCRIPTS -->
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "greenShade": "oklch(42% 0.16 145)",
-    "bg": "#ffffff",
-    "hero": "full",
-    "green": "#387038"
-  }/*EDITMODE-END*/;
-
   // ── LENIS SMOOTH SCROLL ──────────────────────
   const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
   lenis.on('scroll', ScrollTrigger.update);
@@ -724,36 +762,21 @@
     }
   );
 
-  // ── TWEAKS ───────────────────────────────────
-  window.addEventListener('message', e => {
-    if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks').classList.add('show');
-    if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks').classList.remove('show');
-  });
-  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
 
-  document.getElementById('twX').addEventListener('click', () => {
-    document.getElementById('tweaks').classList.remove('show');
-    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  // ── MOBILE NAV ───────────────────────────
+  const navHam = document.getElementById('navHam');
+  const mobOverlay = document.getElementById('mobOverlay');
+  navHam.addEventListener('click', () => {
+    navHam.classList.toggle('open');
+    mobOverlay.classList.toggle('open');
+    document.body.style.overflow = mobOverlay.classList.contains('open') ? 'hidden' : '';
   });
-
-  document.getElementById('gSw').addEventListener('click', e => {
-    const s = e.target.closest('.tw-s'); if (!s) return;
-    document.querySelectorAll('#gSw .tw-s').forEach(x => x.classList.remove('on')); s.classList.add('on');
-    document.documentElement.style.setProperty('--g', s.dataset.g);
-    document.documentElement.style.setProperty('--gd', s.dataset.gd);
-    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { green: s.dataset.g } }, '*');
-  });
-
-  document.getElementById('heroBs').addEventListener('click', e => {
-    const b = e.target.closest('.tw-b'); if (!b) return;
-    document.querySelectorAll('#heroBs .tw-b').forEach(x => x.classList.remove('on')); b.classList.add('on');
-    const ov = document.querySelector('.hero-overlay');
-    if (b.dataset.h === 'overlay') {
-      ov.style.background = 'linear-gradient(rgba(20,44,20,0.75), rgba(20,44,20,0.75))';
-    } else {
-      ov.style.background = '';
-    }
-    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { hero: b.dataset.h } }, '*');
+  mobOverlay.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navHam.classList.remove('open');
+      mobOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    });
   });
 </script>
 </body>

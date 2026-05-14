@@ -24,13 +24,14 @@
     .nav-links{display:flex;gap:0;list-style:none;align-items:center}.nav-links a{font-family:var(--m);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);padding:.4rem .9rem;transition:color .2s;font-weight:500}.nav-links a:hover{color:var(--g)}
     .nav-cta{background:var(--g)!important;color:#fff!important;padding:.55rem 1.4rem!important;margin-left:.6rem;border-radius:2px}
 
-    .hero{margin-top:80px;padding:clamp(5rem,10vw,9rem) 0 clamp(4rem,8vw,7rem);background:var(--g);position:relative;overflow:hidden}
-    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,var(--gd),transparent);pointer-events:none}
-    .hero .wrap{position:relative;z-index:1}
-    .hero-ey{font-family:var(--m);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
-    .hero-ey::before{content:'';width:2rem;height:1px;background:var(--gold)}
+    .hero{position:relative;min-height:70vh;display:flex;align-items:flex-end;padding-bottom:6rem;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background-image:url('https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg');background-size:cover;background-position:center top;z-index:0}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,10,0.94) 0%,rgba(10,22,10,0.52) 45%,transparent 100%);z-index:1}
+    .hero .wrap{position:relative;z-index:2;padding-top:80px}
+    .hero-ey{font-family:var(--m);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(160,210,160,0.9);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+    .hero-ey::before{content:'';width:2rem;height:1px;background:currentColor}
     .hero h1{font-family:var(--d);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:500;color:#fff;line-height:1.08;margin-bottom:1.5rem}
-    .hero h1 em{font-style:italic;color:rgba(255,255,255,.7)}
+    .hero h1 em{font-style:italic;color:rgba(180,220,180,0.95)}
     .hero-desc{font-size:1.1rem;color:rgba(255,255,255,.75);max-width:560px;line-height:1.8}
 
     .story{padding:clamp(5rem,8vw,8rem) 0;background:var(--wh)}
@@ -43,16 +44,19 @@
     .story p{font-size:1rem;line-height:1.9;color:var(--mu);margin-bottom:1.25rem}
     .story p strong{color:var(--tx);font-weight:600}
 
-    .values{padding:clamp(5rem,8vw,8rem) 0;background:#f4f4f4}
-    .val-head{text-align:center;margin-bottom:clamp(3rem,5vw,4.5rem)}
-    .val-head h2{font-family:var(--d);font-size:clamp(2rem,3vw,3rem);font-weight:500;margin-bottom:1rem}
-    .val-head p{font-size:1rem;color:var(--mu);max-width:500px;margin:0 auto}
-    .val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-    .val-card{background:var(--wh);border:1px solid var(--bdr);padding:2.5rem;border-radius:4px;transition:transform .3s,box-shadow .3s}
-    .val-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
-    .val-icon{width:48px;height:48px;background:var(--gp);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;color:var(--g)}
-    .val-card h3{font-family:var(--d);font-size:1.3rem;font-weight:600;margin-bottom:.75rem}
-    .val-card p{font-size:.88rem;color:var(--mu);line-height:1.8}
+    .values{padding:clamp(5rem,8vw,8rem) 0;background:var(--cream)}
+    .val-head{margin-bottom:clamp(3rem,5vw,4.5rem)}
+    .val-head h2{font-family:var(--d);font-size:clamp(2rem,3vw,3rem);font-weight:500;margin-bottom:1rem;letter-spacing:-0.02em}
+    .val-head h2 em{font-style:italic;color:var(--g)}
+    .val-head p{font-size:1rem;color:var(--mu);max-width:500px;line-height:1.75}
+    .val-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:3px}
+    .val-card{background:var(--wh);border:1px solid var(--bdr);padding:3rem;transition:background .25s,border-color .25s;display:flex;flex-direction:column;gap:1.5rem}
+    .val-card:hover{background:var(--gp);border-color:var(--g)}
+    .val-card.full{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+    .val-num{font-family:var(--m);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g)}
+    .val-card h3{font-family:var(--d);font-size:1.6rem;font-weight:500;margin-bottom:.5rem;letter-spacing:-.02em}
+    .val-card p{font-size:.9rem;color:var(--mu);line-height:1.85;font-weight:300}
+    .val-img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px}
 
     .stan{padding:clamp(5rem,8vw,8rem) 0;background:var(--g)}
     .stan .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,5vw,6rem);align-items:center}
@@ -74,13 +78,25 @@
     .ft-bottom{max-width:1280px;margin:3rem auto 0;padding:2rem 5rem 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}
     .ft-copy{font-family:var(--m);font-size:.45rem;letter-spacing:.1em;color:rgba(255,255,255,.3)}
 
-    @media(max-width:960px){.story .wrap,.stan .wrap{grid-template-columns:1fr}.val-grid{grid-template-columns:1fr}#nav{padding:0 1.5rem}.nav-links{display:none}.wrap{padding:0 2rem}}
+    @media(max-width:960px){.story .wrap,.stan .wrap{grid-template-columns:1fr}.val-grid{grid-template-columns:1fr}.val-card.full{grid-column:1;grid-template-columns:1fr}#nav{padding:0 1.5rem}.nav-links{display:none}.wrap{padding:0 2rem}}
   
-    @media (max-width: 960px) { 
-      .grid { grid-template-columns: 1fr !important; } 
-      body { padding: 0 !important; overflow-x: hidden !important; } 
-      section { padding: 3rem 1.5rem !important; } 
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: 1fr !important; }
+      body { padding: 0 !important; overflow-x: hidden !important; }
+      section { padding: 3rem 1.5rem !important; }
     }
+
+    .nav-ham{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;z-index:200}
+    .nav-ham span{display:block;width:22px;height:1.5px;background:var(--tx);transition:transform .32s cubic-bezier(.32,.72,0,1),opacity .2s;transform-origin:center}
+    .nav-ham.open span:first-child{transform:translateY(6.5px) rotate(45deg)}
+    .nav-ham.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+    .mob-overlay{display:none;position:fixed;inset:0;z-index:150;background:var(--cream);flex-direction:column;justify-content:center;align-items:center;gap:0}
+    .mob-overlay.open{display:flex}
+    .mob-overlay a{font-family:var(--d);font-size:clamp(1.6rem,5vw,2.2rem);font-weight:500;color:var(--tx);padding:1rem 2rem;letter-spacing:-.02em;text-decoration:none;opacity:0;transform:translateY(16px);transition:color .2s,opacity .4s cubic-bezier(.32,.72,0,1),transform .4s cubic-bezier(.32,.72,0,1)}
+    .mob-overlay.open a{opacity:1;transform:translateY(0)}
+    .mob-overlay a:nth-child(1){transition-delay:.06s}.mob-overlay a:nth-child(2){transition-delay:.12s}.mob-overlay a:nth-child(3){transition-delay:.18s}.mob-overlay a:nth-child(4){transition-delay:.24s}
+    .mob-overlay a.mob-cta{font-family:var(--m);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;background:var(--g);color:#fff;padding:1rem 2.5rem;margin-top:1.5rem;border-radius:2px;font-weight:500;font-style:normal;opacity:0;transform:translateY(16px);transition-delay:.30s}
+    @media(max-width:960px){.nav-ham{display:flex}}
   </style>
 </head>
 <body>
@@ -88,8 +104,26 @@
   <a href="index.html" class="logo"><img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza"><div class="logo-text"><span class="logo-name">Riverside Pizza</span><span class="logo-sub">Est. 1999 · Metro Atlanta</span></div></a>
   <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="locations.html">Locations</a></li><li><a href="about.html">About</a></li><li><a href="locations.html" class="nav-cta">Order Online</a></li></ul>
 </nav>
+<button class="nav-ham" id="navHam" aria-label="Open menu">
+  <span></span><span></span>
+</button>
+<div class="mob-overlay" id="mobOverlay">
+  <a href="index.html">Home</a>
+  <a href="menu.html">Menu</a>
+  <a href="catering.html">Catering</a>
+  <a href="locations.html">Locations</a>
+  <a href="locations.html" class="mob-cta">Order Online</a>
+</div>
 
-<section class="hero"><div class="wrap"><div class="hero-ey">Our Story</div><h1>Family Owned &amp;<br><em>Proudly Local</em></h1><p class="hero-desc">Since 1999, the Thompson family has been serving Metro Atlanta the freshest, most delicious pizza made with love, real ingredients, and recipes perfected over 25 years.</p></div></section>
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <div class="hero-ey">Our Story</div>
+    <h1>Family Owned &amp;<br><em>Proudly Local</em></h1>
+    <p class="hero-desc">Since 1999, the Thompson family has been serving Metro Atlanta the freshest, most delicious pizza made with love, real ingredients, and recipes perfected over 25 years.</p>
+  </div>
+</section>
 
 <section class="story"><div class="wrap">
   <div class="story-img"><img src="https://riversidepizza.net/wp-content/uploads/2026/03/Al-and-Sandy.jpg" alt="Al and Sandy Thompson"></div>
@@ -101,11 +135,34 @@
 </div></section>
 
 <section class="values"><div class="wrap">
-  <div class="val-head"><h2>What We Stand For</h2><p>Every decision we make comes back to three principles that have guided us since day one.</p></div>
+  <div class="val-head">
+    <div class="sec-ey">What We Stand For</div>
+    <h2>Three principles. <em>25 years.</em></h2>
+    <p>Every decision we make comes back to the same values that opened our first store in 1999.</p>
+  </div>
   <div class="val-grid">
-    <div class="val-card"><div class="val-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Community First</h3><p>We sponsor local teams, hire local staff, and source local produce. Eight locations, eight neighborhoods we call home.</p></div>
-    <div class="val-card"><div class="val-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3>Real Ingredients</h3><p>100% real mozzarella cheese. Premium Stanislaus tomatoes. Dough made fresh daily. We never cut corners.</p></div>
-    <div class="val-card"><div class="val-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h3>Made with Love</h3><p>Every pizza is hand-tossed, every sub is oven-baked, and every order is prepared with care you'd give your own family.</p></div>
+    <div class="val-card">
+      <div class="val-num">01</div>
+      <div>
+        <h3>Community First</h3>
+        <p>We sponsor local teams, hire local staff, and source local produce. Eight locations, eight neighborhoods we call home.</p>
+      </div>
+    </div>
+    <div class="val-card">
+      <div class="val-num">02</div>
+      <div>
+        <h3>Real Ingredients Only</h3>
+        <p>100% real mozzarella, hand-grated on site. Premium Stanislaus tomatoes. Dough made from scratch every morning. We never cut corners.</p>
+      </div>
+    </div>
+    <div class="val-card full">
+      <div>
+        <div class="val-num">03</div>
+        <h3>Made with Love</h3>
+        <p>Every pizza is hand-tossed, every sub is oven-baked, and every order is prepared with the same care you'd give your own family. Al and Sandy Thompson remain personally involved in every location to make sure of it.</p>
+      </div>
+      <img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza handcrafted" class="val-img">
+    </div>
   </div>
 </div></section>
 
@@ -129,7 +186,11 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script>gsap.registerPlugin(ScrollTrigger);gsap.utils.toArray('.story,.val-card,.stan').forEach(el=>{gsap.from(el,{opacity:0,y:40,duration:.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'}})});</script>
+<script>gsap.registerPlugin(ScrollTrigger);
+  // Hero parallax
+  gsap.to('#heroBg', { y: '20%', ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }});
+  gsap.utils.toArray('.story,.val-card,.stan').forEach(el=>{gsap.from(el,{opacity:0,y:40,duration:.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'}})});
+</script>
 
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
@@ -144,6 +205,11 @@
       requestAnimationFrame(raf);
     }
   }
+</script>
+<script>
+const navHam=document.getElementById('navHam'),mobOverlay=document.getElementById('mobOverlay');
+navHam.addEventListener('click',()=>{navHam.classList.toggle('open');mobOverlay.classList.toggle('open');document.body.style.overflow=mobOverlay.classList.contains('open')?'hidden':''});
+mobOverlay.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navHam.classList.remove('open');mobOverlay.classList.remove('open');document.body.style.overflow=''}));
 </script>
 </body>
 </html>

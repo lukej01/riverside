@@ -24,13 +24,18 @@
     .nav-links{display:flex;gap:0;list-style:none;align-items:center}.nav-links a{font-family:var(--m);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);padding:.4rem .9rem;transition:color .2s;font-weight:500}.nav-links a:hover{color:var(--g)}
     .nav-cta{background:var(--g)!important;color:#fff!important;padding:.55rem 1.4rem!important;margin-left:.6rem;border-radius:2px}
 
-    .header{margin-top:80px;padding:5rem 0 3rem;background:var(--wh);border-bottom:1px solid var(--bdr);text-align:center}
-    .header h1{font-family:var(--d);font-size:clamp(2.5rem,4vw,3.5rem);font-weight:500;margin-bottom:.75rem}
-    .header h1 em{font-style:italic;color:var(--g)}
-    .header p{font-size:1rem;color:var(--mu);max-width:550px;margin:0 auto;line-height:1.7}
-    .header-note{font-family:var(--m);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-top:1.5rem}
+    .page-hero{position:relative;min-height:52vh;display:flex;align-items:flex-end;padding-bottom:5rem;overflow:hidden}
+    .ph-bg{position:absolute;inset:0;background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/get-attachment.aspx_11-e1384317042793.jpg');background-size:cover;background-position:center}
+    .ph-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,10,0.94) 0%,rgba(10,22,10,0.5) 45%,transparent 100%)}
+    .ph-content{position:relative;z-index:1;padding-top:80px}
+    .ph-ey{font-family:var(--m);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(160,210,160,.9);display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+    .ph-ey::before{content:'';width:2rem;height:1px;background:currentColor}
+    .ph-h1{font-family:var(--d);font-size:clamp(2.5rem,5vw,4rem);font-weight:500;color:#fff;line-height:1.05;margin-bottom:1rem}
+    .ph-h1 em{font-style:italic;color:rgba(180,220,180,.95)}
+    .ph-sub{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.7;max-width:48ch}
+    .ph-note{font-family:var(--m);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-top:1rem;display:inline-block}
 
-    .specials{padding:clamp(3rem,5vw,5rem) 0}
+    .specials{padding:clamp(3rem,5vw,5rem) 0;background:var(--wh)}
     .day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2rem}
     .day-card{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;overflow:hidden;transition:transform .3s,box-shadow .3s}
     .day-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
@@ -57,18 +62,42 @@
     .ft-bottom{max-width:1280px;margin:3rem auto 0;padding:2rem 5rem 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}
     .ft-copy{font-family:var(--m);font-size:.45rem;letter-spacing:.1em;color:rgba(255,255,255,.3)}
     @media(max-width:960px){.day-grid{grid-template-columns:1fr}#nav{padding:0 1.5rem}.nav-links{display:none}.wrap{padding:0 2rem}}
+    .nav-ham{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;z-index:200}
+    .nav-ham span{display:block;width:22px;height:1.5px;background:var(--tx);transition:transform .32s cubic-bezier(.32,.72,0,1);transform-origin:center}
+    .nav-ham.open span:first-child{transform:translateY(6.5px) rotate(45deg)}
+    .nav-ham.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+    .mob-overlay{display:none;position:fixed;inset:0;z-index:150;background:var(--cream);flex-direction:column;justify-content:center;align-items:center;gap:0}
+    .mob-overlay.open{display:flex}
+    .mob-overlay a{font-family:var(--d);font-size:clamp(1.6rem,5vw,2.2rem);font-weight:500;color:var(--tx);padding:1rem 2rem;letter-spacing:-.02em;opacity:0;transform:translateY(16px);transition:color .2s,opacity .4s cubic-bezier(.32,.72,0,1),transform .4s cubic-bezier(.32,.72,0,1)}
+    .mob-overlay.open a{opacity:1;transform:translateY(0)}
+    .mob-overlay a:nth-child(1){transition-delay:.06s}.mob-overlay a:nth-child(2){transition-delay:.12s}.mob-overlay a:nth-child(3){transition-delay:.18s}.mob-overlay a:nth-child(4){transition-delay:.24s}
+    .mob-overlay a.mob-cta{font-family:var(--m);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;background:var(--g);color:#fff;padding:1rem 2.5rem;margin-top:1.5rem;border-radius:2px;opacity:0;transform:translateY(16px);transition-delay:.30s}
+    @media(max-width:960px){.nav-ham{display:flex}}
   </style>
 </head>
 <body>
 <nav id="nav">
   <a href="index.html" class="logo"><img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza"><div class="logo-text"><span class="logo-name">Riverside Pizza</span><span class="logo-sub">Est. 1999 · Metro Atlanta</span></div></a>
   <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="locations.html">Locations</a></li><li><a href="about.html">About</a></li><li><a href="locations.html" class="nav-cta">Order Online</a></li></ul>
+  <button class="nav-ham" id="navHam" aria-label="Open menu"><span></span><span></span></button>
 </nav>
+<div class="mob-overlay" id="mobOverlay">
+  <a href="index.html">Home</a>
+  <a href="menu.html">Menu</a>
+  <a href="catering.html">Catering</a>
+  <a href="locations.html">Locations</a>
+  <a href="locations.html" class="mob-cta">Order Online</a>
+</div>
 
-<section class="header">
-  <h1>Daily Lunch <em>Specials</em></h1>
-  <p>Great deals available every day from 11am–3pm at all Riverside Pizza locations. Dine-in or carryout.</p>
-  <div class="header-note">Available 11:00 AM – 3:00 PM Daily</div>
+<section class="page-hero">
+  <div class="ph-bg"></div>
+  <div class="ph-overlay"></div>
+  <div class="wrap ph-content">
+    <div class="ph-ey">Limited Time Daily</div>
+    <h1 class="ph-h1">Lunch <em>Specials</em></h1>
+    <p class="ph-sub">Great deals available every day from 11am–3pm at all Riverside Pizza locations. Dine-in or carryout.</p>
+    <span class="ph-note">Available 11:00 AM – 3:00 PM Daily</span>
+  </div>
 </section>
 
 <section class="specials"><div class="wrap">
@@ -121,6 +150,11 @@
       requestAnimationFrame(raf);
     }
   }
+</script>
+<script>
+const navHam=document.getElementById('navHam'),mobOverlay=document.getElementById('mobOverlay');
+navHam.addEventListener('click',()=>{navHam.classList.toggle('open');mobOverlay.classList.toggle('open');document.body.style.overflow=mobOverlay.classList.contains('open')?'hidden':''});
+mobOverlay.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navHam.classList.remove('open');mobOverlay.classList.remove('open');document.body.style.overflow=''}));
 </script>
 </body>
 </html>

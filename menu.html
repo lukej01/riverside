@@ -125,6 +125,13 @@
     .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
     .ft-copy { font-family: var(--m); font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 
+    /* ── FOOD PHOTO PLACEHOLDERS ─── */
+    .m-img.ph-pizza  { background: linear-gradient(135deg, #f5e8d4 0%, #e2c98c 100%); }
+    .m-img.ph-subs   { background: linear-gradient(135deg, #f5e8d4 0%, #f0c07a 100%); }
+    .m-img.ph-wings  { background: linear-gradient(135deg, #f2dfd8 0%, #d4a890 100%); }
+    .m-img.ph-salads { background: linear-gradient(135deg, #daf0d5 0%, #9ecc92 100%); }
+    .m-img.ph-pasta  { background: linear-gradient(135deg, #fce9d4 0%, #e8b87a 100%); }
+
     @media (max-width: 960px) {
       .menu-header-inner { grid-template-columns: 1fr; gap: 2rem; }
       .menu-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -142,6 +149,17 @@
       .ft-cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .ft-bottom { flex-direction: column; gap: 0.75rem; }
     }
+    .nav-ham{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;z-index:200}
+    .nav-ham span{display:block;width:22px;height:1.5px;background:var(--tx);transition:transform .32s cubic-bezier(.32,.72,0,1);transform-origin:center}
+    .nav-ham.open span:first-child{transform:translateY(6.5px) rotate(45deg)}
+    .nav-ham.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+    .mob-overlay{display:none;position:fixed;inset:0;z-index:150;background:var(--cream);flex-direction:column;justify-content:center;align-items:center;gap:0}
+    .mob-overlay.open{display:flex}
+    .mob-overlay a{font-family:var(--d);font-size:clamp(1.6rem,5vw,2.2rem);font-weight:500;color:var(--tx);padding:1rem 2rem;letter-spacing:-.02em;opacity:0;transform:translateY(16px);transition:color .2s,opacity .4s cubic-bezier(.32,.72,0,1),transform .4s cubic-bezier(.32,.72,0,1)}
+    .mob-overlay.open a{opacity:1;transform:translateY(0)}
+    .mob-overlay a:nth-child(1){transition-delay:.06s}.mob-overlay a:nth-child(2){transition-delay:.12s}.mob-overlay a:nth-child(3){transition-delay:.18s}.mob-overlay a:nth-child(4){transition-delay:.24s}
+    .mob-overlay a.mob-cta{font-family:var(--m);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;background:var(--g);color:#fff;padding:1rem 2.5rem;margin-top:1.5rem;border-radius:2px;opacity:0;transform:translateY(16px);transition-delay:.30s}
+    @media(max-width:960px){.nav-ham{display:flex}}
   </style>
 </head>
 <body>
@@ -162,6 +180,16 @@
     <li><a href="locations.html" class="nav-cta">Order Online</a></li>
   </ul>
 </nav>
+<button class="nav-ham" id="navHam" aria-label="Open menu">
+  <span></span><span></span>
+</button>
+<div class="mob-overlay" id="mobOverlay">
+  <a href="index.html">Home</a>
+  <a href="menu.html">Menu</a>
+  <a href="catering.html">Catering</a>
+  <a href="locations.html">Locations</a>
+  <a href="locations.html" class="mob-cta">Order Online</a>
+</div>
 
 <header class="menu-header">
   <div class="wrap menu-header-inner">
@@ -197,7 +225,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Favorite 5 Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Favorite 5</h3>
@@ -209,7 +237,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Supreme Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Supreme</h3>
@@ -221,7 +249,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Meatzza Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Meatzza</h3>
@@ -233,7 +261,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Riverside Special Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Riverside Special</h3>
@@ -245,7 +273,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Veggie Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Veggie</h3>
@@ -257,7 +285,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Greek Chicken Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Greek Chicken</h3>
@@ -269,7 +297,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg" alt="Chicken Trio Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Chicken Trio</h3>
@@ -281,7 +309,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="BBQ Chicken Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">BBQ Chicken</h3>
@@ -309,7 +337,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Large 1-Topping Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Large 1-Topping Pizza</h3>
@@ -321,6 +349,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Fresh N Fast Pizza" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Fresh N Fast</h3>
@@ -354,7 +383,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
-        
+        <div class="m-img ph-pizza"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Pappa Pan</h3>
@@ -366,7 +395,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        
+        <div class="m-img ph-pizza"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Jr Pan</h3>
@@ -389,6 +418,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/8.jpg" alt="Italian Sandwich" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Italian</h3>
@@ -400,6 +430,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-subs"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Club</h3>
@@ -411,6 +442,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-subs"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Ham & Cheese</h3>
@@ -422,6 +454,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-subs"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Turkey</h3>
@@ -433,6 +466,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-subs"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Tuna</h3>
@@ -455,6 +489,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
+        <div class="m-img ph-pasta"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Chicken Parmesan</h3>
@@ -466,6 +501,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-pasta"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Meat Lasagna</h3>
@@ -477,6 +513,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-pasta"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Baked Ziti</h3>
@@ -488,6 +525,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-pasta"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Macaroni & Cheese</h3>
@@ -510,6 +548,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
+        <div class="m-img ph-wings"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Jumbo Chicken Wings (Baked)</h3>
@@ -521,6 +560,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-wings"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Bread Sticks</h3>
@@ -532,6 +572,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-wings"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Cheese Bread</h3>
@@ -543,7 +584,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        
+        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Cinnamon Bread" loading="lazy"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Cinnamon Bread</h3>
@@ -566,7 +607,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
-        
+        <div class="m-img ph-salads"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Greek</h3>
@@ -578,6 +619,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-salads"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Antipasto</h3>
@@ -589,6 +631,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-salads"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Caesar</h3>
@@ -600,6 +643,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
+        <div class="m-img ph-salads"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Tossed</h3>
@@ -660,24 +704,25 @@
   });
 
   // ── ACTIVE NAV STATE ──────────────────────────
-  const sections = document.querySelectorAll('.menu-section');
-  const navLinks = document.querySelectorAll('.mn-link');
-  
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(sec => {
-      const top = sec.offsetTop;
-      if (window.scrollY >= top - 150) {
-        current = sec.getAttribute('id');
-      }
-    });
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
+  document.querySelectorAll('.menu-section').forEach(sec => {
+    ScrollTrigger.create({
+      trigger: sec,
+      start: 'top 40%',
+      end: 'bottom 40%',
+      onEnter: () => setActive(sec.id),
+      onEnterBack: () => setActive(sec.id),
     });
   });
+  function setActive(id) {
+    document.querySelectorAll('.mn-link').forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === `#${id}`);
+    });
+  }
+</script>
+<script>
+const navHam=document.getElementById('navHam'),mobOverlay=document.getElementById('mobOverlay');
+navHam.addEventListener('click',()=>{navHam.classList.toggle('open');mobOverlay.classList.toggle('open');document.body.style.overflow=mobOverlay.classList.contains('open')?'hidden':''});
+mobOverlay.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navHam.classList.remove('open');mobOverlay.classList.remove('open');document.body.style.overflow=''}));
 </script>
 </body>
 </html>
