@@ -793,72 +793,97 @@
     const DOORDASH_URL = 'https://www.doordash.com/store/riverside-pizza-johns-creek-44822/';
 
     /* ── DATA ───────────────────────────────────────────────── */
+    const WP = 'https://riversidepizza.net/wp-content/uploads/';
     const IMG = {
-      p1: 'https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg',
-      p2: 'https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg',
-      p3: 'https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg',
-      p4: 'https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg',
-      p5: 'https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg',
-      p6: 'https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg',
-      p7: 'https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg',
-      cin:'https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg',
+      /* Specialty pizzas — numbered originals */
+      p1:  WP + '2013/11/1.jpg',
+      p2:  WP + '2013/11/2.jpg',
+      p3:  WP + '2013/11/3.jpg',
+      p4:  WP + '2013/11/4.jpg',
+      p5:  WP + '2013/11/5.jpg',
+      p6:  WP + '2013/11/6.jpg',
+      p7:  WP + '2013/11/7.jpg',
+      p8:  WP + '2013/11/8.jpg',
+      /* New & specialty */
+      newpizza:  WP + '2019/10/newpizza.jpg',
+      newpizza20:WP + '2019/10/newpizza-20.jpg',
+      riverside: WP + '2013/07/riverside-special-pizza-scaled.jpg',
+      halal:     WP + '2019/11/Halal-Chicken.jpg',
+      /* Sides & extras */
+      wings:     WP + '2017/08/new-wings.jpg',
+      cheese_sticks: WP + '2017/08/new-cheesesticks.jpg',
+      breadsticks:   WP + '2013/07/bread-sticks80.jpg',
+      sandwich:  WP + '2017/08/new-oven-baked-sandwich.jpg',
+      cin:       WP + '2019/10/cinnamonbread.jpg',
+      /* Salads */
+      salad1:    WP + '2017/06/Icebergsalad.jpg',
+      salad2:    WP + '2017/06/spinachsalad.jpg',
+      /* GF */
+      gf:        WP + '2019/10/glutenfree-new.jpg',
+      /* Fresh shots (2024 uploads — likely updated product photos) */
+      fresh1:    WP + '2024/06/8401ac89-ec8b-445c-a08a-032c8c58209b.jpg',
+      fresh2:    WP + '2024/06/96ab44ac-7437-4742-82c7-388f20aa9c15.jpg',
+      fresh3:    WP + '2024/06/989b80c4-c84c-428d-b583-5461c31a391f.jpg',
+      /* Homepage shots */
+      home1:     WP + '2020/07/pizza-homepage.jpg',
+      home2:     WP + '2020/07/pizza-homepage-1.jpg',
     };
 
     const MOCK_DB = {
       categories: ['Specialty Pizzas','Fresh N Fast','Build Your Own','Detroit Style','Wings & Sides','Subs & Sandwiches','Salads','Desserts'],
       items: [
         /* ── Specialty Pizzas ───────────────────────────────── */
-        { id:1,  cat:'Specialty Pizzas', name:'Favorite 5',              price:13.29, img:IMG.p1, desc:'Our most-ordered pizza — pepperoni, sausage, beef, mushrooms & green peppers.' },
-        { id:2,  cat:'Specialty Pizzas', name:'Supreme',                 price:13.29, img:IMG.p2, desc:'Pepperoni, Italian sausage, beef, mushrooms, onions, green peppers, black olives.' },
-        { id:3,  cat:'Specialty Pizzas', name:'Meatzza',                 price:13.29, img:IMG.p3, desc:'Pepperoni, Italian sausage, ground beef, ham, and applewood-smoked bacon.' },
-        { id:4,  cat:'Specialty Pizzas', name:'Riverside Special',       price:13.29, img:IMG.p4, desc:'The house signature. A local favorite since day one.' },
-        { id:5,  cat:'Specialty Pizzas', name:'Veggie',                  price:13.29, img:IMG.p5, desc:'Mushrooms, onions, green peppers, black olives, banana peppers, and tomatoes.' },
-        { id:6,  cat:'Specialty Pizzas', name:'Greek Chicken',           price:13.29, img:IMG.p6, desc:'Grilled chicken, feta cheese, Kalamata olives, red onion, and tomatoes.' },
-        { id:7,  cat:'Specialty Pizzas', name:'Chicken Trio',            price:13.29, img:IMG.p7, desc:'Three ways of chicken — grilled, buffalo, and BBQ — on a white garlic base.' },
-        { id:8,  cat:'Specialty Pizzas', name:'BBQ Chicken',             price:13.29, img:IMG.p1, desc:'Grilled chicken breast, house BBQ sauce, red onion, and applewood bacon.' },
-        { id:9,  cat:'Specialty Pizzas', name:'Hawaiian Chicken',        price:13.29, img:IMG.p2, desc:'Grilled chicken, ham, pineapple, and mozzarella on a sweet tomato base.' },
-        { id:10, cat:'Specialty Pizzas', name:'Tandoori Chicken (Halal)',price:13.57, img:IMG.p4, desc:'Halal chicken breast, hand-cut and marinated with tandoori paste.' },
+        { id:1,  cat:'Specialty Pizzas', name:'Favorite 5',              price:13.29, img:IMG.p1,      desc:'Our most-ordered pizza — pepperoni, sausage, beef, mushrooms & green peppers.' },
+        { id:2,  cat:'Specialty Pizzas', name:'Supreme',                 price:13.29, img:IMG.p2,      desc:'Pepperoni, Italian sausage, beef, mushrooms, onions, green peppers, black olives.' },
+        { id:3,  cat:'Specialty Pizzas', name:'Meatzza',                 price:13.29, img:IMG.p3,      desc:'Pepperoni, Italian sausage, ground beef, ham, and applewood-smoked bacon.' },
+        { id:4,  cat:'Specialty Pizzas', name:'Riverside Special',       price:13.29, img:IMG.riverside,desc:'The house signature — named after us. A local favorite since day one.' },
+        { id:5,  cat:'Specialty Pizzas', name:'Veggie',                  price:13.29, img:IMG.p5,      desc:'Mushrooms, onions, green peppers, black olives, banana peppers, and tomatoes.' },
+        { id:6,  cat:'Specialty Pizzas', name:'Greek Chicken',           price:13.29, img:IMG.p6,      desc:'Grilled chicken, feta cheese, Kalamata olives, red onion, and tomatoes.' },
+        { id:7,  cat:'Specialty Pizzas', name:'Chicken Trio',            price:13.29, img:IMG.newpizza, desc:'Three ways of chicken — grilled, buffalo, and BBQ — on a white garlic base.' },
+        { id:8,  cat:'Specialty Pizzas', name:'BBQ Chicken',             price:13.29, img:IMG.p4,      desc:'Grilled chicken breast, house BBQ sauce, red onion, and applewood bacon.' },
+        { id:9,  cat:'Specialty Pizzas', name:'Hawaiian Chicken',        price:13.29, img:IMG.newpizza20,desc:'Grilled chicken, ham, pineapple, and mozzarella on a sweet tomato base.' },
+        { id:10, cat:'Specialty Pizzas', name:'Tandoori Chicken (Halal)',price:13.57, img:IMG.halal,   desc:'Halal chicken breast, hand-cut and marinated with tandoori paste.' },
 
         /* ── Fresh N Fast ───────────────────────────────────── */
-        { id:11, cat:'Fresh N Fast', name:'Large Pepperoni',             price:10.00, img:IMG.p3, desc:'A large 14" classic pepperoni — ready fast, priced right.' },
-        { id:12, cat:'Fresh N Fast', name:'Large Cheese',                price:10.00, img:IMG.p5, desc:'A large 14" classic cheese pizza. Simple and perfect.' },
+        { id:11, cat:'Fresh N Fast', name:'Large Pepperoni',             price:10.00, img:IMG.home1,   desc:'A large 14" classic pepperoni — ready fast, priced right.' },
+        { id:12, cat:'Fresh N Fast', name:'Large Cheese',                price:10.00, img:IMG.home2,   desc:'A large 14" classic cheese pizza. Simple and perfect.' },
 
         /* ── Build Your Own ─────────────────────────────────── */
-        { id:13, cat:'Build Your Own', name:'Large 1-Topping',           price:7.99,  img:IMG.p6, desc:'Start with our 14" large and choose your perfect topping.' },
-        { id:14, cat:'Build Your Own', name:'Large — Build Your Own',    price:8.99,  img:IMG.p2, desc:'Full 14" pizza, fully customizable with any toppings you like.' },
-        { id:15, cat:'Build Your Own', name:'Half & Half (Large)',        price:6.56,  img:IMG.p1, desc:'Two different pizzas in one — split a large 14" any way you want.' },
-        { id:16, cat:'Build Your Own', name:'8" Personal Pizza',          price:2.99,  img:null,   desc:'Individual 8" pizza. Pepperoni & cheese or just cheese.' },
-        { id:17, cat:'Build Your Own', name:'Gluten-Free 8" — 1 Topping',price:9.49,  img:IMG.p5, desc:'8" gluten-free crust with your choice of topping. Light and crispy.' },
-        { id:18, cat:'Build Your Own', name:'10" Gluten-Free — Premium', price:17.15, img:null,   desc:'10" gluten-free crust loaded with premium toppings.' },
+        { id:13, cat:'Build Your Own', name:'Large 1-Topping',           price:7.99,  img:IMG.fresh1,  desc:'Start with our 14" large and choose your perfect topping.' },
+        { id:14, cat:'Build Your Own', name:'Large — Build Your Own',    price:8.99,  img:IMG.fresh2,  desc:'Full 14" pizza, fully customizable with any toppings you like.' },
+        { id:15, cat:'Build Your Own', name:'Half & Half (Large)',        price:6.56,  img:IMG.fresh3,  desc:'Two different pizzas in one — split a large 14" any way you want.' },
+        { id:16, cat:'Build Your Own', name:'8" Personal Pizza',          price:2.99,  img:IMG.p8,     desc:'Individual 8" pizza. Pepperoni & cheese or just cheese.' },
+        { id:17, cat:'Build Your Own', name:'Gluten-Free 8" — 1 Topping',price:9.49,  img:IMG.gf,     desc:'8" gluten-free crust with your choice of topping. Light and crispy.' },
+        { id:18, cat:'Build Your Own', name:'10" Gluten-Free — Premium', price:17.15, img:IMG.gf,     desc:'10" gluten-free crust loaded with premium toppings.' },
 
         /* ── Detroit Style ──────────────────────────────────── */
-        { id:19, cat:'Detroit Style', name:'Pappa Pan — Cheese/1 Topping',price:9.49,  img:IMG.p4, desc:'Detroit-style deep dish — thick, airy, with a signature crispy caramelized edge.' },
-        { id:20, cat:'Detroit Style', name:'Pappa Pan — Premium',         price:14.49, img:IMG.p6, desc:'Our Detroit-style pan loaded with your choice of premium toppings.' },
-        { id:21, cat:'Detroit Style', name:'Pappa Pan — Build Your Own',  price:11.14, img:IMG.p7, desc:'Full Detroit pan, fully customizable. Make it exactly yours.' },
-        { id:22, cat:'Detroit Style', name:'Jr Pan — Cheese/1 Topping',   price:4.99,  img:null,   desc:'The junior Detroit pan. Same great crust — perfect single-serving size.' },
-        { id:23, cat:'Detroit Style', name:'Jr Pan — Premium',             price:8.49,  img:null,   desc:'Jr-sized Detroit pan loaded with premium toppings.' },
+        { id:19, cat:'Detroit Style', name:'Pappa Pan — Cheese/1 Topping',price:9.49,  img:IMG.p7,    desc:'Detroit-style deep dish — thick, airy, with a signature crispy caramelized edge.' },
+        { id:20, cat:'Detroit Style', name:'Pappa Pan — Premium',         price:14.49, img:IMG.p8,    desc:'Our Detroit-style pan loaded with your choice of premium toppings.' },
+        { id:21, cat:'Detroit Style', name:'Pappa Pan — Build Your Own',  price:11.14, img:IMG.fresh1, desc:'Full Detroit pan, fully customizable. Make it exactly yours.' },
+        { id:22, cat:'Detroit Style', name:'Jr Pan — Cheese/1 Topping',   price:4.99,  img:IMG.fresh2, desc:'The junior Detroit pan. Same great crust — perfect single-serving size.' },
+        { id:23, cat:'Detroit Style', name:'Jr Pan — Premium',             price:8.49,  img:IMG.fresh3, desc:'Jr-sized Detroit pan loaded with premium toppings.' },
 
         /* ── Wings & Sides ──────────────────────────────────── */
-        { id:24, cat:'Wings & Sides', name:'Jumbo Wings — 5 pc',         price:6.99,  img:null, desc:'Always baked, never fried. Mild, medium, hot, extreme, BBQ, sweet & spicy, lemon pepper, or teriyaki.' },
-        { id:25, cat:'Wings & Sides', name:'Jumbo Wings — 10 pc',        price:12.99, img:null, desc:'Always baked, never fried. Served with ranch or blue cheese.' },
-        { id:26, cat:'Wings & Sides', name:'Cheese Bread',               price:5.79,  img:IMG.p7, desc:'10 sticks of fresh-baked bread smothered in two types of cheese and finished with garlic.' },
-        { id:27, cat:'Wings & Sides', name:'Pepperoni Cheese Bread',     price:5.99,  img:null, desc:'Our cheese bread loaded with pepperoni. The ultimate side.' },
-        { id:28, cat:'Wings & Sides', name:'Breadsticks',                price:3.59,  img:null, desc:'8 pieces of baked bread topped with garlic butter and parmesan. Served with dipping sauce.' },
-        { id:29, cat:'Wings & Sides', name:'Breadsticks Combo',          price:4.29,  img:null, desc:'8 pieces with pizza sauce or garlic butter.' },
+        { id:24, cat:'Wings & Sides', name:'Jumbo Wings — 5 pc',         price:6.99,  img:IMG.wings,        desc:'Always baked, never fried. Choose from mild, hot, BBQ, lemon pepper, teriyaki, and more.' },
+        { id:25, cat:'Wings & Sides', name:'Jumbo Wings — 10 pc',        price:12.99, img:IMG.wings,        desc:'Always baked, never fried. 10 jumbo wings — served with ranch or blue cheese.' },
+        { id:26, cat:'Wings & Sides', name:'Cheese Bread',               price:5.79,  img:IMG.cheese_sticks, desc:'10 sticks of fresh-baked bread smothered in two types of cheese and finished with garlic.' },
+        { id:27, cat:'Wings & Sides', name:'Pepperoni Cheese Bread',     price:5.99,  img:IMG.cheese_sticks, desc:'Our cheese bread loaded with pepperoni. The ultimate side.' },
+        { id:28, cat:'Wings & Sides', name:'Breadsticks',                price:3.59,  img:IMG.breadsticks,  desc:'8 pieces of baked bread topped with garlic butter and parmesan. Served with dipping sauce.' },
+        { id:29, cat:'Wings & Sides', name:'Breadsticks Combo',          price:4.29,  img:IMG.breadsticks,  desc:'8 pieces with pizza sauce or garlic butter.' },
 
         /* ── Subs & Sandwiches ──────────────────────────────── */
-        { id:30, cat:'Subs & Sandwiches', name:'Italian',                price:5.99, img:null, desc:'Ham, salami, pepperoni, cheese, onion, banana peppers, lettuce, tomato, Italian dressing.' },
-        { id:31, cat:'Subs & Sandwiches', name:'Club',                   price:5.99, img:null, desc:'Turkey, ham, bacon, cheese, lettuce, tomato, and mayo on a toasted hoagie.' },
-        { id:32, cat:'Subs & Sandwiches', name:'Ham & Cheese',           price:5.99, img:null, desc:'Thick-cut ham and melted cheese on a fresh-baked hoagie roll.' },
-        { id:33, cat:'Subs & Sandwiches', name:'Turkey',                 price:5.99, img:null, desc:'Sliced turkey breast with lettuce, tomato, and your choice of dressing.' },
-        { id:34, cat:'Subs & Sandwiches', name:'Tuna',                   price:5.99, img:null, desc:'House tuna salad with lettuce and tomato on a toasted hoagie.' },
+        { id:30, cat:'Subs & Sandwiches', name:'Italian',                price:5.99, img:IMG.sandwich, desc:'Ham, salami, pepperoni, cheese, onion, banana peppers, lettuce, tomato, Italian dressing.' },
+        { id:31, cat:'Subs & Sandwiches', name:'Club',                   price:5.99, img:IMG.sandwich, desc:'Turkey, ham, bacon, cheese, lettuce, tomato, and mayo on a toasted hoagie.' },
+        { id:32, cat:'Subs & Sandwiches', name:'Ham & Cheese',           price:5.99, img:IMG.sandwich, desc:'Thick-cut ham and melted cheese on a fresh-baked hoagie roll.' },
+        { id:33, cat:'Subs & Sandwiches', name:'Turkey',                 price:5.99, img:IMG.sandwich, desc:'Sliced turkey breast with lettuce, tomato, and your choice of dressing.' },
+        { id:34, cat:'Subs & Sandwiches', name:'Tuna',                   price:5.99, img:IMG.sandwich, desc:'House tuna salad with lettuce and tomato on a toasted hoagie.' },
 
         /* ── Salads ─────────────────────────────────────────── */
-        { id:35, cat:'Salads', name:'Greek Salad',                       price:6.29, img:null, desc:'Romaine, tomatoes, cucumber, Kalamata olives, feta, red onion, and Greek dressing.' },
-        { id:36, cat:'Salads', name:'Antipasto Salad',                   price:6.29, img:null, desc:'Mixed greens, ham, salami, pepperoni, provolone, olives, tomatoes, and house Italian.' },
-        { id:37, cat:'Salads', name:'Caesar Salad',                      price:6.29, img:null, desc:'Crisp romaine, house Caesar dressing, parmesan shavings, and croutons.' },
-        { id:38, cat:'Salads', name:'Tossed Salad',                      price:6.29, img:null, desc:'Fresh mixed greens with your choice of dressing.' },
-        { id:39, cat:'Salads', name:'Family Salad',                      price:9.99, img:null, desc:'A large family-sized salad. Serves 4–6. Add chicken for $2.00.' },
+        { id:35, cat:'Salads', name:'Greek Salad',                       price:6.29, img:IMG.salad2, desc:'Romaine, tomatoes, cucumber, Kalamata olives, feta, red onion, and Greek dressing.' },
+        { id:36, cat:'Salads', name:'Antipasto Salad',                   price:6.29, img:IMG.salad1, desc:'Mixed greens, ham, salami, pepperoni, provolone, olives, tomatoes, and house Italian.' },
+        { id:37, cat:'Salads', name:'Caesar Salad',                      price:6.29, img:IMG.salad2, desc:'Crisp romaine, house Caesar dressing, parmesan shavings, and croutons.' },
+        { id:38, cat:'Salads', name:'Tossed Salad',                      price:6.29, img:IMG.salad1, desc:'Fresh mixed greens with your choice of dressing.' },
+        { id:39, cat:'Salads', name:'Family Salad',                      price:9.99, img:IMG.salad2, desc:'A large family-sized salad. Serves 4–6. Add chicken for $2.00.' },
 
         /* ── Desserts ───────────────────────────────────────── */
         { id:40, cat:'Desserts', name:'Cinnamon Sugar Sticks',           price:4.99, img:IMG.cin, desc:'Drizzled with cream cheese icing. Extra icing available for $0.50.' },
