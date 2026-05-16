@@ -14,6 +14,82 @@
   <meta name="twitter:title" content="Riverside Pizza — Handcrafted Pizza Since 1999">
   <meta name="twitter:description" content="Georgia's favorite pizza since 1999. Order carryout online, browse the menu, or find a location near you.">
   <meta name="twitter:image" content="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg">
+  <!-- JSON-LD: Restaurant + Website structured data for Google rich results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Restaurant",
+        "@id": "https://riversidepizza.net/#restaurant",
+        "name": "Riverside Pizza",
+        "alternateName": "Riverside Pizza Georgia",
+        "description": "Family-owned and operated pizza restaurant serving Metro Atlanta since 1999. Handmade dough daily, 100% real mozzarella and provolone, Stanislaus tomato sauce. 8 locations across Metro Atlanta.",
+        "url": "https://riversidepizza.net",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg",
+          "width": 400,
+          "height": 400
+        },
+        "image": [
+          "https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg",
+          "https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg",
+          "https://riversidepizza.net/wp-content/uploads/2017/08/new-wings.jpg"
+        ],
+        "telephone": "+17708221500",
+        "servesCuisine": ["Pizza", "Italian", "American", "Sandwiches"],
+        "priceRange": "$",
+        "foundingDate": "1999",
+        "founder": [
+          { "@type": "Person", "name": "Al Thompson" },
+          { "@type": "Person", "name": "Sandy Thompson" }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "2100 Riverside Pkwy",
+          "addressLocality": "Lawrenceville",
+          "addressRegion": "GA",
+          "postalCode": "30043",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 33.9387,
+          "longitude": -84.0102
+        },
+        "hasMap": "https://www.google.com/maps?q=2100+Riverside+Pkwy,+Lawrenceville,+GA",
+        "menu": "https://riversidepizza.net/menu",
+        "acceptsReservations": false,
+        "currenciesAccepted": "USD",
+        "paymentAccepted": "Cash, Credit Card, Debit Card",
+        "areaServed": [
+          "Lawrenceville, GA", "Suwanee, GA", "Grayson, GA",
+          "Dacula, GA", "Johns Creek, GA", "Cumming, GA", "Metro Atlanta, GA"
+        ],
+        "numberOfLocations": 8,
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Riverside Pizza Menu",
+          "url": "https://riversidepizza.net/menu"
+        },
+        "potentialAction": {
+          "@type": "OrderAction",
+          "target": "https://order.toasttab.com/online/riverside-pizza-johnscreek",
+          "deliveryMethod": "http://purl.org/goodrelations/v1#DeliveryModePickUp"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://riversidepizza.net/#website",
+        "name": "Riverside Pizza",
+        "url": "https://riversidepizza.net",
+        "description": "Official website for Riverside Pizza — 8 locations across Metro Atlanta, Georgia.",
+        "publisher": { "@id": "https://riversidepizza.net/#restaurant" }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
