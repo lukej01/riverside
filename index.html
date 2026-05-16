@@ -20,22 +20,20 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      /* ── Brand greens (OG site #1e5f2c) ── */
       --g:    #1e5f2c;
       --gd:   #143f1d;
       --gl:   #2a7a38;
       --gp:   #f0f6f1;
       --gm:   #ddeadf;
-      /* ── Warm retro accents ── */
       --cream:#fef9f2;
       --wh:   #ffffff;
       --tx:   #2b2826;
       --mu:   #66615b;
       --bdr:  #ebe4d8;
-      /* ── Typography ── */
       --d: 'Playfair Display', serif;
       --f: 'Barlow', sans-serif;
       --m: 'IBM Plex Mono', monospace;
+      --ease: cubic-bezier(0.32,0.72,0,1);
     }
     html { scroll-behavior: auto; }
     body { font-family: var(--f); background: var(--wh); color: var(--tx); overflow-x: hidden; }
@@ -43,258 +41,84 @@
     a { color: inherit; text-decoration: none; }
     .wrap { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
 
-    /* ── NAV ─────────────────────────────── */
+    /* ── FLOATING PILL NAV ────────────────────── */
     #nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0 3rem; height: 80px;
-      display: flex; justify-content: space-between; align-items: center;
-      transition: all 0.3s ease;
-      background: transparent;
-      border-bottom: 1px solid transparent;
+      position: fixed;
+      top: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 3rem);
+      max-width: 1180px;
+      z-index: 100;
+      padding: 0 1.75rem;
+      height: 58px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition: background 0.45s var(--ease), border-color 0.45s var(--ease), box-shadow 0.45s var(--ease), top 0.45s var(--ease);
     }
     #nav.scrolled {
-      background: var(--cream);
-      border-bottom-color: var(--bdr);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+      background: rgba(254,249,242,0.97);
+      border-color: var(--bdr);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+      top: 0.75rem;
     }
-    .logo { display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: transform 0.18s; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; transition: transform 0.24s var(--ease); }
     .logo:hover { transform: scale(1.025); }
-    .logo img { height: 56px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+    .logo img { height: 38px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
     .logo-text { line-height: 1; display: flex; flex-direction: column; justify-content: center; }
-    .logo-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; display: block; }
-    .logo-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mu); margin-top: 4px; display: block; }
+    .logo-name { font-family: var(--d); font-size: 1.2rem; font-weight: 700; color: white; letter-spacing: -0.025em; display: block; transition: color 0.3s; }
+    #nav.scrolled .logo-name { color: var(--g); }
+    .logo-sub { font-family: var(--m); font-size: 0.4rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 3px; display: block; transition: color 0.3s; }
+    #nav.scrolled .logo-sub { color: var(--mu); }
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
-    .nav-links a { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx); padding: 0.4rem 0.9rem; transition: color 0.2s; font-weight: 500; }
-    .nav-links a:hover { color: var(--g); }
-    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.55rem 1.4rem !important; margin-left: 0.6rem; transition: background 0.2s !important; border-radius: 2px; }
-    .nav-cta:hover { background: var(--gd) !important; }
-
-    /* ── HERO SLIDER ─────────────────────── */
-    .hero { position: relative; height: 100dvh; overflow: hidden; }
-    .slide {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      opacity: 0; will-change: opacity;
+    .nav-links a { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.85); padding: 0.4rem 0.85rem; transition: color 0.2s; font-weight: 500; }
+    #nav.scrolled .nav-links a { color: var(--tx); }
+    .nav-links a:hover { color: white; }
+    #nav.scrolled .nav-links a:hover { color: var(--g); }
+    .nav-cta {
+      background: var(--g) !important;
+      color: white !important;
+      padding: 0.5rem 1.25rem !important;
+      margin-left: 0.5rem;
+      border-radius: 9999px !important;
+      transition: background 0.2s var(--ease), transform 0.2s var(--ease) !important;
+      font-size: 0.52rem !important;
     }
-    .slide.active { opacity: 1; }
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: 2;
-      background: none;
-      display: flex; align-items: flex-end;
-      padding: 0 6rem 5rem;
-    }
-    .hero-content { max-width: 700px; }
-    .hero-eyebrow {
-      font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.22em;
-      text-transform: uppercase; color: rgba(160,210,160,0.9);
-      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem;
-      opacity: 0; transform: translateY(20px);
-    }
-    .hero-eyebrow::before { content: ''; width: 2rem; height: 1px; background: currentColor; }
-    .hero-h1 {
-      font-family: var(--d); font-size: clamp(3rem, 6vw, 6.5rem);
-      font-weight: 400; letter-spacing: -0.025em; line-height: 0.96;
-      color: white; margin-bottom: 1.5rem;
-      opacity: 0; transform: translateY(30px);
-    }
-    .hero-h1 em { font-style: italic; color: rgba(180,220,180,0.95); }
-    .hero-tagline {
-      font-size: 1rem; font-weight: 300; line-height: 1.75;
-      color: rgba(255,255,255,0.78); max-width: 50ch; margin-bottom: 2.25rem;
-      opacity: 0; transform: translateY(20px);
-    }
-    .hero-btns { display: flex; gap: 0.85rem; opacity: 0; transform: translateY(20px); }
-    .btn { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; display: inline-block; transition: all 0.2s; border: none; cursor: pointer; }
-    .btn-white { background: white; color: var(--gd); }
-    .btn-white:hover { background: var(--gp); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-    .btn-outline-w { border: 1px solid rgba(255,255,255,0.45); color: white; }
-    .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: white; }
-    .btn-green { background: var(--g); color: white; }
-    .btn-green:hover { background: var(--gl); transform: translateY(-2px); }
-    .btn-outline-g { border: 1px solid var(--g); color: var(--g); }
-    .btn-outline-g:hover { background: var(--gp); }
+    .nav-cta:hover { background: var(--gl) !important; transform: scale(1.04) !important; }
 
-    .slider-dots { position: absolute; bottom: 2rem; right: 6rem; z-index: 3; display: flex; gap: 0.5rem; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
-    .dot.active { background: white; width: 24px; border-radius: 4px; }
-    .slider-arrows { position: absolute; bottom: 1.6rem; right: calc(6rem + 100px); z-index: 3; display: flex; gap: 0.35rem; }
-    .sarrow { background: rgba(255,255,255,0.15); border: none; color: white; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; transition: background 0.2s; }
-    .sarrow:hover { background: rgba(255,255,255,0.3); }
-
-    /* ── STATS ───────────────────────────── */
-    .stats { background: var(--gd); display: grid; grid-template-columns: repeat(4,1fr); }
-    .stat { padding: 2rem 2.5rem; border-right: 1px solid rgba(255,255,255,0.08); text-align: center; }
-    .stat:last-child { border-right: none; }
-    .stat-num { font-family: var(--d); font-size: 2.5rem; font-weight: 700; color: rgba(160,220,160,0.95); line-height: 1; }
-    .stat-label { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.4rem; }
-
-    /* ── MARQUEE ─────────────────────────── */
-    .marquee { background: var(--g); overflow: hidden; padding: 0.82rem 0; white-space: nowrap; }
-    .mq-track { display: inline-flex; animation: mq 28s linear infinite; }
-    .mq-track span { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.17em; text-transform: uppercase; color: rgba(255,255,255,0.85); padding: 0 2rem; }
-    .mq-track .sep { color: rgba(255,255,255,0.35); padding: 0; }
-    @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* ── DEALS ───────────────────────────── */
-    .deals { padding: 7rem 0; background: var(--wh); }
-    .deals .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
-    .deal-card { position: relative; overflow: hidden; min-height: 480px; display: flex; align-items: flex-end; }
-    .deal-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
-    .deal-card:hover .deal-bg { transform: scale(1.04); }
-    .deal-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,72,32,0.96) 0%, rgba(26,72,32,0.5) 55%, rgba(26,72,32,0.1) 100%); }
-    .deal-body { position: relative; z-index: 2; padding: 2.5rem 3rem; width: 100%; }
-    .deal-tag { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(160,220,160,0.85); margin-bottom: 0.5rem; }
-    .deal-price { font-family: var(--d); font-size: 4rem; font-weight: 700; color: white; line-height: 1; }
-    .deal-name { font-family: var(--d); font-size: 1.4rem; font-weight: 500; color: white; margin: 0.3rem 0 0.75rem; letter-spacing: -0.01em; }
-    .deal-items { font-size: 0.82rem; color: rgba(255,255,255,0.7); font-weight: 300; line-height: 1.6; margin-bottom: 1.5rem; }
-    .deal-section-head { max-width: 1280px; margin: 0 auto; padding: 0 5rem 3rem; }
-
-    /* ── ANNIVERSARY ─────────────────────── */
-    .anniversary { background: var(--gm); padding: 7rem 5.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .ann-content { max-width: 800px; display: flex; flex-direction: column; align-items: center; }
-    .ann-content .ey { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-    .ann-h { font-family: var(--d); font-size: clamp(2rem, 4vw, 4rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.5rem; }
-    .ann-h em { font-style: italic; color: var(--g); }
-    .ann-p { font-size: 0.9rem; line-height: 1.9; color: var(--mu); max-width: 55ch; margin-bottom: 0.9rem; font-weight: 300; }
-    .signature { font-family: var(--d); font-style: italic; font-size: 1.15rem; color: var(--g); margin-top: 1.5rem; }
-    .ann-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gd); color: white; padding: 0.6rem 1.2rem; margin-bottom: 1.5rem; }
-    .ann-badge-num { font-family: var(--d); font-size: 1.5rem; font-weight: 700; line-height: 1; }
-    .ann-badge-lbl { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; }
-
-    /* ── INGREDIENTS ─────────────────────── */
-    .ingredients { padding: 7rem 0; background: var(--wh); }
-    .ing-head { padding: 0 5rem 4rem; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: end; }
-    .sec-ey { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
-    .sec-ey::before { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
-    .sec-h { font-family: var(--d); letter-spacing: -0.02em; line-height: 1.08; }
-    .sec-h em { font-style: italic; color: var(--g); }
-    .ing-head .sec-h { font-size: clamp(2rem, 3vw, 3.4rem); font-weight: 500; }
-    .ing-desc { font-size: 0.9rem; line-height: 1.9; color: var(--mu); font-weight: 300; }
-    .ing-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
-    .ing-card { background: var(--wh); padding: 2.25rem; border: 1px solid var(--bdr); display: flex; flex-direction: column; align-items: flex-start; transition: background 0.25s, border-color 0.25s; }
-    .ing-card:hover { background: var(--gp); border-color: var(--g); }
-    .ing-num { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--g); margin-bottom: 1rem; }
-    .ing-title { font-family: var(--d); font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .ing-text { font-size: 0.85rem; line-height: 1.75; color: var(--mu); font-weight: 300; }
-    .ing-card.promise { background: var(--gd); border-color: var(--gd); }
-    .ing-card.promise .ing-num { color: rgba(160,220,160,0.8); }
-    .ing-card.promise .ing-title { color: white; }
-    .ing-card.promise .ing-text { color: rgba(255,255,255,0.7); }
-    .ing-card.promise:hover { background: var(--g); }
-
-    /* ── HORIZONTAL GALLERY ──────────────── */
-    .gallery-section { background: var(--cream); overflow: hidden; }
-    .gallery-pin { overflow: hidden; }
-    .gallery-inner { padding: 5rem 0; }
-    .gallery-label { padding: 0 0 2.5rem 5rem; }
-    .gallery-label .sec-ey { }
-    .gallery-label .sec-h { font-size: clamp(1.8rem, 2.8vw, 3rem); font-weight: 500; }
-    .gallery-track { display: flex; gap: 12px; padding: 0 5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2rem; cursor: grab; }
-    .gallery-track::-webkit-scrollbar { display: none; }
-    .gallery-item { flex-shrink: 0; height: 56vh; width: auto; position: relative; }
-    .gallery-item img { height: 100%; width: auto; object-fit: cover; display: block; transition: transform 0.5s ease; }
-    .gallery-item:hover img { transform: scale(1.03); }
-    .gallery-item.tall { height: 56vh; }
-    .gallery-item.wide { width: 700px; height: 56vh; }
-    .gallery-item.wide img { width: 100%; height: 100%; }
-    .gallery-hint { padding: 1.5rem 0 0 5rem; font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mu); display: flex; align-items: center; gap: 0.5rem; }
-    .gallery-hint::before { content: ''; width: 1rem; height: 1px; background: var(--mu); }
-
-    /* ── GUARANTEE ───────────────────────── */
-    .guarantee { background: var(--gd); padding: 7rem 0; }
-    .guar-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; }
-    .guar-ey { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(160,220,160,0.8); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
-    .guar-ey::before { content: ''; width: 1.5rem; height: 1px; background: rgba(160,220,160,0.8); }
-    .guar-h { font-family: var(--d); font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 500; color: white; margin-bottom: 1.5rem; line-height: 1.08; }
-    .guar-h em { font-style: italic; color: rgba(180,230,180,0.9); }
-    .guar-body { font-family: var(--d); font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.72); line-height: 1.7; margin-bottom: 1.5rem; }
-    .guar-bold { font-family: var(--d); font-size: 1.2rem; font-weight: 600; color: rgba(180,230,180,0.95); padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
-    .quote-panel { border: 1px solid rgba(255,255,255,0.12); padding: 3rem; }
-    .qm { font-family: var(--d); font-size: 5rem; color: rgba(160,220,160,0.25); line-height: 0.6; margin-bottom: 1.5rem; }
-    .qt { font-family: var(--d); font-size: clamp(1.1rem, 1.9vw, 1.65rem); font-style: italic; color: white; line-height: 1.5; margin-bottom: 1.25rem; }
-    .qs { font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
-
-    /* ── LOCATIONS ───────────────────────── */
-    .locations { padding: 7rem 0; background: var(--wh); }
-    .loc-head { max-width: 1280px; margin: 0 auto; padding: 0 5rem 3.5rem; display: flex; justify-content: space-between; align-items: flex-end; }
-    .loc-head .sec-h { font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 500; }
-    .loc-head-links { display: flex; gap: 1.5rem; }
-    .loc-link { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.35rem; transition: gap 0.2s; }
-    .loc-link:hover { gap: 0.6rem; }
-    .loc-link::after { content: '→'; }
-    .loc-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--bdr); border-left: 1px solid var(--bdr); }
-    .loc-card { padding: 1.75rem 1.75rem 1.5rem; border-right: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr); transition: background 0.22s; }
-    .loc-card:hover { background: var(--gp); }
-    .loc-name { font-family: var(--d); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.15rem; transition: color 0.2s; }
-    .loc-card:hover .loc-name { color: var(--g); }
-    .loc-sub { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); margin-bottom: 0.8rem; }
-    .loc-addr { font-size: 0.78rem; line-height: 1.65; color: var(--mu); font-weight: 300; margin-bottom: 0.65rem; }
-    .loc-phone { font-family: var(--m); font-size: 0.7rem; color: var(--g); display: block; margin-bottom: 0.6rem; }
-    .loc-dir { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mu); display: inline-flex; align-items: center; gap: 0.3rem; transition: color 0.2s; }
-    .loc-dir:hover { color: var(--g); }
-    .loc-dir::after { content: '→'; }
-
-    /* ── CTA STRIP ───────────────────────── */
-    .cta-strip { background: var(--g); padding: 2.75rem 5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
-    .cta-text { font-family: var(--d); font-size: 1.45rem; font-style: italic; color: white; }
-    .cta-links { display: flex; gap: 0.75rem; flex-shrink: 0; }
-
-    /* ── FOOTER ──────────────────────────── */
-    footer { background: var(--gd); padding: 4rem 5rem 2.5rem; }
-    .ft-top { display: flex; justify-content: space-between; gap: 4rem; padding-bottom: 3rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .ft-brand .fn { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; }
-    .ft-brand .fs { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
-    .ft-cols { display: grid; grid-template-columns: repeat(3, auto); gap: 4rem; }
-    .ft-col-title { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(160,220,160,0.7); margin-bottom: 1rem; }
-    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
-    .ft-col a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; font-weight: 300; }
-    .ft-col a:hover { color: white; }
-    .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
-    .ft-copy { font-family: var(--m); font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
-
-    /* ── HAMBURGER NAV ──────────────────────── */
+    /* ── HAMBURGER ─────────────────────────────── */
     .nav-ham {
       display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 6px;
-      flex-direction: column;
-      gap: 5px;
-      z-index: 200;
+      background: none; border: none; cursor: pointer;
+      padding: 6px; flex-direction: column; gap: 5px; z-index: 200;
     }
     .nav-ham span {
-      display: block;
-      width: 22px;
-      height: 1.5px;
-      background: var(--tx);
-      transition: transform 0.32s cubic-bezier(0.32,0.72,0,1), opacity 0.2s;
+      display: block; width: 22px; height: 1.5px;
+      background: white;
+      transition: transform 0.35s var(--ease), opacity 0.2s, background 0.3s;
       transform-origin: center;
     }
-    #nav.hero-nav .nav-ham span { background: white; }
+    #nav.scrolled .nav-ham span { background: var(--tx); }
     .nav-ham.open span:first-child { transform: translateY(6.5px) rotate(45deg); }
-    .nav-ham.open span:last-child { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-ham.open span:last-child  { transform: translateY(-6.5px) rotate(-45deg); }
     .mob-overlay {
-      display: none;
-      position: fixed; inset: 0; z-index: 150;
+      display: none; position: fixed; inset: 0; z-index: 150;
       background: var(--cream);
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 0;
+      flex-direction: column; justify-content: center; align-items: center; gap: 0;
     }
     .mob-overlay.open { display: flex; }
     .mob-overlay a {
-      font-family: var(--d);
-      font-size: clamp(1.6rem, 5vw, 2.2rem);
-      font-weight: 500;
-      color: var(--tx);
-      padding: 1rem 2rem;
-      letter-spacing: -0.02em;
-      text-decoration: none;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: color 0.2s;
+      font-family: var(--d); font-size: clamp(1.6rem,5vw,2.2rem);
+      font-weight: 500; color: var(--tx); padding: 1rem 2rem;
+      letter-spacing: -0.02em; text-decoration: none;
+      opacity: 0; transform: translateY(16px);
+      transition: color 0.2s, opacity 0.4s var(--ease), transform 0.4s var(--ease);
     }
     .mob-overlay.open a { opacity: 1; transform: translateY(0); }
     .mob-overlay a:nth-child(1) { transition-delay: 0.06s; }
@@ -303,35 +127,253 @@
     .mob-overlay a:nth-child(4) { transition-delay: 0.24s; }
     .mob-overlay a:nth-child(5) { transition-delay: 0.30s; }
     .mob-overlay a.mob-cta {
-      font-family: var(--m);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      background: var(--g);
-      color: white;
-      padding: 1rem 2.5rem;
-      margin-top: 1.5rem;
-      border-radius: 2px;
-      font-weight: 500;
-      font-style: normal;
-      opacity: 0;
-      transform: translateY(16px);
-      transition-delay: 0.36s;
+      font-family: var(--m); font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; background: var(--g); color: white;
+      padding: 0.9rem 2.5rem; margin-top: 1.5rem; border-radius: 9999px;
+      font-weight: 500; font-style: normal;
+      opacity: 0; transform: translateY(16px); transition-delay: 0.36s;
     }
 
+    /* ── HERO ──────────────────────────────────── */
+    .hero { position: relative; height: 100dvh; overflow: hidden; }
+    .slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; will-change: opacity;
+    }
+    .slide.active { opacity: 1; }
+
+    /* Cinematic angled gradient — darkens left where text lives, photo breathes on right */
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(108deg,
+        rgba(8,18,8,0.86) 0%,
+        rgba(8,18,8,0.62) 28%,
+        rgba(8,18,8,0.24) 58%,
+        transparent 82%
+      );
+      display: flex; align-items: flex-end;
+      padding: 0 6rem 6rem;
+    }
+    .hero-content { max-width: 640px; }
+    .hero-eyebrow {
+      font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(160,215,160,0.9);
+      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem;
+      opacity: 0; transform: translateY(22px);
+    }
+    .hero-eyebrow::before { content: ''; width: 2rem; height: 1px; background: currentColor; }
+    .hero-h1 {
+      font-family: var(--d); font-size: clamp(3rem, 6vw, 6.5rem);
+      font-weight: 400; letter-spacing: -0.03em; line-height: 0.96;
+      color: white; margin-bottom: 1.6rem;
+      text-shadow: 0 2px 32px rgba(0,0,0,0.45);
+      opacity: 0; transform: translateY(32px);
+    }
+    .hero-h1 em { font-style: italic; color: rgba(180,225,180,0.95); }
+    .hero-tagline {
+      font-size: 1rem; font-weight: 300; line-height: 1.8;
+      color: rgba(255,255,255,0.82); max-width: 46ch; margin-bottom: 2.5rem;
+      text-shadow: 0 1px 14px rgba(0,0,0,0.4);
+      opacity: 0; transform: translateY(22px);
+    }
+    .hero-btns { display: flex; gap: 0.85rem; opacity: 0; transform: translateY(22px); flex-wrap: wrap; }
+
+    /* ── BUTTONS ───────────────────────────────── */
+    .btn {
+      font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.85rem 2rem;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      transition: all 0.28s var(--ease);
+      border: none; cursor: pointer; border-radius: 9999px;
+      white-space: nowrap;
+    }
+    .btn-arrow {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(0,0,0,0.1); display: flex; align-items: center;
+      justify-content: center; font-size: 0.75rem; flex-shrink: 0;
+      transition: transform 0.28s var(--ease);
+    }
+    .btn:hover .btn-arrow { transform: translate(2px,-1px) scale(1.08); }
+    .btn-white { background: white; color: var(--gd); }
+    .btn-white:hover { background: var(--gp); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
+    .btn-white .btn-arrow { background: rgba(0,0,0,0.07); }
+    .btn-outline-w { border: 1px solid rgba(255,255,255,0.5); color: white; }
+    .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-2px); }
+    .btn-green { background: var(--g); color: white; }
+    .btn-green:hover { background: var(--gl); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,95,44,0.3); }
+    .btn-green .btn-arrow { background: rgba(255,255,255,0.15); }
+    .btn-outline-g { border: 1px solid var(--g); color: var(--g); }
+    .btn-outline-g:hover { background: var(--gp); transform: translateY(-2px); }
+
+    /* Active press */
+    .btn:active { transform: scale(0.98) !important; }
+
+    .slider-dots { position: absolute; bottom: 2rem; right: 6rem; z-index: 3; display: flex; gap: 0.5rem; align-items: center; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.35s var(--ease); border: none; padding: 0; }
+    .dot.active { background: white; width: 22px; border-radius: 4px; }
+    .slider-arrows { position: absolute; bottom: 1.6rem; right: calc(6rem + 90px); z-index: 3; display: flex; gap: 0.35rem; }
+    .sarrow {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18);
+      color: white; width: 34px; height: 34px; cursor: pointer; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 0.75rem;
+      transition: background 0.22s var(--ease), border-color 0.22s;
+    }
+    .sarrow:hover { background: rgba(255,255,255,0.26); border-color: rgba(255,255,255,0.4); }
+
+    /* ── STATS ─────────────────────────────────── */
+    .stats { background: var(--gd); display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat {
+      padding: 2.25rem 2.5rem; border-right: 1px solid rgba(255,255,255,0.07);
+      text-align: center; transition: background 0.22s;
+    }
+    .stat:hover { background: rgba(255,255,255,0.03); }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: var(--d); font-size: 2.6rem; font-weight: 700; color: rgba(160,222,160,0.96); line-height: 1; }
+    .stat-label { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.45rem; }
+
+    /* ── MARQUEE ───────────────────────────────── */
+    .marquee { background: var(--g); overflow: hidden; padding: 0.8rem 0; white-space: nowrap; }
+    .mq-track { display: inline-flex; animation: mq 28s linear infinite; }
+    .mq-track span { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.85); padding: 0 2rem; }
+    .mq-track .sep { color: rgba(255,255,255,0.32); padding: 0; }
+    @keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── DEALS ─────────────────────────────────── */
+    .deals { padding: 8rem 0; background: var(--wh); }
+    .deals .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .deal-card { position: relative; overflow: hidden; min-height: 500px; display: flex; align-items: flex-end; }
+    .deal-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.7s var(--ease); }
+    .deal-card:hover .deal-bg { transform: scale(1.045); }
+    .deal-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,32,14,0.96) 0%, rgba(14,32,14,0.55) 55%, rgba(14,32,14,0.1) 100%); }
+    .deal-body { position: relative; z-index: 2; padding: 2.5rem 3rem; width: 100%; }
+    .deal-tag { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(160,222,160,0.85); margin-bottom: 0.5rem; }
+    .deal-price { font-family: var(--d); font-size: 4rem; font-weight: 700; color: white; line-height: 1; }
+    .deal-name { font-family: var(--d); font-size: 1.4rem; font-weight: 500; color: white; margin: 0.3rem 0 0.75rem; letter-spacing: -0.01em; }
+    .deal-items { font-size: 0.82rem; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.65; margin-bottom: 1.75rem; }
+    .deal-section-head { max-width: 1280px; margin: 0 auto; padding: 0 5rem 3.5rem; }
+
+    /* ── ANNIVERSARY ───────────────────────────── */
+    .anniversary { background: var(--gm); padding: 8rem 5.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .ann-content { max-width: 780px; display: flex; flex-direction: column; align-items: center; }
+    .ann-content .ey { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .ann-h { font-family: var(--d); font-size: clamp(2rem, 4vw, 4rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.5rem; }
+    .ann-h em { font-style: italic; color: var(--g); }
+    .ann-p { font-size: 0.9rem; line-height: 1.95; color: var(--mu); max-width: 55ch; margin-bottom: 0.9rem; font-weight: 300; }
+    .signature { font-family: var(--d); font-style: italic; font-size: 1.2rem; color: var(--g); margin-top: 1.75rem; }
+    .ann-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gd); color: white; padding: 0.6rem 1.4rem; margin-bottom: 1.75rem; border-radius: 9999px; }
+    .ann-badge-num { font-family: var(--d); font-size: 1.5rem; font-weight: 700; line-height: 1; }
+    .ann-badge-lbl { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; }
+
+    /* ── INGREDIENTS ───────────────────────────── */
+    .ingredients { padding: 8rem 0; background: var(--wh); }
+    .ing-head { padding: 0 5rem 4.5rem; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: end; }
+    .sec-ey { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
+    .sec-ey::before { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
+    .sec-h { font-family: var(--d); letter-spacing: -0.02em; line-height: 1.08; }
+    .sec-h em { font-style: italic; color: var(--g); }
+    .ing-head .sec-h { font-size: clamp(2rem, 3vw, 3.4rem); font-weight: 500; }
+    .ing-desc { font-size: 0.9rem; line-height: 1.95; color: var(--mu); font-weight: 300; }
+    .ing-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
+    .ing-card {
+      background: var(--wh); padding: 2.5rem; border: 1px solid var(--bdr);
+      display: flex; flex-direction: column; align-items: flex-start;
+      transition: background 0.28s var(--ease), border-color 0.28s, transform 0.28s var(--ease);
+    }
+    .ing-card:hover { background: var(--gp); border-color: rgba(30,95,44,0.35); transform: translateY(-2px); }
+    .ing-num { font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--g); margin-bottom: 1rem; }
+    .ing-title { font-family: var(--d); font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .ing-text { font-size: 0.84rem; line-height: 1.8; color: var(--mu); font-weight: 300; }
+    .ing-card.promise { background: var(--gd); border-color: var(--gd); }
+    .ing-card.promise .ing-num { color: rgba(160,222,160,0.8); }
+    .ing-card.promise .ing-title { color: white; }
+    .ing-card.promise .ing-text { color: rgba(255,255,255,0.68); }
+    .ing-card.promise:hover { background: var(--g); transform: translateY(-2px); }
+
+    /* ── GALLERY ───────────────────────────────── */
+    .gallery-section { background: var(--cream); overflow: hidden; }
+    .gallery-inner { padding: 6rem 0; }
+    .gallery-label { padding: 0 0 2.5rem 5rem; }
+    .gallery-label .sec-h { font-size: clamp(1.8rem, 2.8vw, 3rem); font-weight: 500; }
+    .gallery-track {
+      display: flex; gap: 10px; padding: 0 5rem; overflow-x: auto;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      padding-bottom: 2rem; cursor: grab;
+    }
+    .gallery-track::-webkit-scrollbar { display: none; }
+    .gallery-item { flex-shrink: 0; height: 56vh; width: auto; position: relative; overflow: hidden; border-radius: 3px; }
+    .gallery-item img { height: 100%; width: auto; object-fit: cover; display: block; transition: transform 0.6s var(--ease); }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item.wide { width: 700px; height: 56vh; }
+    .gallery-item.wide img { width: 100%; height: 100%; }
+    .gallery-hint { padding: 1.25rem 0 0 5rem; font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mu); display: flex; align-items: center; gap: 0.5rem; }
+    .gallery-hint::before { content: ''; width: 1rem; height: 1px; background: var(--mu); }
+
+    /* ── GUARANTEE ─────────────────────────────── */
+    .guarantee { background: var(--gd); padding: 8rem 0; }
+    .guar-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; }
+    .guar-ey { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(160,222,160,0.8); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
+    .guar-ey::before { content: ''; width: 1.5rem; height: 1px; background: rgba(160,222,160,0.8); }
+    .guar-h { font-family: var(--d); font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 500; color: white; margin-bottom: 1.5rem; line-height: 1.08; }
+    .guar-h em { font-style: italic; color: rgba(180,232,180,0.9); }
+    .guar-body { font-family: var(--d); font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.7); line-height: 1.75; margin-bottom: 1.5rem; }
+    .guar-bold { font-family: var(--d); font-size: 1.2rem; font-weight: 600; color: rgba(180,232,180,0.95); padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .quote-panel { border: 1px solid rgba(255,255,255,0.11); padding: 3rem; border-radius: 4px; }
+    .qm { font-family: var(--d); font-size: 5rem; color: rgba(160,222,160,0.2); line-height: 0.6; margin-bottom: 1.5rem; }
+    .qt { font-family: var(--d); font-size: clamp(1.05rem, 1.85vw, 1.6rem); font-style: italic; color: white; line-height: 1.55; margin-bottom: 1.25rem; }
+    .qs { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+
+    /* ── LOCATIONS ─────────────────────────────── */
+    .locations { padding: 8rem 0; background: var(--wh); }
+    .loc-head { max-width: 1280px; margin: 0 auto; padding: 0 5rem 4rem; display: flex; justify-content: space-between; align-items: flex-end; }
+    .loc-head .sec-h { font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 500; }
+    .loc-head-links { display: flex; gap: 1.5rem; }
+    .loc-link { font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.35rem; transition: gap 0.22s var(--ease); }
+    .loc-link:hover { gap: 0.6rem; }
+    .loc-link::after { content: '→'; }
+    .loc-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--bdr); border-left: 1px solid var(--bdr); }
+    .loc-card { padding: 1.85rem 1.85rem 1.65rem; border-right: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr); transition: background 0.24s var(--ease); }
+    .loc-card:hover { background: var(--gp); }
+    .loc-name { font-family: var(--d); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.15rem; transition: color 0.2s; }
+    .loc-card:hover .loc-name { color: var(--g); }
+    .loc-sub { font-family: var(--m); font-size: 0.43rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); margin-bottom: 0.8rem; }
+    .loc-addr { font-size: 0.77rem; line-height: 1.7; color: var(--mu); font-weight: 300; margin-bottom: 0.65rem; }
+    .loc-phone { font-family: var(--m); font-size: 0.68rem; color: var(--g); display: block; margin-bottom: 0.6rem; }
+    .loc-dir { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mu); display: inline-flex; align-items: center; gap: 0.3rem; transition: color 0.2s, gap 0.2s; }
+    .loc-dir:hover { color: var(--g); gap: 0.5rem; }
+    .loc-dir::after { content: '→'; }
+
+    /* ── CTA STRIP ─────────────────────────────── */
+    .cta-strip { background: var(--g); padding: 3rem 5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+    .cta-text { font-family: var(--d); font-size: 1.5rem; font-style: italic; color: white; }
+    .cta-links { display: flex; gap: 0.75rem; flex-shrink: 0; }
+
+    /* ── FOOTER ────────────────────────────────── */
+    footer { background: var(--gd); padding: 4.5rem 5rem 2.5rem; }
+    .ft-top { display: flex; justify-content: space-between; gap: 4rem; padding-bottom: 3rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .ft-brand .fn { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; }
+    .ft-brand .fs { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 4px; }
+    .ft-cols { display: grid; grid-template-columns: repeat(3, auto); gap: 4rem; }
+    .ft-col-title { font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(160,222,160,0.68); margin-bottom: 1rem; }
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .ft-col a { font-size: 0.82rem; color: rgba(255,255,255,0.52); transition: color 0.2s; font-weight: 300; }
+    .ft-col a:hover { color: white; }
+    .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .ft-copy { font-family: var(--m); font-size: 0.43rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.22); }
+
+    /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 960px) {
       .nav-ham { display: flex; }
       .nav-links { display: none !important; }
-      #nav { padding: 0 1.5rem; }
+      #nav { width: calc(100% - 2rem); padding: 0 1.25rem; }
       .hero-overlay { padding: 0 2rem 4rem; }
-      .hero-overlay { background: none !important; }
       .hero-h1 { font-size: 2.8rem; }
       .stats { grid-template-columns: 1fr 1fr; }
       .stat:nth-child(2) { border-right: none; }
       .deals .wrap { grid-template-columns: 1fr; }
-      .deal-section-head { padding: 0 2rem 2rem; }
-      .deal-card { min-height: 360px; }
-      .anniversary { padding: 5rem 2rem; }
+      .deal-section-head { padding: 0 2rem 2.5rem; }
+      .deal-card { min-height: 380px; }
+      .anniversary { padding: 6rem 2rem; }
       .ann-content { padding: 0; }
       .ingredients { padding: 5rem 0; }
       .ing-head { padding: 0 2rem 2.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
@@ -345,30 +387,31 @@
       .locations { padding: 5rem 0; }
       .loc-head { padding: 0 2rem 2.5rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .loc-grid { padding: 0 2rem; grid-template-columns: 1fr 1fr; }
-      .cta-strip { padding: 2rem; flex-direction: column; text-align: center; }
-      footer { padding: 3rem 2rem 2rem; }
+      .cta-strip { padding: 2.5rem 2rem; flex-direction: column; text-align: center; }
+      footer { padding: 3.5rem 2rem 2rem; }
       .ft-top { flex-direction: column; }
       .ft-cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .ft-bottom { flex-direction: column; gap: 0.75rem; }
+      .ft-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
       .wrap { padding: 0 2rem; }
     }
     @media (max-width: 520px) {
       .loc-grid { grid-template-columns: 1fr; }
       .stats { grid-template-columns: 1fr 1fr; }
+      .hero-overlay { padding: 0 1.5rem 3.5rem; }
     }
   </style>
 </head>
 <body>
 
 <!-- ── NAV ───────────────────────────────────── -->
-<nav id="nav" class="hero-nav">
-  <div class="logo">
+<nav id="nav">
+  <a href="index.html" class="logo">
     <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
     <div class="logo-text">
       <span class="logo-name">Riverside Pizza</span>
       <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
     </div>
-  </div>
+  </a>
   <ul class="nav-links">
     <li><a href="menu.html">Menu</a></li>
     <li><a href="catering.html">Catering</a></li>
@@ -376,11 +419,10 @@
     <li><a href="about.html">About</a></li>
     <li><a href="locations.html" class="nav-cta">Order Online</a></li>
   </ul>
+  <button class="nav-ham" id="navHam" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
 </nav>
-
-<button class="nav-ham" id="navHam" aria-label="Open menu">
-  <span></span><span></span>
-</button>
 
 <div class="mob-overlay" id="mobOverlay">
   <a href="menu.html">Menu</a>
@@ -404,7 +446,7 @@
       <h1 class="hero-h1">Always fresh.<br><em>Always homemade.</em></h1>
       <p class="hero-tagline">Owners operate every store. Ingredients prepared fresh, daily. Quality and standards that are never compromised.</p>
       <div class="hero-btns">
-        <a href="locations.html" class="btn btn-white">Order Online</a>
+        <a href="locations.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
         <a href="locations.html" class="btn btn-outline-w">Find a Location</a>
       </div>
     </div>
@@ -457,7 +499,7 @@
 <section class="deals">
   <div class="deal-section-head">
     <div class="sec-ey">Featured Specials</div>
-    <h2 class="sec-h" style="font-size:clamp(2rem,3vw,3.2rem); font-weight:500;">Deals worth <em style="font-style:italic; color:var(--g);">sharing.</em></h2>
+    <h2 class="sec-h" style="font-size:clamp(2rem,3vw,3.2rem); font-weight:500;">Deals worth <em>sharing.</em></h2>
   </div>
   <div class="wrap">
     <div class="deal-card">
@@ -468,7 +510,7 @@
         <div class="deal-price">$25.99</div>
         <div class="deal-name">Ultimate Family Meal Deal</div>
         <div class="deal-items">2 Large 1 Topping Pizzas · Breadsticks &amp; Sauce · Family Size Salad</div>
-        <a href="locations.html" class="btn btn-white">Order Now</a>
+        <a href="locations.html" class="btn btn-white">Order Now <span class="btn-arrow">↗</span></a>
       </div>
     </div>
     <div class="deal-card">
@@ -479,7 +521,7 @@
         <div class="deal-price">$5.99</div>
         <div class="deal-name">Italian Sandwiches</div>
         <div class="deal-items">Oven baked to perfection with the freshest ingredients.</div>
-        <a href="menu.html" class="btn btn-white">View Menu</a>
+        <a href="menu.html" class="btn btn-white">View Menu <span class="btn-arrow">→</span></a>
       </div>
     </div>
   </div>
@@ -492,13 +534,13 @@
       <span class="ann-badge-num">25</span>
       <span class="ann-badge-lbl">Years of Excellence</span>
     </div>
-    <div class="ey gs-reveal" style="font-family:var(--m);font-size:0.57rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1rem;">
+    <div class="ey gs-reveal" style="font-family:var(--m);font-size:0.54rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1rem;">
       Celebrating 25 Years
     </div>
     <h2 class="ann-h gs-reveal">Family owned and operated <em>since 1999.</em></h2>
     <p class="ann-p gs-reveal">As we proudly celebrate our 25th Anniversary, we want to take a moment to express our deepest gratitude to you, our cherished customers. Your unwavering support and loyalty have been the foundation of our journey, and we couldn't have reached this milestone without you.</p>
     <p class="ann-p gs-reveal">Over the years, we have strived to provide you with exceptional meals, and it's your trust in us that has inspired us to continuously improve and innovate. This anniversary is more than just a celebration of time; it's a celebration of the relationships we've built and the memories we've created together.</p>
-    <p class="ann-p gs-reveal">Thank you for being a part of our story – here's to many more years of serving you with passion and dedication!</p>
+    <p class="ann-p gs-reveal">Thank you for being a part of our story — here's to many more years of serving you with passion and dedication!</p>
     <div class="signature gs-reveal">~Al &amp; Sandy Thompson</div>
   </div>
 </section>
@@ -510,7 +552,7 @@
       <div class="sec-ey gs-reveal">Always Fresh · Quality Ingredients</div>
       <h2 class="sec-h gs-reveal" style="font-size:clamp(2rem,3vw,3.4rem);font-weight:500;">Riverside Pizza is dedicated to<br><em>our high quality standards.</em></h2>
     </div>
-    <p class="ing-desc gs-reveal">We understand that our success depends on the quality of food we serve and we couldn't give outstanding quality without investing in quality ingredients!</p>
+    <p class="ing-desc gs-reveal">We understand that our success depends on the quality of food we serve and we couldn't give outstanding quality without investing in quality ingredients.</p>
   </div>
   <div class="ing-grid">
     <div class="ing-card gs-stagger">
@@ -529,31 +571,29 @@
       <div class="ing-num">05 Produce</div><div class="ing-title">Cut Fresh Daily</div><div class="ing-text">The produce is cut daily in each restaurant to ensure the absolute freshest product on every pizza.</div>
     </div>
     <div class="ing-card promise gs-stagger">
-      <div class="ing-num">Our Promise</div><div class="ing-title">100% Product Guarantee</div><div class="ing-text">If at any time you are not completely satisfied, we will replace the purchase or refund your money. Guaranteed!</div>
+      <div class="ing-num">Our Promise</div><div class="ing-title">100% Product Guarantee</div><div class="ing-text">If at any time you are not completely satisfied, we will replace the purchase or refund your money. Guaranteed.</div>
     </div>
   </div>
 </section>
 
 <!-- ── GALLERY ─────────────────────────────────── -->
 <section class="gallery-section" id="gallery">
-  <div class="gallery-pin" id="galleryPin">
-    <div class="gallery-inner">
-      <div class="gallery-label">
-        <div class="sec-ey gs-reveal">From Our Kitchen</div>
-        <h2 class="sec-h gs-reveal" style="font-size:clamp(1.8rem,2.8vw,3rem);font-weight:500;">Fresh out of the oven, <em style="font-style:italic;color:var(--g);">every time.</em></h2>
-      </div>
-      <div class="gallery-track" id="galleryTrack">
-        <div class="gallery-item wide"><img src="https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg" alt="Riverside Pizza Restaurant"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza"></div>
-        <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Riverside Pizza"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Riverside Pizza"></div>
-        <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Riverside Pizza"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Riverside Pizza"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Riverside Pizza"></div>
-        <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Cinnamon Bread"></div>
-      </div>
-      <div class="gallery-hint">Scroll to explore</div>
+  <div class="gallery-inner">
+    <div class="gallery-label">
+      <div class="sec-ey gs-reveal">From Our Kitchen</div>
+      <h2 class="sec-h gs-reveal" style="font-size:clamp(1.8rem,2.8vw,3rem);font-weight:500;">Fresh out of the oven, <em>every time.</em></h2>
     </div>
+    <div class="gallery-track" id="galleryTrack">
+      <div class="gallery-item wide"><img src="https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg" alt="Riverside Pizza Restaurant"></div>
+      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Cinnamon Bread"></div>
+    </div>
+    <div class="gallery-hint">Drag to explore</div>
   </div>
 </section>
 
@@ -564,15 +604,15 @@
       <div class="guar-ey">Our Commitment</div>
       <h2 class="guar-h">100% Product <em>Guarantee.</em></h2>
       <p class="guar-body">If at any time you are not completely satisfied, we will replace the purchase or refund your money.</p>
-      <p class="guar-bold">Guaranteed!</p>
-      <div style="margin-top:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
-        <a href="locations.html" class="btn btn-white">Find a Location</a>
+      <p class="guar-bold">Guaranteed.</p>
+      <div style="margin-top:2.5rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="locations.html" class="btn btn-white">Find a Location <span class="btn-arrow">→</span></a>
         <a href="menu.html" class="btn btn-outline-w">View Menu</a>
       </div>
     </div>
     <div class="quote-panel gs-reveal">
       <div class="qm">"</div>
-      <p class="qt">I lived in New York for about 7 years and had tons of famous NY style pizza, but I just moved to Georgia and this is probably the best pizza I have ever had. AND the most affordable! You guys are amazing! Better than any chain or any other place around.</p>
+      <p class="qt">I lived in New York for about 7 years and had tons of famous NY style pizza, but I just moved to Georgia and this is probably the best pizza I have ever had. AND the most affordable! You guys are amazing. Better than any chain or any other place around.</p>
       <div class="qs">A Former New Yorker</div>
     </div>
   </div>
@@ -583,16 +623,16 @@
   <div class="loc-head gs-reveal">
     <div>
       <div class="sec-ey">Find Us Near You</div>
-      <h2 class="sec-h" style="font-size:clamp(2rem,3vw,3.5rem);font-weight:500;">8 Locations across <em style="font-style:italic;color:var(--g);">Metro Atlanta.</em></h2>
+      <h2 class="sec-h" style="font-size:clamp(2rem,3vw,3.5rem);font-weight:500;">8 Locations across <em>Metro Atlanta.</em></h2>
     </div>
     <div class="loc-head-links">
       <a href="locations.html" class="loc-link">All Locations</a>
-      <a href="#" class="loc-link">Contact Us</a>
+      <a href="contact.html" class="loc-link">Contact Us</a>
     </div>
   </div>
   <div class="loc-grid">
     <div class="loc-card gs-stagger"><div class="loc-name">Lawrenceville</div><div class="loc-sub">In Kroger Shopping Center</div><div class="loc-addr">2100 Riverside Pkwy @ Duluth Hwy 120<br>Lawrenceville, GA 30043</div><a href="tel:7708221500" class="loc-phone">770-822-1500</a><a href="https://www.google.com/maps?q=2100+Riverside+Pkwy,+Lawrenceville,+GA" target="_blank" rel="noopener noreferrer" class="loc-dir">Get Directions</a></div>
-    <div class="loc-card gs-stagger"><div class="loc-name">Sugarloaf (Lawrenceville)</div><div class="loc-sub">In Publix Shopping Center</div><div class="loc-addr">3330 Sugarloaf Pkwy @ Five Forks Trickum<br>Lawrenceville, GA 30044</div><a href="tel:7707717000" class="loc-phone">770-771-7000</a><a href="https://www.google.com/maps?q=3330+Sugarloaf+Pkwy,+Lawrenceville,+GA" target="_blank" rel="noopener noreferrer" class="loc-dir">Get Directions</a></div>
+    <div class="loc-card gs-stagger"><div class="loc-name">Sugarloaf</div><div class="loc-sub">In Publix Shopping Center</div><div class="loc-addr">3330 Sugarloaf Pkwy @ Five Forks Trickum<br>Lawrenceville, GA 30044</div><a href="tel:7707717000" class="loc-phone">770-771-7000</a><a href="https://www.google.com/maps?q=3330+Sugarloaf+Pkwy,+Lawrenceville,+GA" target="_blank" rel="noopener noreferrer" class="loc-dir">Get Directions</a></div>
     <div class="loc-card gs-stagger"><div class="loc-name">Suwanee</div><div class="loc-sub">Peachtree Industrial Blvd</div><div class="loc-addr">991 Peachtree Industrial Blvd @ Moore<br>Suwanee, GA 30024</div><a href="tel:7702719992" class="loc-phone">770-271-9992</a><a href="https://www.google.com/maps?q=991+Peachtree+Industrial+Blvd+Suwanee,+GA" target="_blank" rel="noopener noreferrer" class="loc-dir">Get Directions</a></div>
     <div class="loc-card gs-stagger"><div class="loc-name">Grayson</div><div class="loc-sub">Grayson Highway</div><div class="loc-addr">1845 Grayson Hwy @ Rosebud<br>Grayson, GA 30017</div><a href="tel:7706822929" class="loc-phone">770-682-2929</a><a href="https://www.google.com/maps?q=1845+Grayson+Hwy,+Grayson,+GA" target="_blank" rel="noopener noreferrer" class="loc-dir">Get Directions</a></div>
     <div class="loc-card gs-stagger"><div class="loc-name">Hamilton Mill</div><div class="loc-sub">Braselton Highway</div><div class="loc-addr">2463 Hamilton Mill Pkwy #320 @ Braselton Hwy<br>Dacula, GA 30005</div><a href="tel:7702718881" class="loc-phone">770-271-8881</a><a href="https://www.google.com/maps/search/Riverside+Pizza+2463+Hamilton+Mill" target="_blank" rel="noopener noreferrer" class="loc-dir">Get Directions</a></div>
@@ -606,7 +646,7 @@
 <div class="cta-strip">
   <div class="cta-text">Ready to order? Find your nearest location.</div>
   <div class="cta-links">
-    <a href="locations.html" class="btn btn-white">Find a Location</a>
+    <a href="locations.html" class="btn btn-white">Find a Location <span class="btn-arrow">→</span></a>
     <a href="menu.html" class="btn btn-outline-w">Our Menu</a>
     <a href="catering.html" class="btn btn-outline-w">Catering</a>
   </div>
@@ -634,39 +674,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-  // ── LENIS SMOOTH SCROLL ──────────────────────
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── LENIS ────────────────────────────────────
   const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
-  // ── REGISTER SCROLLTRIGGER ───────────────────
-  gsap.registerPlugin(ScrollTrigger);
-
-  // ── NAV SCROLL STATE ─────────────────────────
-  // (handled by window scroll listener below)
-
-  // ── HERO LOAD-IN ─────────────────────────────
-  const tl = gsap.timeline({ delay: 0.2 });
-  tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
-    .to('.hero-h1',       { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=0.5')
-    .to('.hero-tagline',  { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
-    .to('.hero-btns',     { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.5');
+  // ── HERO ENTRANCE ────────────────────────────
+  const tl = gsap.timeline({ delay: 0.3 });
+  tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' })
+    .to('.hero-h1',      { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }, '-=0.55')
+    .to('.hero-tagline', { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' }, '-=0.65')
+    .to('.hero-btns',    { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, '-=0.55');
 
   // ── HERO SLIDER ──────────────────────────────
   const slides = Array.from(document.querySelectorAll('.slide'));
-  const dots = Array.from(document.querySelectorAll('.dot'));
+  const dots   = Array.from(document.querySelectorAll('.dot'));
   let cur = 0, timer;
 
-  function goTo(n, dir = 1) {
+  function goTo(n) {
     clearTimeout(timer);
     const prev = slides[cur];
     cur = ((n % slides.length) + slides.length) % slides.length;
     const next = slides[cur];
     gsap.set(next, { opacity: 0, zIndex: 2, scale: 1.04 });
     gsap.set(prev, { zIndex: 1 });
-    gsap.to(next, { opacity: 1, scale: 1, duration: 1.4, ease: 'power2.inOut' });
-    gsap.to(prev, { opacity: 0, duration: 1.4, ease: 'power2.inOut', onComplete: () => gsap.set(prev, { zIndex: 0 }) });
+    gsap.to(next, { opacity: 1, scale: 1, duration: 1.5, ease: 'power2.inOut' });
+    gsap.to(prev, { opacity: 0, duration: 1.5, ease: 'power2.inOut', onComplete: () => gsap.set(prev, { zIndex: 0 }) });
     dots.forEach((d, i) => d.classList.toggle('active', i === cur));
     timer = setTimeout(() => goTo(cur + 1), 5500);
   }
@@ -676,95 +712,83 @@
   document.getElementById('prev').addEventListener('click', () => goTo(cur - 1));
   document.getElementById('next').addEventListener('click', () => goTo(cur + 1));
 
-  // ── STATS COUNTER ────────────────────────────
+  // ── STATS COUNTERS ───────────────────────────
   document.querySelectorAll('[data-target]').forEach(el => {
     const target = parseInt(el.dataset.target);
     ScrollTrigger.create({
-      trigger: el, start: 'top 85%', once: true,
+      trigger: el, start: 'top 88%', once: true,
       onEnter: () => {
         const obj = { val: 0 };
-        gsap.to(obj, { val: target, duration: 2, ease: 'power2.out',
-          onUpdate() { el.textContent = Math.round(obj.val) + (target === 25 ? '' : ''); }
+        gsap.to(obj, {
+          val: target, duration: 2.2, ease: 'power2.out',
+          onUpdate() { el.textContent = Math.round(obj.val); }
         });
       }
     });
   });
 
-  // ── ANNIVERSARY: no parallax image (editorial layout) ───
-
-  // ── SECTION REVEALS ──────────────────────────
+  // ── SECTION REVEALS (blur + lift) ────────────
   gsap.utils.toArray('.gs-reveal').forEach(el => {
     gsap.fromTo(el,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out',
+      { opacity: 0, y: 44, filter: 'blur(6px)' },
+      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.95, ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 88%', once: true }
       }
     );
   });
 
   // ── STAGGER GRIDS ────────────────────────────
-  ['ing-grid','loc-grid'].forEach(cls => {
+  ['ing-grid', 'loc-grid'].forEach(cls => {
     const cards = document.querySelectorAll(`.${cls} .gs-stagger`);
     if (!cards.length) return;
     gsap.fromTo(cards,
-      { opacity: 0, y: 35 },
-      { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
-        scrollTrigger: { trigger: '.' + cls, start: 'top 85%', once: true }
+      { opacity: 0, y: 36, filter: 'blur(4px)' },
+      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.75, stagger: 0.09, ease: 'power3.out',
+        scrollTrigger: { trigger: '.' + cls, start: 'top 86%', once: true }
       }
     );
   });
 
-  // ── NAV SCROLL STATE ─────────────────────────
-  const nav = document.getElementById('nav');
-  const heroH = () => window.innerHeight * 0.88;
-  const checkNav = () => nav.classList.toggle('scrolled', window.scrollY > heroH());
-  window.addEventListener('scroll', checkNav, { passive: true });
-  checkNav(); // run once on load
-
-  // ── DRAG & AUTO SCROLL GALLERY ───────────────
-  const track = document.getElementById('galleryTrack');
-  let scrollLeftFloat = 0;
-  let autoScrollId;
-  let isHovered = false;
-
-  function autoScroll() {
-    if (!isHovered) {
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      if (maxScroll > 10) { // ensure images have loaded enough to give us a track
-        scrollLeftFloat += 1.0;
-        track.scrollLeft = scrollLeftFloat;
-        if (track.scrollLeft >= maxScroll - 2) {
-          scrollLeftFloat = 0;
-          track.scrollLeft = 0; // reset to start
-        }
-      }
-    } else {
-      scrollLeftFloat = track.scrollLeft;
-    }
-    autoScrollId = requestAnimationFrame(autoScroll);
-  }
-  
-  // Start auto scroll once window is fully loaded so widths are correct
-  window.addEventListener('load', () => {
-    autoScrollId = requestAnimationFrame(autoScroll);
-  });
-
-  track.addEventListener('mouseenter', () => isHovered = true);
-  track.addEventListener('mouseleave', () => isHovered = false);
-  track.addEventListener('touchstart', () => isHovered = true, {passive: true});
-  track.addEventListener('touchend', () => isHovered = false, {passive: true});
-
-  // ── DEAL CARDS REVEAL ────────────────────────
+  // ── DEAL CARDS ───────────────────────────────
   gsap.fromTo('.deal-card',
-    { opacity: 0, y: 50 },
-    { opacity: 1, y: 0, duration: 0.9, stagger: 0.2, ease: 'power3.out',
+    { opacity: 0, y: 56, filter: 'blur(6px)' },
+    { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.0, stagger: 0.18, ease: 'power3.out',
       scrollTrigger: { trigger: '.deals', start: 'top 80%', once: true }
     }
   );
 
+  // ── NAV SCROLL STATE ─────────────────────────
+  const nav = document.getElementById('nav');
+  const checkNav = () => nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.85);
+  window.addEventListener('scroll', checkNav, { passive: true });
+  checkNav();
 
-  // ── MOBILE NAV ───────────────────────────
-  const navHam = document.getElementById('navHam');
+  // ── GALLERY AUTO-SCROLL + DRAG ───────────────
+  const track = document.getElementById('galleryTrack');
+  let scrollFloat = 0, autoId, hovered = false;
+
+  function autoScroll() {
+    if (!hovered) {
+      const max = track.scrollWidth - track.clientWidth;
+      if (max > 10) {
+        scrollFloat += 0.85;
+        track.scrollLeft = scrollFloat;
+        if (track.scrollLeft >= max - 2) { scrollFloat = 0; track.scrollLeft = 0; }
+      }
+    } else {
+      scrollFloat = track.scrollLeft;
+    }
+    autoId = requestAnimationFrame(autoScroll);
+  }
+
+  window.addEventListener('load', () => { autoId = requestAnimationFrame(autoScroll); });
+  track.addEventListener('mouseenter', () => hovered = true);
+  track.addEventListener('mouseleave', () => hovered = false);
+  track.addEventListener('touchstart', () => hovered = true, { passive: true });
+  track.addEventListener('touchend',   () => hovered = false, { passive: true });
+
+  // ── MOBILE NAV ───────────────────────────────
+  const navHam     = document.getElementById('navHam');
   const mobOverlay = document.getElementById('mobOverlay');
   navHam.addEventListener('click', () => {
     navHam.classList.toggle('open');
