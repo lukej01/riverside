@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Pizza Takeout | Delivery | Restaurant - Riverside Pizza</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e5f2c'/><text y='76' font-size='78' x='50' text-anchor='middle' font-family='Georgia,serif' fill='white'>R</text></svg>">
   <meta name="description" content="Riverside Pizza — Georgia's favorite handcrafted pizza since 1999. Order carryout online, explore our full menu, or find a location near you.">
@@ -262,7 +262,7 @@
       display: inline-flex; align-items: center; gap: 0.6rem;
       transition: all 0.28s var(--ease);
       border: none; cursor: pointer; border-radius: 9999px;
-      white-space: nowrap;
+      white-space: nowrap; touch-action: manipulation; min-height: 44px;
     }
     .btn-arrow {
       width: 22px; height: 22px; border-radius: 50%;
@@ -286,14 +286,15 @@
     .btn:active { transform: scale(0.98) !important; }
 
     .slider-dots { position: absolute; bottom: 2rem; right: 6rem; z-index: 3; display: flex; gap: 0.5rem; align-items: center; }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.35s var(--ease); border: none; padding: 0; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.35s var(--ease); border: none; padding: 0; position: relative; touch-action: manipulation; }
+    .dot::before { content: ''; position: absolute; inset: -14px -10px; } /* 44px invisible tap target */
     .dot.active { background: white; width: 22px; border-radius: 4px; }
     .slider-arrows { position: absolute; bottom: 1.6rem; right: calc(6rem + 90px); z-index: 3; display: flex; gap: 0.35rem; }
     .sarrow {
       background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18);
-      color: white; width: 34px; height: 34px; cursor: pointer; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 0.75rem;
-      transition: background 0.22s var(--ease), border-color 0.22s;
+      color: white; width: 44px; height: 44px; cursor: pointer; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+      transition: background 0.22s var(--ease), border-color 0.22s; touch-action: manipulation;
     }
     .sarrow:hover { background: rgba(255,255,255,0.26); border-color: rgba(255,255,255,0.4); }
 
@@ -380,7 +381,7 @@
     .gallery-item { flex-shrink: 0; height: 56vh; width: auto; position: relative; overflow: hidden; border-radius: 3px; }
     .gallery-item img { height: 100%; width: auto; object-fit: cover; display: block; transition: transform 0.6s var(--ease); }
     .gallery-item:hover img { transform: scale(1.04); }
-    .gallery-item.wide { width: 700px; height: 56vh; }
+    .gallery-item.wide { width: min(700px, 80vw); height: 56vh; }
     .gallery-item.wide img { width: 100%; height: 100%; }
     .gallery-hint { padding: 1.25rem 0 0 5rem; font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mu); display: flex; align-items: center; gap: 0.5rem; }
     .gallery-hint::before { content: ''; width: 1rem; height: 1px; background: var(--mu); }
@@ -437,25 +438,43 @@
     .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
     .ft-copy { font-family: var(--m); font-size: 0.43rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.22); }
 
+    /* ── MOBILE ORDER CTA ──────────────────────── */
+    .mob-order-bar {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+      padding: 0.85rem 1.5rem calc(0.85rem + env(safe-area-inset-bottom));
+      background: rgba(254,249,242,0.97); border-top: 1px solid var(--bdr);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transform: translateY(100%); transition: transform 0.45s var(--ease);
+    }
+    .mob-order-bar.visible { transform: translateY(0); }
+    .mob-order-bar .btn { width: 100%; justify-content: center; font-size: 0.62rem; }
+
     /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 960px) {
+      .mob-order-bar { display: block; }
       .nav-ham { display: flex; }
       .nav-links { display: none !important; }
       #nav { width: calc(100% - 2rem); padding: 0 1.25rem; }
-      .hero-overlay { padding: 0 2rem 4rem; }
-      .hero-h1 { font-size: 2.8rem; }
+      .hero-overlay { padding: 0 2rem 5rem; }
+      .hero-h1 { font-size: clamp(2.4rem, 6vw, 2.9rem); }
+      .hero-tagline { font-size: 0.95rem; max-width: 38ch; }
+      .slider-dots { right: 1.5rem; bottom: 2.5rem; }
+      .slider-arrows { right: calc(1.5rem + 96px); bottom: 1.75rem; }
       .stats { grid-template-columns: 1fr 1fr; }
       .stat:nth-child(2) { border-right: none; }
       .deals .wrap { grid-template-columns: 1fr; }
       .deal-section-head { padding: 0 2rem 2.5rem; }
-      .deal-card { min-height: 380px; }
+      .deal-card { min-height: 400px; }
+      .deal-body { padding: 2rem; }
       .anniversary { padding: 6rem 2rem; }
       .ann-content { padding: 0; }
       .ingredients { padding: 5rem 0; }
       .ing-head { padding: 0 2rem 2.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
       .ing-grid { padding: 0 2rem; grid-template-columns: 1fr; }
-      .ing-card { align-items: center; text-align: center; }
-      .gallery-track { padding: 0 2rem; }
+      .ing-card { align-items: flex-start; text-align: left; }
+      .gallery-inner { padding: 5rem 0; }
+      .gallery-track { padding: 0 2rem; gap: 8px; }
+      .gallery-item { height: 44vh; }
       .gallery-label { padding: 0 0 2rem 2rem; }
       .gallery-hint { padding-left: 2rem; }
       .guarantee { padding: 5rem 0; }
@@ -464,7 +483,7 @@
       .loc-head { padding: 0 2rem 2.5rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .loc-grid { padding: 0 2rem; grid-template-columns: 1fr 1fr; }
       .cta-strip { padding: 2.5rem 2rem; flex-direction: column; text-align: center; }
-      footer { padding: 3.5rem 2rem 2rem; }
+      footer { padding: 3.5rem 2rem calc(3.5rem + env(safe-area-inset-bottom) + 80px); }
       .ft-top { flex-direction: column; }
       .ft-cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .ft-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
@@ -472,8 +491,16 @@
     }
     @media (max-width: 520px) {
       .loc-grid { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: 1fr 1fr; }
-      .hero-overlay { padding: 0 1.5rem 3.5rem; }
+      .hero-overlay { padding: 0 1.5rem 4.5rem; }
+      .hero-btns { flex-direction: column; align-items: flex-start; }
+      .hero-btns .btn { width: 100%; max-width: 300px; justify-content: center; }
+      .cta-links { flex-direction: column; width: 100%; }
+      .cta-links .btn { width: 100%; justify-content: center; }
+    }
+    @media (max-width: 390px) {
+      .hero-h1 { font-size: 2.1rem; }
+      .hero-tagline { font-size: 0.88rem; line-height: 1.65; }
+      .stat-num { font-size: 2rem; }
     }
   
     @media (prefers-reduced-motion: reduce) {
@@ -887,6 +914,19 @@
       document.body.style.overflow = '';
     });
   });
+
+  // ── MOBILE ORDER BAR ─────────────────────────
+  const mobOrderBar = document.getElementById('mobOrderBar');
+  if (mobOrderBar) {
+    const heroHeight = document.querySelector('.hero').offsetHeight;
+    const showBar = () => mobOrderBar.classList.toggle('visible', window.scrollY > heroHeight * 0.8);
+    window.addEventListener('scroll', showBar, { passive: true });
+  }
 </script>
+
+<!-- Mobile sticky order CTA (shows after hero scroll) -->
+<div class="mob-order-bar" id="mobOrderBar">
+  <a href="locations.html" class="btn btn-green">Order Online — Find Your Location <span class="btn-arrow">↗</span></a>
+</div>
 </body>
 </html>

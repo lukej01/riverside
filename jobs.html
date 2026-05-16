@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Join Our Team | Riverside Pizza</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e5f2c'/><text y='76' font-size='78' x='50' text-anchor='middle' font-family='Georgia,serif' fill='white'>R</text></svg>">
   <meta name="description" content="Apply to work at Riverside Pizza. We're always looking for great people to join our family across 8 Metro Atlanta locations.">
@@ -25,7 +25,7 @@
     .logo-text{line-height:1;display:flex;flex-direction:column}.logo-name{font-family:var(--d);font-size:1.2rem;font-weight:700;color:var(--g);letter-spacing:-.025em;display:block}.logo-sub{font-family:var(--m);font-size:.4rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-top:3px;display:block}
     .nav-links{display:flex;gap:0;list-style:none;align-items:center}.nav-links a{font-family:var(--m);font-size:.54rem;letter-spacing:.09em;text-transform:uppercase;color:var(--tx);padding:.4rem .85rem;transition:color .2s;font-weight:500}.nav-links a:hover{color:var(--g)}
     .nav-cta{background:var(--g)!important;color:#fff!important;padding:.5rem 1.25rem!important;margin-left:.5rem;border-radius:9999px!important;transition:background .2s cubic-bezier(.32,.72,0,1),transform .2s cubic-bezier(.32,.72,0,1)!important;font-size:.52rem!important}.nav-cta:hover{background:var(--gl)!important;transform:scale(1.04)!important}
-    .nav-ham{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;z-index:200}.nav-ham span{display:block;width:22px;height:1.5px;background:var(--tx);transition:transform .35s cubic-bezier(.32,.72,0,1),opacity .2s;transform-origin:center}.nav-ham.open span:first-child{transform:translateY(6.5px) rotate(45deg)}.nav-ham.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+    .nav-ham{display:none;background:none;border:none;cursor:pointer;padding:6px;touch-action:manipulation;flex-direction:column;gap:5px;z-index:200}.nav-ham span{display:block;width:22px;height:1.5px;background:var(--tx);transition:transform .35s cubic-bezier(.32,.72,0,1),opacity .2s;transform-origin:center}.nav-ham.open span:first-child{transform:translateY(6.5px) rotate(45deg)}.nav-ham.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
 
     /* HERO */
     .page-hero{margin-top:90px;padding:clamp(5rem,8vw,8rem) 0 clamp(4rem,6vw,6rem);min-height:50vh;background:var(--gd);position:relative;overflow:hidden}
@@ -108,6 +108,9 @@
       .apply-sec .wrap{grid-template-columns:1fr}
       .cta-strip{padding:2rem;flex-direction:column;text-align:center}
       footer{padding:3rem 2rem 2rem}.ft-top{flex-direction:column}
+      .submit-btn{min-height:52px;font-size:.7rem}
+      .btn{min-height:44px;touch-action:manipulation;justify-content:center}
+      .cta-links{flex-direction:column;width:100%}.cta-links .btn{width:100%}
     }
     @media(max-width:520px){.perks-grid{grid-template-columns:1fr}}
   
