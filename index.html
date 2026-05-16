@@ -399,6 +399,15 @@
       .stats { grid-template-columns: 1fr 1fr; }
       .hero-overlay { padding: 0 1.5rem 3.5rem; }
     }
+  
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -584,14 +593,14 @@
       <h2 class="sec-h gs-reveal" style="font-size:clamp(1.8rem,2.8vw,3rem);font-weight:500;">Fresh out of the oven, <em>every time.</em></h2>
     </div>
     <div class="gallery-track" id="galleryTrack">
-      <div class="gallery-item wide"><img src="https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg" alt="Riverside Pizza Restaurant"></div>
-      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza"></div>
-      <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Riverside Pizza"></div>
-      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Riverside Pizza"></div>
-      <div class="gallery-item tall"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Riverside Pizza"></div>
-      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Riverside Pizza"></div>
-      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Riverside Pizza"></div>
-      <div class="gallery-item"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Cinnamon Bread"></div>
+      <div class="gallery-item wide"><img loading="lazy" src="https://riversidepizza.wpengine.com/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg" alt="Riverside Pizza Restaurant"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item tall"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item tall"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Riverside Pizza"></div>
+      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Cinnamon Bread"></div>
     </div>
     <div class="gallery-hint">Drag to explore</div>
   </div>

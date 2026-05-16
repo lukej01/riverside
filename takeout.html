@@ -628,6 +628,15 @@
       .ic-img { width: 100px; }
       .item-card { height: 108px; }
     }
+  
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -746,7 +755,7 @@
   <div class="modal-scrim" id="modalScrim">
     <div class="item-modal" id="itemModal">
       <div class="im-left" id="modalLeft">
-        <img src="" alt="" class="im-left-img" id="modalImg">
+        <img loading="lazy" src="" alt="" class="im-left-img" id="modalImg">
         <div class="im-left-shade"></div>
       </div>
       <div class="im-right">
@@ -1192,7 +1201,7 @@
         cartItemsEl.innerHTML = cart.map(item => `
           <div class="ci">
             ${item.img
-              ? `<img src="${item.img}" class="ci-img" alt="${item.name}">`
+              ? `<img loading="lazy" src="${item.img}" class="ci-img" alt="${item.name}">`
               : `<div class="ci-img"></div>`
             }
             <div class="ci-info">
