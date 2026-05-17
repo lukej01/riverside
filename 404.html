@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Page Not Found — Riverside Pizza</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e5f2c'/><text y='76' font-size='78' x='50' text-anchor='middle' font-family='Georgia,serif' fill='white'>R</text></svg>">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/shared.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --g: #1e5f2c; --gd: #143f1d; --gl: #2a7a38; --gp: #f0f6f1;
+      --cream: #fef9f2; --wh: #ffffff; --tx: #2b2826; --mu: #66615b;
+      --bdr: #ebe4d8; --ease: cubic-bezier(0.32,0.72,0,1);
+      --d: 'Playfair Display', serif; --f: 'Barlow', sans-serif; --m: 'IBM Plex Mono', monospace;
+    }
+    html { scroll-behavior: auto; }
+    body { font-family: var(--f); background: var(--cream); color: var(--tx); overflow-x: hidden; min-height: 100dvh; display: flex; flex-direction: column; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    #nav { position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%); width: calc(100% - 3rem); max-width: 1180px; z-index: 100; padding: 0 1.75rem; height: 58px; display: flex; justify-content: space-between; align-items: center; border-radius: 9999px; background: rgba(254,249,242,0.97); border: 1px solid var(--bdr); box-shadow: 0 4px 32px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04); }
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .logo img { height: 38px; width: auto; object-fit: contain; display: block; flex-shrink: 0; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .logo-text { line-height: 1; display: flex; flex-direction: column; }
+    .logo-name { font-family: var(--d); font-size: 1.2rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; display: block; }
+    .logo-sub { font-family: var(--m); font-size: 0.4rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu); margin-top: 3px; display: block; }
+    .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--tx); padding: 0.4rem 0.85rem; transition: color 0.2s; font-weight: 500; }
+    .nav-links a:hover { color: var(--g); }
+    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.5rem 1.25rem !important; margin-left: 0.5rem; border-radius: 9999px !important; font-size: 0.52rem !important; transition: background 0.2s var(--ease) !important; }
+    .nav-cta:hover { background: var(--gl) !important; }
+    .nav-ham { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; }
+    .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--tx); transition: transform 0.35s var(--ease), opacity 0.2s; transform-origin: center; }
+    .nav-ham.open span:first-child { transform: translateY(6.5px) rotate(45deg); }
+    .nav-ham.open span:last-child  { transform: translateY(-6.5px) rotate(-45deg); }
+    .mob-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: var(--cream); flex-direction: column; justify-content: center; align-items: center; }
+    .mob-overlay.open { display: flex; }
+    .mob-overlay a { font-family: var(--d); font-size: clamp(1.6rem,5vw,2.2rem); font-weight: 500; color: var(--tx); padding: 1rem 2rem; opacity: 0; transform: translateY(16px); transition: color 0.2s, opacity 0.4s var(--ease), transform 0.4s var(--ease); }
+    .mob-overlay.open a { opacity: 1; transform: translateY(0); }
+    .mob-overlay a:nth-child(1) { transition-delay: 0.06s; }
+    .mob-overlay a:nth-child(2) { transition-delay: 0.12s; }
+    .mob-overlay a:nth-child(3) { transition-delay: 0.18s; }
+    .mob-overlay a:nth-child(4) { transition-delay: 0.24s; }
+    .mob-overlay a.mob-cta { font-family: var(--m); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; background: var(--g); color: white; padding: 0.9rem 2.5rem; margin-top: 1.5rem; border-radius: 9999px; opacity: 0; transform: translateY(16px); transition-delay: 0.30s; }
+
+    /* ── BUTTONS ── */
+    .btn { font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; display: inline-flex; align-items: center; gap: 0.6rem; transition: all 0.28s var(--ease); border: none; cursor: pointer; border-radius: 9999px; white-space: nowrap; touch-action: manipulation; min-height: 44px; }
+    .btn-arrow { width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; transition: transform 0.28s var(--ease); }
+    .btn:hover .btn-arrow { transform: translate(2px,-1px) scale(1.08); }
+    .btn-green { background: var(--g); color: white; }
+    .btn-green:hover { background: var(--gl); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,95,44,0.3); }
+    .btn-green .btn-arrow { background: rgba(255,255,255,0.15); }
+    .btn-outline-g { border: 1px solid var(--g); color: var(--g); }
+    .btn-outline-g:hover { background: var(--gp); transform: translateY(-2px); }
+    .btn:active { transform: scale(0.98) !important; }
+
+    /* ── 404 CONTENT ── */
+    .err-page { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8rem 2rem 6rem; }
+    .err-inner { max-width: 600px; text-align: center; }
+    .err-num {
+      font-family: var(--d); font-size: clamp(6rem, 20vw, 12rem); font-weight: 700; line-height: 0.85;
+      color: var(--g); opacity: 0.12; letter-spacing: -0.05em;
+      position: relative; margin-bottom: 0;
+    }
+    .err-pizza {
+      font-size: clamp(3rem, 10vw, 5.5rem); line-height: 1; margin-top: -1rem; margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .err-eyebrow { font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .err-eyebrow::before, .err-eyebrow::after { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
+    .err-h { font-family: var(--d); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; }
+    .err-h em { font-style: italic; color: var(--g); }
+    .err-p { font-size: 0.9rem; line-height: 1.9; color: var(--mu); font-weight: 300; max-width: 44ch; margin: 0 auto 2.5rem; }
+    .err-btns { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--gd); padding: 3rem 2rem; }
+    .ft-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+    .ft-copy { font-family: var(--m); font-size: 0.43rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.22); }
+
+    @media (max-width: 960px) {
+      .nav-ham { display: flex; }
+      .nav-links { display: none !important; }
+      #nav { width: calc(100% - 2rem); padding: 0 1.25rem; }
+      footer { padding: 3rem 2rem calc(3rem + env(safe-area-inset-bottom)); }
+    }
+    @media (max-width: 520px) {
+      .err-btns { flex-direction: column; align-items: center; }
+      .err-btns .btn { width: 100%; max-width: 280px; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="logo">
+    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="catering.html">Catering</a></li>
+    <li><a href="locations.html">Locations</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="locations.html" class="nav-cta">Order Online</a></li>
+  </ul>
+  <button class="nav-ham" id="navHam" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-overlay" id="mobOverlay">
+  <a href="menu.html">Menu</a>
+  <a href="catering.html">Catering</a>
+  <a href="locations.html">Locations</a>
+  <a href="about.html">About</a>
+  <a href="locations.html" class="mob-cta">Order Online</a>
+</div>
+
+<main class="err-page">
+  <div class="err-inner">
+    <div class="err-num" aria-hidden="true">404</div>
+    <div class="err-pizza" role="img" aria-label="Pizza slice illustration">🍕</div>
+    <div class="err-eyebrow">Page Not Found</div>
+    <h1 class="err-h">We lost this slice, <em>but not yours.</em></h1>
+    <p class="err-p">Looks like this page went out of the oven and disappeared. Let us help you find what you're looking for.</p>
+    <div class="err-btns">
+      <a href="index.html" class="btn btn-green">Back to Home <span class="btn-arrow">↗</span></a>
+      <a href="menu.html" class="btn btn-outline-g">View Menu</a>
+      <a href="locations.html" class="btn btn-outline-g">Find a Location</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+    <div class="ft-copy">Lawrenceville · Suwanee · Grayson · Johns Creek · Cumming</div>
+  </div>
+</footer>
+
+<script>
+  const navHam = document.getElementById('navHam');
+  const mobOverlay = document.getElementById('mobOverlay');
+  let trapHandler = null;
+
+  function closeMenu() {
+    navHam.classList.remove('open');
+    mobOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    navHam.setAttribute('aria-label', 'Open menu');
+    if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
+  }
+
+  function openMenu() {
+    navHam.classList.add('open');
+    mobOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    navHam.setAttribute('aria-label', 'Close menu');
+    const focusable = Array.from(mobOverlay.querySelectorAll('a'));
+    focusable[0].focus();
+    trapHandler = (e) => {
+      if (e.key === 'Escape') { closeMenu(); navHam.focus(); return; }
+      if (e.key !== 'Tab') return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
+    };
+    document.addEventListener('keydown', trapHandler);
+  }
+
+  navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
+  mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
+
+</body>
+</html>
