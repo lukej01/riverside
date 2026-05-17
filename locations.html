@@ -10,11 +10,14 @@
   <meta name="description" content="Find a Riverside Pizza near you. 8 Metro Atlanta locations — Lawrenceville, Suwanee, Johns Creek, Grayson, Cumming, and more.">
   <meta property="og:title" content="Locations — Riverside Pizza">
   <meta property="og:description" content="8 Metro Atlanta locations. Order carryout online or get directions.">
-  <meta property="og:image" content="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg">
+  <meta property="og:image" content="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://riversidepizza.net/locations">
   <link rel="canonical" href="https://riversidepizza.net/locations">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Locations — Riverside Pizza">
+  <meta name="twitter:description" content="8 Metro Atlanta locations. Order carryout online or get directions.">
+  <meta name="twitter:image" content="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg">
   <!-- JSON-LD: All 8 individual Riverside Pizza locations -->
   <script type="application/ld+json">
   {
@@ -185,39 +188,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/shared.css">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      /* ── Brand greens (OG site #1e5f2c) ── */
-      --g:    #1e5f2c;
-      --gd:   #143f1d;
-      --gl:   #2a7a38;
-      --gp:   #f0f6f1;
-      --gm:   #ddeadf;
-      /* ── Warm retro accents ── */
-      --cream:#fef9f2;
-      --wh:   #ffffff;
-      --tx:   #2b2826;
-      --mu:   #66615b;
-      --bdr:  #ebe4d8;
-      /* ── Typography ── */
-      --d: 'Playfair Display', serif;
-      --f: 'Barlow', sans-serif;
-      --m: 'IBM Plex Mono', monospace;
-    }
-    html { scroll-behavior: auto; }
-    body { font-family: var(--f); background: var(--wh); color: var(--tx); overflow-x: hidden; }
-    img { display: block; max-width: 100%; }
-    a { color: inherit; text-decoration: none; }
-    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
-
-    /* ── NAV ─────────────────────────────── */
-    #nav{position:fixed;top:1.25rem;left:50%;transform:translateX(-50%);width:calc(100% - 3rem);max-width:1180px;z-index:100;padding:0 1.75rem;height:58px;display:flex;justify-content:space-between;align-items:center;border-radius:9999px;background:rgba(254,249,242,.97);border:1px solid var(--bdr);box-shadow:0 4px 32px rgba(0,0,0,.08),0 1px 4px rgba(0,0,0,.04)}
-    .logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;transition:transform .24s cubic-bezier(.32,.72,0,1)}.logo:hover{transform:scale(1.025)}.logo img{height:38px;width:auto;object-fit:contain;display:block;flex-shrink:0;border-radius:5px;box-shadow:0 2px 10px rgba(0,0,0,.2)}
-    .logo-text{line-height:1;display:flex;flex-direction:column}.logo-name{font-family:var(--d);font-size:1.2rem;font-weight:700;color:var(--g);letter-spacing:-.025em;display:block}.logo-sub{font-family:var(--m);font-size:.4rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-top:3px;display:block}
-    .nav-links{display:flex;gap:0;list-style:none;align-items:center}.nav-links a{font-family:var(--m);font-size:.54rem;letter-spacing:.09em;text-transform:uppercase;color:var(--tx);padding:.4rem .85rem;transition:color .2s;font-weight:500}.nav-links a:hover{color:var(--g)}
-    .nav-cta{background:var(--g)!important;color:#fff!important;padding:.5rem 1.25rem!important;margin-left:.5rem;border-radius:9999px!important;transition:background .2s cubic-bezier(.32,.72,0,1),transform .2s cubic-bezier(.32,.72,0,1)!important;font-size:.52rem!important}.nav-cta:hover{background:var(--gl)!important;transform:scale(1.04)!important}
-    .nav-ham{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;z-index:200}.nav-ham span{display:block;width:22px;height:1.5px;background:var(--tx);transition:transform .35s cubic-bezier(.32,.72,0,1),opacity .2s;transform-origin:center}.nav-ham.open span:first-child{transform:translateY(6.5px) rotate(45deg)}.nav-ham.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
-
     /* ── HEADER ───────────────────────────── */
     .loc-header { padding: 10rem 0 4rem; background: var(--wh); border-bottom: 1px solid var(--bdr); text-align: center; }
     .lh-eyebrow { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: inline-flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
@@ -300,21 +270,7 @@
     @media (max-width: 520px) {
       .li-content, .loc-item:nth-child(even) .li-content { padding: 2rem 1.5rem; }
     }
-    .mob-overlay{display:none;position:fixed;inset:0;z-index:150;background:var(--cream);flex-direction:column;justify-content:center;align-items:center;gap:0}
-    .mob-overlay.open{display:flex}
-    .mob-overlay a{font-family:var(--d);font-size:clamp(1.6rem,5vw,2.2rem);font-weight:500;color:var(--tx);padding:1rem 2rem;letter-spacing:-.02em;opacity:0;transform:translateY(16px);transition:color .2s,opacity .4s cubic-bezier(.32,.72,0,1),transform .4s cubic-bezier(.32,.72,0,1)}
-    .mob-overlay.open a{opacity:1;transform:translateY(0)}
-    .mob-overlay a:nth-child(1){transition-delay:.06s}.mob-overlay a:nth-child(2){transition-delay:.12s}.mob-overlay a:nth-child(3){transition-delay:.18s}.mob-overlay a:nth-child(4){transition-delay:.24s}
-    .mob-overlay a.mob-cta{font-family:var(--m);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;background:var(--g);color:#fff;padding:1rem 2.5rem;margin-top:1.5rem;border-radius:9999px;opacity:0;transform:translateY(16px);transition-delay:.30s}
-  
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
+
   </style>
 </head>
 <body>
@@ -358,7 +314,7 @@
     
     <!-- 1. Lawrenceville -->
     <div class="loc-item gs-reveal">
-      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.1234567!2d-83.962192!3d33.898589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzU0LjkiTiA4M8KwNTcnNDMuOSJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="li-map" src="https://maps.google.com/maps?q=2100+Riverside+Pkwy,+Lawrenceville,+GA+30043&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="li-content">
         <h2 class="li-name">Lawrenceville</h2>
         <div class="li-sub">In Kroger Shopping Center</div>
@@ -386,7 +342,7 @@
 
     <!-- 2. Sugarloaf -->
     <div class="loc-item gs-reveal">
-      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.1234567!2d-84.092004!3d34.047143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAyJzQ5LjciTiA4NMKwMDUnMzEuMiJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="li-map" src="https://maps.google.com/maps?q=3330+Sugarloaf+Pkwy,+Lawrenceville,+GA+30044&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="li-content">
         <h2 class="li-name">Sugarloaf <span style="font-size:0.5em;color:var(--mu);font-family:var(--f);font-weight:400;">(Lawrenceville)</span></h2>
         <div class="li-sub">In Publix Shopping Center</div>
@@ -399,6 +355,10 @@
             <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
             <a href="tel:7707717000" class="li-phone">770-771-7000</a>
           </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="li-text">Open Daily: <strong>10:30am – 10:00pm</strong></div>
+          </div>
         </div>
         <div class="li-actions">
           <a href="takeout.html" target="_blank" rel="noopener noreferrer" class="btn btn-green">Order Carryout</a>
@@ -410,7 +370,7 @@
 
     <!-- 3. Suwanee -->
     <div class="loc-item gs-reveal">
-      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.5!2d-83.990822!3d34.040143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAyJzI0LjUiTiA4M8KwNTknMjcuMCJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="li-map" src="https://maps.google.com/maps?q=991+Peachtree+Industrial+Blvd,+Suwanee,+GA+30024&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="li-content">
         <h2 class="li-name">Suwanee</h2>
         <div class="li-sub">Peachtree Industrial Blvd</div>
@@ -423,6 +383,10 @@
             <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
             <a href="tel:7702719992" class="li-phone">770-271-9992</a>
           </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="li-text">Open Daily: <strong>10:30am – 10:00pm</strong></div>
+          </div>
         </div>
         <div class="li-actions">
           <a href="takeout.html" target="_blank" rel="noopener noreferrer" class="btn btn-green">Order Carryout</a>
@@ -434,7 +398,7 @@
 
     <!-- 4. Grayson -->
     <div class="loc-item gs-reveal">
-      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.123!2d-83.962192!3d33.898589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzU0LjkiTiA4M8KwNTcnNDMuOSJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="li-map" src="https://maps.google.com/maps?q=1845+Grayson+Hwy,+Grayson,+GA+30017&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="li-content">
         <h2 class="li-name">Grayson</h2>
         <div class="li-sub">Grayson Highway</div>
@@ -447,6 +411,10 @@
             <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
             <a href="tel:7706822929" class="li-phone">770-682-2929</a>
           </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="li-text">Open Daily: <strong>10:30am – 10:00pm</strong></div>
+          </div>
         </div>
         <div class="li-actions">
           <a href="takeout.html" target="_blank" rel="noopener noreferrer" class="btn btn-green">Order Carryout</a>
@@ -458,7 +426,7 @@
 
     <!-- 5. Hamilton Mill -->
     <div class="loc-item gs-reveal">
-      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.5!2d-83.929625!3d33.985793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDU5JzA4LjkiTiA4M8KwNTUnNDYuNyJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="li-map" src="https://maps.google.com/maps?q=2463+Hamilton+Mill+Pkwy,+Dacula,+GA+30005&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="li-content">
         <h2 class="li-name">Hamilton Mill</h2>
         <div class="li-sub">Braselton Highway</div>
@@ -471,6 +439,10 @@
             <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
             <a href="tel:7702718881" class="li-phone">770-271-8881</a>
           </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="li-text">Open Daily: <strong>10:30am – 10:00pm</strong></div>
+          </div>
         </div>
         <div class="li-actions">
           <a href="takeout.html" target="_blank" rel="noopener noreferrer" class="btn btn-green">Order Carryout</a>
@@ -482,7 +454,7 @@
 
     <!-- 6. Dacula -->
     <div class="loc-item gs-reveal">
-      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.5!2d-83.929539!3d33.985787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDU5JzA4LjgiTiA4M8KwNTUnNDYuMyJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="li-map" src="https://maps.google.com/maps?q=2515+Fence+Rd,+Dacula,+GA+30019&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="li-content">
         <h2 class="li-name">Dacula</h2>
         <div class="li-sub">Kroger Center</div>
@@ -495,6 +467,10 @@
             <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
             <a href="tel:7709635000" class="li-phone">770-963-5000</a>
           </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="li-text">Open Daily: <strong>10:30am – 10:00pm</strong></div>
+          </div>
         </div>
         <div class="li-actions">
           <a href="takeout.html" target="_blank" rel="noopener noreferrer" class="btn btn-green">Order Carryout</a>
@@ -506,7 +482,7 @@
 
     <!-- 7. Johns Creek -->
     <div class="loc-item gs-reveal">
-      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3308.12!2d-84.092016!3d34.047139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAyJzQ5LjciTiA4NMKwMDUnMzEuMyJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="li-map" src="https://maps.google.com/maps?q=11877+Douglas+Rd,+Johns+Creek,+GA+30005&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="li-content">
         <h2 class="li-name">Johns Creek</h2>
         <div class="li-sub">Douglas Road</div>
@@ -519,6 +495,10 @@
             <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
             <a href="tel:7703600002" class="li-phone">770-360-0002</a>
           </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="li-text">Open Daily: <strong>10:30am – 10:00pm</strong></div>
+          </div>
         </div>
         <div class="li-actions">
           <a href="takeout.html" target="_blank" rel="noopener noreferrer" class="btn btn-green">Order Carryout</a>
@@ -530,7 +510,7 @@
 
     <!-- 8. Cumming -->
     <div class="loc-item gs-reveal">
-      <iframe class="li-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.5!2d-84.1572023!3d34.1132416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f59bdabcf61ff1%3A0xaf68a9b47be67fbc!2s3030%20Old%20Atlanta%20Rd%2C%20Cumming%2C%20GA%2030041!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe class="li-map" src="https://maps.google.com/maps?q=3030+Old+Atlanta+Rd,+Cumming,+GA+30041&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="li-content">
         <h2 class="li-name">Cumming</h2>
         <div class="li-sub">Down the Street from Publix</div>
@@ -542,6 +522,10 @@
           <div class="li-row">
             <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
             <a href="tel:4702394243" class="li-phone">470-239-4243</a>
+          </div>
+          <div class="li-row">
+            <svg class="li-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="li-text">Open Daily: <strong>10:30am – 10:00pm</strong></div>
           </div>
         </div>
         <div class="li-actions">
@@ -556,7 +540,7 @@
 </section>
 
 <div class="cta-strip">
-  <div class="cta-text">Call your nearest location to order.</div>
+  <div class="cta-text">Ready to order? Find your nearest location.</div>
   <div class="cta-links">
     <a href="locations.html" class="btn btn-white">Order Online</a>
     <a href="menu.html" class="btn btn-outline-w">View Menu</a>
@@ -601,9 +585,34 @@
   });
 </script>
 <script>
-const navHam=document.getElementById('navHam'),mobOverlay=document.getElementById('mobOverlay');
-navHam.addEventListener('click',()=>{navHam.classList.toggle('open');mobOverlay.classList.toggle('open');document.body.style.overflow=mobOverlay.classList.contains('open')?'hidden':''});
-mobOverlay.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navHam.classList.remove('open');mobOverlay.classList.remove('open');document.body.style.overflow=''}));
+  const navHam = document.getElementById('navHam');
+  const mobOverlay = document.getElementById('mobOverlay');
+  let trapHandler = null;
+  function closeMenu() {
+    navHam.classList.remove('open');
+    mobOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    navHam.setAttribute('aria-label', 'Open menu');
+    if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
+  }
+  function openMenu() {
+    navHam.classList.add('open');
+    mobOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    navHam.setAttribute('aria-label', 'Close menu');
+    const focusable = Array.from(mobOverlay.querySelectorAll('a'));
+    requestAnimationFrame(() => focusable[0].focus());
+    trapHandler = (e) => {
+      if (e.key === 'Escape') { closeMenu(); navHam.focus(); return; }
+      if (e.key !== 'Tab') return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
+    };
+    document.addEventListener('keydown', trapHandler);
+  }
+  navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
+  mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 </script>
 </body>
 </html>
