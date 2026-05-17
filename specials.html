@@ -40,6 +40,7 @@
   <meta name="twitter:title" content="Lunch Specials — Riverside Pizza">
   <meta name="twitter:description" content="Daily lunch specials at Riverside Pizza. Great deals on pizza, subs, and more.">
   <meta name="twitter:image" content="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg">
+  <link rel="preload" as="image" href="https://riversidepizza.net/wp-content/uploads/2013/11/get-attachment.aspx_11-e1384317042793.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -49,6 +50,7 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--cream);color:var(--tx);overflow-x:hidden}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}.wrap{max-width:1280px;margin:0 auto;padding:0 5rem}
 
+    /* ── NAV ─────────────────────────────── */
     #nav{position:fixed;top:1.25rem;left:50%;transform:translateX(-50%);width:calc(100% - 3rem);max-width:1180px;z-index:100;padding:0 1.75rem;height:58px;display:flex;justify-content:space-between;align-items:center;border-radius:9999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:background .45s cubic-bezier(.32,.72,0,1),border-color .45s cubic-bezier(.32,.72,0,1),box-shadow .45s cubic-bezier(.32,.72,0,1),top .45s cubic-bezier(.32,.72,0,1)}
     #nav.scrolled{background:rgba(254,249,242,0.97);border-color:var(--bdr);box-shadow:0 4px 32px rgba(0,0,0,.08),0 1px 4px rgba(0,0,0,.04);top:.75rem}
     .logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;transition:transform .24s cubic-bezier(.32,.72,0,1)}.logo:hover{transform:scale(1.025)}.logo img{height:38px;width:auto;object-fit:contain;display:block;flex-shrink:0;border-radius:5px;box-shadow:0 2px 10px rgba(0,0,0,.2)}
@@ -57,52 +59,115 @@
     .nav-cta{background:var(--g)!important;color:#fff!important;padding:.5rem 1.25rem!important;margin-left:.5rem;border-radius:9999px!important;transition:background .2s cubic-bezier(.32,.72,0,1),transform .2s cubic-bezier(.32,.72,0,1)!important;font-size:.52rem!important}.nav-cta:hover{background:var(--gl)!important;transform:scale(1.04)!important}
     .nav-ham{display:none;background:none;border:none;cursor:pointer;padding:6px;touch-action:manipulation;flex-direction:column;gap:5px;z-index:200}.nav-ham span{display:block;width:22px;height:1.5px;background:white;transition:transform .35s cubic-bezier(.32,.72,0,1),opacity .2s,background .3s;transform-origin:center}#nav.scrolled .nav-ham span{background:var(--tx)}.nav-ham.open span:first-child{transform:translateY(6.5px) rotate(45deg)}.nav-ham.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
 
-    .page-hero{position:relative;min-height:52vh;display:flex;align-items:flex-end;padding-bottom:5rem;overflow:hidden}
-    .ph-bg{position:absolute;inset:0;background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/get-attachment.aspx_11-e1384317042793.jpg');background-size:cover;background-position:center}
-    .ph-overlay{position:absolute;inset:0;background:linear-gradient(108deg,rgba(8,18,8,0.86) 0%,rgba(8,18,8,0.62) 28%,rgba(8,18,8,0.24) 58%,transparent 82%)}
-    .ph-content{position:relative;z-index:1;padding-top:90px}
-    .ph-ey{font-family:var(--m);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(160,210,160,.9);display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
-    .ph-ey::before{content:'';width:2rem;height:1px;background:currentColor}
-    .ph-h1{font-family:var(--d);font-size:clamp(2.5rem,5vw,4rem);font-weight:500;color:#fff;line-height:1.05;margin-bottom:1rem}
-    .ph-h1 em{font-style:italic;color:rgba(180,220,180,.95)}
-    .ph-sub{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.7;max-width:48ch}
-    .ph-note{font-family:var(--m);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-top:1rem;display:inline-block}
+    /* ── MOB OVERLAY ────────────────────── */
+    .mob-overlay{display:none;position:fixed;inset:0;z-index:150;background:var(--cream);flex-direction:column;justify-content:center;align-items:center;gap:0}
+    .mob-overlay.open{display:flex}
+    .mob-overlay a{font-family:var(--d);font-size:clamp(1.6rem,5vw,2.2rem);font-weight:500;color:var(--tx);padding:1rem 2rem;letter-spacing:-.02em;text-decoration:none;opacity:0;transform:translateY(16px);transition:color .2s,opacity .4s cubic-bezier(.32,.72,0,1),transform .4s cubic-bezier(.32,.72,0,1)}
+    .mob-overlay.open a{opacity:1;transform:translateY(0)}
+    .mob-overlay a:nth-child(1){transition-delay:.06s}.mob-overlay a:nth-child(2){transition-delay:.12s}.mob-overlay a:nth-child(3){transition-delay:.18s}.mob-overlay a:nth-child(4){transition-delay:.24s}
+    .mob-overlay a.mob-cta{font-family:var(--m);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;background:var(--g);color:#fff;padding:1rem 2.5rem;margin-top:1.5rem;border-radius:9999px;font-weight:500;font-style:normal;opacity:0;transform:translateY(16px);transition-delay:.30s}
 
-    .specials{padding:clamp(3rem,5vw,5rem) 0;background:var(--wh)}
-    .day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2rem}
-    .day-card{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;overflow:hidden;transition:transform .3s,box-shadow .3s}
-    .day-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
-    .day-top{background:var(--g);padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center}
-    .day-name{font-family:var(--d);font-size:1.4rem;font-weight:600;color:#fff}
-    .day-tag{font-family:var(--m);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;background:var(--gold);color:var(--gd);padding:.3rem .8rem;border-radius:2px}
-    .day-body{padding:2rem}
-    .deal{display:flex;justify-content:space-between;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--bdr)}
-    .deal:last-child{border-bottom:none}
-    .deal-info h3{font-family:var(--d);font-size:1.1rem;font-weight:600;margin-bottom:.3rem}
-    .deal-info p{font-size:.82rem;color:var(--mu);line-height:1.5}
-    .deal-price{font-family:var(--m);font-size:1rem;font-weight:600;color:var(--g);white-space:nowrap;margin-left:1rem}
+    /* ── HERO ────────────────────────────── */
+    .hero{position:relative;min-height:65vh;display:flex;align-items:flex-end;padding-bottom:5rem;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/get-attachment.aspx_11-e1384317042793.jpg');background-size:cover;background-position:center;z-index:-2}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(108deg,rgba(8,18,8,0.88) 0%,rgba(8,18,8,0.65) 30%,rgba(8,18,8,0.28) 60%,transparent 82%);z-index:-1}
+    .hero-content{max-width:900px}
+    .hero-eyebrow{font-family:var(--m);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(160,210,160,0.9);display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
+    .hero-eyebrow::before{content:'';width:2rem;height:1px;background:currentColor}
+    .hero-h1{font-family:var(--d);font-size:clamp(3rem,6vw,5.5rem);font-weight:500;letter-spacing:-.025em;line-height:.95;color:white;margin-bottom:1.5rem}
+    .hero-h1 em{font-style:italic;color:rgba(180,220,180,.95)}
+    .hero-sub{font-size:1.05rem;color:rgba(255,255,255,.72);line-height:1.75;max-width:52ch;font-weight:300}
 
-    .note-band{padding:3rem 0;background:var(--gp);text-align:center}
-    .note-band p{font-size:.95rem;color:var(--mu);max-width:600px;margin:0 auto;line-height:1.7}
-    .note-band strong{color:var(--g)}
+    /* ── HOURS BAND ─────────────────────── */
+    .hours-band{background:var(--g);padding:1.1rem 0;text-align:center}
+    .hours-band p{font-family:var(--m);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.92)}
 
-    footer{background:var(--gd);padding:4rem 0 2rem}
-    .ft-wrap{max-width:1280px;margin:0 auto;padding:0 5rem;display:flex;justify-content:space-between;gap:3rem;flex-wrap:wrap}
-    .ft-brand .fn{font-family:var(--d);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.5rem}
-    .ft-brand .fs{font-family:var(--m);font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-    .ft-col-title{font-family:var(--m);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1rem}
-    .ft-col ul{list-style:none}.ft-col li{margin-bottom:.6rem}.ft-col a{font-size:.88rem;color:rgba(255,255,255,.7);transition:color .2s}.ft-col a:hover{color:#fff}
-    .ft-bottom{max-width:1280px;margin:3rem auto 0;padding:2rem 5rem 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}
-    .ft-copy{font-family:var(--m);font-size:.45rem;letter-spacing:.1em;color:rgba(255,255,255,.3)}
-    @media(max-width:960px){.day-grid{grid-template-columns:1fr}#nav{width:calc(100% - 2rem);padding:0 1.25rem}.nav-links{display:none!important}.nav-ham{display:flex}.wrap{padding:0 2rem}}
+    /* ── DEALS SECTION ──────────────────── */
+    .deals{padding:6rem 0;background:var(--wh)}
+    .sec-eyebrow{font-family:var(--m);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+    .sec-eyebrow::before{content:'';width:2rem;height:1px;background:var(--g)}
+    .deals-h2{font-family:var(--d);font-size:clamp(2rem,3.5vw,3rem);font-weight:500;letter-spacing:-.025em;line-height:1.05;margin-bottom:3.5rem}
+    .deals-h2 em{font-style:italic;color:var(--g)}
+    .deals-list{border-top:1px solid var(--bdr)}
+    .deal-row{display:grid;grid-template-columns:160px 1fr auto;gap:2rem;align-items:center;padding:1.75rem 2rem;border-bottom:1px solid var(--bdr);transition:background .22s cubic-bezier(.32,.72,0,1)}
+    .deal-row:hover{background:var(--gp)}
+    .deal-day{font-family:var(--d);font-size:2.2rem;font-weight:500;color:var(--tx);line-height:1}
+    .deal-info h3{font-family:var(--d);font-size:1.15rem;font-weight:600;margin-bottom:.3rem}
+    .deal-info p{font-size:.85rem;color:var(--mu);line-height:1.55;font-weight:300}
+    .deal-price{font-family:var(--m);font-size:1.5rem;font-weight:500;color:var(--g);white-space:nowrap}
 
+    /* ── PHOTO ROW ──────────────────────── */
+    .photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+    .pr-item{overflow:hidden;aspect-ratio:4/3}
+    .pr-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.32,.72,0,1)}
+    .pr-item:hover img{transform:scale(1.04)}
+
+    /* ── DARK INFO SECTION ──────────────── */
+    .dark-info{background:var(--gd)}
+    .dark-info-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .di-item{padding:4rem 3rem;border-right:1px solid rgba(255,255,255,.08)}
+    .di-item:last-child{border-right:none}
+    .di-num{font-family:var(--d);font-size:3rem;font-weight:700;color:rgba(160,220,160,.25);line-height:1;margin-bottom:1.5rem}
+    .di-title{font-family:var(--d);font-size:1.4rem;font-weight:500;margin-bottom:1rem;color:#fff}
+    .di-p{font-size:.88rem;line-height:1.75;color:rgba(255,255,255,.6);font-weight:300}
+
+    /* ── CTA STRIP ──────────────────────── */
+    .cta-strip{background:var(--g);padding:2.75rem 5rem;display:flex;justify-content:space-between;align-items:center;gap:2rem}
+    .cta-text{font-family:var(--d);font-size:1.45rem;font-style:italic;color:white}
+    .cta-links{display:flex;gap:.75rem}
+    .btn{font-family:var(--m);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.85rem 2rem;display:inline-block;transition:all .2s;border:none;cursor:pointer;border-radius:9999px}
+    .btn-white{background:white;color:var(--gd)}.btn-white:hover{background:var(--gp);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+    .btn-outline-w{border:1px solid rgba(255,255,255,.45);color:white}.btn-outline-w:hover{background:rgba(255,255,255,.1);border-color:white}
+
+    /* ── FOOTER ─────────────────────────── */
+    footer{background:var(--gd);padding:4rem 5rem 2.5rem}
+    .ft-top{display:flex;justify-content:space-between;gap:4rem;padding-bottom:3rem;margin-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+    .ft-brand .fn{font-family:var(--d);font-size:1.4rem;font-weight:700;color:white}
+    .ft-brand .fs{font-family:var(--m);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px}
+    .ft-cols{display:grid;grid-template-columns:repeat(3,auto);gap:4rem}
+    .ft-col-title{font-family:var(--m);font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(160,220,160,.7);margin-bottom:1rem}
+    .ft-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+    .ft-col a{font-size:.82rem;color:rgba(255,255,255,.55);transition:color .2s;font-weight:300}.ft-col a:hover{color:white}
+    .ft-bottom{display:flex;justify-content:space-between;align-items:center}
+    .ft-copy{font-family:var(--m);font-size:.45rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+
+    @media(max-width:960px){
+      #nav{width:calc(100% - 2rem);padding:0 1.25rem}.nav-links{display:none!important}.nav-ham{display:flex}
+      .wrap{padding:0 2rem}
+      .dark-info-grid{grid-template-columns:1fr}.di-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);padding:3rem 2rem}
+      .deal-row{grid-template-columns:100px 1fr auto;gap:1rem;padding:1.25rem 1rem}
+      .deal-day{font-size:1.4rem}
+      .deal-price{font-size:1.1rem}
+      .photo-row{grid-template-columns:1fr}
+      .cta-strip{padding:2rem;flex-direction:column;text-align:center}
+      .cta-links{flex-direction:column;width:100%}.cta-links .btn{width:100%;text-align:center}
+      footer{padding:3rem 2rem 2rem}.ft-top{flex-direction:column}.ft-cols{grid-template-columns:1fr 1fr;gap:2rem}.ft-bottom{flex-direction:column;gap:.75rem}
+    }
+    @media(max-width:520px){.deal-row{grid-template-columns:80px 1fr;}.deal-price{grid-column:1/-1;font-size:1.2rem}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
   </style>
 </head>
 <body>
+
 <nav id="nav">
-  <a href="index.html" class="logo"><img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza"><div class="logo-text"><span class="logo-name">Riverside Pizza</span><span class="logo-sub">Est. 1999 · Metro Atlanta</span></div></a>
-  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="locations.html">Locations</a></li><li><a href="about.html">About</a></li><li><a href="locations.html" class="nav-cta">Order Online</a></li></ul>
-  <button class="nav-ham" id="navHam" aria-label="Open menu"><span></span><span></span></button>
+  <a href="index.html" class="logo">
+    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="specials.html" aria-current="page">Specials</a></li>
+    <li><a href="catering.html">Catering</a></li>
+    <li><a href="locations.html">Locations</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="locations.html" class="nav-cta">Order Online</a></li>
+  </ul>
+  <button class="nav-ham" id="navHam" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
 </nav>
 <div class="mob-overlay" id="mobOverlay">
   <a href="index.html">Home</a>
@@ -112,69 +177,165 @@
   <a href="locations.html" class="mob-cta">Order Online</a>
 </div>
 
-<section class="page-hero">
-  <div class="ph-bg"></div>
-  <div class="ph-overlay"></div>
-  <div class="wrap ph-content">
-    <div class="ph-ey">Limited Time Daily</div>
-    <h1 class="ph-h1">Lunch <em>Specials</em></h1>
-    <p class="ph-sub">Great deals available every day from 11am–3pm at all Riverside Pizza locations. Dine-in or carryout.</p>
-    <span class="ph-note">Available 11:00 AM – 3:00 PM Daily</span>
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="wrap" style="width:100%">
+    <div class="hero-content gs-reveal">
+      <div class="hero-eyebrow">Available 11am – 3pm Daily</div>
+      <h1 class="hero-h1">Daily <em>Specials.</em></h1>
+      <p class="hero-sub">Great deals at all 8 locations — dine-in or carryout. Fresh ingredients, same low price every week.</p>
+    </div>
   </div>
 </section>
 
-<section class="specials"><div class="wrap">
-  <div class="day-grid">
-    <div class="day-card"><div class="day-top"><span class="day-name">Monday</span><span class="day-tag">Deal</span></div><div class="day-body">
-      <div class="deal"><div class="deal-info"><h3>Large 1-Topping Pizza</h3><p>Any single topping on our hand-tossed large pizza</p></div><div class="deal-price">$10.99</div></div>
-    </div></div>
-    <div class="day-card"><div class="day-top"><span class="day-name">Tuesday</span><span class="day-tag">Deal</span></div><div class="day-body">
-      <div class="deal"><div class="deal-info"><h3>2 Medium 2-Topping Pizzas</h3><p>Choose any two toppings on each medium pizza</p></div><div class="deal-price">$18.99</div></div>
-    </div></div>
-    <div class="day-card"><div class="day-top"><span class="day-name">Wednesday</span><span class="day-tag">Deal</span></div><div class="day-body">
-      <div class="deal"><div class="deal-info"><h3>Large Specialty Pizza</h3><p>Any specialty pizza from our menu</p></div><div class="deal-price">$13.99</div></div>
-    </div></div>
-    <div class="day-card"><div class="day-top"><span class="day-name">Thursday</span><span class="day-tag">Deal</span></div><div class="day-body">
-      <div class="deal"><div class="deal-info"><h3>XL 1-Topping + 2L Soda</h3><p>Extra large pizza with one topping plus a 2-liter drink</p></div><div class="deal-price">$14.99</div></div>
-    </div></div>
-    <div class="day-card"><div class="day-top"><span class="day-name">Friday</span><span class="day-tag">Deal</span></div><div class="day-body">
-      <div class="deal"><div class="deal-info"><h3>Family Combo</h3><p>Large 2-topping pizza, 10 wings, and a 2-liter drink</p></div><div class="deal-price">$24.99</div></div>
-    </div></div>
-    <div class="day-card"><div class="day-top"><span class="day-name">Sat &amp; Sun</span><span class="day-tag">Weekend</span></div><div class="day-body">
-      <div class="deal"><div class="deal-info"><h3>Lunch Slice Combo</h3><p>2 slices of cheese or pepperoni + drink</p></div><div class="deal-price">$7.99</div></div>
-    </div></div>
-  </div>
-</div></section>
+<div class="hours-band">
+  <p>Available Mon – Sun &nbsp;·&nbsp; 11:00 AM – 3:00 PM &nbsp;·&nbsp; All 8 Locations &nbsp;·&nbsp; Dine-in &amp; Carryout Only</p>
+</div>
 
-<section class="note-band"><div class="wrap">
-  <p><strong>Prices may vary by location.</strong> Lunch specials are available for dine-in and carryout only. Delivery orders are subject to regular menu pricing. Ask your server for details.</p>
-</div></section>
+<section class="deals">
+  <div class="wrap">
+    <div class="sec-eyebrow gs-reveal">This Week's Deals</div>
+    <h2 class="deals-h2 gs-reveal">Eat well. <em>Spend less.</em></h2>
+    <div class="deals-list gs-reveal">
+      <div class="deal-row">
+        <div class="deal-day">Mon</div>
+        <div class="deal-info">
+          <h3>Large 1-Topping Pizza</h3>
+          <p>Any single topping on our hand-tossed large</p>
+        </div>
+        <div class="deal-price">$10.99</div>
+      </div>
+      <div class="deal-row">
+        <div class="deal-day">Tue</div>
+        <div class="deal-info">
+          <h3>2 Medium 2-Topping Pizzas</h3>
+          <p>Choose any two toppings on each</p>
+        </div>
+        <div class="deal-price">$18.99</div>
+      </div>
+      <div class="deal-row">
+        <div class="deal-day">Wed</div>
+        <div class="deal-info">
+          <h3>Large Specialty Pizza</h3>
+          <p>Any signature pizza from our menu</p>
+        </div>
+        <div class="deal-price">$13.99</div>
+      </div>
+      <div class="deal-row">
+        <div class="deal-day">Thu</div>
+        <div class="deal-info">
+          <h3>XL 1-Topping + 2L Soda</h3>
+          <p>Extra large pizza with one topping</p>
+        </div>
+        <div class="deal-price">$14.99</div>
+      </div>
+      <div class="deal-row">
+        <div class="deal-day">Fri</div>
+        <div class="deal-info">
+          <h3>Family Combo</h3>
+          <p>Large 2-topping pizza + 10 wings + 2-liter</p>
+        </div>
+        <div class="deal-price">$24.99</div>
+      </div>
+      <div class="deal-row">
+        <div class="deal-day">Sat</div>
+        <div class="deal-info">
+          <h3>Lunch Slice Combo</h3>
+          <p>2 slices + drink</p>
+        </div>
+        <div class="deal-price">$7.99</div>
+      </div>
+      <div class="deal-row">
+        <div class="deal-day">Sun</div>
+        <div class="deal-info">
+          <h3>Lunch Slice Combo</h3>
+          <p>2 slices + drink</p>
+        </div>
+        <div class="deal-price">$7.99</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="photo-row">
+  <div class="pr-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza"></div>
+  <div class="pr-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Riverside Pizza"></div>
+  <div class="pr-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Riverside Pizza"></div>
+</div>
+
+<section class="dark-info">
+  <div class="dark-info-grid">
+    <div class="di-item gs-reveal">
+      <div class="di-num">01</div>
+      <h3 class="di-title">All Locations</h3>
+      <p class="di-p">Every one of our 8 Metro Atlanta stores runs the same deals. No matter which location is closest to you, the value is the same.</p>
+    </div>
+    <div class="di-item gs-reveal">
+      <div class="di-num">02</div>
+      <h3 class="di-title">Dine-in &amp; Carryout</h3>
+      <p class="di-p">Lunch specials are available for dine-in and carryout only. Delivery orders are subject to regular menu pricing.</p>
+    </div>
+    <div class="di-item gs-reveal">
+      <div class="di-num">03</div>
+      <h3 class="di-title">Fresh Daily</h3>
+      <p class="di-p">Same quality ingredients, same Stanislaus sauce, same hand-tossed dough — just at a lower lunch price. Every single day.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="cta-text">Hungry right now? Find your nearest location.</div>
+  <div class="cta-links">
+    <a href="locations.html" class="btn btn-white">Order Online</a>
+    <a href="menu.html" class="btn btn-outline-w">Full Menu</a>
+  </div>
+</div>
 
 <footer>
-  <div class="ft-wrap">
+  <div class="ft-top">
     <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
-    <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Lunch Specials</a></li><li><a href="gluten-free.html">Gluten Free</a></li><li><a href="catering.html">Catering</a></li></ul></div>
-    <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Jobs</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="locations.html">Order Online</a></li><li><a href="locations.html">Locations</a></li></ul></div>
+    <div class="ft-cols">
+      <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Lunch Specials</a></li><li><a href="gluten-free.html">Gluten Free</a></li><li><a href="catering.html">Catering</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Job Application</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="locations.html">Order Online</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
+    </div>
   </div>
-  <div class="ft-bottom"><span class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</span><span class="ft-copy">Metro Atlanta · 8 Locations</span></div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+    <div class="ft-copy">Lawrenceville · Sugarloaf · Suwanee · Grayson · Hamilton Mill · Dacula · Johns Creek · Cumming</div>
+  </div>
 </footer>
 
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
 <script>
-  if (typeof Lenis !== "undefined") {
-    const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
-    if (typeof ScrollTrigger !== "undefined") { lenis.on("scroll", ScrollTrigger.update); }
-    if (typeof gsap !== "undefined") {
-      gsap.ticker.add(time => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
-    } else {
-      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-    }
-  }
+  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(time => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const nav = document.getElementById('nav');
+  const checkNav = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', checkNav, { passive: true });
+  checkNav();
+
+  gsap.to('#heroBg', {
+    y: '20%', ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+  });
+
+  gsap.utils.toArray('.gs-reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      }
+    );
+  });
 </script>
 <script>
   const navHam = document.getElementById('navHam');
@@ -205,43 +366,6 @@
   }
   navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
   mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-</script>
-
-<script>
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-    // wire lenis to ST
-    if (typeof lenis !== 'undefined') lenis.on('scroll', ScrollTrigger.update);
-
-    // hero entrance
-    const heroH1 = document.querySelector('.hero h1, .ph-h1');
-    const heroEy = document.querySelector('.hero-ey, .ph-ey');
-    const heroDesc = document.querySelector('.hero-desc, .ph-sub');
-    if (heroH1) {
-      const htl = gsap.timeline({ delay: 0.25 });
-      if (heroEy) htl.from(heroEy, { opacity: 0, y: 20, duration: 0.8, ease: 'power3.out' });
-      htl.from(heroH1, { opacity: 0, y: 28, duration: 0.9, ease: 'power3.out' }, '-=0.5');
-      if (heroDesc) htl.from(heroDesc, { opacity: 0, y: 18, duration: 0.75, ease: 'power3.out' }, '-=0.55');
-    }
-
-    // scroll reveals on all major content blocks
-    const revealTargets = document.querySelectorAll(
-      'section h2, section h3, .warn, .warn p, .info p, ' +
-      '.day-grid, .day-card, .facts-grid, .fact-box, ' +
-      '.content .wrap > p, .content .wrap > h2, ' +
-      '.menu-sec table, .menu-sec h2, ' +
-      '.info-card, .val-card, .sig-grid, .gf-list, ' +
-      'footer'
-    );
-    revealTargets.forEach(el => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 32, filter: 'blur(5px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.85, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 90%', once: true }
-        }
-      );
-    });
-  }
 </script>
 </body>
 </html>
