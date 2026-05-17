@@ -42,7 +42,8 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap"></noscript>
   <style>
     /* ── MENU PAGE HEADER ───────────────────────── */
     .menu-header { padding: 10rem 0 5rem; background: var(--wh); border-bottom: 1px solid var(--bdr); }
@@ -162,7 +163,7 @@
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="menu.html">Menu</a></li>
+    <li><a href="menu.html" aria-current="page">Menu</a></li>
     <li><a href="catering.html">Catering</a></li>
     <li><a href="locations.html">Locations</a></li>
     <li><a href="about.html">About</a></li>
