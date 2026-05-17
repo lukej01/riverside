@@ -1051,6 +1051,7 @@
       /* Dynamic option groups */
       let html = '';
       if (item.cat.includes('Pizza')) {
+        const isVeggie = item.cat === 'Build Your Own' || item.name.toLowerCase().includes('veggie');
         html = `
           <div class="og">
             <div class="og-title"><span>Size</span><span class="og-req">Required</span></div>
@@ -1065,7 +1066,36 @@
               <label class="r-label"><input type="radio" name="crust" value="hand" checked>Hand-Tossed</label>
               <label class="r-label"><input type="radio" name="crust" value="thin">Thin Crust</label>
             </div>
-          </div>`;
+          </div>
+          ${item.cat === 'Build Your Own' ? `
+          <div class="og">
+            <div class="og-title"><span>Toppings</span><span style="font-size:0.7rem;color:var(--mu);font-weight:400;">$1.70 each</span></div>
+            <div style="margin-bottom:0.5rem;">
+              <div style="font-family:var(--m);font-size:0.46rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mu);margin-bottom:0.4rem;">Meats</div>
+              <div class="r-grid" style="grid-template-columns:repeat(3,1fr);gap:0.4rem;">
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Pepperoni</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Ham</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Bacon</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Sausage</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Beef</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="3.40">Chicken<span class="r-sub">×2</span></label>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:var(--m);font-size:0.46rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mu);margin-bottom:0.4rem;">Vegetables</div>
+              <div class="r-grid" style="grid-template-columns:repeat(3,1fr);gap:0.4rem;">
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Mushrooms</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Onions</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Peppers</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Olives</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Tomatoes</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Jalapeños</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Pineapple</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Banana Peppers</label>
+                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="3.40">Feta<span class="r-sub">×2</span></label>
+              </div>
+            </div>
+          </div>` : ''}`;
       } else if (item.cat.includes('Wings')) {
         html = `
           <div class="og">
@@ -1107,6 +1137,10 @@
         const el = document.querySelector(`input[name="${name}"]:checked`);
         if (el) up += parseFloat(el.value) || 0;
       });
+      // Sum topping checkboxes (BYO pizza)
+      document.querySelectorAll('input[name="top"]:checked').forEach(el => {
+        up += parseFloat(el.dataset.price) || 1.70;
+      });
       modalTotal = (activeItem.price + up) * modalQty;
       modalQtyNEl.textContent = modalQty;
       modalAddPEl.textContent = `$${modalTotal.toFixed(2)}`;
@@ -1126,6 +1160,11 @@
           const text = el.closest('label').firstChild.textContent.trim();
           if (text) opts.push(text);
         }
+      });
+      // Capture toppings checkboxes
+      document.querySelectorAll('input[name="top"]:checked').forEach(el => {
+        const text = el.closest('label').firstChild.textContent.trim();
+        if (text) opts.push(text);
       });
 
       cart.push({
