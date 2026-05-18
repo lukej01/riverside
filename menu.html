@@ -139,6 +139,13 @@
     .byo-sum-total { font-family: var(--d); font-size: 2.2rem; font-weight: 700; color: var(--g); line-height: 1; }
     .btn-g { background: var(--g); color: white; display: flex; width: 100%; justify-content: center; border-radius: 6px; }
     .btn-g:hover { background: var(--gd); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,95,44,0.25); }
+    .btn-order-sm {
+      font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.45rem 1rem; border-radius: 9999px;
+      background: var(--g); color: white; border: 1px solid var(--g);
+      white-space: nowrap; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-order-sm:hover { background: var(--gd); transform: translateY(-2px); }
 
 
 
@@ -742,6 +749,15 @@
   gsap.ticker.lagSmoothing(0);
 
   gsap.registerPlugin(ScrollTrigger);
+
+  // ── ORDER BUTTONS ON ALL MENU ITEMS ─────────
+  document.querySelectorAll('.m-footer').forEach(footer => {
+    const btn = document.createElement('a');
+    btn.href = 'takeout.html';
+    btn.className = 'btn-order-sm';
+    btn.textContent = 'Order';
+    footer.appendChild(btn);
+  });
 
   // ── SECTION REVEALS ──────────────────────────
   gsap.utils.toArray('.gs-reveal').forEach(el => {
