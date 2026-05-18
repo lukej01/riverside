@@ -215,24 +215,7 @@
       color: rgba(255,255,255,0.55);
     }
 
-    /* Step 2 — Toast iframe */
-    .om-step2-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 1.5rem; height: 56px; flex-shrink: 0;
-      border-bottom: 1px solid var(--bdr); background: white;
-    }
-    .om-back {
-      background: none; border: none; cursor: pointer;
-      font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--mu); display: flex; align-items: center; gap: 0.4rem;
-      padding: 0.35rem 0.75rem; border-radius: 9999px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .om-back:hover { background: var(--gp); color: var(--g); }
-    .om-step2-loc { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); }
-    .om-toast-iframe { flex: 1; width: 100%; border: none; display: block; min-height: 0; }
-
-    /* Step 3 — phone fallback */
+    /* Step 2 — phone fallback */
     .om-phone-inner {
       flex: 1; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
@@ -676,26 +659,11 @@
       </div>
     </div>
 
-    <!-- Step 2: Toast Embed -->
+    <!-- Step 2: Phone fallback -->
     <div class="om-step om-hidden" id="om-step2">
-        <div class="om-step2-bar">
-          <button class="om-back" id="om-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-            Back
-          </button>
-          <div class="om-step2-loc" id="om-step2-loc"></div>
-          <button class="om-close" id="om-close2" aria-label="Close">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-        <iframe id="om-toast-frame" class="om-toast-iframe" src="" title="Order Carryout — Riverside Pizza"></iframe>
-    </div>
-
-    <!-- Step 3: Phone fallback -->
-    <div class="om-step om-hidden" id="om-step3">
       <div class="om-bar">
-        <div class="om-loc" id="om-step3-loc"></div>
-        <button class="om-close" id="om-close3" aria-label="Close">
+        <div class="om-loc" id="om-step2-loc"></div>
+        <button class="om-close" id="om-close2" aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
@@ -764,13 +732,9 @@
 
   // ── ORDER MODAL ─────────────────────────────
   const orderModal  = document.getElementById('order-modal');
-  const omBackdrop  = document.getElementById('om-backdrop');
   const omStep1     = document.getElementById('om-step1');
   const omStep2     = document.getElementById('om-step2');
-  const omStep3     = document.getElementById('om-step3');
   const omLocLabel  = document.getElementById('om-loc-label');
-  const omStep2Loc  = document.getElementById('om-step2-loc');
-  const omToastFrame= document.getElementById('om-toast-frame');
   const omPhoneLink = document.getElementById('om-phone-link');
   const omBtnCarryout = document.getElementById('om-btn-carryout');
   const omBtnDelivery = document.getElementById('om-btn-delivery');
@@ -778,13 +742,12 @@
   let curLoc = {};
 
   function omShowStep(n) {
-    [omStep1, omStep2, omStep3].forEach((s,i) => s.classList.toggle('om-hidden', i+1 !== n));
+    [omStep1, omStep2].forEach((s,i) => s.classList.toggle('om-hidden', i+1 !== n));
   }
   function omOpen(btn) {
     curLoc = { name: btn.dataset.name, toast: btn.dataset.toast||'', dd: btn.dataset.dd||'', phone: btn.dataset.phone||'' };
     omLocLabel.textContent = curLoc.name;
-    omStep2Loc.textContent = curLoc.name;
-    document.getElementById('om-step3-loc').textContent = curLoc.name;
+    document.getElementById('om-step2-loc').textContent = curLoc.name;
     const noDD = !curLoc.dd;
     omBtnDelivery.classList.toggle('unavail', noDD);
     omBtnDelivery.classList.toggle('unavail-label', noDD);
@@ -797,15 +760,16 @@
   function omClose() {
     orderModal.classList.remove('open');
     document.body.style.overflow = '';
-    setTimeout(() => { omToastFrame.src = ''; }, 300);
   }
 
   omBtnCarryout.addEventListener('click', () => {
-    if (curLoc.toast) { omToastFrame.src = curLoc.toast; omShowStep(2); }
-    else if (curLoc.phone) {
+    if (curLoc.toast) {
+      window.open(curLoc.toast, '_blank', 'noopener,noreferrer');
+      omClose();
+    } else if (curLoc.phone) {
       omPhoneLink.href = 'tel:' + curLoc.phone;
       omPhoneLink.textContent = curLoc.phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-      omShowStep(3);
+      omShowStep(2);
     }
   });
   omBtnDelivery.addEventListener('click', () => {
@@ -813,7 +777,7 @@
     omClose();
   });
   document.getElementById('om-back').addEventListener('click', () => omShowStep(1));
-  ['om-close1','om-close2','om-close3'].forEach(id => document.getElementById(id).addEventListener('click', omClose));
+  ['om-close1','om-close2'].forEach(id => document.getElementById(id).addEventListener('click', omClose));
   // no backdrop click — fullscreen, close via X or Escape only
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && orderModal.classList.contains('open')) omClose(); });
   document.querySelectorAll('.btn-order').forEach(btn => btn.addEventListener('click', () => omOpen(btn)));
