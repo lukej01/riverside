@@ -125,6 +125,97 @@
     .how-title { font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx); margin-bottom: 0.5rem; }
     .how-desc { font-size: 0.875rem; color: var(--mu); line-height: 1.6; font-weight: 300; }
 
+    /* ── ORDER MODAL ───────────────────────────── */
+    .btn-order {
+      flex: 1; min-width: 130px; justify-content: center; font-size: 0.5rem;
+      appearance: none; cursor: pointer;
+      background: var(--g); color: white; border: 1px solid var(--g);
+    }
+    .btn-order:hover { background: var(--gd); border-color: var(--gd); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,95,44,0.25); }
+    .order-modal {
+      position: fixed; inset: 0; z-index: 9000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s var(--ease);
+    }
+    .order-modal.open { opacity: 1; pointer-events: all; }
+    .om-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(10,20,10,0.65);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    .om-panel {
+      position: relative; z-index: 1;
+      background: white; border-radius: 20px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.22);
+      overflow: hidden;
+    }
+    .om-step.om-hidden { display: none; }
+    .om-step1-inner {
+      width: min(460px, calc(100vw - 2rem));
+      padding: 2.25rem 2rem 2rem;
+    }
+    .om-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none; border: none; cursor: pointer;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--mu);
+      transition: background 0.2s, color 0.2s;
+    }
+    .om-close:hover { background: var(--gp); color: var(--tx); }
+    .om-loc { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); margin-bottom: 0.6rem; }
+    .om-title { font-family: var(--d); font-size: 1.5rem; font-weight: 600; color: var(--tx); letter-spacing: -0.02em; margin-bottom: 1.75rem; line-height: 1.25; }
+    .om-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
+    .om-choice {
+      background: white; border: 1.5px solid var(--bdr); border-radius: 14px;
+      padding: 1.5rem 1rem; cursor: pointer; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      transition: border-color 0.2s var(--ease), background 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+    .om-choice:hover { border-color: var(--g); background: var(--gp); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(30,95,44,0.12); }
+    .om-choice.unavail { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+    .omc-icon { font-size: 2rem; line-height: 1; }
+    .omc-label { font-family: var(--d); font-size: 1.05rem; font-weight: 600; color: var(--tx); }
+    .omc-sub { font-size: 0.775rem; color: var(--mu); font-weight: 300; }
+    .om-step2-inner {
+      width: min(940px, calc(100vw - 2rem));
+      display: flex; flex-direction: column;
+    }
+    .om-step2-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid var(--bdr);
+    }
+    .om-back {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--mu); display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.75rem; border-radius: 9999px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .om-back:hover { background: var(--gp); color: var(--g); }
+    .om-step2-loc { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); }
+    .om-toast-iframe {
+      width: 100%; border: none; display: block;
+      height: min(680px, calc(100vh - 10rem));
+    }
+    .om-phone-inner {
+      width: min(420px, calc(100vw - 2rem));
+      padding: 2.25rem 2rem 2.5rem;
+      text-align: center;
+    }
+    .om-phone-icon { font-size: 2.75rem; margin-bottom: 1rem; }
+    .om-phone-msg { font-size: 0.875rem; color: var(--mu); line-height: 1.65; margin-bottom: 1.5rem; font-weight: 300; }
+    .om-phone-num { font-family: var(--d); font-size: 1.6rem; font-weight: 600; color: var(--g); text-decoration: none; display: block; }
+    .om-phone-num:hover { color: var(--gd); }
+    @media (max-width: 480px) {
+      .om-choices { grid-template-columns: 1fr; }
+      .om-toast-iframe { height: calc(100vh - 8rem); }
+      .om-step2-inner { width: calc(100vw - 2rem); }
+    }
+
     /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 960px) {
       .order-hero { padding: 8rem 0 4rem; }
@@ -218,8 +309,7 @@
         </div>
         <hr class="lc-divider">
         <div class="lc-actions">
-          <a href="https://order.toasttab.com/online/riverside-pizza-riverside-2100-riverside-pkwy-suite-110" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
-          <a href="https://www.doordash.com/store/riverside-pizza-lawrenceville-129406/59759346/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <button class="btn btn-order" data-name="Lawrenceville" data-toast="https://order.toasttab.com/online/riverside-pizza-riverside-2100-riverside-pkwy-suite-110" data-dd="https://www.doordash.com/store/riverside-pizza-lawrenceville-129406/59759346/?pickup=false">Order Now</button>
           <a href="https://www.google.com/maps?q=2100+Riverside+Pkwy,+Lawrenceville,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
         </div>
         </div>
@@ -252,8 +342,7 @@
         </div>
         <hr class="lc-divider">
         <div class="lc-actions">
-          <a href="https://order.toasttab.com/online/riverside-pizza-sugarloaf-3330-sugarloaf-pkwy-sw" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
-          <a href="https://www.doordash.com/store/riverside-pizza-lawrenceville-129420/90666946/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <button class="btn btn-order" data-name="Sugarloaf" data-toast="https://order.toasttab.com/online/riverside-pizza-sugarloaf-3330-sugarloaf-pkwy-sw" data-dd="https://www.doordash.com/store/riverside-pizza-lawrenceville-129420/90666946/?pickup=false">Order Now</button>
           <a href="https://www.google.com/maps?q=3330+Sugarloaf+Pkwy,+Lawrenceville,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
         </div>
         </div>
@@ -286,8 +375,7 @@
         </div>
         <hr class="lc-divider">
         <div class="lc-actions">
-          <a href="https://order.toasttab.com/online/riversidepizzasuwanee" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
-          <a href="https://www.doordash.com/store/riverside-pizza-suwanee-94259/47875546/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <button class="btn btn-order" data-name="Suwanee" data-toast="https://order.toasttab.com/online/riversidepizzasuwanee" data-dd="https://www.doordash.com/store/riverside-pizza-suwanee-94259/47875546/?pickup=false">Order Now</button>
           <a href="https://www.google.com/maps?q=991+Peachtree+Industrial+Blvd,+Suwanee,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
         </div>
         </div>
@@ -320,8 +408,7 @@
         </div>
         <hr class="lc-divider">
         <div class="lc-actions">
-          <a href="https://order.toasttab.com/online/riverside-pizza-grayson-1845-grayson-hwy-1400" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
-          <a href="https://www.doordash.com/store/riverside-pizza-grayson-129392/60726148/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <button class="btn btn-order" data-name="Grayson" data-toast="https://order.toasttab.com/online/riverside-pizza-grayson-1845-grayson-hwy-1400" data-dd="https://www.doordash.com/store/riverside-pizza-grayson-129392/60726148/?pickup=false">Order Now</button>
           <a href="https://www.google.com/maps?q=1845+Grayson+Hwy,+Grayson,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
         </div>
         </div>
@@ -354,7 +441,7 @@
         </div>
         <hr class="lc-divider">
         <div class="lc-actions">
-          <a href="tel:7702718881" class="btn btn-call">Call to Order — 770-271-8881</a>
+          <button class="btn btn-order" data-name="Hamilton Mill" data-toast="" data-dd="" data-phone="7702718881">Order Now</button>
           <a href="https://www.google.com/maps?q=2463+Hamilton+Mill+Pkwy,+Dacula,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
         </div>
         </div>
@@ -387,8 +474,7 @@
         </div>
         <hr class="lc-divider">
         <div class="lc-actions">
-          <a href="https://order.toasttab.com/online/riverside-pizza-dacula-ga-2515-fence-rd-ne-170" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
-          <a href="https://www.doordash.com/store/riverside-pizza-dacula-129376/64607350/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <button class="btn btn-order" data-name="Dacula" data-toast="https://order.toasttab.com/online/riverside-pizza-dacula-ga-2515-fence-rd-ne-170" data-dd="https://www.doordash.com/store/riverside-pizza-dacula-129376/64607350/?pickup=false">Order Now</button>
           <a href="https://www.google.com/maps?q=2515+Fence+Rd,+Dacula,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
         </div>
         </div>
@@ -421,8 +507,7 @@
         </div>
         <hr class="lc-divider">
         <div class="lc-actions">
-          <a href="https://order.toasttab.com/online/riverside-pizza-johnscreek" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
-          <a href="https://www.doordash.com/store/riverside-pizza-johns-creek-53820/58782947/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <button class="btn btn-order" data-name="Johns Creek" data-toast="https://order.toasttab.com/online/riverside-pizza-johnscreek" data-dd="https://www.doordash.com/store/riverside-pizza-johns-creek-53820/58782947/?pickup=false">Order Now</button>
           <a href="https://www.google.com/maps?q=11877+Douglas+Rd,+Johns+Creek,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
         </div>
         </div>
@@ -455,8 +540,7 @@
         </div>
         <hr class="lc-divider">
         <div class="lc-actions">
-          <a href="https://order.toasttab.com/online/riverside-pizza-cumming-ga-3030-old-atlanta-rd-suite-800" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
-          <a href="https://www.doordash.com/store/riverside-pizza-cumming-127716/50569349/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <button class="btn btn-order" data-name="Cumming" data-toast="https://order.toasttab.com/online/riverside-pizza-cumming-ga-3030-old-atlanta-rd-suite-800" data-dd="https://www.doordash.com/store/riverside-pizza-cumming-127716/50569349/?pickup=false">Order Now</button>
           <a href="https://www.google.com/maps?q=3030+Old+Atlanta+Rd,+Cumming,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
         </div>
         </div>
@@ -516,6 +600,67 @@
   </div>
 </footer>
 
+<!-- ── ORDER MODAL ───────────────────────────── -->
+<div id="order-modal" class="order-modal" role="dialog" aria-modal="true" aria-labelledby="om-title-text">
+  <div class="om-backdrop" id="om-backdrop"></div>
+  <div class="om-panel" id="om-panel">
+
+    <!-- Step 1: Carryout or Delivery -->
+    <div class="om-step" id="om-step1">
+      <div class="om-step1-inner">
+        <button class="om-close" id="om-close1" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="om-loc" id="om-loc-label"></div>
+        <div class="om-title" id="om-title-text">How would you<br>like to order?</div>
+        <div class="om-choices">
+          <button class="om-choice" id="om-btn-carryout">
+            <div class="omc-icon">🛍️</div>
+            <div class="omc-label">Carryout</div>
+            <div class="omc-sub">Pick up in 20–30 min</div>
+          </button>
+          <button class="om-choice" id="om-btn-delivery">
+            <div class="omc-icon">🚗</div>
+            <div class="omc-label">Delivery</div>
+            <div class="omc-sub" id="om-dd-sub">Via DoorDash</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Toast Embed -->
+    <div class="om-step om-hidden" id="om-step2">
+      <div class="om-step2-inner">
+        <div class="om-step2-bar">
+          <button class="om-back" id="om-back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+          <div class="om-step2-loc" id="om-step2-loc"></div>
+          <button class="om-close" id="om-close2" aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <iframe id="om-toast-frame" class="om-toast-iframe" src="" title="Order Carryout — Riverside Pizza"></iframe>
+      </div>
+    </div>
+
+    <!-- Step 3: Phone fallback -->
+    <div class="om-step om-hidden" id="om-step3">
+      <div class="om-phone-inner">
+        <button class="om-close" id="om-close3" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="om-phone-icon">📞</div>
+        <div class="om-title" style="margin-bottom:0.75rem">Call to order</div>
+        <p class="om-phone-msg">Online ordering isn't available at this location yet. Give us a call and we'll take care of you.</p>
+        <a href="tel:" id="om-phone-link" class="om-phone-num"></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
@@ -567,6 +712,59 @@
   }
   navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
   mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // ── ORDER MODAL ─────────────────────────────
+  const orderModal  = document.getElementById('order-modal');
+  const omBackdrop  = document.getElementById('om-backdrop');
+  const omStep1     = document.getElementById('om-step1');
+  const omStep2     = document.getElementById('om-step2');
+  const omStep3     = document.getElementById('om-step3');
+  const omLocLabel  = document.getElementById('om-loc-label');
+  const omStep2Loc  = document.getElementById('om-step2-loc');
+  const omToastFrame= document.getElementById('om-toast-frame');
+  const omPhoneLink = document.getElementById('om-phone-link');
+  const omBtnCarryout = document.getElementById('om-btn-carryout');
+  const omBtnDelivery = document.getElementById('om-btn-delivery');
+  const omDdSub     = document.getElementById('om-dd-sub');
+  let curLoc = {};
+
+  function omShowStep(n) {
+    [omStep1, omStep2, omStep3].forEach((s,i) => s.classList.toggle('om-hidden', i+1 !== n));
+  }
+  function omOpen(btn) {
+    curLoc = { name: btn.dataset.name, toast: btn.dataset.toast||'', dd: btn.dataset.dd||'', phone: btn.dataset.phone||'' };
+    omLocLabel.textContent = curLoc.name;
+    omStep2Loc.textContent = curLoc.name;
+    omBtnDelivery.classList.toggle('unavail', !curLoc.dd);
+    omDdSub.textContent = curLoc.dd ? 'Via DoorDash' : 'Not available';
+    omBtnCarryout.classList.toggle('unavail', !curLoc.toast && !curLoc.phone);
+    omShowStep(1);
+    orderModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function omClose() {
+    orderModal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { omToastFrame.src = ''; }, 300);
+  }
+
+  omBtnCarryout.addEventListener('click', () => {
+    if (curLoc.toast) { omToastFrame.src = curLoc.toast; omShowStep(2); }
+    else if (curLoc.phone) {
+      omPhoneLink.href = 'tel:' + curLoc.phone;
+      omPhoneLink.textContent = curLoc.phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+      omShowStep(3);
+    }
+  });
+  omBtnDelivery.addEventListener('click', () => {
+    window.open(curLoc.dd, '_blank', 'noopener,noreferrer');
+    omClose();
+  });
+  document.getElementById('om-back').addEventListener('click', () => omShowStep(1));
+  ['om-close1','om-close2','om-close3'].forEach(id => document.getElementById(id).addEventListener('click', omClose));
+  omBackdrop.addEventListener('click', omClose);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && orderModal.classList.contains('open')) omClose(); });
+  document.querySelectorAll('.btn-order').forEach(btn => btn.addEventListener('click', () => omOpen(btn)));
 </script>
 </body>
 </html>
