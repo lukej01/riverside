@@ -199,7 +199,10 @@
     /* ── ANNIVERSARY ───────────────────────────── */
     .anniversary { background: var(--cream); padding: 8rem 0; }
     .ann-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: 1fr 1.15fr; gap: 7rem; align-items: center; }
-    .ann-photo { position: relative; border-radius: 1.25rem; overflow: hidden; aspect-ratio: 4/5; box-shadow: 0 28px 64px rgba(0,0,0,0.13); }
+    .ann-photos { display: flex; flex-direction: column; gap: 1rem; }
+    .ann-photo { position: relative; border-radius: 1.25rem; overflow: hidden; box-shadow: 0 28px 64px rgba(0,0,0,0.13); }
+    .ann-photo.owners { aspect-ratio: 4/3; }
+    .ann-photo.interior { aspect-ratio: 16/9; }
     .ann-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .ann-photo::after { content: ''; position: absolute; inset: 1rem; border: 2px solid rgba(30,95,44,0.28); border-radius: 0.5rem; pointer-events: none; }
     .ann-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
@@ -321,7 +324,8 @@
       .deal-body { padding: 2rem; }
       .anniversary { padding: 5rem 0; }
       .ann-inner { padding: 0 2rem; grid-template-columns: 1fr; gap: 3rem; }
-      .ann-photo { aspect-ratio: 16/9; }
+      .ann-photo.owners { aspect-ratio: 4/3; }
+      .ann-photo.interior { display: none; }
       .ingredients { padding: 5rem 0; }
       .ing-head { padding: 0 2rem 2.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
       .ing-grid { padding: 0 2rem; grid-template-columns: 1fr; }
@@ -494,8 +498,13 @@
 <!-- ── ANNIVERSARY ────────────────────────────── -->
 <section class="anniversary" id="about">
   <div class="ann-inner">
-    <div class="ann-photo gs-reveal">
-      <img loading="lazy" src="/images/460149_402099029806157_1433563516_o.webp" alt="Inside Riverside Pizza restaurant dining area" width="1920" height="1342">
+    <div class="ann-photos">
+      <div class="ann-photo owners gs-reveal">
+        <img loading="lazy" src="/images/owners.jpg" alt="Al and Sandy Thompson, founders of Riverside Pizza" width="800" height="600">
+      </div>
+      <div class="ann-photo interior gs-reveal">
+        <img loading="lazy" src="/images/460149_402099029806157_1433563516_o.webp" alt="Inside Riverside Pizza restaurant dining area" width="1920" height="1342">
+      </div>
     </div>
     <div class="ann-content">
       <div class="ann-badge">
