@@ -64,10 +64,12 @@
     }
     .loc-card {
       background: white; border: 1px solid var(--bdr); border-radius: 16px;
-      padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem;
+      padding: 0; display: flex; flex-direction: column; overflow: hidden;
       transition: box-shadow 0.28s var(--ease), border-color 0.28s var(--ease);
     }
     .loc-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); border-color: var(--gm); }
+    .lc-map { width: 100%; height: 160px; display: block; border: none; }
+    .lc-body { padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; flex: 1; }
     .lc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
     .lc-name {
       font-family: var(--d); font-size: 1.35rem; font-weight: 600;
@@ -107,6 +109,8 @@
       background: white; width: 100%;
     }
     .btn-call:hover { border-color: var(--g); color: var(--g); background: var(--gp); transform: translateY(-2px); }
+    .btn-dir { border: 1px solid var(--bdr); color: var(--mu); background: white; }
+    .btn-dir:hover { border-color: var(--tx); background: var(--gp); transform: translateY(-2px); }
     .unavail-note {
       font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.07em;
       text-transform: uppercase; color: #a05c00; text-align: center;
@@ -148,7 +152,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="menu.html">Menu</a></li>
     <li><a href="catering.html">Catering</a></li>
-    <li><a href="locations.html">Locations</a></li>
+    <li><a href="takeout.html">Locations</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="takeout.html" class="nav-cta" aria-current="page">Order Online</a></li>
   </ul>
@@ -161,7 +165,7 @@
   <a href="index.html">Home</a>
   <a href="menu.html">Menu</a>
   <a href="catering.html">Catering</a>
-  <a href="locations.html">Locations</a>
+  <a href="takeout.html">Locations</a>
   <a href="about.html">About</a>
   <a href="takeout.html" class="mob-cta" aria-current="page">Order Online</a>
 </div>
@@ -189,6 +193,8 @@
 
       <!-- 1. Lawrenceville -->
       <div class="loc-card gs-reveal">
+        <iframe class="lc-map" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.0155,33.8961,-83.9955,33.9121&layer=mapnik&marker=33.9041,-84.0055" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Lawrenceville location map"></iframe>
+        <div class="lc-body">
         <div class="lc-head">
           <div>
             <div class="lc-name">Lawrenceville</div>
@@ -214,11 +220,15 @@
         <div class="lc-actions">
           <a href="https://order.toasttab.com/online/riverside-pizza-riverside-2100-riverside-pkwy-suite-110" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
           <a href="https://www.doordash.com/store/riverside-pizza-lawrenceville-129406/59759346/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <a href="https://www.google.com/maps?q=2100+Riverside+Pkwy,+Lawrenceville,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
+        </div>
         </div>
       </div>
 
       <!-- 2. Sugarloaf -->
       <div class="loc-card gs-reveal">
+        <iframe class="lc-map" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.0035,33.9885,-83.9835,34.0045&layer=mapnik&marker=33.9965,-83.9935" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Sugarloaf location map"></iframe>
+        <div class="lc-body">
         <div class="lc-head">
           <div>
             <div class="lc-name">Sugarloaf <span style="font-size:0.7em;font-family:var(--f);font-weight:400;color:var(--mu)">(Lawrenceville)</span></div>
@@ -244,11 +254,15 @@
         <div class="lc-actions">
           <a href="https://order.toasttab.com/online/riverside-pizza-sugarloaf-3330-sugarloaf-pkwy-sw" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
           <a href="https://www.doordash.com/store/riverside-pizza-lawrenceville-129420/90666946/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <a href="https://www.google.com/maps?q=3330+Sugarloaf+Pkwy,+Lawrenceville,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
+        </div>
         </div>
       </div>
 
       <!-- 3. Suwanee -->
       <div class="loc-card gs-reveal">
+        <iframe class="lc-map" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.0578,34.0342,-84.0378,34.0502&layer=mapnik&marker=34.0422,-84.0478" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Suwanee location map"></iframe>
+        <div class="lc-body">
         <div class="lc-head">
           <div>
             <div class="lc-name">Suwanee</div>
@@ -274,11 +288,15 @@
         <div class="lc-actions">
           <a href="https://order.toasttab.com/online/riversidepizzasuwanee" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
           <a href="https://www.doordash.com/store/riverside-pizza-suwanee-94259/47875546/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <a href="https://www.google.com/maps?q=991+Peachtree+Industrial+Blvd,+Suwanee,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
+        </div>
         </div>
       </div>
 
       <!-- 4. Grayson -->
       <div class="loc-card gs-reveal">
+        <iframe class="lc-map" src="https://www.openstreetmap.org/export/embed.html?bbox=-83.9678,33.8843,-83.9478,33.9003&layer=mapnik&marker=33.8923,-83.9578" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Grayson location map"></iframe>
+        <div class="lc-body">
         <div class="lc-head">
           <div>
             <div class="lc-name">Grayson</div>
@@ -304,11 +322,15 @@
         <div class="lc-actions">
           <a href="https://order.toasttab.com/online/riverside-pizza-grayson-1845-grayson-hwy-1400" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
           <a href="https://www.doordash.com/store/riverside-pizza-grayson-129392/60726148/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <a href="https://www.google.com/maps?q=1845+Grayson+Hwy,+Grayson,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
+        </div>
         </div>
       </div>
 
       <!-- 5. Hamilton Mill -->
       <div class="loc-card gs-reveal">
+        <iframe class="lc-map" src="https://www.openstreetmap.org/export/embed.html?bbox=-83.8385,33.9848,-83.8185,34.0008&layer=mapnik&marker=33.9928,-83.8285" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Hamilton Mill location map"></iframe>
+        <div class="lc-body">
         <div class="lc-head">
           <div>
             <div class="lc-name">Hamilton Mill</div>
@@ -333,11 +355,15 @@
         <hr class="lc-divider">
         <div class="lc-actions">
           <a href="tel:7702718881" class="btn btn-call">Call to Order — 770-271-8881</a>
+          <a href="https://www.google.com/maps?q=2463+Hamilton+Mill+Pkwy,+Dacula,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
+        </div>
         </div>
       </div>
 
       <!-- 6. Dacula -->
       <div class="loc-card gs-reveal">
+        <iframe class="lc-map" src="https://www.openstreetmap.org/export/embed.html?bbox=-83.9038,33.9516,-83.8838,33.9676&layer=mapnik&marker=33.9596,-83.8938" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Dacula location map"></iframe>
+        <div class="lc-body">
         <div class="lc-head">
           <div>
             <div class="lc-name">Dacula</div>
@@ -363,11 +389,15 @@
         <div class="lc-actions">
           <a href="https://order.toasttab.com/online/riverside-pizza-dacula-ga-2515-fence-rd-ne-170" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
           <a href="https://www.doordash.com/store/riverside-pizza-dacula-129376/64607350/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <a href="https://www.google.com/maps?q=2515+Fence+Rd,+Dacula,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
+        </div>
         </div>
       </div>
 
       <!-- 7. Johns Creek -->
       <div class="loc-card gs-reveal">
+        <iframe class="lc-map" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.2235,34.021,-84.2035,34.037&layer=mapnik&marker=34.029,-84.2135" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Johns Creek location map"></iframe>
+        <div class="lc-body">
         <div class="lc-head">
           <div>
             <div class="lc-name">Johns Creek</div>
@@ -393,11 +423,15 @@
         <div class="lc-actions">
           <a href="https://order.toasttab.com/online/riverside-pizza-johnscreek" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
           <a href="https://www.doordash.com/store/riverside-pizza-johns-creek-53820/58782947/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <a href="https://www.google.com/maps?q=11877+Douglas+Rd,+Johns+Creek,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
+        </div>
         </div>
       </div>
 
       <!-- 8. Cumming -->
       <div class="loc-card gs-reveal">
+        <iframe class="lc-map" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.1672,34.1052,-84.1472,34.1212&layer=mapnik&marker=34.1132,-84.1572" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Cumming location map"></iframe>
+        <div class="lc-body">
         <div class="lc-head">
           <div>
             <div class="lc-name">Cumming</div>
@@ -423,6 +457,8 @@
         <div class="lc-actions">
           <a href="https://order.toasttab.com/online/riverside-pizza-cumming-ga-3030-old-atlanta-rd-suite-800" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
           <a href="https://www.doordash.com/store/riverside-pizza-cumming-127716/50569349/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+          <a href="https://www.google.com/maps?q=3030+Old+Atlanta+Rd,+Cumming,+GA" target="_blank" rel="noopener noreferrer" class="btn btn-dir">Directions</a>
+        </div>
         </div>
       </div>
 
