@@ -251,8 +251,8 @@
     /* ── INGREDIENTS ───────────────────────────── */
     .ingredients { padding: 8rem 0; background: var(--wh); }
     .ing-head { padding: 0 5rem 4.5rem; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: end; }
-    .sec-ey { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
-    .sec-ey::before { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
+    .sec-ey { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mu); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem; }
+    .sec-ey::before { content: ''; width: 1.75rem; height: 1px; background: var(--mu); }
     .sec-h { font-family: var(--d); letter-spacing: -0.02em; line-height: 1.08; }
     .sec-h em { font-style: italic; color: var(--g); }
     .ing-head .sec-h { font-size: clamp(2rem, 3vw, 3.4rem); font-weight: 500; }
@@ -389,28 +389,6 @@
       .stat-num { font-size: 2rem; }
     }
   
-    /* ── HERO NAV OVERRIDE — transparent until scrolled ── */
-    #nav:not(.scrolled) {
-      background: transparent;
-      border-color: transparent;
-      box-shadow: none;
-    }
-    #nav:not(.scrolled) .logo-name { color: white; }
-    #nav:not(.scrolled) .logo-sub  { color: rgba(255,255,255,0.45); }
-    #nav:not(.scrolled) .logo img  { box-shadow: none; }
-    #nav:not(.scrolled) .nav-links a { color: rgba(255,255,255,0.8); }
-    #nav:not(.scrolled) .nav-links a:hover { color: white; }
-    #nav:not(.scrolled) .nav-cta {
-      background: transparent !important;
-      border: 1px solid rgba(255,255,255,0.38) !important;
-      color: white !important;
-    }
-    #nav:not(.scrolled) .nav-cta:hover {
-      background: rgba(255,255,255,0.1) !important;
-      border-color: rgba(255,255,255,0.7) !important;
-    }
-    #nav:not(.scrolled) .nav-ham span { background: white; }
-
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -421,7 +399,7 @@
     }
   </style>
 </head>
-<body>
+<body class="hero-page">
 
 <!-- ── NAV ───────────────────────────────────── -->
 <nav id="nav">

@@ -68,8 +68,8 @@
     /* ── PERKS ── */
     .perks { padding:clamp(4rem,6vw,6rem) 0; background:var(--wh); border-bottom:1px solid var(--bdr); }
     .perks-head { margin-bottom:3rem; }
-    .sec-ey { font-family:var(--m); font-size:.57rem; letter-spacing:.2em; text-transform:uppercase; color:var(--g); display:flex; align-items:center; gap:.75rem; margin-bottom:.9rem; }
-    .sec-ey::before { content:''; width:1.5rem; height:1px; background:var(--g); }
+    .sec-ey { font-family:var(--m); font-size:.5rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mu); display:flex; align-items:center; gap:.75rem; margin-bottom:.85rem; }
+    .sec-ey::before { content:''; width:1.75rem; height:1px; background:var(--mu); }
     .sec-h { font-family:var(--d); font-size:clamp(2rem,3vw,3rem); font-weight:500; letter-spacing:-.02em; line-height:1.08; }
     .sec-h em { font-style:italic; color:var(--g); }
     .perks-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--bdr); border-left:1px solid var(--bdr); }
@@ -100,7 +100,7 @@
     .field input,.field select,.field textarea { width:100%; padding:.85rem 1rem; border:1px solid var(--bdr); font-size:.92rem; background:var(--cream); transition:border-color .2s; color:var(--tx); }
     .field input:focus,.field select:focus,.field textarea:focus { outline:none; border-color:var(--g); }
     .field textarea { resize:vertical; min-height:100px; }
-    .submit-btn { width:100%; padding:1.1rem; background:var(--g); color:#fff; border:none; border-radius:9999px; font-family:var(--m); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; cursor:pointer; transition:background .2s,transform .2s,opacity .2s; }
+    .submit-btn { width:100%; padding:1.1rem; background:var(--g); color:#fff; border:none; border-radius:5px; font-family:var(--m); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:background .2s,transform .2s,opacity .2s; }
     .submit-btn:hover { background:var(--gl); transform:translateY(-1px); }
     .submit-btn:active { transform:scale(.98); }
     .submit-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
@@ -114,7 +114,7 @@
     @media(max-width:520px) { .perks-grid { grid-template-columns:1fr; } }
   </style>
 </head>
-<body>
+<body class="hero-page">
 <nav id="nav">
   <a href="index.html" class="logo"><img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116"><div class="logo-text"><span class="logo-name">Riverside Pizza</span><span class="logo-sub">Est. 1999 · Metro Atlanta</span></div></a>
   <ul class="nav-links"><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="takeout.html">Locations</a></li><li><a href="about.html">About</a></li><li><a href="takeout.html" class="nav-cta">Order Online</a></li></ul>

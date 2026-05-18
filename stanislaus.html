@@ -76,18 +76,14 @@
     .cta-band { padding:clamp(4rem,6vw,6rem) 0; background:var(--g); text-align:center; }
     .cta-band h2 { font-family:var(--d); font-size:clamp(1.8rem,3vw,2.8rem); color:#fff; margin-bottom:1rem; }
     .cta-band p { color:rgba(255,255,255,.7); margin-bottom:2rem; font-size:1.05rem; }
-    .btn-w { display:inline-block; font-family:var(--m); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; padding:1rem 2.5rem; background:#fff; color:var(--g); border-radius:9999px; transition:background .2s; }
-    .btn-w:hover { background:var(--cream); }
-
     @media(max-width:960px) {
       .content .wrap { grid-template-columns:1fr; }
       .facts-grid { grid-template-columns:repeat(2,1fr); }
-      .btn-w { min-height:44px; touch-action:manipulation; }
     }
     @media(max-width:520px) { .facts-grid { grid-template-columns:1fr; } }
   </style>
 </head>
-<body>
+<body class="hero-page">
 <nav id="nav">
   <a href="index.html" class="logo"><img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116"><div class="logo-text"><span class="logo-name">Riverside Pizza</span><span class="logo-sub">Est. 1999 · Metro Atlanta</span></div></a>
   <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="takeout.html">Locations</a></li><li><a href="about.html">About</a></li><li><a href="takeout.html" class="nav-cta">Order Online</a></li></ul>
@@ -133,7 +129,7 @@
 <section class="cta-band"><div class="wrap">
   <h2>Taste the Difference Yourself</h2>
   <p>Order a pizza and experience what real, premium sauce tastes like.</p>
-  <a href="takeout.html" class="btn-w">Order Now</a>
+  <a href="takeout.html" class="btn btn-white">Order Now <span class="btn-arrow">→</span></a>
 </div></section>
 
 <footer>

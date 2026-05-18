@@ -62,8 +62,8 @@
     .story{padding:clamp(5rem,8vw,8rem) 0;background:var(--wh)}
     .story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,5vw,6rem);align-items:center}
     .story-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
-    .sec-ey{font-family:var(--m);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
-    .sec-ey::before{content:'';width:1.5rem;height:1px;background:var(--g)}
+    .sec-ey{font-family:var(--m);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem}
+    .sec-ey::before{content:'';width:1.75rem;height:1px;background:var(--mu)}
     .sec-h{font-family:var(--d);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:500;line-height:1.1;margin-bottom:1.5rem}
     .sec-h em{font-style:italic;color:var(--g)}
     .story p{font-size:1rem;line-height:1.9;color:var(--mu);margin-bottom:1.25rem}
@@ -91,13 +91,10 @@
     .stan h2 em{font-style:italic;color:rgba(240,173,78,.8)}
     .stan p{font-size:1rem;line-height:1.9;color:rgba(255,255,255,.75);margin-bottom:1.25rem}
     .stan-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
-    .btn-gold{display:inline-block;font-family:var(--m);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:1rem 2rem;background:var(--gold);color:var(--gd);border-radius:2px;transition:background .2s;margin-top:.5rem}
-    .btn-gold:hover{background:#d4942e}
-
-    @media(max-width:960px){.story .wrap,.stan .wrap{grid-template-columns:1fr}.val-grid{grid-template-columns:1fr}.val-card.full{grid-column:1;grid-template-columns:1fr}.btn-gold{min-height:44px;touch-action:manipulation;border-radius:9999px}}
+    @media(max-width:960px){.story .wrap,.stan .wrap{grid-template-columns:1fr}.val-grid{grid-template-columns:1fr}.val-card.full{grid-column:1;grid-template-columns:1fr}}
   </style>
 </head>
-<body>
+<body class="hero-page">
 <nav id="nav">
   <a href="index.html" class="logo"><img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116"><div class="logo-text"><span class="logo-name">Riverside Pizza</span><span class="logo-sub">Est. 1999 · Metro Atlanta</span></div></a>
   <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="takeout.html">Locations</a></li><li><a href="about.html" aria-current="page">About</a></li><li><a href="takeout.html" class="nav-cta">Order Online</a></li></ul>
@@ -168,7 +165,7 @@
   <div><div class="stan-ey">Our Secret Ingredient</div><h2>Stanislaus <em>Premium Tomatoes</em></h2>
     <p>While most pizza shops use cheap canned sauce, we insist on Stanislaus, the gold standard. Grown in California's San Joaquin Valley, vine-ripened and packed within hours of harvest.</p>
     <p>The result? A rich, sweet, naturally balanced sauce you can taste in every bite. It's more expensive, but our customers are worth it.</p>
-    <a href="stanislaus.html" class="btn-gold">Learn More →</a>
+    <a href="stanislaus.html" class="btn btn-outline-w">Learn More <span class="btn-arrow">→</span></a>
   </div>
   <div class="stan-img"><img loading="lazy" src="/images/tomatoes.webp" alt="Fresh tomatoes" width="150" height="155"></div>
 </div></section>

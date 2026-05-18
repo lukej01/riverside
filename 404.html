@@ -36,8 +36,8 @@
     .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
     .nav-links a { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--tx); padding: 0.4rem 0.85rem; transition: color 0.2s; font-weight: 500; }
     .nav-links a:hover { color: var(--g); }
-    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.5rem 1.25rem !important; margin-left: 0.5rem; border-radius: 9999px !important; font-size: 0.52rem !important; transition: background 0.2s var(--ease) !important; }
-    .nav-cta:hover { background: var(--gl) !important; }
+    .nav-cta { background: var(--g) !important; color: white !important; padding: 0.48rem 1.1rem !important; margin-left: 0.5rem; border-radius: 5px !important; font-size: 0.5rem !important; letter-spacing: 0.08em !important; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--gl) !important; border-color: var(--gl) !important; }
     .nav-ham { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; }
     .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--tx); transition: transform 0.35s var(--ease), opacity 0.2s; transform-origin: center; }
     .nav-ham.open span:first-child { transform: translateY(6.5px) rotate(45deg); }
@@ -53,9 +53,9 @@
     .mob-overlay a.mob-cta { font-family: var(--m); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; background: var(--g); color: white; padding: 0.9rem 2.5rem; margin-top: 1.5rem; border-radius: 9999px; opacity: 0; transform: translateY(16px); transition-delay: 0.30s; }
 
     /* ── BUTTONS ── */
-    .btn { font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; display: inline-flex; align-items: center; gap: 0.6rem; transition: all 0.28s var(--ease); border: none; cursor: pointer; border-radius: 9999px; white-space: nowrap; touch-action: manipulation; min-height: 44px; }
-    .btn-arrow { width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; transition: transform 0.28s var(--ease); }
-    .btn:hover .btn-arrow { transform: translate(2px,-1px) scale(1.08); }
+    .btn { font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.85rem 1.75rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), background 0.2s; border: none; cursor: pointer; border-radius: 5px; white-space: nowrap; touch-action: manipulation; min-height: 44px; font-weight: 500; }
+    .btn-arrow { font-size: 0.9rem; transition: transform 0.22s var(--ease); display: inline-block; }
+    .btn:hover .btn-arrow { transform: translate(3px,-1px); }
     .btn-green { background: var(--g); color: white; }
     .btn-green:hover { background: var(--gl); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,95,44,0.3); }
     .btn-green .btn-arrow { background: rgba(255,255,255,0.15); }
