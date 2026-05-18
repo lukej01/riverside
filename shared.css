@@ -51,31 +51,6 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-cta:hover { background: var(--gl) !important; transform: scale(1.04) !important; }
 
-/* ── GLASS NAV (pages with dark full-bleed heroes) ── */
-#nav.glass {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.16);
-  box-shadow: none;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-#nav.glass .logo-name { color: white; }
-#nav.glass .logo-sub  { color: rgba(255,255,255,.55); }
-#nav.glass .nav-links a { color: rgba(255,255,255,.85); }
-#nav.glass .nav-links a:hover { color: white; }
-#nav.glass .nav-ham span { background: white; }
-#nav.glass.scrolled {
-  backdrop-filter: none; -webkit-backdrop-filter: none;
-  background: rgba(254,249,242,0.97);
-  border-color: var(--bdr);
-  box-shadow: 0 4px 32px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
-  top: 0.75rem;
-}
-#nav.glass.scrolled .logo-name { color: var(--g); }
-#nav.glass.scrolled .logo-sub  { color: var(--mu); }
-#nav.glass.scrolled .nav-links a { color: var(--tx); }
-#nav.glass.scrolled .nav-links a:hover { color: var(--g); }
-#nav.glass.scrolled .nav-ham span { background: var(--tx); }
 
 /* ── HAMBURGER ── */
 .nav-ham {
