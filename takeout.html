@@ -176,7 +176,8 @@
     }
     .om-choice:hover { border-color: var(--g); background: var(--gp); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(30,95,44,0.12); }
     .om-choice.unavail { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
-    .omc-icon { font-size: 2rem; line-height: 1; }
+    .omc-icon { line-height: 1; color: var(--g); }
+    .om-phone-icon { color: var(--g); }
     .omc-label { font-family: var(--d); font-size: 1.05rem; font-weight: 600; color: var(--tx); }
     .omc-sub { font-size: 0.775rem; color: var(--mu); font-weight: 300; }
     .om-step2-inner {
@@ -206,7 +207,7 @@
       padding: 2.25rem 2rem 2.5rem;
       text-align: center;
     }
-    .om-phone-icon { font-size: 2.75rem; margin-bottom: 1rem; }
+    .om-phone-icon { margin-bottom: 1rem; }
     .om-phone-msg { font-size: 0.875rem; color: var(--mu); line-height: 1.65; margin-bottom: 1.5rem; font-weight: 300; }
     .om-phone-num { font-family: var(--d); font-size: 1.6rem; font-weight: 600; color: var(--g); text-decoration: none; display: block; }
     .om-phone-num:hover { color: var(--gd); }
@@ -615,12 +616,12 @@
         <div class="om-title" id="om-title-text">How would you<br>like to order?</div>
         <div class="om-choices">
           <button class="om-choice" id="om-btn-carryout">
-            <div class="omc-icon">🛍️</div>
+            <div class="omc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
             <div class="omc-label">Carryout</div>
             <div class="omc-sub">Pick up in 20–30 min</div>
           </button>
           <button class="om-choice" id="om-btn-delivery">
-            <div class="omc-icon">🚗</div>
+            <div class="omc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
             <div class="omc-label">Delivery</div>
             <div class="omc-sub" id="om-dd-sub">Via DoorDash</div>
           </button>
@@ -651,7 +652,7 @@
         <button class="om-close" id="om-close3" aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
-        <div class="om-phone-icon">📞</div>
+        <div class="om-phone-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
         <div class="om-title" style="margin-bottom:0.75rem">Call to order</div>
         <p class="om-phone-msg">Online ordering isn't available at this location yet. Give us a call and we'll take care of you.</p>
         <a href="tel:" id="om-phone-link" class="om-phone-num"></a>
