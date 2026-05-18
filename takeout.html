@@ -132,85 +132,78 @@
       background: var(--g); color: white; border: 1px solid var(--g);
     }
     .btn-order:hover { background: var(--gd); border-color: var(--gd); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,95,44,0.25); }
+    /* ── FULLSCREEN ORDER OVERLAY ──────────────── */
     .order-modal {
       position: fixed; inset: 0; z-index: 9000;
-      display: flex; align-items: center; justify-content: center;
-      padding: 1rem;
       opacity: 0; pointer-events: none;
-      transition: opacity 0.25s var(--ease);
+      transform: translateY(100%);
+      transition: opacity 0.35s var(--ease), transform 0.4s cubic-bezier(0.4,0,0.2,1);
     }
-    .order-modal.open { opacity: 1; pointer-events: all; }
-    .om-backdrop {
-      position: absolute; inset: 0;
-      background: rgba(10,20,10,0.65);
-      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    .order-modal.open {
+      opacity: 1; pointer-events: all; transform: translateY(0);
     }
+    .om-backdrop { display: none; }
     .om-panel {
-      position: relative; z-index: 1;
-      background: white; border-radius: 20px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.22);
-      overflow: hidden;
-    }
-    .om-step.om-hidden { display: none; }
-
-    /* Step 1 — split screen */
-    .om-step1-inner {
-      width: min(820px, calc(100vw - 2rem));
+      position: absolute; inset: 0;
+      background: white; overflow: hidden;
       display: flex; flex-direction: column;
     }
-    .om-step1-bar {
+    .om-step { position: absolute; inset: 0; display: flex; flex-direction: column; }
+    .om-step.om-hidden { display: none; }
+
+    /* shared top bar */
+    .om-bar {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0.875rem 1.25rem;
-      border-bottom: 1px solid var(--bdr);
+      padding: 0 1.5rem; height: 56px; flex-shrink: 0;
+      border-bottom: 1px solid var(--bdr); background: white;
     }
     .om-loc { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); }
     .om-close {
       background: none; border: none; cursor: pointer;
-      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      color: var(--mu);
-      transition: background 0.2s, color 0.2s;
+      color: var(--mu); transition: background 0.2s, color 0.2s;
     }
     .om-close:hover { background: var(--gp); color: var(--tx); }
-    .om-splits {
-      display: flex; height: min(440px, calc(80vh - 3.5rem));
-    }
+
+    /* Step 1 — full-screen split */
+    .om-splits { display: flex; flex: 1; min-height: 0; }
     .om-split {
       flex: 1; display: flex; flex-direction: column;
       justify-content: center; align-items: center;
-      padding: 2.5rem 1.5rem; text-align: center;
+      padding: 3rem 2rem; text-align: center;
       position: relative; overflow: hidden;
       cursor: pointer; border: none; background: none; color: white;
-      transition: flex 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: flex 0.55s cubic-bezier(0.4,0,0.2,1);
     }
     .om-split:hover { flex: 1.4; }
     .om-split.unavail { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
     .om-split-bg {
       position: absolute; inset: 0;
       background-size: cover; background-position: center; z-index: 0;
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
     }
-    .om-split:hover .om-split-bg { transform: scale(1.06); }
+    .om-split:hover .om-split-bg { transform: scale(1.05); }
     .om-split-ov { position: absolute; inset: 0; z-index: 1; transition: opacity 0.4s; }
     .om-split.left .om-split-bg  { background-image: url('/images/pizza-homepage.webp'); }
-    .om-split.left .om-split-ov  { background: linear-gradient(to bottom, rgba(20,63,29,0.82), rgba(20,63,29,0.93)); }
-    .om-split.left:hover .om-split-ov  { opacity: 0.82; }
+    .om-split.left .om-split-ov  { background: linear-gradient(to bottom, rgba(20,63,29,0.80), rgba(20,63,29,0.92)); }
+    .om-split.left:hover .om-split-ov  { opacity: 0.78; }
     .om-split.right .om-split-bg { background-image: url('/images/3.webp'); }
-    .om-split.right .om-split-ov { background: linear-gradient(to bottom, rgba(10,40,16,0.84), rgba(10,40,16,0.94)); }
-    .om-split.right:hover .om-split-ov { opacity: 0.82; }
-    .om-split-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.65rem; }
+    .om-split.right .om-split-ov { background: linear-gradient(to bottom, rgba(10,40,16,0.82), rgba(10,40,16,0.93)); }
+    .om-split.right:hover .om-split-ov { opacity: 0.78; }
+    .om-split-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
     .om-split-icon {
-      width: 52px; height: 52px; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 50%;
+      width: 60px; height: 60px; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 50%;
       display: flex; align-items: center; justify-content: center; margin-bottom: 0.25rem;
       transition: background 0.3s, border-color 0.3s;
     }
     .om-split:hover .om-split-icon { border-color: white; background: rgba(255,255,255,0.12); }
-    .om-split-title { font-family: var(--d); font-size: clamp(2rem, 5vw, 3rem); font-weight: 500; line-height: 1; }
-    .om-split-desc { font-size: 0.875rem; color: rgba(255,255,255,0.72); font-weight: 300; line-height: 1.5; max-width: 22ch; }
+    .om-split-title { font-family: var(--d); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 500; line-height: 1; }
+    .om-split-desc { font-size: 1rem; color: rgba(255,255,255,0.72); font-weight: 300; line-height: 1.55; max-width: 24ch; }
     .om-split-btn {
-      margin-top: 0.25rem;
-      font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 0.6rem 1.75rem; border: 1px solid rgba(255,255,255,0.35); border-radius: 4px;
+      margin-top: 0.5rem;
+      font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.7rem 2rem; border: 1px solid rgba(255,255,255,0.35); border-radius: 4px;
       background: transparent; color: white; cursor: pointer;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
@@ -219,18 +212,14 @@
       content: 'Not available'; position: absolute; inset: 0; z-index: 3;
       display: flex; align-items: center; justify-content: center;
       font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.55);
     }
 
-    .om-phone-icon { color: var(--g); }
-    .om-step2-inner {
-      width: min(940px, calc(100vw - 2rem));
-      display: flex; flex-direction: column;
-    }
+    /* Step 2 — Toast iframe */
     .om-step2-bar {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0.875rem 1.25rem;
-      border-bottom: 1px solid var(--bdr);
+      padding: 0 1.5rem; height: 56px; flex-shrink: 0;
+      border-bottom: 1px solid var(--bdr); background: white;
     }
     .om-back {
       background: none; border: none; cursor: pointer;
@@ -241,26 +230,24 @@
     }
     .om-back:hover { background: var(--gp); color: var(--g); }
     .om-step2-loc { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); }
-    .om-toast-iframe {
-      width: 100%; border: none; display: block;
-      height: min(680px, calc(100vh - 10rem));
-    }
+    .om-toast-iframe { flex: 1; width: 100%; border: none; display: block; min-height: 0; }
+
+    /* Step 3 — phone fallback */
     .om-phone-inner {
-      width: min(420px, calc(100vw - 2rem));
-      padding: 2.25rem 2rem 2.5rem;
-      text-align: center;
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2rem; text-align: center;
     }
-    .om-phone-icon { margin-bottom: 1rem; }
-    .om-phone-msg { font-size: 0.875rem; color: var(--mu); line-height: 1.65; margin-bottom: 1.5rem; font-weight: 300; }
-    .om-phone-num { font-family: var(--d); font-size: 1.6rem; font-weight: 600; color: var(--g); text-decoration: none; display: block; }
+    .om-phone-icon { color: var(--g); margin-bottom: 1.25rem; }
+    .om-title { font-family: var(--d); font-size: 2rem; font-weight: 600; color: var(--tx); letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.2; }
+    .om-phone-msg { font-size: 0.9rem; color: var(--mu); line-height: 1.65; margin-bottom: 1.75rem; font-weight: 300; max-width: 34ch; }
+    .om-phone-num { font-family: var(--d); font-size: 2rem; font-weight: 600; color: var(--g); text-decoration: none; display: block; }
     .om-phone-num:hover { color: var(--gd); }
+
     @media (max-width: 600px) {
-      .om-step1-inner { width: calc(100vw - 2rem); }
-      .om-splits { flex-direction: column; height: min(480px, calc(80vh - 3.5rem)); }
+      .om-splits { flex-direction: column; }
       .om-split:hover { flex: 1.3; }
-      .om-split-title { font-size: 2rem; }
-      .om-toast-iframe { height: calc(100vh - 8rem); }
-      .om-step2-inner { width: calc(100vw - 2rem); }
+      .om-split-title { font-size: 2.5rem; }
     }
 
     /* ── RESPONSIVE ────────────────────────────── */
@@ -654,14 +641,13 @@
 
     <!-- Step 1: Carryout or Delivery — split screen -->
     <div class="om-step" id="om-step1">
-      <div class="om-step1-inner">
-        <div class="om-step1-bar">
-          <div class="om-loc" id="om-loc-label"></div>
-          <button class="om-close" id="om-close1" aria-label="Close">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-        <div class="om-splits">
+      <div class="om-bar">
+        <div class="om-loc" id="om-loc-label"></div>
+        <button class="om-close" id="om-close1" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="om-splits">
           <button class="om-split left" id="om-btn-carryout">
             <div class="om-split-bg"></div>
             <div class="om-split-ov"></div>
@@ -692,7 +678,6 @@
 
     <!-- Step 2: Toast Embed -->
     <div class="om-step om-hidden" id="om-step2">
-      <div class="om-step2-inner">
         <div class="om-step2-bar">
           <button class="om-back" id="om-back">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
@@ -704,17 +689,19 @@
           </button>
         </div>
         <iframe id="om-toast-frame" class="om-toast-iframe" src="" title="Order Carryout — Riverside Pizza"></iframe>
-      </div>
     </div>
 
     <!-- Step 3: Phone fallback -->
     <div class="om-step om-hidden" id="om-step3">
-      <div class="om-phone-inner">
+      <div class="om-bar">
+        <div class="om-loc" id="om-step3-loc"></div>
         <button class="om-close" id="om-close3" aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
-        <div class="om-phone-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-        <div class="om-title" style="margin-bottom:0.75rem">Call to order</div>
+      </div>
+      <div class="om-phone-inner">
+        <div class="om-phone-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div class="om-title">Call to order</div>
         <p class="om-phone-msg">Online ordering isn't available at this location yet. Give us a call and we'll take care of you.</p>
         <a href="tel:" id="om-phone-link" class="om-phone-num"></a>
       </div>
@@ -797,6 +784,7 @@
     curLoc = { name: btn.dataset.name, toast: btn.dataset.toast||'', dd: btn.dataset.dd||'', phone: btn.dataset.phone||'' };
     omLocLabel.textContent = curLoc.name;
     omStep2Loc.textContent = curLoc.name;
+    document.getElementById('om-step3-loc').textContent = curLoc.name;
     const noDD = !curLoc.dd;
     omBtnDelivery.classList.toggle('unavail', noDD);
     omBtnDelivery.classList.toggle('unavail-label', noDD);
@@ -826,7 +814,7 @@
   });
   document.getElementById('om-back').addEventListener('click', () => omShowStep(1));
   ['om-close1','om-close2','om-close3'].forEach(id => document.getElementById(id).addEventListener('click', omClose));
-  omBackdrop.addEventListener('click', omClose);
+  // no backdrop click — fullscreen, close via X or Escape only
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && orderModal.classList.contains('open')) omClose(); });
   document.querySelectorAll('.btn-order').forEach(btn => btn.addEventListener('click', () => omOpen(btn)));
 </script>
