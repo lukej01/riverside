@@ -152,34 +152,77 @@
       overflow: hidden;
     }
     .om-step.om-hidden { display: none; }
+
+    /* Step 1 — split screen */
     .om-step1-inner {
-      width: min(460px, calc(100vw - 2rem));
-      padding: 2.25rem 2rem 2rem;
+      width: min(820px, calc(100vw - 2rem));
+      display: flex; flex-direction: column;
     }
+    .om-step1-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid var(--bdr);
+    }
+    .om-loc { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); }
     .om-close {
-      position: absolute; top: 1rem; right: 1rem;
       background: none; border: none; cursor: pointer;
-      width: 36px; height: 36px; border-radius: 50%;
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
       color: var(--mu);
       transition: background 0.2s, color 0.2s;
     }
     .om-close:hover { background: var(--gp); color: var(--tx); }
-    .om-loc { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g); margin-bottom: 0.6rem; }
-    .om-title { font-family: var(--d); font-size: 1.5rem; font-weight: 600; color: var(--tx); letter-spacing: -0.02em; margin-bottom: 1.75rem; line-height: 1.25; }
-    .om-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
-    .om-choice {
-      background: white; border: 1.5px solid var(--bdr); border-radius: 14px;
-      padding: 1.5rem 1rem; cursor: pointer; text-align: center;
-      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
-      transition: border-color 0.2s var(--ease), background 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    .om-splits {
+      display: flex; height: min(440px, calc(80vh - 3.5rem));
     }
-    .om-choice:hover { border-color: var(--g); background: var(--gp); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(30,95,44,0.12); }
-    .om-choice.unavail { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
-    .omc-icon { line-height: 1; color: var(--g); }
+    .om-split {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 2.5rem 1.5rem; text-align: center;
+      position: relative; overflow: hidden;
+      cursor: pointer; border: none; background: none; color: white;
+      transition: flex 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .om-split:hover { flex: 1.4; }
+    .om-split.unavail { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+    .om-split-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center; z-index: 0;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .om-split:hover .om-split-bg { transform: scale(1.06); }
+    .om-split-ov { position: absolute; inset: 0; z-index: 1; transition: opacity 0.4s; }
+    .om-split.left .om-split-bg  { background-image: url('/images/pizza-homepage.webp'); }
+    .om-split.left .om-split-ov  { background: linear-gradient(to bottom, rgba(20,63,29,0.82), rgba(20,63,29,0.93)); }
+    .om-split.left:hover .om-split-ov  { opacity: 0.82; }
+    .om-split.right .om-split-bg { background-image: url('/images/3.webp'); }
+    .om-split.right .om-split-ov { background: linear-gradient(to bottom, rgba(10,40,16,0.84), rgba(10,40,16,0.94)); }
+    .om-split.right:hover .om-split-ov { opacity: 0.82; }
+    .om-split-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.65rem; }
+    .om-split-icon {
+      width: 52px; height: 52px; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 0.25rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .om-split:hover .om-split-icon { border-color: white; background: rgba(255,255,255,0.12); }
+    .om-split-title { font-family: var(--d); font-size: clamp(2rem, 5vw, 3rem); font-weight: 500; line-height: 1; }
+    .om-split-desc { font-size: 0.875rem; color: rgba(255,255,255,0.72); font-weight: 300; line-height: 1.5; max-width: 22ch; }
+    .om-split-btn {
+      margin-top: 0.25rem;
+      font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.6rem 1.75rem; border: 1px solid rgba(255,255,255,0.35); border-radius: 4px;
+      background: transparent; color: white; cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .om-split:hover .om-split-btn { background: white; color: var(--gd); border-color: white; }
+    .om-split.unavail-label::after {
+      content: 'Not available'; position: absolute; inset: 0; z-index: 3;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
     .om-phone-icon { color: var(--g); }
-    .omc-label { font-family: var(--d); font-size: 1.05rem; font-weight: 600; color: var(--tx); }
-    .omc-sub { font-size: 0.775rem; color: var(--mu); font-weight: 300; }
     .om-step2-inner {
       width: min(940px, calc(100vw - 2rem));
       display: flex; flex-direction: column;
@@ -211,8 +254,11 @@
     .om-phone-msg { font-size: 0.875rem; color: var(--mu); line-height: 1.65; margin-bottom: 1.5rem; font-weight: 300; }
     .om-phone-num { font-family: var(--d); font-size: 1.6rem; font-weight: 600; color: var(--g); text-decoration: none; display: block; }
     .om-phone-num:hover { color: var(--gd); }
-    @media (max-width: 480px) {
-      .om-choices { grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
+      .om-step1-inner { width: calc(100vw - 2rem); }
+      .om-splits { flex-direction: column; height: min(480px, calc(80vh - 3.5rem)); }
+      .om-split:hover { flex: 1.3; }
+      .om-split-title { font-size: 2rem; }
       .om-toast-iframe { height: calc(100vh - 8rem); }
       .om-step2-inner { width: calc(100vw - 2rem); }
     }
@@ -606,24 +652,39 @@
   <div class="om-backdrop" id="om-backdrop"></div>
   <div class="om-panel" id="om-panel">
 
-    <!-- Step 1: Carryout or Delivery -->
+    <!-- Step 1: Carryout or Delivery — split screen -->
     <div class="om-step" id="om-step1">
       <div class="om-step1-inner">
-        <button class="om-close" id="om-close1" aria-label="Close">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-        <div class="om-loc" id="om-loc-label"></div>
-        <div class="om-title" id="om-title-text">How would you<br>like to order?</div>
-        <div class="om-choices">
-          <button class="om-choice" id="om-btn-carryout">
-            <div class="omc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-            <div class="omc-label">Carryout</div>
-            <div class="omc-sub">Pick up in 20–30 min</div>
+        <div class="om-step1-bar">
+          <div class="om-loc" id="om-loc-label"></div>
+          <button class="om-close" id="om-close1" aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
-          <button class="om-choice" id="om-btn-delivery">
-            <div class="omc-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-            <div class="omc-label">Delivery</div>
-            <div class="omc-sub" id="om-dd-sub">Via DoorDash</div>
+        </div>
+        <div class="om-splits">
+          <button class="om-split left" id="om-btn-carryout">
+            <div class="om-split-bg"></div>
+            <div class="om-split-ov"></div>
+            <div class="om-split-content">
+              <div class="om-split-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              </div>
+              <div class="om-split-title">Carryout</div>
+              <p class="om-split-desc">Order ahead and skip the wait. Ready in 20–30 min.</p>
+              <div class="om-split-btn">Select</div>
+            </div>
+          </button>
+          <button class="om-split right" id="om-btn-delivery">
+            <div class="om-split-bg"></div>
+            <div class="om-split-ov"></div>
+            <div class="om-split-content">
+              <div class="om-split-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              </div>
+              <div class="om-split-title">Delivery</div>
+              <p class="om-split-desc" id="om-dd-sub">Hot and fresh to your door via DoorDash.</p>
+              <div class="om-split-btn">Select</div>
+            </div>
           </button>
         </div>
       </div>
@@ -736,8 +797,10 @@
     curLoc = { name: btn.dataset.name, toast: btn.dataset.toast||'', dd: btn.dataset.dd||'', phone: btn.dataset.phone||'' };
     omLocLabel.textContent = curLoc.name;
     omStep2Loc.textContent = curLoc.name;
-    omBtnDelivery.classList.toggle('unavail', !curLoc.dd);
-    omDdSub.textContent = curLoc.dd ? 'Via DoorDash' : 'Not available';
+    const noDD = !curLoc.dd;
+    omBtnDelivery.classList.toggle('unavail', noDD);
+    omBtnDelivery.classList.toggle('unavail-label', noDD);
+    omDdSub.textContent = noDD ? 'Not available at this location.' : 'Hot and fresh to your door via DoorDash.';
     omBtnCarryout.classList.toggle('unavail', !curLoc.toast && !curLoc.phone);
     omShowStep(1);
     orderModal.classList.add('open');
