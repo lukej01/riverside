@@ -47,25 +47,25 @@
   <link rel="stylesheet" href="/shared.css">
   <style>
     /* ── MENU PAGE HEADER ───────────────────────── */
-    .menu-header { padding: 10rem 0 5rem; background: var(--wh); border-bottom: 1px solid var(--bdr); }
+    .menu-header { padding: 6rem 0 4.5rem; background: var(--wh); border-bottom: 1px solid var(--bdr); }
     .menu-header-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .mh-eyebrow { font-family: var(--m); font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-    .mh-eyebrow::before { content: ''; width: 1.5rem; height: 1px; background: var(--g); }
+    .mh-eyebrow { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mu); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem; }
+    .mh-eyebrow::before { content: ''; width: 1.75rem; height: 1px; background: var(--mu); }
     .mh-title { font-family: var(--d); font-size: clamp(3rem, 5vw, 5rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1; margin-bottom: 1.5rem; }
     .mh-title em { font-style: italic; color: var(--g); }
     .mh-desc { font-size: 1rem; line-height: 1.8; color: var(--mu); font-weight: 300; max-width: 45ch; }
     .mh-image { border-radius: 4px; overflow: hidden; height: 400px; }
     .mh-image img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* ── STICKY CATEGORY NAV ─────────────────────── */
-    .menu-nav { position: sticky; top: 76px; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 90; border-bottom: 1px solid var(--bdr); padding: 1.25rem 0; }
+    /* ── CATEGORY NAV ─────────────────────────────── */
+    .menu-nav { background: var(--cream); border-bottom: 1px solid var(--bdr); padding: 0.9rem 0; }
     .mn-list { display: flex; gap: 2rem; list-style: none; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
     .mn-list::-webkit-scrollbar { display: none; }
     .mn-link { font-family: var(--m); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mu); transition: color 0.2s; white-space: nowrap; min-height: 44px; display: flex; align-items: center; touch-action: manipulation; }
     .mn-link:hover, .mn-link.active { color: var(--g); }
 
     /* ── MENU CONTENT ───────────────────────────── */
-    .menu-section { padding: 6rem 0; border-bottom: 1px solid var(--bdr); }
+    .menu-section { padding: 6rem 0; border-bottom: 1px solid var(--bdr); scroll-margin-top: 80px; }
     .menu-section:nth-child(even) { background: var(--cream); }
     .ms-head { margin-bottom: 3.5rem; }
     .ms-title { font-family: var(--d); font-size: 3rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
@@ -150,10 +150,10 @@
 
 
     @media (max-width: 960px) {
-      .menu-header { padding: 8rem 0 3.5rem; }
+      .menu-header { padding: 5.5rem 0 3rem; }
       .menu-header-inner { grid-template-columns: 1fr; gap: 2rem; }
       .mh-image { height: 280px; }
-      .menu-nav { top: 68px; padding: 0; }
+      .menu-nav { padding: 0; }
       .mn-list { padding: 0 1.5rem; gap: 0; }
       .mn-link { padding: 0 1rem; font-size: 0.58rem; }
       .menu-section { padding: 4rem 0; }
@@ -743,7 +743,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
 <script>
   // ── LENIS SMOOTH SCROLL ──────────────────────
-  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+  const lenis = new Lenis({ lerp: 0.14, wheelMultiplier: 1.1 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
