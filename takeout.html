@@ -2,1338 +2,535 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Order Online — Riverside Pizza</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e5f2c'/><text y='76' font-size='78' x='50' text-anchor='middle' font-family='Georgia,serif' fill='white'>R</text></svg>">
-  <meta name="description" content="Order Riverside Pizza online for carryout or delivery. Fresh pizza, subs, wings, and salads — ready in 20–30 minutes.">
+  <meta name="description" content="Order Riverside Pizza online — carryout via Toast or delivery via DoorDash. Choose your nearest location across Metro Atlanta.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Order Online — Riverside Pizza">
-  <meta property="og:description" content="Order fresh pizza, subs, wings, and salads online. Carryout ready in 20–30 minutes.">
-  <meta property="og:image" content="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg">
+  <meta property="og:description" content="Carryout via Toast or delivery via DoorDash. 8 Metro Atlanta locations.">
+  <meta property="og:image" content="https://riversidepizza.net/images/newpizza.webp">
   <meta property="og:url" content="https://riversidepizza.net/takeout">
   <link rel="canonical" href="https://riversidepizza.net/takeout">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Order Online — Riverside Pizza">
-  <meta name="twitter:description" content="Order fresh pizza, subs, wings, and salads online. Carryout ready in 20–30 minutes.">
-  <meta name="twitter:image" content="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg">
+  <meta name="twitter:description" content="Carryout via Toast or delivery via DoorDash. 8 Metro Atlanta locations.">
+  <meta name="twitter:image" content="https://riversidepizza.net/images/newpizza.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap"></noscript>
   <link rel="stylesheet" href="/shared.css">
   <style>
-    :root {
-      --g:    #1e5f2c;
-      --gd:   #143f1d;
-      --gl:   #2a7a38;
-      --gp:   #f0f6f1;
-      --gm:   #ddeadf;
-      --cream:#fef9f2;
-      --wh:   #ffffff;
-      --tx:   #2b2826;
-      --mu:   #6e6560;
-      --bdr:  #e8e0d4;
-      --red:  #c0392b;
-      --d:    'Playfair Display', serif;
-      --f:    'Barlow', sans-serif;
-      --m:    'IBM Plex Mono', monospace;
-      --nav-h:  68px;
-      --info-h: 46px;
-    }
-
-    html { -webkit-tap-highlight-color: transparent; scroll-behavior: auto; }
-    body { font-family: var(--f); background: var(--gp); color: var(--tx); overflow-x: hidden; min-height: 100dvh; display: flex; flex-direction: column; }
-    img { display: block; max-width: 100%; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; -webkit-appearance: none; appearance: none; }
-
-    /* ━━ LOADER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .loader {
-      position: fixed; inset: 0; z-index: 300;
-      background: var(--cream);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-    .loader.out { opacity: 0; visibility: hidden; pointer-events: none; }
-    .ld-brand { display: flex; align-items: center; gap: 0.875rem; }
-    .ld-brand img { height: 44px; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
-    .ld-name { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; }
-    .ld-dots { display: flex; gap: 6px; }
-    .ld-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--g); opacity: 0.25;
-      animation: ld-pulse 1.2s ease-in-out infinite;
-    }
-    .ld-dot:nth-child(2) { animation-delay: 0.18s; }
-    .ld-dot:nth-child(3) { animation-delay: 0.36s; }
-    @keyframes ld-pulse { 0%,80%,100% { opacity: 0.25; transform: scale(1); } 40% { opacity: 1; transform: scale(1.5); } }
-
-    /* ━━ NAV ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .app-nav {
-      position: sticky; top: 0; z-index: 50;
-      height: var(--nav-h); padding: 0 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(254,249,242,0.94); backdrop-filter: blur(14px) saturate(180%);
-      -webkit-backdrop-filter: blur(14px) saturate(180%);
-      border-bottom: 1px solid var(--bdr);
-    }
-    .brand { display: flex; align-items: center; gap: 0.875rem; text-decoration: none; }
-    .brand img { height: 40px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .brand-text { display: flex; flex-direction: column; }
-    .b-name { font-family: var(--d); font-size: 1.2rem; font-weight: 700; color: var(--g); letter-spacing: -0.025em; line-height: 1.1; }
-    .b-sub  { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu); margin-top: 4px; }
-    .b-sub .b-carryout { color: var(--g); font-weight: 600; }
-
-    .nav-right { display: flex; align-items: center; gap: 0.875rem; }
-
-    /* Order type toggle */
-    .dd-btn {
-      display: flex; align-items: center; gap: 0.45rem;
-      padding: 0.42rem 1rem; border-radius: 30px;
-      background: #ff3008; color: #fff;
-      font-family: var(--m); font-size: 0.55rem; letter-spacing: 0.07em;
-      text-transform: uppercase; font-weight: 600; text-decoration: none;
-      transition: background 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
-      white-space: nowrap;
-    }
-    .dd-btn:hover { background: #d92800; transform: scale(1.04); }
-
-    .cart-btn {
-      position: relative; width: 44px; height: 44px; border-radius: 50%;
-      background: var(--g); color: var(--wh);
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .cart-btn:hover { background: var(--gd); transform: scale(1.06); }
-    .cart-btn:active { transform: scale(0.95); }
-    .cbadge {
-      position: absolute; top: -3px; right: -3px;
-      background: var(--red); color: #fff;
-      font-family: var(--m); font-size: 0.54rem; font-weight: 600;
-      min-width: 20px; height: 20px; border-radius: 10px; padding: 0 4px;
-      display: flex; align-items: center; justify-content: center;
-      border: 2px solid var(--cream);
-      opacity: 0; transform: scale(0);
-      transition: opacity 0.3s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .cbadge.show { opacity: 1; transform: scale(1); }
-
-    /* ━━ INFO STRIP ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .info-strip {
-      height: var(--info-h); padding: 0 2rem;
-      display: flex; align-items: center; gap: 1.5rem;
-      background: var(--wh); border-bottom: 1px solid var(--bdr);
+    /* ── PAGE HERO ─────────────────────────────── */
+    .order-hero {
+      background: var(--gd);
+      padding: 10rem 0 5rem;
+      position: relative;
       overflow: hidden;
     }
-    .is-item {
-      display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0;
-      font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.05em;
-      text-transform: uppercase; color: var(--mu);
-    }
-    .is-item svg { width: 13px; height: 13px; color: var(--g); flex-shrink: 0; }
-    .is-item b { font-weight: 500; color: var(--tx); }
-    .is-sep { width: 1px; height: 14px; background: var(--bdr); flex-shrink: 0; }
-    .is-open {
-      margin-left: auto; flex-shrink: 0;
-      background: rgba(30,95,44,0.08); border: 1px solid rgba(30,95,44,0.18);
-      border-radius: 30px; padding: 0.22rem 0.7rem;
-      font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--g); font-weight: 500;
-      display: flex; align-items: center; gap: 0.4rem;
-    }
-    .is-open::before {
-      content: ''; width: 5px; height: 5px; border-radius: 50%;
-      background: var(--g); animation: pulse-open 2s ease-in-out infinite;
-    }
-    @keyframes pulse-open { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-    /* ━━ LAYOUT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .app-main {
-      display: flex; flex: 1;
-      max-width: 1400px; margin: 0 auto; width: 100%;
-      padding: 2.5rem 2rem; gap: 2.5rem;
-    }
-
-    /* ━━ SIDEBAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .sidebar {
-      width: 196px; flex-shrink: 0;
-      position: sticky; top: calc(var(--nav-h) + var(--info-h) + 2rem);
-      align-self: start;
-    }
-    .sb-label {
-      font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--mu); margin-bottom: 0.875rem;
-      padding-left: 1rem;
-    }
-    .cat-list { list-style: none; display: flex; flex-direction: column; gap: 1px; }
-    .cat-btn {
-      width: 100%; text-align: left; padding: 0.7rem 1rem;
-      font-family: var(--d); font-size: 1.05rem; color: var(--mu);
-      border-radius: 6px; position: relative; overflow: hidden;
-      transition: background 0.2s, color 0.2s;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .cat-btn::before {
-      content: ''; position: absolute; left: 0; top: 20%; bottom: 20%;
-      width: 2.5px; background: var(--g); border-radius: 2px;
-      transform: scaleY(0); transform-origin: center;
-      transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .cat-btn:hover { background: var(--wh); color: var(--g); }
-    .cat-btn.active { background: var(--wh); color: var(--g); font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-    .cat-btn.active::before { transform: scaleY(1); }
-    .cat-pill {
-      font-family: var(--m); font-size: 0.52rem; font-weight: 400;
-      background: var(--gm); color: var(--g);
-      padding: 0.15rem 0.5rem; border-radius: 10px; flex-shrink: 0;
-    }
-    .cat-btn.active .cat-pill { background: var(--gp); }
-
-    /* ━━ MENU CONTENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .menu-content { flex: 1; min-width: 0; padding-bottom: 100px; }
-
-    .cat-head {
-      display: flex; align-items: baseline; gap: 0.875rem;
-      margin-bottom: 1.75rem; padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--bdr);
-    }
-    .cat-name {
-      font-family: var(--d); font-size: 2rem; font-weight: 600; color: var(--tx);
-      letter-spacing: -0.025em;
-    }
-    .cat-num {
-      font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--mu);
-    }
-
-    /* ━━ MENU GRID ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
-      gap: 1.375rem;
-    }
-
-    .item-card {
-      background: var(--wh); border-radius: 10px; overflow: hidden;
-      border: 1px solid var(--bdr); cursor: pointer;
-      display: flex; flex-direction: column;
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-                  box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-                  border-color 0.35s;
-    }
-    .item-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 18px 44px rgba(30,95,44,0.09);
-      border-color: rgba(30,95,44,0.22);
-    }
-    .item-card:active { transform: translateY(-2px) scale(0.99); }
-
-    .ic-img {
-      position: relative; padding-top: 63%; overflow: hidden;
-      background: var(--gm);
-    }
-    /* Category placeholder colors */
-    .ic-img.ph-pizza   { background: linear-gradient(135deg, #f5e8d4 0%, #e2c98c 100%); }
-    .ic-img.ph-subs    { background: linear-gradient(135deg, #f5e8d4 0%, #f0c07a 100%); }
-    .ic-img.ph-wings   { background: linear-gradient(135deg, #f2dfd8 0%, #d4a890 100%); }
-    .ic-img.ph-salads  { background: linear-gradient(135deg, #daf0d5 0%, #9ecc92 100%); }
-    .ic-img.ph-detroit { background: linear-gradient(135deg, #f0ead4 0%, #d4b87a 100%); }
-    .ic-img.ph-dessert { background: linear-gradient(135deg, #f9e8e0 0%, #e8a888 100%); }
-
-    .ic-img img {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .item-card:hover .ic-img img { transform: scale(1.07); }
-    .ic-img-shade { display: none; }
-    .ic-ph-icon {
-      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    }
-    .ic-ph-icon svg { width: 36px; height: 36px; color: rgba(0,0,0,0.14); }
-
-    .ic-info { padding: 1.125rem 1.25rem; display: flex; flex-direction: column; flex: 1; }
-    .ic-name {
-      font-family: var(--d); font-size: 1.15rem; font-weight: 600;
-      color: var(--tx); letter-spacing: -0.015em; line-height: 1.25; margin-bottom: 0.4rem;
-    }
-    .ic-desc {
-      font-size: 0.8rem; color: var(--mu); line-height: 1.55; flex: 1;
-      display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .ic-foot {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 1rem;
-    }
-    .ic-price { font-family: var(--m); font-size: 1.05rem; font-weight: 500; color: var(--g); }
-    .ic-add {
-      width: 32px; height: 32px; border-radius: 50%; background: var(--gp);
-      display: flex; align-items: center; justify-content: center; color: var(--g);
-      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .item-card:hover .ic-add { background: var(--g); color: var(--wh); transform: scale(1.12); }
-
-    /* ━━ MOBILE CART BAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .cart-bar {
-      display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 80;
-      padding: 0.875rem 1rem;
-      padding-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
-      background: var(--wh); border-top: 1px solid var(--bdr);
-      box-shadow: 0 -8px 32px rgba(0,0,0,0.08);
-    }
-    .cb-btn {
-      width: 100%; padding: 0.925rem 1.25rem;
-      background: var(--g); color: var(--wh); border-radius: 10px;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .cb-btn:active { background: var(--gd); transform: scale(0.99); }
-    .cb-left { display: flex; align-items: center; gap: 0.75rem; }
-    .cb-count {
-      width: 26px; height: 26px; border-radius: 50%;
-      background: rgba(255,255,255,0.22); color: var(--wh);
-      font-family: var(--m); font-size: 0.68rem; font-weight: 600;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .cb-label {
-      font-family: var(--m); font-size: 0.62rem; letter-spacing: 0.1em;
-      text-transform: uppercase; font-weight: 600;
-    }
-    .cb-total { font-family: var(--m); font-size: 1.1rem; font-weight: 500; }
-
-    /* ━━ CART SCRIM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .cart-scrim {
-      position: fixed; inset: 0; z-index: 100;
-      background: rgba(20,44,20,0.42); backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.38s ease;
-    }
-    .cart-scrim.show { opacity: 1; pointer-events: auto; }
-
-    /* ━━ CART DRAWER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .cart-drawer {
-      position: fixed; top: 0; right: 0; bottom: 0;
-      width: 100%; max-width: 400px; z-index: 101;
-      background: var(--wh); display: flex; flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-      box-shadow: -16px 0 48px rgba(0,0,0,0.1);
-    }
-    .cart-drawer.show { transform: translateX(0); }
-
-    .cd-head {
-      padding: 1.5rem 1.75rem 1.25rem;
-      background: var(--cream); border-bottom: 1px solid var(--bdr);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-shrink: 0;
-    }
-    .cd-title { font-family: var(--d); font-size: 1.65rem; font-weight: 600; color: var(--g); }
-    .cd-close {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--wh); border: 1px solid var(--bdr);
-      display: flex; align-items: center; justify-content: center; color: var(--mu);
-      transition: background 0.2s, transform 0.25s;
-    }
-    .cd-close:hover { background: var(--gp); color: var(--tx); transform: rotate(90deg); }
-
-    .cd-items { flex: 1; overflow-y: auto; padding: 1.25rem 1.75rem; display: flex; flex-direction: column; }
-
-    /* Empty state */
-    .cd-empty {
-      flex: 1; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 0.875rem; text-align: center;
-      padding: 2rem 0;
-    }
-    .cd-empty-icon {
-      width: 60px; height: 60px; border-radius: 50%; background: var(--gp);
-      display: flex; align-items: center; justify-content: center; color: var(--g); opacity: 0.5;
-    }
-    .cd-empty-title { font-family: var(--d); font-size: 1.2rem; font-weight: 500; color: var(--tx); }
-    .cd-empty-sub { font-size: 0.82rem; color: var(--mu); line-height: 1.5; max-width: 190px; }
-
-    /* Cart item */
-    .ci { display: flex; gap: 0.875rem; padding: 1.125rem 0; border-bottom: 1px solid var(--bdr); }
-    .ci:last-child { border-bottom: none; }
-    .ci-img {
-      width: 68px; height: 68px; border-radius: 7px; object-fit: cover;
-      flex-shrink: 0; background: var(--gm);
-    }
-    .ci-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
-    .ci-name { font-family: var(--d); font-size: 0.975rem; font-weight: 600; color: var(--tx); line-height: 1.2; }
-    .ci-opts { font-size: 0.7rem; color: var(--mu); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .ci-bot { display: flex; justify-content: space-between; align-items: center; }
-    .ci-price { font-family: var(--m); font-size: 0.875rem; font-weight: 500; color: var(--g); }
-    .ci-qty {
-      display: flex; align-items: center; gap: 0.5rem;
-      background: var(--gp); border-radius: 30px; padding: 0.2rem 0.5rem;
-    }
-    .cq-btn {
-      width: 22px; height: 22px; border-radius: 50%; background: var(--wh);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--tx); font-weight: 600; font-size: 0.9rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      transition: background 0.15s, color 0.15s;
-    }
-    .cq-btn:hover { background: var(--g); color: var(--wh); }
-    .cq-val { font-family: var(--m); font-size: 0.72rem; font-weight: 500; width: 16px; text-align: center; }
-
-    .cd-foot {
-      padding: 1.375rem 1.75rem;
-      padding-bottom: calc(1.375rem + env(safe-area-inset-bottom, 0px));
-      background: var(--cream); border-top: 1px solid var(--bdr); flex-shrink: 0;
-    }
-    .cf-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--mu); }
-    .cf-row.total {
-      font-family: var(--d); font-size: 1.45rem; font-weight: 600; color: var(--tx);
-      margin-top: 0.875rem; padding-top: 0.875rem;
-      border-top: 1px dashed rgba(0,0,0,0.1);
-      margin-bottom: 1.125rem;
-    }
-    .cf-row.total span:last-child { color: var(--g); }
-    .co-btn {
-      width: 100%; padding: 0.975rem 1.25rem;
-      background: var(--g); color: var(--wh); border-radius: 8px;
-      font-family: var(--m); font-size: 0.62rem; letter-spacing: 0.13em;
-      text-transform: uppercase; font-weight: 600;
-      display: flex; justify-content: space-between; align-items: center;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .co-btn:hover { background: var(--gd); }
-    .co-btn:active { transform: scale(0.99); }
-    .co-btn:disabled { opacity: 0.65; pointer-events: none; }
-    .co-arrow {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: rgba(255,255,255,0.18);
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    /* ━━ MODAL SCRIM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .modal-scrim {
-      position: fixed; inset: 0; z-index: 110;
-      background: rgba(20,44,20,0.6); backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 2rem;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .modal-scrim.show { opacity: 1; pointer-events: auto; }
-
-    /* ━━ ITEM MODAL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .item-modal {
-      background: var(--wh); width: 100%; max-width: 860px;
-      border-radius: 14px; overflow: hidden; display: flex;
-      max-height: 88dvh;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.22);
-      transform: translateY(18px) scale(0.98);
-      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .modal-scrim.show .item-modal { transform: translateY(0) scale(1); }
-    .item-modal.no-img .im-left { display: none; }
-    .item-modal.no-img .im-right { width: 100%; }
-
-    .im-left {
-      flex: 1; position: relative;
-      background: var(--gm); min-height: 380px;
-    }
-    .im-left-img {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    }
-    .im-left-shade {
+    .order-hero::before {
+      content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(to right, transparent 60%, rgba(0,0,0,0.06) 100%);
+      background: url('/images/newpizza.webp') center/cover no-repeat;
+      opacity: 0.08;
     }
+    .order-hero .wrap { position: relative; z-index: 1; }
+    .order-hero .sec-ey { color: rgba(160,222,160,0.8); }
+    .order-hero .sec-ey::before { background: rgba(160,222,160,0.6); }
+    .oh-title {
+      font-family: var(--d); font-size: clamp(2.4rem,5vw,3.6rem);
+      font-weight: 700; color: white; letter-spacing: -0.03em;
+      line-height: 1.06; margin: 0.5rem 0 1.25rem;
+    }
+    .oh-title em { font-style: italic; color: rgba(160,222,160,0.85); }
+    .oh-desc { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 52ch; line-height: 1.7; margin-bottom: 1.5rem; }
+    .surcharge-pill {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14);
+      padding: 0.55rem 1.1rem; border-radius: 9999px;
+      font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.09em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+    }
+    .surcharge-pill svg { flex-shrink: 0; opacity: 0.6; }
 
-    .im-right {
-      width: 420px; flex-shrink: 0;
-      display: flex; flex-direction: column; overflow: hidden;
+    /* ── LOCATION GRID ─────────────────────────── */
+    .order-section { padding: 5rem 0 6rem; background: var(--cream); }
+    .order-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+      margin-top: 3rem;
     }
-    .im-head {
-      padding: 1.875rem 2rem 1.5rem; border-bottom: 1px solid var(--bdr);
-      flex-shrink: 0; position: relative;
+    .loc-card {
+      background: white; border: 1px solid var(--bdr); border-radius: 16px;
+      padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem;
+      transition: box-shadow 0.28s var(--ease), border-color 0.28s var(--ease);
     }
-    .im-close {
-      position: absolute; top: 1.125rem; right: 1.25rem;
-      width: 30px; height: 30px; border-radius: 50%;
-      background: var(--gp); display: flex; align-items: center; justify-content: center;
-      color: var(--tx); transition: background 0.2s;
-    }
-    .im-close:hover { background: var(--gm); }
-    .im-title {
-      font-family: var(--d); font-size: 1.65rem; font-weight: 600;
+    .loc-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); border-color: var(--gm); }
+    .lc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+    .lc-name {
+      font-family: var(--d); font-size: 1.35rem; font-weight: 600;
       color: var(--tx); letter-spacing: -0.02em; line-height: 1.2;
-      padding-right: 2.5rem;
     }
-    .im-desc { font-size: 0.85rem; color: var(--mu); line-height: 1.55; margin-top: 0.5rem; }
+    .lc-sub {
+      font-family: var(--m); font-size: 0.47rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--g); margin-top: 0.3rem;
+    }
+    .lc-badge {
+      font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.28rem 0.7rem; border-radius: 9999px;
+      background: var(--gp); color: var(--g); white-space: nowrap; flex-shrink: 0;
+    }
+    .lc-badge.unavail { background: #fff4e6; color: #a05c00; }
+    .lc-details { display: flex; flex-direction: column; gap: 0.55rem; }
+    .lc-row { display: flex; align-items: flex-start; gap: 0.6rem; }
+    .lc-icon { flex-shrink: 0; color: var(--g); margin-top: 2px; }
+    .lc-text { font-size: 0.875rem; color: var(--mu); line-height: 1.5; font-weight: 300; }
+    .lc-text strong { font-weight: 500; color: var(--tx); }
+    .lc-phone { font-family: var(--m); font-size: 0.875rem; color: var(--g); font-weight: 500; text-decoration: none; transition: color 0.2s; }
+    .lc-phone:hover { color: var(--gd); }
+    .lc-divider { border: none; border-top: 1px solid var(--bdr); margin: 0; }
+    .lc-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .lc-actions .btn { flex: 1; min-width: 130px; justify-content: center; font-size: 0.5rem; }
+    .btn-toast {
+      background: var(--g); color: white; border: 1px solid var(--g);
+    }
+    .btn-toast:hover { background: var(--gd); border-color: var(--gd); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,95,44,0.25); }
+    .btn-dd {
+      border: 1px solid var(--bdr); color: var(--tx);
+      background: white;
+    }
+    .btn-dd:hover { border-color: var(--tx); background: var(--gp); transform: translateY(-2px); }
+    .btn-call {
+      border: 1px solid var(--bdr); color: var(--mu);
+      background: white; width: 100%;
+    }
+    .btn-call:hover { border-color: var(--g); color: var(--g); background: var(--gp); transform: translateY(-2px); }
+    .unavail-note {
+      font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.07em;
+      text-transform: uppercase; color: #a05c00; text-align: center;
+      padding: 0.6rem; background: #fff4e6; border-radius: 8px;
+    }
 
-    .im-body { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
-    .og { margin-bottom: 1.625rem; }
-    .og:last-child { margin-bottom: 0; }
-    .og-title {
-      font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.12em;
-      text-transform: uppercase; font-weight: 600; color: var(--tx);
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 0.875rem;
-    }
-    .og-req {
-      color: var(--red); font-size: 0.52rem;
-      background: rgba(192,57,43,0.08); padding: 0.18rem 0.5rem; border-radius: 3px;
-    }
-    .r-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
-    .r-label {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 0.875rem 0.75rem;
-      border: 1.5px solid var(--bdr); border-radius: 8px; cursor: pointer;
-      font-size: 0.875rem; font-weight: 500; line-height: 1.3;
-      transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
-    }
-    .r-label input { display: none; }
-    .r-label:has(input:checked) {
-      border-color: var(--g); background: rgba(30,95,44,0.05);
-      color: var(--g); box-shadow: 0 0 0 1px var(--g);
-    }
-    .r-sub { font-size: 0.7rem; font-weight: 400; opacity: 0.55; margin-top: 2px; }
+    /* ── HOW IT WORKS ──────────────────────────── */
+    .how-section { padding: 4rem 0; background: var(--gp); border-top: 1px solid var(--bdr); }
+    .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 2.5rem; }
+    .how-card { background: white; border: 1px solid var(--bdr); border-radius: 12px; padding: 1.75rem; }
+    .how-num { font-family: var(--d); font-size: 2rem; font-weight: 700; color: var(--g); line-height: 1; margin-bottom: 0.75rem; }
+    .how-title { font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx); margin-bottom: 0.5rem; }
+    .how-desc { font-size: 0.875rem; color: var(--mu); line-height: 1.6; font-weight: 300; }
 
-    .im-foot {
-      padding: 1.25rem 2rem; border-top: 1px solid var(--bdr); flex-shrink: 0;
-      display: flex; gap: 0.875rem; align-items: center;
-    }
-    .im-qty {
-      display: flex; align-items: center; gap: 0.875rem;
-      background: var(--gp); border-radius: 8px; padding: 0.5rem 0.875rem;
-      flex-shrink: 0;
-    }
-    .im-qbtn {
-      width: 28px; height: 28px; border-radius: 6px; background: var(--wh);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--tx); font-weight: 600;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      transition: background 0.15s, color 0.15s;
-    }
-    .im-qbtn:hover { background: var(--g); color: var(--wh); }
-    .im-qn { font-family: var(--m); font-size: 1rem; font-weight: 500; width: 20px; text-align: center; }
-    .im-add {
-      flex: 1; background: var(--g); color: var(--wh); border-radius: 8px;
-      padding: 0.875rem 1.25rem;
-      font-family: var(--m); font-size: 0.6rem; letter-spacing: 0.12em;
-      text-transform: uppercase; font-weight: 600;
-      display: flex; justify-content: space-between; align-items: center;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .im-add:hover { background: var(--gd); }
-    .im-add:active { transform: scale(0.98); }
-    .im-add-price { font-size: 0.875rem; opacity: 0.9; font-weight: 400; }
-
-    /* ━━ RESPONSIVE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 960px) {
-      :root { --nav-h: 62px; --info-h: 44px; }
-
-      /* Nav */
-      #nav { width: calc(100% - 2rem); padding: 0 1.25rem; }
-      .nav-links { display: none !important; }
-      .nav-ham { display: flex; }
-      .app-nav { padding: 0 1rem; }
-      .brand img { height: 36px; }
-      .b-name { font-size: 1.1rem; }
-      .b-sub, .cart-btn { display: none; }
-      .dd-btn { font-size: 0.5rem; padding: 0.38rem 0.7rem; gap: 0.3rem; }
-
-      /* Info strip */
-      .info-strip { padding: 0 1rem; gap: 1rem; overflow-x: auto; scrollbar-width: none; }
-      .info-strip::-webkit-scrollbar { display: none; }
-      .is-open { display: none; }
-
-      /* Layout */
-      .app-main { flex-direction: column; padding: 0; gap: 0; }
-
-      /* Sidebar → horizontal pill scroll */
-      .sidebar {
-        width: 100%; position: sticky;
-        top: calc(var(--nav-h) + var(--info-h)); z-index: 40;
-        background: var(--wh); border-bottom: 1px solid var(--bdr);
-      }
-      .sb-label { display: none; }
-      .cat-list {
-        flex-direction: row; overflow-x: auto;
-        padding: 0.75rem 1rem; gap: 0.5rem;
-        scrollbar-width: none;
-      }
-      .cat-list::-webkit-scrollbar { display: none; }
-      .cat-btn {
-        padding: 0.45rem 1rem; border-radius: 30px; flex-shrink: 0;
-        font-family: var(--f); font-size: 0.875rem; font-weight: 500;
-        border: 1.5px solid var(--bdr);
-        white-space: nowrap; color: var(--mu);
-      }
-      .cat-btn.active {
-        background: var(--g); color: var(--wh);
-        border-color: var(--g); box-shadow: 0 4px 12px rgba(30,95,44,0.24);
-      }
-      .cat-btn::before { display: none; }
-      .cat-pill { display: none; }
-
-      /* Content */
-      .menu-content { padding: 1.25rem 1rem 120px; }
-      .cat-head { margin-bottom: 1.125rem; padding-bottom: 0.875rem; }
-      .cat-name { font-size: 1.5rem; }
-
-      /* Grid → horizontal cards */
-      .menu-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-      .item-card { flex-direction: row; height: 115px; border-radius: 12px; }
-      .ic-img {
-        padding-top: 0; width: 115px; height: 100%;
-        flex-shrink: 0; border-radius: 0;
-      }
-      .ic-img img { border-radius: 0; }
-      .ic-img-shade { display: none; }
-      .ic-ph-icon svg { width: 26px; height: 26px; }
-      .ic-info { padding: 0.875rem 1rem; }
-      .ic-name { font-size: 1rem; margin-bottom: 0.25rem; }
-      .ic-desc { font-size: 0.75rem; -webkit-line-clamp: 2; line-clamp: 2; }
-      .ic-foot { margin-top: 0.625rem; }
-      .ic-price { font-size: 0.925rem; }
-      .ic-add { width: 28px; height: 28px; }
-      .ic-add svg { width: 13px; height: 13px; }
-
-      /* Mobile cart bar */
-      .cart-bar { display: block; }
-
-      /* Modal → bottom sheet */
-      .modal-scrim { padding: 0; align-items: flex-end; }
-      .item-modal {
-        flex-direction: column; border-radius: 20px 20px 0 0;
-        max-height: 92dvh; max-width: 100%;
-        transform: translateY(100%);
-      }
-      .modal-scrim.show .item-modal { transform: translateY(0); }
-      .item-modal.no-img .im-left { display: none; }
-      .im-left { flex: none; height: 200px; min-height: 0; width: 100%; }
-      .im-left-shade { display: none; }
-      .im-right { width: 100%; flex: 1; overflow-y: auto; }
-      .im-body { overflow-y: visible; padding: 1.25rem 1.25rem; }
-      .im-head { padding: 1.25rem 1.25rem 1rem; }
-      .im-title { font-size: 1.375rem; }
-      .im-foot {
-        padding: 1rem 1.25rem;
-        padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
-        flex-direction: column; gap: 0.75rem;
-      }
-      .im-qty { width: 100%; justify-content: space-between; }
-      .im-add { width: 100%; }
-
-      /* Cart drawer */
-      .cart-drawer { max-width: 100%; }
-      .cd-head { padding: 1.25rem 1.25rem 1rem; }
-      .cd-title { font-size: 1.4rem; }
-      .cd-items { padding: 1rem 1.25rem; }
-      .cd-foot { padding: 1.25rem 1.25rem; padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); }
+      .order-hero { padding: 8rem 0 4rem; }
+      .order-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr 1fr; }
     }
-
-    @media (max-width: 420px) {
-      .ic-img { width: 100px; }
-      .item-card { height: 108px; }
+    @media (max-width: 600px) {
+      .how-grid { grid-template-columns: 1fr; }
+      .lc-actions .btn { flex: none; width: 100%; }
     }
-
   </style>
 </head>
 <body>
 
-  <!-- LOADER -->
-  <div class="loader" id="loader">
-    <div class="ld-brand">
-      <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
-      <span class="ld-name">Riverside Pizza</span>
+<!-- ── NAV ───────────────────────────────────── -->
+<nav id="nav" class="glass">
+  <a href="index.html" class="logo">
+    <img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
     </div>
-    <div class="ld-dots">
-      <div class="ld-dot"></div>
-      <div class="ld-dot"></div>
-      <div class="ld-dot"></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="catering.html">Catering</a></li>
+    <li><a href="locations.html">Locations</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="takeout.html" class="nav-cta" aria-current="page">Order Online</a></li>
+  </ul>
+  <button class="nav-ham" id="navHam" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-overlay" id="mobOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="index.html">Home</a>
+  <a href="menu.html">Menu</a>
+  <a href="catering.html">Catering</a>
+  <a href="locations.html">Locations</a>
+  <a href="about.html">About</a>
+  <a href="takeout.html" class="mob-cta" aria-current="page">Order Online</a>
+</div>
+
+<!-- ── HERO ──────────────────────────────────── -->
+<header class="order-hero">
+  <div class="wrap">
+    <div class="sec-ey gs-reveal">Carryout &amp; Delivery</div>
+    <h1 class="oh-title gs-reveal">Order online.<br><em>Ready in 20–30 min.</em></h1>
+    <p class="oh-desc gs-reveal">Select your nearest location below. Carryout orders are placed through Toast. Delivery is available through DoorDash.</p>
+    <div class="surcharge-pill gs-reveal">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      3% credit card surcharge · No surcharge for cash or debit
     </div>
   </div>
+</header>
 
-  <!-- NAV -->
-  <nav class="app-nav">
-    <a href="index.html" class="brand">
-      <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
-      <div class="brand-text">
-        <span class="b-name">Riverside Pizza</span>
-        <span class="b-sub">Carryout Ordering</span>
-      </div>
-    </a>
-    <div class="nav-right">
-      <button type="button" class="dd-btn" id="doorDashBtn">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Delivery via DoorDash
-      </button>
-      <button class="cart-btn" id="openCartBtn" aria-label="View cart">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <path d="M16 10a4 4 0 0 1-8 0"/>
-        </svg>
-        <span class="cbadge" id="cartBadge">0</span>
-      </button>
-    </div>
-  </nav>
+<!-- ── LOCATIONS ─────────────────────────────── -->
+<section class="order-section">
+  <div class="wrap">
+    <div class="sec-ey gs-reveal">8 Locations · Metro Atlanta</div>
+    <h2 class="sec-h gs-reveal">Choose your <em>location.</em></h2>
 
-  <!-- INFO STRIP -->
-  <div class="info-strip">
-    <div class="is-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-      <b>Lawrenceville</b>
-    </div>
-    <div class="is-sep"></div>
-    <div class="is-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Ready in <b>20–30 min</b>
-    </div>
-    <div class="is-sep"></div>
-    <div class="is-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-1.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <b>(770) 360-0002</b>
-    </div>
-    <div class="is-open">Open Now</div>
-  </div>
+    <div class="order-grid">
 
-  <!-- MAIN -->
-  <main class="app-main">
-    <aside class="sidebar">
-      <div class="sb-label">Menu</div>
-      <ul class="cat-list" id="catList"></ul>
-    </aside>
-    <div class="menu-content">
-      <div class="cat-head">
-        <h1 class="cat-name" id="catName">Specialty Pizzas</h1>
-        <span class="cat-num" id="catNum">0 items</span>
-      </div>
-      <div class="menu-grid" id="menuGrid"></div>
-    </div>
-  </main>
-
-  <!-- MOBILE CART BAR -->
-  <div class="cart-bar" id="cartBar">
-    <button class="cb-btn" id="openCartMobile">
-      <div class="cb-left">
-        <div class="cb-count" id="cbCount">0</div>
-        <span class="cb-label">View Order</span>
-      </div>
-      <span class="cb-total" id="cbTotal">$0.00</span>
-    </button>
-  </div>
-
-  <!-- CART -->
-  <div class="cart-scrim" id="cartScrim"></div>
-  <div class="cart-drawer" id="cartDrawer">
-    <div class="cd-head">
-      <h2 class="cd-title">Your Order</h2>
-      <button class="cd-close" id="closeCartBtn" aria-label="Close cart">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-    <div class="cd-items" id="cartItems"></div>
-    <div class="cd-foot">
-      <div class="cf-row"><span>Subtotal</span><span id="cartSub">$0.00</span></div>
-      <div class="cf-row"><span>Tax (8%)</span><span id="cartTax">$0.00</span></div>
-      <div class="cf-row total"><span>Total</span><span id="cartTotal">$0.00</span></div>
-      <button class="co-btn" id="checkoutBtn">
-        <span id="coBtnLabel">Order on Toast</span>
-        <div class="co-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </div>
-      </button>
-    </div>
-  </div>
-
-  <!-- ITEM MODAL -->
-  <div class="modal-scrim" id="modalScrim">
-    <div class="item-modal" id="itemModal">
-      <div class="im-left" id="modalLeft">
-        <img loading="lazy" src="" alt="" class="im-left-img" id="modalImg">
-        <div class="im-left-shade"></div>
-      </div>
-      <div class="im-right">
-        <div class="im-head">
-          <button class="im-close" id="closeModalBtn" aria-label="Close">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-          <h2 class="im-title" id="modalTitle"></h2>
-          <p class="im-desc" id="modalDesc"></p>
-        </div>
-        <div class="im-body" id="modalBody"></div>
-        <div class="im-foot">
-          <div class="im-qty">
-            <button class="im-qbtn" id="modalMinus">−</button>
-            <span class="im-qn" id="modalQtyN">1</span>
-            <button class="im-qbtn" id="modalPlus">+</button>
+      <!-- 1. Lawrenceville -->
+      <div class="loc-card gs-reveal">
+        <div class="lc-head">
+          <div>
+            <div class="lc-name">Lawrenceville</div>
+            <div class="lc-sub">Kroger Shopping Center</div>
           </div>
-          <button class="im-add" id="modalAddBtn">
-            <span>Add to Order</span>
-            <span class="im-add-price" id="modalAddPrice">$0.00</span>
-          </button>
+          <span class="lc-badge">Open Daily</span>
+        </div>
+        <div class="lc-details">
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lc-text">2100 Riverside Pkwy, Lawrenceville, GA 30043</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="lc-text"><strong>10:30am – 10:00pm</strong> daily</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <a href="tel:7708221500" class="lc-phone">770-822-1500</a>
+          </div>
+        </div>
+        <hr class="lc-divider">
+        <div class="lc-actions">
+          <a href="https://order.toasttab.com/online/riverside-pizza-riverside" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
+          <a href="https://www.doordash.com/store/riverside-pizza-lawrenceville-129406/59759346/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
         </div>
       </div>
+
+      <!-- 2. Sugarloaf -->
+      <div class="loc-card gs-reveal">
+        <div class="lc-head">
+          <div>
+            <div class="lc-name">Sugarloaf <span style="font-size:0.7em;font-family:var(--f);font-weight:400;color:var(--mu)">(Lawrenceville)</span></div>
+            <div class="lc-sub">Publix Shopping Center</div>
+          </div>
+          <span class="lc-badge">Open Daily</span>
+        </div>
+        <div class="lc-details">
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lc-text">3330 Sugarloaf Pkwy, Lawrenceville, GA 30044</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="lc-text"><strong>10:30am – 10:00pm</strong> daily</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <a href="tel:7707717000" class="lc-phone">770-771-7000</a>
+          </div>
+        </div>
+        <hr class="lc-divider">
+        <div class="lc-actions">
+          <a href="https://order.toasttab.com/online/riverside-pizza-sugarloaf" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
+          <a href="https://www.doordash.com/store/riverside-pizza-lawrenceville-129420/90666946/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+        </div>
+      </div>
+
+      <!-- 3. Suwanee -->
+      <div class="loc-card gs-reveal">
+        <div class="lc-head">
+          <div>
+            <div class="lc-name">Suwanee</div>
+            <div class="lc-sub">Peachtree Industrial Blvd</div>
+          </div>
+          <span class="lc-badge">Open Daily</span>
+        </div>
+        <div class="lc-details">
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lc-text">991 Peachtree Industrial Blvd, Suwanee, GA 30024</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="lc-text"><strong>10:30am – 10:00pm</strong> daily</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <a href="tel:7702719992" class="lc-phone">770-271-9992</a>
+          </div>
+        </div>
+        <hr class="lc-divider">
+        <div class="lc-actions">
+          <a href="https://order.toasttab.com/online/riversidepizzasuwanee" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
+          <a href="https://www.doordash.com/store/riverside-pizza-suwanee-94259/47875546/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+        </div>
+      </div>
+
+      <!-- 4. Grayson -->
+      <div class="loc-card gs-reveal">
+        <div class="lc-head">
+          <div>
+            <div class="lc-name">Grayson</div>
+            <div class="lc-sub">Grayson Highway</div>
+          </div>
+          <span class="lc-badge">Open Daily</span>
+        </div>
+        <div class="lc-details">
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lc-text">1845 Grayson Hwy, Grayson, GA 30017</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="lc-text"><strong>10:30am – 10:00pm</strong> daily</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <a href="tel:7706822929" class="lc-phone">770-682-2929</a>
+          </div>
+        </div>
+        <hr class="lc-divider">
+        <div class="lc-actions">
+          <a href="https://order.toasttab.com/online/riverside-pizza-grayson" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
+          <a href="https://www.doordash.com/store/riverside-pizza-grayson-129392/60726148/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+        </div>
+      </div>
+
+      <!-- 5. Hamilton Mill -->
+      <div class="loc-card gs-reveal">
+        <div class="lc-head">
+          <div>
+            <div class="lc-name">Hamilton Mill</div>
+            <div class="lc-sub">Braselton Highway</div>
+          </div>
+          <span class="lc-badge">Open Daily</span>
+        </div>
+        <div class="lc-details">
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lc-text">2463 Hamilton Mill Pkwy #320, Dacula, GA 30005</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="lc-text"><strong>10:30am – 10:00pm</strong> daily</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <a href="tel:7702718881" class="lc-phone">770-271-8881</a>
+          </div>
+        </div>
+        <hr class="lc-divider">
+        <div class="lc-actions">
+          <a href="tel:7702718881" class="btn btn-call">Call to Order — 770-271-8881</a>
+        </div>
+      </div>
+
+      <!-- 6. Dacula -->
+      <div class="loc-card gs-reveal">
+        <div class="lc-head">
+          <div>
+            <div class="lc-name">Dacula</div>
+            <div class="lc-sub">Kroger Center</div>
+          </div>
+          <span class="lc-badge">Open Daily</span>
+        </div>
+        <div class="lc-details">
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lc-text">2515 Fence Rd, Dacula, GA 30019</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="lc-text"><strong>10:30am – 10:00pm</strong> daily</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <a href="tel:7709635000" class="lc-phone">770-963-5000</a>
+          </div>
+        </div>
+        <hr class="lc-divider">
+        <div class="lc-actions">
+          <a href="https://order.toasttab.com/online/riverside-pizza-dacula-ga" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
+          <a href="https://www.doordash.com/store/riverside-pizza-dacula-129376/64607350/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+        </div>
+      </div>
+
+      <!-- 7. Johns Creek -->
+      <div class="loc-card gs-reveal">
+        <div class="lc-head">
+          <div>
+            <div class="lc-name">Johns Creek</div>
+            <div class="lc-sub">Douglas Road</div>
+          </div>
+          <span class="lc-badge">Open Daily</span>
+        </div>
+        <div class="lc-details">
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lc-text">11877 Douglas Rd, Johns Creek, GA 30005</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="lc-text"><strong>10:30am – 10:00pm</strong> daily</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <a href="tel:7703600002" class="lc-phone">770-360-0002</a>
+          </div>
+        </div>
+        <hr class="lc-divider">
+        <div class="lc-actions">
+          <a href="https://order.toasttab.com/online/riverside-pizza-johnscreek" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
+          <a href="https://www.doordash.com/store/riverside-pizza-johns-creek-53820/58782947/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+        </div>
+      </div>
+
+      <!-- 8. Cumming -->
+      <div class="loc-card gs-reveal">
+        <div class="lc-head">
+          <div>
+            <div class="lc-name">Cumming</div>
+            <div class="lc-sub">Near Publix on Old Atlanta Rd</div>
+          </div>
+          <span class="lc-badge">Open Daily</span>
+        </div>
+        <div class="lc-details">
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lc-text">3030 Old Atlanta Rd, Cumming, GA 30041</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="lc-text"><strong>10:30am – 10:00pm</strong> daily</span>
+          </div>
+          <div class="lc-row">
+            <svg class="lc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <a href="tel:4702394243" class="lc-phone">470-239-4243</a>
+          </div>
+        </div>
+        <hr class="lc-divider">
+        <div class="lc-actions">
+          <a href="https://order.toasttab.com/online/riverside-pizza-cumming-ga" target="_blank" rel="noopener noreferrer" class="btn btn-toast">Carryout via Toast</a>
+          <a href="https://www.doordash.com/store/riverside-pizza-cumming-127716/50569349/?pickup=false" target="_blank" rel="noopener noreferrer" class="btn btn-dd">Delivery via DoorDash</a>
+        </div>
+      </div>
+
     </div>
   </div>
+</section>
 
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
-  <script>
-    gsap.registerPlugin(ScrollTrigger);
+<!-- ── HOW IT WORKS ───────────────────────────── -->
+<section class="how-section">
+  <div class="wrap">
+    <div class="sec-ey gs-reveal">Simple &amp; Fast</div>
+    <h2 class="sec-h gs-reveal">How it <em>works.</em></h2>
+    <div class="how-grid">
+      <div class="how-card gs-reveal">
+        <div class="how-num">1</div>
+        <div class="how-title">Choose Your Location</div>
+        <div class="how-desc">Select the Riverside Pizza nearest to you from the list above.</div>
+      </div>
+      <div class="how-card gs-reveal">
+        <div class="how-num">2</div>
+        <div class="how-title">Pick Carryout or Delivery</div>
+        <div class="how-desc">Order carryout through Toast Tab or get it delivered via DoorDash — your choice.</div>
+      </div>
+      <div class="how-card gs-reveal">
+        <div class="how-num">3</div>
+        <div class="how-title">Ready in 20–30 Min</div>
+        <div class="how-desc">Fresh, handmade pizza prepared to order. Carryout ready in 20–30 minutes.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* ── CONFIG ─────────────────────────────────────────────── */
-    const CONFIG = {
-      USE_SANITY:        false,
-      SANITY_PROJECT_ID: 'REPLACE_WITH_YOUR_PROJECT_ID',
-      SANITY_DATASET:    'production',
+<!-- ── CTA STRIP ──────────────────────────────── -->
+<div class="cta-strip">
+  <div class="cta-text">Not sure what to order? Browse the menu first.</div>
+  <div class="cta-links">
+    <a href="menu.html" class="btn btn-white">View Full Menu</a>
+    <a href="locations.html" class="btn btn-outline-w">All Locations</a>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────── -->
+<footer>
+  <div class="ft-top wrap">
+    <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
+    <div class="ft-cols">
+      <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Lunch Specials</a></li><li><a href="gluten-free.html">Gluten Free</a></li><li><a href="catering.html">Catering</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Job Application</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="takeout.html">Order Online</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
+    </div>
+  </div>
+  <div class="ft-bottom wrap">
+    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved · <a href="privacy.html" style="color:inherit;opacity:0.55;text-decoration:underline;text-underline-offset:3px;">Privacy Policy</a></div>
+    <div class="ft-copy">Lawrenceville · Sugarloaf · Suwanee · Grayson · Hamilton Mill · Dacula · Johns Creek · Cumming</div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+<script>
+  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray('.gs-reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true } }
+    );
+  });
+
+  // Nav scroll behavior
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Mobile nav
+  const navHam = document.getElementById('navHam');
+  const mobOverlay = document.getElementById('mobOverlay');
+  let trapHandler = null;
+  function closeMenu() {
+    navHam.classList.remove('open'); mobOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    navHam.setAttribute('aria-label', 'Open menu');
+    if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
+  }
+  function openMenu() {
+    navHam.classList.add('open'); mobOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    navHam.setAttribute('aria-label', 'Close menu');
+    const focusable = Array.from(mobOverlay.querySelectorAll('a'));
+    requestAnimationFrame(() => focusable[0].focus());
+    trapHandler = (e) => {
+      if (e.key === 'Escape') { closeMenu(); navHam.focus(); return; }
+      if (e.key !== 'Tab') return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
     };
-
-    /* ── DOORDASH ───────────────────────────────────────────── */
-    // Replace with your actual DoorDash store URL
-    const DOORDASH_URL = 'https://www.doordash.com/store/riverside-pizza-dacula-129376/64607350/?pickup=false';
-
-    /* ── DATA ───────────────────────────────────────────────── */
-    const WP = 'https://riversidepizza.net/wp-content/uploads/';
-    const IMG = {
-      /* Specialty pizzas — numbered originals */
-      p1:  WP + '2013/11/1.jpg',
-      p2:  WP + '2013/11/2.jpg',
-      p3:  WP + '2013/11/3.jpg',
-      p4:  WP + '2013/11/4.jpg',
-      p5:  WP + '2013/11/5.jpg',
-      p6:  WP + '2013/11/6.jpg',
-      p7:  WP + '2013/11/7.jpg',
-      p8:  WP + '2013/11/8.jpg',
-      /* New & specialty */
-      newpizza:  WP + '2019/10/newpizza.jpg',
-      newpizza20:WP + '2019/10/newpizza-20.jpg',
-      riverside: WP + '2013/07/riverside-special-pizza-scaled.jpg',
-      halal:     WP + '2019/11/Halal-Chicken.jpg',
-      /* Sides & extras */
-      wings:     WP + '2017/08/new-wings.jpg',
-      cheese_sticks: WP + '2017/08/new-cheesesticks.jpg',
-      breadsticks:   WP + '2013/07/bread-sticks80.jpg',
-      sandwich:  WP + '2017/08/new-oven-baked-sandwich.jpg',
-      cin:       WP + '2019/10/cinnamonbread.jpg',
-      /* Salads */
-      salad1:    WP + '2017/06/Icebergsalad.jpg',
-      salad2:    WP + '2017/06/spinachsalad.jpg',
-      /* GF */
-      gf:        WP + '2019/10/glutenfree-new.jpg',
-      /* Fresh shots (2024 uploads — likely updated product photos) */
-      fresh1:    WP + '2024/06/8401ac89-ec8b-445c-a08a-032c8c58209b.jpg',
-      fresh2:    WP + '2024/06/96ab44ac-7437-4742-82c7-388f20aa9c15.jpg',
-      fresh3:    WP + '2024/06/989b80c4-c84c-428d-b583-5461c31a391f.jpg',
-      /* Homepage shots */
-      home1:     WP + '2020/07/pizza-homepage.jpg',
-      home2:     WP + '2020/07/pizza-homepage-1.jpg',
-    };
-
-    const MOCK_DB = {
-      categories: ['Specialty Pizzas','Fresh N Fast','Build Your Own','Detroit Style','Wings & Sides','Subs & Sandwiches','Salads','Desserts'],
-      items: [
-        /* ── Specialty Pizzas ───────────────────────────────── */
-        { id:1,  cat:'Specialty Pizzas', name:'Favorite 5',              price:13.29, img:IMG.p1,      desc:'Our most-ordered pizza — pepperoni, sausage, beef, mushrooms & green peppers.' },
-        { id:2,  cat:'Specialty Pizzas', name:'Supreme',                 price:13.29, img:IMG.p2,      desc:'Pepperoni, Italian sausage, beef, mushrooms, onions, green peppers, black olives.' },
-        { id:3,  cat:'Specialty Pizzas', name:'Meatzza',                 price:13.29, img:IMG.p3,      desc:'Pepperoni, Italian sausage, ground beef, ham, and applewood-smoked bacon.' },
-        { id:4,  cat:'Specialty Pizzas', name:'Riverside Special',       price:13.29, img:IMG.riverside,desc:'The house signature — named after us. A local favorite since day one.' },
-        { id:5,  cat:'Specialty Pizzas', name:'Veggie',                  price:13.29, img:IMG.p5,      desc:'Mushrooms, onions, green peppers, black olives, banana peppers, and tomatoes.' },
-        { id:6,  cat:'Specialty Pizzas', name:'Greek Chicken',           price:13.29, img:IMG.p6,      desc:'Grilled chicken, feta cheese, Kalamata olives, red onion, and tomatoes.' },
-        { id:7,  cat:'Specialty Pizzas', name:'Chicken Trio',            price:13.29, img:IMG.newpizza, desc:'Three ways of chicken — grilled, buffalo, and BBQ — on a white garlic base.' },
-        { id:8,  cat:'Specialty Pizzas', name:'BBQ Chicken',             price:13.29, img:IMG.p4,      desc:'Grilled chicken breast, house BBQ sauce, red onion, and applewood bacon.' },
-        { id:9,  cat:'Specialty Pizzas', name:'Hawaiian Chicken',        price:13.29, img:IMG.newpizza20,desc:'Grilled chicken, ham, pineapple, and mozzarella on a sweet tomato base.' },
-        { id:10, cat:'Specialty Pizzas', name:'Tandoori Chicken (Halal)',price:13.57, img:IMG.halal,   desc:'Halal chicken breast, hand-cut and marinated with tandoori paste.' },
-
-        /* ── Fresh N Fast ───────────────────────────────────── */
-        { id:11, cat:'Fresh N Fast', name:'Large Pepperoni',             price:10.00, img:IMG.home1,   desc:'A large 14" classic pepperoni — ready fast, priced right.' },
-        { id:12, cat:'Fresh N Fast', name:'Large Cheese',                price:10.00, img:IMG.home2,   desc:'A large 14" classic cheese pizza. Simple and perfect.' },
-
-        /* ── Build Your Own ─────────────────────────────────── */
-        { id:13, cat:'Build Your Own', name:'Large 1-Topping',           price:7.99,  img:IMG.fresh1,  desc:'Start with our 14" large and choose your perfect topping.' },
-        { id:14, cat:'Build Your Own', name:'Large — Build Your Own',    price:8.99,  img:IMG.fresh2,  desc:'Full 14" pizza, fully customizable with any toppings you like.' },
-        { id:15, cat:'Build Your Own', name:'Half & Half (Large)',        price:6.56,  img:IMG.fresh3,  desc:'Two different pizzas in one — split a large 14" any way you want.' },
-        { id:16, cat:'Build Your Own', name:'8" Personal Pizza',          price:2.99,  img:IMG.p8,     desc:'Individual 8" pizza. Pepperoni & cheese or just cheese.' },
-        { id:17, cat:'Build Your Own', name:'Gluten-Free 8" — 1 Topping',price:9.49,  img:IMG.gf,     desc:'8" gluten-free crust with your choice of topping. Light and crispy.' },
-        { id:18, cat:'Build Your Own', name:'10" Gluten-Free — Premium', price:17.15, img:IMG.gf,     desc:'10" gluten-free crust loaded with premium toppings.' },
-
-        /* ── Detroit Style ──────────────────────────────────── */
-        { id:19, cat:'Detroit Style', name:'Pappa Pan — Cheese/1 Topping',price:9.49,  img:IMG.p7,    desc:'Detroit-style deep dish — thick, airy, with a signature crispy caramelized edge.' },
-        { id:20, cat:'Detroit Style', name:'Pappa Pan — Premium',         price:14.49, img:IMG.p8,    desc:'Our Detroit-style pan loaded with your choice of premium toppings.' },
-        { id:21, cat:'Detroit Style', name:'Pappa Pan — Build Your Own',  price:11.14, img:IMG.fresh1, desc:'Full Detroit pan, fully customizable. Make it exactly yours.' },
-        { id:22, cat:'Detroit Style', name:'Jr Pan — Cheese/1 Topping',   price:4.99,  img:IMG.fresh2, desc:'The junior Detroit pan. Same great crust — perfect single-serving size.' },
-        { id:23, cat:'Detroit Style', name:'Jr Pan — Premium',             price:8.49,  img:IMG.fresh3, desc:'Jr-sized Detroit pan loaded with premium toppings.' },
-
-        /* ── Wings & Sides ──────────────────────────────────── */
-        { id:24, cat:'Wings & Sides', name:'Jumbo Wings — 5 pc',         price:6.99,  img:IMG.wings,        desc:'Always baked, never fried. Choose from mild, hot, BBQ, lemon pepper, teriyaki, and more.' },
-        { id:25, cat:'Wings & Sides', name:'Jumbo Wings — 10 pc',        price:12.99, img:IMG.wings,        desc:'Always baked, never fried. 10 jumbo wings — served with ranch or blue cheese.' },
-        { id:26, cat:'Wings & Sides', name:'Cheese Bread',               price:5.79,  img:IMG.cheese_sticks, desc:'10 sticks of fresh-baked bread smothered in two types of cheese and finished with garlic.' },
-        { id:27, cat:'Wings & Sides', name:'Pepperoni Cheese Bread',     price:5.99,  img:IMG.cheese_sticks, desc:'Our cheese bread loaded with pepperoni. The ultimate side.' },
-        { id:28, cat:'Wings & Sides', name:'Breadsticks',                price:3.59,  img:IMG.breadsticks,  desc:'8 pieces of baked bread topped with garlic butter and parmesan. Served with dipping sauce.' },
-        { id:29, cat:'Wings & Sides', name:'Breadsticks Combo',          price:4.29,  img:IMG.breadsticks,  desc:'8 pieces with pizza sauce or garlic butter.' },
-
-        /* ── Subs & Sandwiches ──────────────────────────────── */
-        { id:30, cat:'Subs & Sandwiches', name:'Italian',                price:5.99, img:IMG.sandwich, desc:'Ham, salami, pepperoni, cheese, onion, banana peppers, lettuce, tomato, Italian dressing.' },
-        { id:31, cat:'Subs & Sandwiches', name:'Club',                   price:5.99, img:IMG.sandwich, desc:'Turkey, ham, bacon, cheese, lettuce, tomato, and mayo on a toasted hoagie.' },
-        { id:32, cat:'Subs & Sandwiches', name:'Ham & Cheese',           price:5.99, img:IMG.sandwich, desc:'Thick-cut ham and melted cheese on a fresh-baked hoagie roll.' },
-        { id:33, cat:'Subs & Sandwiches', name:'Turkey',                 price:5.99, img:IMG.sandwich, desc:'Sliced turkey breast with lettuce, tomato, and your choice of dressing.' },
-        { id:34, cat:'Subs & Sandwiches', name:'Tuna',                   price:5.99, img:IMG.sandwich, desc:'House tuna salad with lettuce and tomato on a toasted hoagie.' },
-
-        /* ── Salads ─────────────────────────────────────────── */
-        { id:35, cat:'Salads', name:'Greek Salad',                       price:6.29, img:IMG.salad2, desc:'Romaine, tomatoes, cucumber, Kalamata olives, feta, red onion, and Greek dressing.' },
-        { id:36, cat:'Salads', name:'Antipasto Salad',                   price:6.29, img:IMG.salad1, desc:'Mixed greens, ham, salami, pepperoni, provolone, olives, tomatoes, and house Italian.' },
-        { id:37, cat:'Salads', name:'Caesar Salad',                      price:6.29, img:IMG.salad2, desc:'Crisp romaine, house Caesar dressing, parmesan shavings, and croutons.' },
-        { id:38, cat:'Salads', name:'Tossed Salad',                      price:6.29, img:IMG.salad1, desc:'Fresh mixed greens with your choice of dressing.' },
-        { id:39, cat:'Salads', name:'Family Salad',                      price:9.99, img:IMG.salad2, desc:'A large family-sized salad. Serves 4–6. Add chicken for $2.00.' },
-
-        /* ── Desserts ───────────────────────────────────────── */
-        { id:40, cat:'Desserts', name:'Cinnamon Sugar Sticks',           price:4.99, img:IMG.cin, desc:'Drizzled with cream cheese icing. Extra icing available for $0.50.' },
-      ]
-    };
-
-    /* Category → placeholder CSS class */
-    const PH = {
-      'Specialty Pizzas':  'ph-pizza',
-      'Fresh N Fast':      'ph-pizza',
-      'Build Your Own':    'ph-pizza',
-      'Detroit Style':     'ph-detroit',
-      'Subs & Sandwiches': 'ph-subs',
-      'Wings & Sides':     'ph-wings',
-      'Salads':            'ph-salads',
-      'Desserts':          'ph-dessert',
-    };
-
-    /* Placeholder icon SVG */
-    const ICON_FOOD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/>
-      <line x1="12" y1="3" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="21"/>
-      <line x1="3" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="21" y2="12"/>
-    </svg>`;
-
-    /* ── STATE ──────────────────────────────────────────────── */
-    let menuData  = null;
-    let cart      = [];
-    let currentCat = 'Specialty Pizzas';
-    let activeItem = null;
-    let modalQty   = 1;
-    let modalTotal = 0;
-
-    /* ── DOM ────────────────────────────────────────────────── */
-    const $ = id => document.getElementById(id);
-    const catListEl   = $('catList');
-    const menuGridEl  = $('menuGrid');
-    const catNameEl   = $('catName');
-    const catNumEl    = $('catNum');
-    const cartBadgeEl = $('cartBadge');
-    const cartBarEl   = $('cartBar');
-    const cbCountEl   = $('cbCount');
-    const cbTotalEl   = $('cbTotal');
-    const cartScrimEl = $('cartScrim');
-    const cartDrawerEl= $('cartDrawer');
-    const cartItemsEl = $('cartItems');
-    const modalScrimEl= $('modalScrim');
-    const itemModalEl = $('itemModal');
-    const modalLeftEl = $('modalLeft');
-    const modalImgEl  = $('modalImg');
-    const modalTitleEl= $('modalTitle');
-    const modalDescEl = $('modalDesc');
-    const modalBodyEl = $('modalBody');
-    const modalQtyNEl = $('modalQtyN');
-    const modalAddPEl = $('modalAddPrice');
-
-    /* ── INIT ───────────────────────────────────────────────── */
-    async function init() {
-      if (window.matchMedia('(min-width: 961px)').matches) {
-        const lenis = new Lenis({ lerp: 0.12 });
-        gsap.ticker.add(t => lenis.raf(t * 1000));
-        gsap.ticker.lagSmoothing(0);
-      }
-      await loadMenu();
-      $('loader').classList.add('out');
-      renderCats();
-      renderMenu();
-      bindEvents();
-    }
-
-    async function loadMenu() {
-      if (CONFIG.USE_SANITY && CONFIG.SANITY_PROJECT_ID !== 'REPLACE_WITH_YOUR_PROJECT_ID') {
-        try {
-          const q = encodeURIComponent(
-            `*[_type == "menuItem" && available != false] | order(sortOrder asc) {
-              "id": _id, "cat": category, name, price, "desc": description,
-              "img": image.asset->url
-            }`
-          );
-          const url = `https://${CONFIG.SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${CONFIG.SANITY_DATASET}?query=${q}`;
-          const r   = await fetch(url);
-          const d   = await r.json();
-          const items      = d.result;
-          const categories = [...new Set(items.map(i => i.cat))];
-          menuData = { categories, items };
-        } catch (e) {
-          console.warn('Sanity fetch failed, using local data', e);
-          menuData = MOCK_DB;
-        }
-      } else {
-        await new Promise(r => setTimeout(r, 480));
-        menuData = MOCK_DB;
-      }
-    }
-
-    /* ── RENDER CATEGORIES ──────────────────────────────────── */
-    function renderCats() {
-      catListEl.innerHTML = menuData.categories.map(cat => {
-        const n = menuData.items.filter(i => i.cat === cat).length;
-        return `<li>
-          <button class="cat-btn${cat === currentCat ? ' active' : ''}" data-cat="${cat}">
-            ${cat}<span class="cat-pill">${n}</span>
-          </button>
-        </li>`;
-      }).join('');
-    }
-
-    /* ── RENDER MENU ────────────────────────────────────────── */
-    function renderMenu() {
-      const items = menuData.items.filter(i => i.cat === currentCat);
-      catNameEl.textContent = currentCat;
-      catNumEl.textContent  = `${items.length} item${items.length !== 1 ? 's' : ''}`;
-
-      menuGridEl.innerHTML = items.map(item => {
-        const ph = PH[item.cat] || 'ph-pizza';
-        const imgArea = item.img
-          ? `<img src="${item.img}" alt="${item.name}" loading="lazy"><div class="ic-img-shade"></div>`
-          : `<div class="ic-ph-icon">${ICON_FOOD}</div>`;
-        return `<div class="item-card" data-id="${item.id}">
-          <div class="ic-img${item.img ? '' : ' ' + ph}">${imgArea}</div>
-          <div class="ic-info">
-            <h3 class="ic-name">${item.name}</h3>
-            <p class="ic-desc">${item.desc}</p>
-            <div class="ic-foot">
-              <span class="ic-price">$${item.price.toFixed(2)}</span>
-              <div class="ic-add">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>`;
-      }).join('');
-
-      gsap.fromTo('.item-card',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.42, stagger: 0.05, ease: 'power2.out', clearProps: 'all' }
-      );
-    }
-
-    /* ── MODAL ──────────────────────────────────────────────── */
-    function openModal(id) {
-      const item = menuData.items.find(i => i.id == id);
-      if (!item) return;
-      activeItem = item;
-      modalQty   = 1;
-
-      modalTitleEl.textContent = item.name;
-      modalDescEl.textContent  = item.desc;
-
-      if (item.img) {
-        modalImgEl.src = item.img;
-        itemModalEl.classList.remove('no-img');
-      } else {
-        itemModalEl.classList.add('no-img');
-      }
-
-      /* Dynamic option groups */
-      let html = '';
-      if (item.cat.includes('Pizza')) {
-        const isVeggie = item.cat === 'Build Your Own' || item.name.toLowerCase().includes('veggie');
-        html = `
-          <div class="og">
-            <div class="og-title"><span>Size</span><span class="og-req">Required</span></div>
-            <div class="r-grid">
-              <label class="r-label"><input type="radio" name="size" value="0" checked>Medium 12"</label>
-              <label class="r-label"><input type="radio" name="size" value="3">Large 14"<span class="r-sub">+$3.00</span></label>
-            </div>
-          </div>
-          <div class="og">
-            <div class="og-title"><span>Crust</span><span class="og-req">Required</span></div>
-            <div class="r-grid">
-              <label class="r-label"><input type="radio" name="crust" value="hand" checked>Hand-Tossed</label>
-              <label class="r-label"><input type="radio" name="crust" value="thin">Thin Crust</label>
-            </div>
-          </div>
-          ${item.cat === 'Build Your Own' ? `
-          <div class="og">
-            <div class="og-title"><span>Toppings</span><span style="font-size:0.7rem;color:var(--mu);font-weight:400;">$1.70 each</span></div>
-            <div style="margin-bottom:0.5rem;">
-              <div style="font-family:var(--m);font-size:0.46rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mu);margin-bottom:0.4rem;">Meats</div>
-              <div class="r-grid" style="grid-template-columns:repeat(3,1fr);gap:0.4rem;">
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Pepperoni</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Ham</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Bacon</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Sausage</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Beef</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="3.40">Chicken<span class="r-sub">×2</span></label>
-              </div>
-            </div>
-            <div>
-              <div style="font-family:var(--m);font-size:0.46rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mu);margin-bottom:0.4rem;">Vegetables</div>
-              <div class="r-grid" style="grid-template-columns:repeat(3,1fr);gap:0.4rem;">
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Mushrooms</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Onions</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Peppers</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Olives</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Tomatoes</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Jalapeños</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Pineapple</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="1.70">Banana Peppers</label>
-                <label class="r-label" style="padding:0.5rem 0.4rem;font-size:0.8rem;"><input type="checkbox" name="top" data-price="3.40">Feta<span class="r-sub">×2</span></label>
-              </div>
-            </div>
-          </div>` : ''}`;
-      } else if (item.cat.includes('Wings')) {
-        html = `
-          <div class="og">
-            <div class="og-title"><span>Sauce</span><span class="og-req">Required</span></div>
-            <div class="r-grid">
-              <label class="r-label"><input type="radio" name="sauce" value="mild" checked>Mild</label>
-              <label class="r-label"><input type="radio" name="sauce" value="hot">Hot</label>
-              <label class="r-label"><input type="radio" name="sauce" value="lemon">Lemon Pepper</label>
-              <label class="r-label"><input type="radio" name="sauce" value="bbq">BBQ</label>
-            </div>
-          </div>
-          <div class="og">
-            <div class="og-title"><span>Dipping Sauce</span></div>
-            <div class="r-grid">
-              <label class="r-label"><input type="radio" name="dip" value="ranch" checked>Ranch</label>
-              <label class="r-label"><input type="radio" name="dip" value="blue">Blue Cheese</label>
-            </div>
-          </div>`;
-      } else if (item.cat.includes('Subs')) {
-        html = `
-          <div class="og">
-            <div class="og-title"><span>Size</span><span class="og-req">Required</span></div>
-            <div class="r-grid">
-              <label class="r-label"><input type="radio" name="subsize" value="0" checked>6-inch</label>
-              <label class="r-label"><input type="radio" name="subsize" value="2.5">12-inch<span class="r-sub">+$2.50</span></label>
-            </div>
-          </div>`;
-      }
-
-      modalBodyEl.innerHTML = html;
-      calcModalPrice();
-      modalScrimEl.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function calcModalPrice() {
-      let up = 0;
-      ['size','subsize'].forEach(name => {
-        const el = document.querySelector(`input[name="${name}"]:checked`);
-        if (el) up += parseFloat(el.value) || 0;
-      });
-      // Sum topping checkboxes (BYO pizza)
-      document.querySelectorAll('input[name="top"]:checked').forEach(el => {
-        up += parseFloat(el.dataset.price) || 1.70;
-      });
-      modalTotal = (activeItem.price + up) * modalQty;
-      modalQtyNEl.textContent = modalQty;
-      modalAddPEl.textContent = `$${modalTotal.toFixed(2)}`;
-    }
-
-    function closeModal() {
-      modalScrimEl.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-
-    function addToCart() {
-      const opts = [];
-      const labels = ['size','subsize','crust','sauce','dip'];
-      labels.forEach(name => {
-        const el = document.querySelector(`input[name="${name}"]:checked`);
-        if (el) {
-          const text = el.closest('label').firstChild.textContent.trim();
-          if (text) opts.push(text);
-        }
-      });
-      // Capture toppings checkboxes
-      document.querySelectorAll('input[name="top"]:checked').forEach(el => {
-        const text = el.closest('label').firstChild.textContent.trim();
-        if (text) opts.push(text);
-      });
-
-      cart.push({
-        id:     Date.now(),
-        itemId: activeItem.id,
-        name:   activeItem.name,
-        price:  modalTotal / modalQty,
-        qty:    modalQty,
-        opts:   opts.join(' · '),
-        img:    activeItem.img
-      });
-
-      closeModal();
-      refreshCartUI();
-
-      /* Auto-open cart on desktop after adding */
-      if (window.matchMedia('(min-width: 961px)').matches) {
-        setTimeout(openCart, 300);
-      }
-    }
-
-    /* ── CART ───────────────────────────────────────────────── */
-    function openCart() {
-      cartScrimEl.classList.add('show');
-      cartDrawerEl.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeCart() {
-      cartScrimEl.classList.remove('show');
-      cartDrawerEl.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-
-    function refreshCartUI() {
-      const totalQty = cart.reduce((s, i) => s + i.qty, 0);
-      const sub      = cart.reduce((s, i) => s + i.price * i.qty, 0);
-      const tax      = sub * 0.08;
-      const total    = sub + tax;
-
-      /* Badge */
-      cartBadgeEl.textContent = totalQty;
-      cartBadgeEl.classList.toggle('show', totalQty > 0);
-
-      /* Mobile bar */
-      if (totalQty > 0) {
-        cartBarEl.style.display = 'block';
-        requestAnimationFrame(() => cartBarEl.style.transform = 'translateY(0)');
-      } else {
-        cartBarEl.style.transform = 'translateY(110%)';
-      }
-      cbCountEl.textContent = totalQty;
-      cbTotalEl.textContent = `$${total.toFixed(2)}`;
-
-      /* Items */
-      if (cart.length === 0) {
-        cartItemsEl.innerHTML = `
-          <div class="cd-empty">
-            <div class="cd-empty-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <path d="M16 10a4 4 0 0 1-8 0"/>
-              </svg>
-            </div>
-            <div class="cd-empty-title">Nothing here yet</div>
-            <div class="cd-empty-sub">Choose something from the menu to get started.</div>
-          </div>`;
-      } else {
-        cartItemsEl.innerHTML = cart.map(item => `
-          <div class="ci">
-            ${item.img
-              ? `<img loading="lazy" src="${item.img}" class="ci-img" alt="${item.name}">`
-              : `<div class="ci-img"></div>`
-            }
-            <div class="ci-info">
-              <div>
-                <div class="ci-name">${item.name}</div>
-                ${item.opts ? `<div class="ci-opts">${item.opts}</div>` : ''}
-              </div>
-              <div class="ci-bot">
-                <div class="ci-price">$${(item.price * item.qty).toFixed(2)}</div>
-                <div class="ci-qty">
-                  <button class="cq-btn" onclick="updateQty(${item.id},-1)">−</button>
-                  <span class="cq-val">${item.qty}</span>
-                  <button class="cq-btn" onclick="updateQty(${item.id},1)">+</button>
-                </div>
-              </div>
-            </div>
-          </div>`).join('');
-      }
-
-      $('cartSub').textContent   = `$${sub.toFixed(2)}`;
-      $('cartTax').textContent   = `$${tax.toFixed(2)}`;
-      $('cartTotal').textContent = `$${total.toFixed(2)}`;
-    }
-
-    window.updateQty = (cartId, delta) => {
-      const idx = cart.findIndex(i => i.id === cartId);
-      if (idx > -1) {
-        cart[idx].qty += delta;
-        if (cart[idx].qty <= 0) cart.splice(idx, 1);
-        refreshCartUI();
-      }
-    };
-
-    /* ── EVENTS ─────────────────────────────────────────────── */
-    function bindEvents() {
-      /* Category select */
-      catListEl.addEventListener('click', e => {
-        const btn = e.target.closest('.cat-btn');
-        if (!btn) return;
-        currentCat = btn.dataset.cat;
-        renderCats();
-        renderMenu();
-        if (window.matchMedia('(max-width: 960px)').matches) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      });
-
-      /* Open modal from card */
-      menuGridEl.addEventListener('click', e => {
-        const card = e.target.closest('.item-card');
-        if (card) openModal(card.dataset.id);
-      });
-
-      /* Modal controls */
-      $('closeModalBtn').addEventListener('click', closeModal);
-      modalScrimEl.addEventListener('click', e => { if (e.target === modalScrimEl) closeModal(); });
-      $('modalMinus').addEventListener('click', () => { if (modalQty > 1) { modalQty--; calcModalPrice(); } });
-      $('modalPlus').addEventListener('click', () => { modalQty++; calcModalPrice(); });
-      modalBodyEl.addEventListener('change', calcModalPrice);
-      $('modalAddBtn').addEventListener('click', addToCart);
-
-      /* Cart open/close */
-      $('openCartBtn').addEventListener('click', openCart);
-      $('openCartMobile').addEventListener('click', openCart);
-      $('closeCartBtn').addEventListener('click', closeCart);
-      cartScrimEl.addEventListener('click', closeCart);
-
-      /* DoorDash delivery link */
-      $('doorDashBtn').addEventListener('click', () => {
-        window.open(DOORDASH_URL, '_blank', 'noopener,noreferrer');
-      });
-
-      /* Checkout → redirect to Toast */
-      $('checkoutBtn').addEventListener('click', () => {
-        if (cart.length === 0) return;
-        const btn   = $('checkoutBtn');
-        const label = $('coBtnLabel');
-        btn.disabled = true;
-        label.textContent = 'Opening Toast...';
-        setTimeout(() => {
-          window.open('https://order.toasttab.com/online/riverside-pizza-johnscreek', '_blank', 'noopener,noreferrer');
-          label.textContent = 'Place Order';
-          btn.disabled = false;
-        }, 600);
-      });
-    }
-
-    window.addEventListener('DOMContentLoaded', init);
-
-    /* ── MOBILE CART BAR INIT ───────────────────────────────── */
-    /* Set initial off-screen transform so it can slide in */
-    window.addEventListener('DOMContentLoaded', () => {
-      const bar = $('cartBar');
-      bar.style.transition = 'transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1)';
-      bar.style.transform  = 'translateY(110%)';
-    });
-  </script>
+    document.addEventListener('keydown', trapHandler);
+  }
+  navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
+  mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
 </body>
 </html>

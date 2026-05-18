@@ -10,14 +10,14 @@
   <meta name="description" content="Browse the full Riverside Pizza menu — handcrafted pizzas, subs, wings, salads, and more.">
   <meta property="og:title" content="Menu — Riverside Pizza">
   <meta property="og:description" content="Handcrafted pizzas, subs, wings, salads, and more. Fresh ingredients, made to order.">
-  <meta property="og:image" content="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg">
+  <meta property="og:image" content="https://riversidepizza.net/images/newpizza.webp">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://riversidepizza.net/menu">
   <link rel="canonical" href="https://riversidepizza.net/menu">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Menu — Riverside Pizza">
   <meta name="twitter:description" content="Handcrafted pizzas, subs, wings, salads, and more. Fresh ingredients, made to order.">
-  <meta name="twitter:image" content="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg">
+  <meta name="twitter:image" content="https://riversidepizza.net/images/newpizza.webp">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -140,26 +140,7 @@
     .btn-g { background: var(--g); color: white; display: block; text-align: center; border-radius: 6px; }
     .btn-g:hover { background: var(--gd); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,95,44,0.25); }
 
-    /* ── CTA STRIP & FOOTER ─────────────────────── */
-    .cta-strip { background: var(--g); padding: 2.75rem 5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
-    .cta-text { font-family: var(--d); font-size: 1.45rem; font-style: italic; color: white; }
-    .btn { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; display: inline-block; transition: all 0.2s; border: none; cursor: pointer; }
-    .btn-white { background: white; color: var(--gd); }
-    .btn-white:hover { background: var(--gp); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-    .btn-outline-w { border: 1px solid rgba(255,255,255,0.45); color: white; }
-    .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
-    footer { background: var(--gd); padding: 4rem 5rem 2.5rem; }
-    .ft-top { display: flex; justify-content: space-between; gap: 4rem; padding-bottom: 3rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .ft-brand .fn { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; }
-    .ft-brand .fs { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
-    .ft-cols { display: grid; grid-template-columns: repeat(3, auto); gap: 4rem; }
-    .ft-col-title { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(160,220,160,0.7); margin-bottom: 1rem; }
-    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
-    .ft-col a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; font-weight: 300; }
-    .ft-col a:hover { color: white; }
-    .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
-    .ft-copy { font-family: var(--m); font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 
     @media (max-width: 960px) {
       .menu-header { padding: 8rem 0 3.5rem; }
@@ -177,16 +158,9 @@
       .m-name { font-size: 1.15rem; }
       .m-highlight { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem; }
       .m-hl-price { text-align: center; }
-      #nav { width: calc(100% - 2rem); padding: 0 1.25rem; }
-      .nav-links { display: none !important; }
-      .nav-ham { display: flex; }
-      .wrap { padding: 0 2rem; }
       .btn { border-radius: 9999px; min-height: 44px; touch-action: manipulation; }
       .cta-strip { padding: 2rem; flex-direction: column; text-align: center; }
       footer { padding: 3rem 2rem 2rem; }
-      .ft-top { flex-direction: column; }
-      .ft-cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .ft-bottom { flex-direction: column; gap: 0.75rem; }
       /* BYO responsive */
       .byo-inner { grid-template-columns: 1fr; }
       .byo-col + .byo-col { border-left: none; border-top: 1px solid var(--bdr); }
@@ -200,9 +174,9 @@
 </head>
 <body>
 
-<nav id="nav" class="solid">
+<nav id="nav">
   <a href="index.html" class="logo">
-    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
+    <img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116">
     <div class="logo-text">
       <span class="logo-name">Riverside Pizza</span>
       <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
@@ -213,7 +187,7 @@
     <li><a href="catering.html">Catering</a></li>
     <li><a href="locations.html">Locations</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="locations.html" class="nav-cta">Order Online</a></li>
+    <li><a href="takeout.html" class="nav-cta">Order Online</a></li>
   </ul>
   <button class="nav-ham" id="navHam" aria-label="Open menu">
     <span></span><span></span>
@@ -224,7 +198,7 @@
   <a href="menu.html">Menu</a>
   <a href="catering.html">Catering</a>
   <a href="locations.html">Locations</a>
-  <a href="locations.html" class="mob-cta">Order Online</a>
+  <a href="takeout.html" class="mob-cta">Order Online</a>
 </div>
 
 <header class="menu-header">
@@ -235,7 +209,7 @@
       <p class="mh-desc">From our 100% real mozzarella to our Stanislaus tomato sauce and handmade dough, every item is prepared with uncompromising quality.</p>
     </div>
     <div class="mh-image gs-reveal">
-      <img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Riverside Pizza">
+      <img loading="lazy" src="/images/1.webp" alt="Favorite 5 specialty pizza — pepperoni, sausage, mushrooms, onions, peppers" width="980" height="376">
     </div>
   </div>
 </header>
@@ -263,7 +237,7 @@
     <div class="menu-grid">
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Favorite 5 Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/1.webp" alt="Favorite 5 Pizza" loading="lazy" width="980" height="376"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Favorite 5</h3></div>
           <p class="m-desc">Pepperoni, Italian Sausage, Mushrooms, Onions, Green Peppers</p>
@@ -272,7 +246,7 @@
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Supreme Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/2.webp" alt="Supreme Pizza" loading="lazy" width="980" height="376"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Supreme</h3></div>
           <p class="m-desc">Pepperoni, Ham, Beef, Italian Sausage, Mushrooms, Onions, Green Peppers, Black Olives</p>
@@ -281,7 +255,7 @@
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Meatzza Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/3.webp" alt="Meatzza Pizza" loading="lazy" width="980" height="376"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Meatzza</h3></div>
           <p class="m-desc">Pepperoni, Ham, Bacon, Beef, Italian Sausage</p>
@@ -290,7 +264,7 @@
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/07/riverside-special-pizza-scaled.jpg" alt="Riverside Special Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/riverside-special-pizza-scaled.webp" alt="Riverside Special Pizza" loading="lazy" width="150" height="114"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Riverside Special</h3></div>
           <p class="m-desc">Pepperoni, Mushrooms, Onions, Green Peppers — the house signature since 1999</p>
@@ -299,7 +273,7 @@
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Veggie Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/5.webp" alt="Veggie Pizza" loading="lazy" width="980" height="376"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Veggie</h3>
@@ -314,7 +288,7 @@
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Greek Chicken Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/6.webp" alt="Greek Chicken Pizza" loading="lazy" width="980" height="376"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Greek Chicken</h3></div>
           <p class="m-desc">Chicken, Feta Cheese, Tomatoes, Onions, Black Olives, Banana Peppers</p>
@@ -323,7 +297,7 @@
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg" alt="Chicken Trio Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/newpizza.webp" alt="Chicken Trio Pizza" loading="lazy" width="1920" height="1408"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Chicken Trio</h3></div>
           <p class="m-desc">Chicken, Bacon, Tomatoes, Onions, Garlic Sauce Base</p>
@@ -332,7 +306,7 @@
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza-20.jpg" alt="BBQ Chicken Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/newpizza-20.webp" alt="BBQ Chicken Pizza" loading="lazy" width="1920" height="1361"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">BBQ Chicken</h3></div>
           <p class="m-desc">Chicken, Bacon, Onions, BBQ Sauce Base</p>
@@ -341,16 +315,16 @@
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2019/11/Halal-Chicken.jpg" alt="Tandoori Halal Chicken Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/Halal-Chicken.webp" alt="Tandoori Halal Chicken Pizza" loading="lazy" width="1000" height="565"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Tandoori Chicken</h3></div>
           <p class="m-desc">Halal chicken breast, hand-cut and marinated with tandoori paste, onions, peppers</p>
-          <div class="m-footer"><div class="m-price">$13.57</div></div>
+          <div class="m-footer"><div class="m-price">$13.29</div></div>
         </div>
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2020/07/pizza-homepage.jpg" alt="Hawaiian Chicken Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/pizza-homepage.webp" alt="Hawaiian Chicken Pizza" loading="lazy" width="375" height="197"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Hawaiian Chicken</h3></div>
           <p class="m-desc">Grilled chicken, ham, pineapple, mozzarella on a sweet tomato base</p>
@@ -377,7 +351,7 @@
     <div class="menu-grid">
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2020/07/pizza-homepage-1.jpg" alt="Large 1-Topping Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/pizza-homepage-1.webp" alt="Large 1-Topping Pizza" loading="lazy" width="375" height="197"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Large 1-Topping Pizza</h3></div>
           <p class="m-desc">Original or Thin & Crispy crust, 14"</p>
@@ -386,7 +360,7 @@
       </div>
 
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Fresh N Fast Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/4.webp" alt="Fresh N Fast Pizza" loading="lazy" width="980" height="376"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Fresh N Fast</h3></div>
           <p class="m-desc">Large Pepperoni & Cheese or Just Cheese — ready in minutes</p>
@@ -479,7 +453,7 @@
               <span class="byo-sum-price-label">Total</span>
               <span class="byo-sum-total" id="byoTotal">$7.99</span>
             </div>
-            <a href="locations.html" class="btn btn-g">Order at Your Location →</a>
+            <a href="takeout.html" class="btn btn-g">Order at Your Location →</a>
           </div>
 
         </div>
@@ -499,7 +473,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/11/7.jpg" alt="Pappa Pan Detroit Style Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/7.webp" alt="Pappa Pan Detroit Style Pizza" loading="lazy" width="980" height="376"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Pappa Pan</h3></div>
           <p class="m-desc">Full-sized Detroit square. Cheese or 1 Topping. Add premium toppings for more.</p>
@@ -509,7 +483,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2024/06/8401ac89-ec8b-445c-a08a-032c8c58209b.jpg" alt="Jr Pan Detroit Style Pizza" loading="lazy"></div>
+        <div class="m-img"><img src="/images/8401ac89-ec8b-445c-a08a-032c8c58209b.webp" alt="Jr Pan Detroit Style Pizza" loading="lazy" width="1800" height="1800"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Jr Pan</h3></div>
           <p class="m-desc">Single-serving Detroit pan. Same signature crispy edge — perfect for one.</p>
@@ -531,7 +505,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/08/new-oven-baked-sandwich.jpg" alt="Italian Sandwich" loading="lazy"></div>
+        <div class="m-img"><img src="/images/new-oven-baked-sandwich.webp" alt="Italian Sandwich" loading="lazy" width="1000" height="664"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Italian</h3></div>
           <p class="m-desc">Ham, salami, pepperoni, cheese, onion, banana peppers, Italian dressing</p>
@@ -539,7 +513,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/08/new-oven-baked-sandwich.jpg" alt="Club Sandwich" loading="lazy"></div>
+        <div class="m-img"><img src="/images/new-oven-baked-sandwich.webp" alt="Club Sandwich" loading="lazy" width="1000" height="664"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Club</h3></div>
           <p class="m-desc">Turkey, ham, bacon, cheese, lettuce, tomato, mayo on toasted hoagie</p>
@@ -547,7 +521,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/08/new-oven-baked-sandwich.jpg" alt="Ham and Cheese Sandwich" loading="lazy"></div>
+        <div class="m-img"><img src="/images/new-oven-baked-sandwich.webp" alt="Ham and Cheese Sandwich" loading="lazy" width="1000" height="664"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Ham & Cheese</h3></div>
           <p class="m-desc">Thick-cut ham and melted cheese on a fresh-baked hoagie roll</p>
@@ -555,7 +529,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/08/new-oven-baked-sandwich.jpg" alt="Turkey Sandwich" loading="lazy"></div>
+        <div class="m-img"><img src="/images/new-oven-baked-sandwich.webp" alt="Turkey Sandwich" loading="lazy" width="1000" height="664"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Turkey</h3></div>
           <p class="m-desc">Sliced turkey breast with lettuce, tomato, and your choice of dressing</p>
@@ -563,7 +537,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/08/new-oven-baked-sandwich.jpg" alt="Tuna Sandwich" loading="lazy"></div>
+        <div class="m-img"><img src="/images/new-oven-baked-sandwich.webp" alt="Tuna Sandwich" loading="lazy" width="1000" height="664"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Tuna</h3></div>
           <p class="m-desc">House tuna salad with lettuce and tomato on a toasted hoagie</p>
@@ -583,7 +557,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2024/06/96ab44ac-7437-4742-82c7-388f20aa9c15.jpg" alt="Chicken Parmesan" loading="lazy"></div>
+        <div class="m-img"><img src="/images/96ab44ac-7437-4742-82c7-388f20aa9c15.webp" alt="Chicken Parmesan" loading="lazy" width="1920" height="1281"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Chicken Parmesan</h3></div>
           <p class="m-desc">Chicken breast hand breaded with panko bread crumbs, on spaghetti with marinara, mozzarella & provolone.</p>
@@ -591,7 +565,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2024/06/989b80c4-c84c-428d-b583-5461c31a391f.jpg" alt="Meat Lasagna" loading="lazy"></div>
+        <div class="m-img"><img src="/images/989b80c4-c84c-428d-b583-5461c31a391f.webp" alt="Meat Lasagna" loading="lazy" width="1920" height="1281"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Meat Lasagna</h3></div>
           <p class="m-desc">Layer of noodles, ground beef, marinara sauce and melted mozzarella & provolone cheese.</p>
@@ -599,7 +573,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2024/06/8401ac89-ec8b-445c-a08a-032c8c58209b.jpg" alt="Baked Ziti" loading="lazy"></div>
+        <div class="m-img"><img src="/images/8401ac89-ec8b-445c-a08a-032c8c58209b.webp" alt="Baked Ziti" loading="lazy" width="1800" height="1800"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Baked Ziti</h3></div>
           <p class="m-desc">Ziti noodles covered with marinara sauce, ground beef, melted cheese, and an Italian sausage link.</p>
@@ -607,7 +581,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2024/06/96ab44ac-7437-4742-82c7-388f20aa9c15.jpg" alt="Macaroni and Cheese" loading="lazy"></div>
+        <div class="m-img"><img src="/images/96ab44ac-7437-4742-82c7-388f20aa9c15.webp" alt="Macaroni and Cheese" loading="lazy" width="1920" height="1281"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Macaroni & Cheese</h3></div>
           <p class="m-desc">Macaroni noodles baked in a cheddar cheese sauce and covered with melted cheddar cheese.</p>
@@ -627,7 +601,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/08/new-wings.jpg" alt="Jumbo Chicken Wings" loading="lazy"></div>
+        <div class="m-img"><img src="/images/new-wings.webp" alt="Jumbo Chicken Wings" loading="lazy" width="1000" height="508"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Jumbo Chicken Wings (5 pc)</h3></div>
           <p class="m-desc">Mild, Medium, Hot, Extreme, BBQ, Sweet & Spicy, Lemon Pepper, or Teriyaki. With Blue Cheese or Ranch.</p>
@@ -635,7 +609,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/08/new-wings.jpg" alt="Jumbo Chicken Wings 10 piece" loading="lazy"></div>
+        <div class="m-img"><img src="/images/new-wings.webp" alt="Jumbo Chicken Wings 10 piece" loading="lazy" width="1000" height="508"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Jumbo Chicken Wings (10 pc)</h3></div>
           <p class="m-desc">Same great flavors, party-size. Served with ranch or blue cheese.</p>
@@ -643,7 +617,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/08/new-cheesesticks.jpg" alt="Cheese Bread" loading="lazy"></div>
+        <div class="m-img"><img src="/images/new-cheesesticks.webp" alt="Cheese Bread" loading="lazy" width="1000" height="752"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Cheese Bread</h3></div>
           <p class="m-desc">10 sticks of fresh baked bread, smothered with 2 types of cheese & finished with Garlic.</p>
@@ -651,7 +625,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2013/07/bread-sticks80.jpg" alt="Bread Sticks" loading="lazy"></div>
+        <div class="m-img"><img src="/images/bread-sticks80.webp" alt="Bread Sticks" loading="lazy" width="80" height="98"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Bread Sticks</h3></div>
           <p class="m-desc">Baked Bread, topped with Garlic, Butter & Parmesan Cheese. Served with dipping sauce.</p>
@@ -659,7 +633,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Cinnamon Bread" loading="lazy"></div>
+        <div class="m-img"><img src="/images/cinnamonbread.jpg" alt="Cinnamon Bread" loading="lazy" width="1900" height="1100"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Cinnamon Bread</h3></div>
           <p class="m-desc">Drizzled with Cream Cheese Icing. Extra icing available for $0.50.</p>
@@ -679,7 +653,7 @@
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/06/spinachsalad.jpg" alt="Greek Salad" loading="lazy"></div>
+        <div class="m-img"><img src="/images/spinachsalad.webp" alt="Greek Salad" loading="lazy" width="574" height="372"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Greek</h3>
@@ -695,7 +669,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/06/Icebergsalad.jpg" alt="Antipasto Salad" loading="lazy"></div>
+        <div class="m-img"><img src="/images/Icebergsalad.webp" alt="Antipasto Salad" loading="lazy" width="579" height="363"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Antipasto</h3></div>
           <p class="m-desc">Lettuce, Ham, Pepperoni, Tomatoes, Provolone, Red Onions, Black Olives & Banana Peppers.</p>
@@ -705,7 +679,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/06/spinachsalad.jpg" alt="Caesar Salad" loading="lazy"></div>
+        <div class="m-img"><img src="/images/spinachsalad.webp" alt="Caesar Salad" loading="lazy" width="574" height="372"></div>
         <div class="m-info">
           <div class="m-header"><h3 class="m-name">Caesar</h3></div>
           <p class="m-desc">Lettuce, Parmesan & Croutons. House Caesar dressing.</p>
@@ -715,7 +689,7 @@
         </div>
       </div>
       <div class="m-item gs-reveal">
-        <div class="m-img"><img src="https://riversidepizza.net/wp-content/uploads/2017/06/Icebergsalad.jpg" alt="Tossed Salad" loading="lazy"></div>
+        <div class="m-img"><img src="/images/Icebergsalad.webp" alt="Tossed Salad" loading="lazy" width="579" height="363"></div>
         <div class="m-info">
           <div class="m-header">
             <h3 class="m-name">Tossed</h3>
@@ -737,7 +711,7 @@
 <div class="cta-strip">
   <div class="cta-text">Ready to order? We make it easy.</div>
   <div class="cta-links">
-    <a href="locations.html" class="btn btn-white">Order Online</a>
+    <a href="takeout.html" class="btn btn-white">Order Online</a>
     <a href="catering.html" class="btn btn-outline-w">Catering</a>
   </div>
 </div>
@@ -748,11 +722,11 @@
     <div class="ft-cols">
       <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Lunch Specials</a></li><li><a href="gluten-free.html">Gluten Free</a></li><li><a href="catering.html">Catering</a></li></ul></div>
       <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Job Application</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
-      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="locations.html">Order Online</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="takeout.html">Order Online</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
     </div>
   </div>
   <div class="ft-bottom">
-    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved · <a href="privacy.html" style="color:inherit;opacity:0.55;text-decoration:underline;text-underline-offset:3px;">Privacy Policy</a></div>
     <div class="ft-copy">Lawrenceville · Sugarloaf · Suwanee · Grayson · Hamilton Mill · Dacula · Johns Creek · Cumming</div>
   </div>
 </footer>

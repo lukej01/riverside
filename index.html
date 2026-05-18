@@ -11,15 +11,15 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Riverside Pizza — Handcrafted Pizza Since 1999">
   <meta property="og:description" content="Georgia's favorite pizza since 1999. Order carryout online, browse the menu, or find a location near you.">
-  <meta property="og:image" content="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg">
+  <meta property="og:image" content="https://riversidepizza.net/images/newpizza.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Riverside Pizza — Handcrafted Pizza Since 1999">
   <meta name="twitter:description" content="Georgia's favorite pizza since 1999. Order carryout online, browse the menu, or find a location near you.">
-  <meta name="twitter:image" content="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg">
+  <meta name="twitter:image" content="https://riversidepizza.net/images/newpizza.webp">
   <meta property="og:url" content="https://riversidepizza.net/">
   <link rel="canonical" href="https://riversidepizza.net/">
   <!-- Preload LCP hero image -->
-  <link rel="preload" as="image" href="https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="/images/newpizza.webp" fetchpriority="high">
   <!-- JSON-LD: Restaurant + Website structured data for Google rich results -->
   <script type="application/ld+json">
   {
@@ -34,14 +34,14 @@
         "url": "https://riversidepizza.net",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg",
+          "url": "https://riversidepizza.net/images/Untitled-1.jpg",
           "width": 400,
           "height": 400
         },
         "image": [
-          "https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg",
-          "https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg",
-          "https://riversidepizza.net/wp-content/uploads/2017/08/new-wings.jpg"
+          "https://riversidepizza.net/images/newpizza.webp",
+          "https://riversidepizza.net/images/1.webp",
+          "https://riversidepizza.net/images/new-wings.webp"
         ],
         "telephone": "+17708221500",
         "servesCuisine": ["Pizza", "Italian", "American", "Sandwiches"],
@@ -102,38 +102,13 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap"></noscript>
   <link rel="stylesheet" href="/shared.css">
   <style>
-    /* Homepage: nav starts transparent, transitions to cream on scroll */
-    #nav {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.16);
-      box-shadow: none;
-      top: 1.25rem;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-    #nav.scrolled {
-      background: rgba(254,249,242,0.97);
-      border-color: var(--bdr);
-      box-shadow: 0 4px 32px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
-      top: 0.75rem;
-    }
-    .logo-name { color: white; }
-    #nav.scrolled .logo-name { color: var(--g); }
-    .logo-sub { color: rgba(255,255,255,0.55); }
-    #nav.scrolled .logo-sub { color: var(--mu); }
-    .nav-links a { color: rgba(255,255,255,0.85); }
-    #nav.scrolled .nav-links a { color: var(--tx); }
-    .nav-links a:hover { color: white; }
-    #nav.scrolled .nav-links a:hover { color: var(--g); }
-    .nav-ham span { background: white; }
-    #nav.scrolled .nav-ham span { background: var(--tx); }
-
     /* ── HERO ──────────────────────────────────── */
     .hero { position: relative; height: 100dvh; overflow: hidden; }
     .slide {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
       opacity: 0; will-change: opacity;
+      transition: opacity 0.85s ease;
     }
     .slide.active { opacity: 1; }
 
@@ -147,9 +122,11 @@
         transparent 82%
       );
       display: flex; align-items: flex-end;
-      padding: 0 6rem 6rem;
+      padding-bottom: 5.5rem;
     }
-    .hero-content { max-width: 640px; }
+    /* Aligns hero text to same grid as all page sections below */
+    .hero-wrap { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
+    .hero-content { max-width: 620px; }
     .hero-eyebrow {
       font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.22em;
       text-transform: uppercase; color: rgba(160,215,160,0.9);
@@ -173,36 +150,6 @@
     }
     .hero-btns { display: flex; gap: 0.85rem; opacity: 0; transform: translateY(22px); flex-wrap: wrap; }
 
-    /* ── BUTTONS ───────────────────────────────── */
-    .btn {
-      font-family: var(--m); font-size: 0.56rem; letter-spacing: 0.12em;
-      text-transform: uppercase; padding: 0.85rem 2rem;
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      transition: all 0.28s var(--ease);
-      border: none; cursor: pointer; border-radius: 9999px;
-      white-space: nowrap; touch-action: manipulation; min-height: 44px;
-    }
-    .btn-arrow {
-      width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(0,0,0,0.1); display: flex; align-items: center;
-      justify-content: center; font-size: 0.75rem; flex-shrink: 0;
-      transition: transform 0.28s var(--ease);
-    }
-    .btn:hover .btn-arrow { transform: translate(2px,-1px) scale(1.08); }
-    .btn-white { background: white; color: var(--gd); }
-    .btn-white:hover { background: var(--gp); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
-    .btn-white .btn-arrow { background: rgba(0,0,0,0.07); }
-    .btn-outline-w { border: 1px solid rgba(255,255,255,0.5); color: white; }
-    .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-2px); }
-    .btn-green { background: var(--g); color: white; }
-    .btn-green:hover { background: var(--gl); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,95,44,0.3); }
-    .btn-green .btn-arrow { background: rgba(255,255,255,0.15); }
-    .btn-outline-g { border: 1px solid var(--g); color: var(--g); }
-    .btn-outline-g:hover { background: var(--gp); transform: translateY(-2px); }
-
-    /* Active press */
-    .btn:active { transform: scale(0.98) !important; }
-
     .slider-dots { position: absolute; bottom: 2rem; right: 6rem; z-index: 3; display: flex; gap: 0.5rem; align-items: center; }
     .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.35s var(--ease); border: none; padding: 0; position: relative; touch-action: manipulation; }
     .dot::before { content: ''; position: absolute; inset: -14px -10px; } /* 44px invisible tap target */
@@ -225,7 +172,7 @@
     .stat:hover { background: rgba(255,255,255,0.03); }
     .stat:last-child { border-right: none; }
     .stat-num { font-family: var(--d); font-size: 2.6rem; font-weight: 700; color: rgba(160,222,160,0.96); line-height: 1; }
-    .stat-label { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.45rem; }
+    .stat-label { font-family: var(--m); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.45rem; }
 
     /* ── MARQUEE ───────────────────────────────── */
     .marquee { background: var(--g); overflow: hidden; padding: 0.8rem 0; white-space: nowrap; }
@@ -250,8 +197,13 @@
     .deal-section-head .sec-h { font-size: clamp(2rem,3vw,3.2rem); font-weight: 500; }
 
     /* ── ANNIVERSARY ───────────────────────────── */
-    .anniversary { background: var(--gm); padding: 8rem 5.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .ann-content { max-width: 780px; display: flex; flex-direction: column; align-items: center; }
+    .anniversary { background: var(--cream); padding: 8rem 0; }
+    .ann-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: 1fr 1.15fr; gap: 7rem; align-items: center; }
+    .ann-photo { position: relative; border-radius: 1.25rem; overflow: hidden; aspect-ratio: 4/5; box-shadow: 0 28px 64px rgba(0,0,0,0.13); }
+    .ann-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ann-photo::after { content: ''; position: absolute; inset: 1rem; border: 2px solid rgba(30,95,44,0.28); border-radius: 0.5rem; pointer-events: none; }
+    .ann-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+    .ann-content .ey { justify-content: flex-start; }
     .ann-content .ey { font-family: var(--m); font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g); display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1rem; }
     .ann-h { font-family: var(--d); font-size: clamp(2rem, 4vw, 4rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.5rem; }
     .ann-h em { font-style: italic; color: var(--g); }
@@ -259,7 +211,7 @@
     .signature { font-family: var(--d); font-style: italic; font-size: 1.2rem; color: var(--g); margin-top: 1.75rem; }
     .ann-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gd); color: white; padding: 0.6rem 1.4rem; margin-bottom: 1.75rem; border-radius: 9999px; }
     .ann-badge-num { font-family: var(--d); font-size: 1.5rem; font-weight: 700; line-height: 1; }
-    .ann-badge-lbl { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; }
+    .ann-badge-lbl { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; }
 
     /* ── INGREDIENTS ───────────────────────────── */
     .ingredients { padding: 8rem 0; background: var(--wh); }
@@ -269,7 +221,8 @@
     .sec-h { font-family: var(--d); letter-spacing: -0.02em; line-height: 1.08; }
     .sec-h em { font-style: italic; color: var(--g); }
     .ing-head .sec-h { font-size: clamp(2rem, 3vw, 3.4rem); font-weight: 500; }
-    .ing-desc { font-size: 0.9rem; line-height: 1.95; color: var(--mu); font-weight: 300; }
+    .ing-desc-card { background: var(--gp); border-left: 3px solid var(--g); border-radius: 0 0.85rem 0.85rem 0; padding: 1.6rem 1.8rem; }
+    .ing-desc { font-size: 0.9rem; line-height: 1.95; color: var(--mu); font-weight: 300; margin: 0; }
     .ing-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
     .ing-card {
       background: var(--wh); padding: 2.5rem; border: 1px solid var(--bdr);
@@ -340,24 +293,6 @@
     .loc-dir:hover { color: var(--g); gap: 0.5rem; }
     .loc-dir::after { content: '→'; }
 
-    /* ── CTA STRIP ─────────────────────────────── */
-    .cta-strip { background: var(--g); padding: 3rem 5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
-    .cta-text { font-family: var(--d); font-size: 1.5rem; font-style: italic; color: white; }
-    .cta-links { display: flex; gap: 0.75rem; flex-shrink: 0; }
-
-    /* ── FOOTER ────────────────────────────────── */
-    footer { background: var(--gd); padding: 4.5rem 5rem 2.5rem; }
-    .ft-top { display: flex; justify-content: space-between; gap: 4rem; padding-bottom: 3rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
-    .ft-brand .fn { font-family: var(--d); font-size: 1.4rem; font-weight: 700; color: white; }
-    .ft-brand .fs { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 4px; }
-    .ft-cols { display: grid; grid-template-columns: repeat(3, auto); gap: 4rem; }
-    .ft-col-title { font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(160,222,160,0.68); margin-bottom: 1rem; }
-    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
-    .ft-col a { font-size: 0.82rem; color: rgba(255,255,255,0.52); transition: color 0.2s; font-weight: 300; }
-    .ft-col a:hover { color: white; }
-    .ft-bottom { display: flex; justify-content: space-between; align-items: center; }
-    .ft-copy { font-family: var(--m); font-size: 0.43rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.22); }
-
     /* ── MOBILE ORDER CTA ──────────────────────── */
     .mob-order-bar {
       display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
@@ -372,10 +307,8 @@
     /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 960px) {
       .mob-order-bar { display: block; }
-      .nav-ham { display: flex; }
-      .nav-links { display: none !important; }
-      #nav { width: calc(100% - 2rem); padding: 0 1.25rem; }
-      .hero-overlay { padding: 0 2rem 5rem; }
+      .hero-overlay { padding-bottom: 5rem; }
+      .hero-wrap { padding: 0 2rem; }
       .hero-h1 { font-size: clamp(2.4rem, 6vw, 2.9rem); }
       .hero-tagline { font-size: 0.95rem; max-width: 38ch; }
       .slider-dots { right: 1.5rem; bottom: 2.5rem; }
@@ -386,8 +319,9 @@
       .deal-section-head { padding: 0 2rem 2.5rem; }
       .deal-card { min-height: 400px; }
       .deal-body { padding: 2rem; }
-      .anniversary { padding: 6rem 2rem; }
-      .ann-content { padding: 0; }
+      .anniversary { padding: 5rem 0; }
+      .ann-inner { padding: 0 2rem; grid-template-columns: 1fr; gap: 3rem; }
+      .ann-photo { aspect-ratio: 16/9; }
       .ingredients { padding: 5rem 0; }
       .ing-head { padding: 0 2rem 2.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
       .ing-grid { padding: 0 2rem; grid-template-columns: 1fr; }
@@ -402,16 +336,12 @@
       .locations { padding: 5rem 0; }
       .loc-head { padding: 0 2rem 2.5rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .loc-grid { padding: 0 2rem; grid-template-columns: 1fr 1fr; }
-      .cta-strip { padding: 2.5rem 2rem; flex-direction: column; text-align: center; }
       footer { padding: 3.5rem 2rem calc(3.5rem + env(safe-area-inset-bottom) + 80px); }
-      .ft-top { flex-direction: column; }
-      .ft-cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .ft-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
-      .wrap { padding: 0 2rem; }
     }
     @media (max-width: 520px) {
       .loc-grid { grid-template-columns: 1fr; }
-      .hero-overlay { padding: 0 1.5rem 4.5rem; }
+      .hero-overlay { padding-bottom: 4.5rem; }
+      .hero-wrap { padding: 0 1.5rem; }
       .hero-btns { flex-direction: column; align-items: flex-start; }
       .hero-btns .btn { width: 100%; max-width: 300px; justify-content: center; }
       .cta-links { flex-direction: column; width: 100%; }
@@ -436,9 +366,9 @@
 <body>
 
 <!-- ── NAV ───────────────────────────────────── -->
-<nav id="nav">
+<nav id="nav" class="glass">
   <a href="index.html" class="logo">
-    <img src="https://riversidepizza.net/wp-content/uploads/2019/11/Untitled-1.jpg" alt="Riverside Pizza">
+    <img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116">
     <div class="logo-text">
       <span class="logo-name">Riverside Pizza</span>
       <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
@@ -449,7 +379,7 @@
     <li><a href="catering.html">Catering</a></li>
     <li><a href="locations.html">Locations</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="locations.html" class="nav-cta">Order Online</a></li>
+    <li><a href="takeout.html" class="nav-cta">Order Online</a></li>
   </ul>
   <button class="nav-ham" id="navHam" aria-label="Open menu">
     <span></span><span></span>
@@ -461,25 +391,27 @@
   <a href="catering.html">Catering</a>
   <a href="locations.html">Locations</a>
   <a href="about.html">About</a>
-  <a href="locations.html" class="mob-cta">Order Online</a>
+  <a href="takeout.html" class="mob-cta">Order Online</a>
 </div>
 
 <!-- ── HERO SLIDER ────────────────────────────── -->
 <section class="hero" aria-label="Photo slideshow" aria-roledescription="carousel">
-  <div class="slide active" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2019/10/newpizza.jpg')"></div>
-  <div class="slide" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg')"></div>
-  <div class="slide" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg')"></div>
-  <div class="slide" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg')"></div>
-  <div class="slide" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg')"></div>
+  <div class="slide active" style="background-image:url('/images/newpizza.webp')"></div>
+  <div class="slide" style="background-image:url('/images/1.webp')"></div>
+  <div class="slide" style="background-image:url('/images/3.webp')"></div>
+  <div class="slide" style="background-image:url('/images/cinnamonbread.jpg')"></div>
+  <div class="slide" style="background-image:url('/images/460149_402099029806157_1433563516_o.webp')"></div>
 
   <div class="hero-overlay">
-    <div class="hero-content">
-      <div class="hero-eyebrow">Family Owned &amp; Operated Since 1999</div>
-      <h1 class="hero-h1">Always fresh.<br><em>Always homemade.</em></h1>
-      <p class="hero-tagline">Owners operate every store. Ingredients prepared fresh, daily. Quality and standards that are never compromised.</p>
-      <div class="hero-btns">
-        <a href="locations.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
-        <a href="locations.html" class="btn btn-outline-w">Find a Location</a>
+    <div class="hero-wrap">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Family Owned &amp; Operated Since 1999</div>
+        <h1 class="hero-h1">Always fresh.<br><em>Always homemade.</em></h1>
+        <p class="hero-tagline">Owners operate every store. Ingredients prepared fresh, daily. Quality and standards that are never compromised.</p>
+        <div class="hero-btns">
+          <a href="takeout.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
+          <a href="locations.html" class="btn btn-outline-w">Find a Location</a>
+        </div>
       </div>
     </div>
   </div>
@@ -535,25 +467,25 @@
   </div>
   <div class="wrap">
     <div class="deal-card">
-      <div class="deal-bg" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/get-attachment.aspx_11-e1384317042793.jpg')"></div>
+      <div class="deal-bg" style="background-image:url('/images/get-attachment.aspx_11-e1384317042793.webp')"></div>
       <div class="deal-gradient"></div>
       <div class="deal-body">
         <div class="deal-tag">CarryOut Special · EA + Tax</div>
         <div class="deal-price">$25.99</div>
         <div class="deal-name">Ultimate Family Meal Deal</div>
         <div class="deal-items">2 Large 1 Topping Pizzas · Breadsticks &amp; Sauce · Family Size Salad</div>
-        <a href="locations.html" class="btn btn-white">Order Now <span class="btn-arrow">↗</span></a>
+        <a href="takeout.html" class="btn btn-white">Order Now <span class="btn-arrow">↗</span></a>
       </div>
     </div>
     <div class="deal-card">
-      <div class="deal-bg" style="background-image:url('https://riversidepizza.net/wp-content/uploads/2013/11/8.jpg')"></div>
+      <div class="deal-bg" style="background-image:url('/images/new-oven-baked-sandwich.webp')"></div>
       <div class="deal-gradient"></div>
       <div class="deal-body">
-        <div class="deal-tag">Oven Baked</div>
+        <div class="deal-tag">CarryOut Special · EA + Tax</div>
         <div class="deal-price">$5.99</div>
-        <div class="deal-name">Italian Sandwiches</div>
-        <div class="deal-items">Oven baked to perfection with the freshest ingredients.</div>
-        <a href="menu.html" class="btn btn-white">View Menu <span class="btn-arrow">→</span></a>
+        <div class="deal-name">Oven Baked Italian Sandwich</div>
+        <div class="deal-items">Your choice of Italian sandwich · Baked fresh to order · Available at all locations</div>
+        <a href="takeout.html" class="btn btn-white">Order Now <span class="btn-arrow">↗</span></a>
       </div>
     </div>
   </div>
@@ -561,19 +493,21 @@
 
 <!-- ── ANNIVERSARY ────────────────────────────── -->
 <section class="anniversary" id="about">
-  <div class="ann-content">
-    <div class="ann-badge">
-      <span class="ann-badge-num">27</span>
-      <span class="ann-badge-lbl">Years of Excellence</span>
+  <div class="ann-inner">
+    <div class="ann-photo gs-reveal">
+      <img loading="lazy" src="/images/460149_402099029806157_1433563516_o.webp" alt="Inside Riverside Pizza restaurant dining area" width="1920" height="1342">
     </div>
-    <div class="ey gs-reveal">
-      Celebrating 27 Years
+    <div class="ann-content">
+      <div class="ann-badge">
+        <span class="ann-badge-num">27</span>
+        <span class="ann-badge-lbl">Years of Excellence</span>
+      </div>
+      <div class="ey gs-reveal">Celebrating 27 Years</div>
+      <h2 class="ann-h gs-reveal">Family owned and operated <em>since 1999.</em></h2>
+      <p class="ann-p gs-reveal">As we proudly celebrate our 27th year, we want to express our deepest gratitude to you — our cherished customers. Your unwavering support and loyalty have been the foundation of our journey, and we couldn't have reached this milestone without you.</p>
+      <p class="ann-p gs-reveal">Thank you for being a part of our story. This anniversary is a celebration of the relationships we've built and the memories we've created together. Here's to many more years of serving you with passion and dedication.</p>
+      <div class="signature gs-reveal">~Al &amp; Sandy Thompson</div>
     </div>
-    <h2 class="ann-h gs-reveal">Family owned and operated <em>since 1999.</em></h2>
-    <p class="ann-p gs-reveal">As we proudly celebrate our 27th year, we want to take a moment to express our deepest gratitude to you, our cherished customers. Your unwavering support and loyalty have been the foundation of our journey, and we couldn't have reached this milestone without you.</p>
-    <p class="ann-p gs-reveal">Over the years, we have strived to provide you with exceptional meals, and it's your trust in us that has inspired us to continuously improve and innovate. This anniversary is more than just a celebration of time; it's a celebration of the relationships we've built and the memories we've created together.</p>
-    <p class="ann-p gs-reveal">Thank you for being a part of our story — here's to many more years of serving you with passion and dedication!</p>
-    <div class="signature gs-reveal">~Al &amp; Sandy Thompson</div>
   </div>
 </section>
 
@@ -584,7 +518,9 @@
       <div class="sec-ey gs-reveal">Always Fresh · Quality Ingredients</div>
       <h2 class="sec-h gs-reveal">Riverside Pizza is dedicated to<br><em>our high quality standards.</em></h2>
     </div>
-    <p class="ing-desc gs-reveal">We understand that our success depends on the quality of food we serve and we couldn't give outstanding quality without investing in quality ingredients.</p>
+    <div class="ing-desc-card gs-reveal">
+      <p class="ing-desc">We understand that our success depends on the quality of food we serve — and we couldn't deliver outstanding quality without investing in the finest ingredients available.</p>
+    </div>
   </div>
   <div class="ing-grid">
     <div class="ing-card gs-stagger">
@@ -616,14 +552,14 @@
       <h2 class="sec-h gs-reveal">Fresh out of the oven, <em>every time.</em></h2>
     </div>
     <div class="gallery-track" id="galleryTrack">
-      <div class="gallery-item wide"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/06/460149_402099029806157_1433563516_o.jpg" alt="Inside a Riverside Pizza restaurant dining area"></div>
-      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/1.jpg" alt="Freshly baked Riverside Pizza with toppings"></div>
-      <div class="gallery-item tall"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/2.jpg" alt="Riverside Pizza kitchen preparing fresh dough"></div>
-      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/3.jpg" alt="Hot pizza coming out of the oven at Riverside Pizza"></div>
-      <div class="gallery-item tall"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/4.jpg" alt="Classic pepperoni pizza at Riverside Pizza"></div>
-      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/5.jpg" alt="Specialty pizza with fresh ingredients"></div>
-      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2013/11/6.jpg" alt="Riverside Pizza family dining experience"></div>
-      <div class="gallery-item"><img loading="lazy" src="https://riversidepizza.net/wp-content/uploads/2019/10/cinnamonbread.jpg" alt="Homemade cinnamon bread from Riverside Pizza"></div>
+      <div class="gallery-item wide"><img loading="lazy" src="/images/460149_402099029806157_1433563516_o.webp" alt="Inside a Riverside Pizza restaurant dining area" width="1920" height="1342"></div>
+      <div class="gallery-item"><img loading="lazy" src="/images/1.webp" alt="Freshly baked Riverside Pizza with toppings" width="980" height="376"></div>
+      <div class="gallery-item tall"><img loading="lazy" src="/images/2.webp" alt="Riverside Pizza kitchen preparing fresh dough" width="980" height="376"></div>
+      <div class="gallery-item"><img loading="lazy" src="/images/3.webp" alt="Hot pizza coming out of the oven at Riverside Pizza" width="980" height="376"></div>
+      <div class="gallery-item tall"><img loading="lazy" src="/images/4.webp" alt="Classic pepperoni pizza at Riverside Pizza" width="980" height="376"></div>
+      <div class="gallery-item"><img loading="lazy" src="/images/5.webp" alt="Specialty pizza with fresh ingredients" width="980" height="376"></div>
+      <div class="gallery-item"><img loading="lazy" src="/images/6.webp" alt="Riverside Pizza family dining experience" width="980" height="376"></div>
+      <div class="gallery-item"><img loading="lazy" src="/images/cinnamonbread.jpg" alt="Homemade cinnamon bread from Riverside Pizza" width="1900" height="1100"></div>
     </div>
     <div class="gallery-hint">Drag to explore</div>
   </div>
@@ -691,11 +627,11 @@
     <div class="ft-cols">
       <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Lunch Specials</a></li><li><a href="gluten-free.html">Gluten Free</a></li><li><a href="catering.html">Catering</a></li></ul></div>
       <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Job Application</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
-      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="locations.html">Order Online</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="takeout.html">Order Online</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
     </div>
   </div>
   <div class="ft-bottom">
-    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+    <div class="ft-copy">© 2026 Riverside Pizza · All Rights Reserved · <a href="privacy.html" style="color:inherit;opacity:0.55;text-decoration:underline;text-underline-offset:3px;">Privacy Policy</a></div>
     <div class="ft-copy">Lawrenceville · Sugarloaf · Suwanee · Grayson · Hamilton Mill · Dacula · Johns Creek · Cumming</div>
   </div>
 </footer>
@@ -878,7 +814,7 @@
 
 <!-- Mobile sticky order CTA (shows after hero scroll) -->
 <div class="mob-order-bar" id="mobOrderBar">
-  <a href="locations.html" class="btn btn-green">Order Online — Find Your Location <span class="btn-arrow">↗</span></a>
+  <a href="takeout.html" class="btn btn-green">Order Online — Find Your Location <span class="btn-arrow">↗</span></a>
 </div>
 </body>
 </html>
