@@ -56,8 +56,8 @@
 
     /* ── HERO ── */
     .page-hero { position:relative; min-height:60vh; display:flex; align-items:flex-end; padding-bottom:5rem; overflow:hidden; }
-    .hero-bg-img { position:absolute; inset:0; background-image:url('/images/1.webp'); background-size:cover; background-position:center; opacity:.12; z-index:0; }
-    .page-hero-overlay { position:absolute; inset:0; background:var(--gd); z-index:1; }
+    .hero-bg-img { position:absolute; inset:0; background-image:url('/images/460149_402099029806157_1433563516_o.webp'); background-size:cover; background-position:center; z-index:0; }
+    .page-hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(5,18,8,0.97) 0%, rgba(5,18,8,0.72) 45%, rgba(5,18,8,0.28) 100%); z-index:1; }
     .page-hero .wrap { position:relative; z-index:2; padding:0 5rem; padding-top:120px; }
     .ph-ey { font-family:var(--m); font-size:.57rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(160,220,160,.85); display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
     .ph-ey::before { content:''; width:1.5rem; height:1px; background:rgba(160,220,160,.85); }
@@ -66,18 +66,21 @@
     .ph-sub { font-size:1rem; line-height:1.75; color:rgba(255,255,255,.7); max-width:50ch; font-weight:300; }
 
     /* ── PERKS ── */
-    .perks { padding:clamp(4rem,6vw,6rem) 0; background:var(--wh); border-bottom:1px solid var(--bdr); }
-    .perks-head { margin-bottom:3rem; }
+    .perks { background:var(--wh); border-bottom:1px solid var(--bdr); display:grid; grid-template-columns:1fr 1fr; }
+    .perks-img { position:relative; min-height:420px; overflow:hidden; }
+    .perks-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .perks-body { padding:clamp(3rem,5vw,5rem); }
+    .perks-head { margin-bottom:2.5rem; }
     .sec-ey { font-family:var(--m); font-size:.5rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mu); display:flex; align-items:center; gap:.75rem; margin-bottom:.85rem; }
     .sec-ey::before { content:''; width:1.75rem; height:1px; background:var(--mu); }
     .sec-h { font-family:var(--d); font-size:clamp(2rem,3vw,3rem); font-weight:500; letter-spacing:-.02em; line-height:1.08; }
     .sec-h em { font-style:italic; color:var(--g); }
-    .perks-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--bdr); border-left:1px solid var(--bdr); }
-    .perk { padding:2rem 1.75rem; border-right:1px solid var(--bdr); border-bottom:1px solid var(--bdr); transition:background .22s; }
+    .perks-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--bdr); border:1px solid var(--bdr); }
+    .perk { padding:1.75rem; background:var(--wh); transition:background .22s; }
     .perk:hover { background:var(--gp); }
-    .perk-icon { width:40px; height:40px; background:var(--gp); display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
-    .perk-icon svg { width:20px; height:20px; stroke:var(--g); fill:none; stroke-width:2; }
-    .perk h3 { font-family:var(--d); font-size:1.1rem; font-weight:600; margin-bottom:.35rem; }
+    .perk-icon { width:36px; height:36px; background:var(--gp); display:flex; align-items:center; justify-content:center; margin-bottom:.85rem; border-radius:4px; }
+    .perk-icon svg { width:18px; height:18px; stroke:var(--g); fill:none; stroke-width:2; }
+    .perk h3 { font-family:var(--d); font-size:1rem; font-weight:600; margin-bottom:.3rem; }
     .perk p { font-size:.82rem; color:var(--mu); line-height:1.6; font-weight:300; }
 
     /* ── APPLICATION ── */
@@ -107,7 +110,8 @@
 
     @media(max-width:960px) {
       .page-hero .wrap { padding:0 2rem; padding-top:100px; }
-      .perks-grid { grid-template-columns:1fr 1fr; }
+      .perks { grid-template-columns:1fr; }
+      .perks-img { min-height:280px; }
       .apply-sec .wrap { grid-template-columns:1fr; }
       .submit-btn { min-height:52px; font-size:.7rem; }
     }
@@ -141,7 +145,10 @@
 </section>
 
 <section class="perks">
-  <div class="wrap">
+  <div class="perks-img gs-reveal">
+    <img loading="lazy" src="/images/owners.jpg" alt="Al and Sandy Thompson, owners of Riverside Pizza" width="800" height="600">
+  </div>
+  <div class="perks-body">
     <div class="perks-head gs-reveal">
       <div class="sec-ey">Why Work With Us</div>
       <h2 class="sec-h">Real benefits, <em>real people.</em></h2>

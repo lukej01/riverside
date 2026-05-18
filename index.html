@@ -250,29 +250,23 @@
 
     /* ── INGREDIENTS ───────────────────────────── */
     .ingredients { padding: 8rem 0; background: var(--wh); }
-    .ing-head { padding: 0 5rem 4.5rem; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: end; }
+    .ing-layout { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: 1fr 1.15fr; gap: 7rem; align-items: center; }
+    .ing-photos { display: flex; flex-direction: column; gap: 1rem; }
+    .ing-ph-main { aspect-ratio: 4/3; overflow: hidden; border-radius: 4px; }
+    .ing-ph-sec  { aspect-ratio: 21/9; overflow: hidden; border-radius: 4px; }
+    .ing-ph-main img, .ing-ph-sec img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s var(--ease); }
+    .ing-ph-main:hover img, .ing-ph-sec:hover img { transform: scale(1.03); }
     .sec-ey { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mu); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem; }
     .sec-ey::before { content: ''; width: 1.75rem; height: 1px; background: var(--mu); }
     .sec-h { font-family: var(--d); letter-spacing: -0.02em; line-height: 1.08; }
     .sec-h em { font-style: italic; color: var(--g); }
-    .ing-head .sec-h { font-size: clamp(2rem, 3vw, 3.4rem); font-weight: 500; }
-    .ing-desc-card { background: var(--gp); border-left: 3px solid var(--g); border-radius: 0 0.85rem 0.85rem 0; padding: 1.6rem 1.8rem; }
-    .ing-desc { font-size: 0.9rem; line-height: 1.95; color: var(--mu); font-weight: 300; margin: 0; }
-    .ing-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
-    .ing-card {
-      background: var(--wh); padding: 2.5rem; border: 1px solid var(--bdr);
-      display: flex; flex-direction: column; align-items: flex-start;
-      transition: background 0.28s var(--ease), border-color 0.28s, transform 0.28s var(--ease);
-    }
-    .ing-card:hover { background: var(--gp); border-color: rgba(30,95,44,0.35); transform: translateY(-2px); }
-    .ing-num { font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--g); margin-bottom: 1rem; }
-    .ing-title { font-family: var(--d); font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .ing-text { font-size: 0.84rem; line-height: 1.8; color: var(--mu); font-weight: 300; }
-    .ing-card.promise { background: var(--gd); border-color: var(--gd); }
-    .ing-card.promise .ing-num { color: rgba(160,222,160,0.8); }
-    .ing-card.promise .ing-title { color: white; }
-    .ing-card.promise .ing-text { color: rgba(255,255,255,0.68); }
-    .ing-card.promise:hover { background: var(--g); transform: translateY(-2px); }
+    .ing-content .sec-h { font-size: clamp(2rem, 3vw, 3.2rem); font-weight: 500; margin-bottom: 2.5rem; }
+    .ing-list { display: flex; flex-direction: column; }
+    .ing-row { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.1rem 0; border-top: 1px solid var(--bdr); }
+    .ing-row:last-child { border-bottom: 1px solid var(--bdr); }
+    .ing-n { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g); min-width: 1.5rem; margin-top: 0.25rem; flex-shrink: 0; }
+    .ing-detail h4 { font-family: var(--d); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .ing-detail p { font-size: 0.82rem; line-height: 1.65; color: var(--mu); font-weight: 300; margin: 0; }
 
     /* ── GALLERY ───────────────────────────────── */
     .gallery-section { background: var(--cream); overflow: hidden; }
@@ -359,9 +353,8 @@
       .ann-photo.owners { aspect-ratio: 4/3; }
       .ann-photo.interior { display: none; }
       .ingredients { padding: 5rem 0; }
-      .ing-head { padding: 0 2rem 2.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
-      .ing-grid { padding: 0 2rem; grid-template-columns: 1fr; }
-      .ing-card { align-items: flex-start; text-align: left; }
+      .ing-layout { padding: 0 2rem; grid-template-columns: 1fr; gap: 2.5rem; }
+      .ing-ph-sec { display: none; }
       .gallery-inner { padding: 5rem 0; }
       .gallery-track { padding: 0 2rem; gap: 8px; }
       .gallery-item { height: 44vh; }
@@ -553,33 +546,40 @@
 
 <!-- ── INGREDIENTS ────────────────────────────── -->
 <section class="ingredients" id="ingredients">
-  <div class="ing-head">
-    <div>
+  <div class="ing-layout">
+    <div class="ing-photos gs-reveal">
+      <div class="ing-ph-main">
+        <img loading="lazy" src="/images/tomatoes.webp" alt="Stanislaus tomatoes — the sauce foundation at Riverside Pizza" width="800" height="600">
+      </div>
+      <div class="ing-ph-sec">
+        <img loading="lazy" src="/images/newpizza.webp" alt="Freshly made Riverside Pizza with real mozzarella" width="980" height="376">
+      </div>
+    </div>
+    <div class="ing-content">
       <div class="sec-ey gs-reveal">Always Fresh · Quality Ingredients</div>
-      <h2 class="sec-h gs-reveal">Riverside Pizza is dedicated to<br><em>our high quality standards.</em></h2>
-    </div>
-    <div class="ing-desc-card gs-reveal">
-      <p class="ing-desc">We understand that our success depends on the quality of food we serve — and we couldn't deliver outstanding quality without investing in the finest ingredients available.</p>
-    </div>
-  </div>
-  <div class="ing-grid">
-    <div class="ing-card gs-stagger">
-      <div class="ing-num">01 Cheese</div><div class="ing-title">100% Real Mozzarella &amp; Provolone</div><div class="ing-text">Grated on site at each restaurant, never pre-shredded. What you taste was cut that morning.</div>
-    </div>
-    <div class="ing-card gs-stagger">
-      <div class="ing-num">02 Sauce</div><div class="ing-title">Stanislaus Pizza Sauce</div><div class="ing-text">The quality leader in the industry. Packed from fresh tomatoes only, never concentrated. Our homemade spice mix is blended in daily.</div>
-    </div>
-    <div class="ing-card gs-stagger">
-      <div class="ing-num">03 Dough</div><div class="ing-title">Handmade Every Morning</div><div class="ing-text">Made from scratch at each location daily using All Trumps flour, a General Mills Gold Medal product.</div>
-    </div>
-    <div class="ing-card gs-stagger">
-      <div class="ing-num">04 Pepperoni</div><div class="ing-title">Hormel Pepperoni Only</div><div class="ing-text">The only pepperoni we use. One of the highest quality and most recognized name brands in the industry.</div>
-    </div>
-    <div class="ing-card gs-stagger">
-      <div class="ing-num">05 Produce</div><div class="ing-title">Cut Fresh Daily</div><div class="ing-text">The produce is cut daily in each restaurant to ensure the absolute freshest product on every pizza.</div>
-    </div>
-    <div class="ing-card promise gs-stagger">
-      <div class="ing-num">Our Promise</div><div class="ing-title">100% Product Guarantee</div><div class="ing-text">If at any time you are not completely satisfied, we will replace the purchase or refund your money. Guaranteed.</div>
+      <h2 class="sec-h gs-reveal">No shortcuts.<br><em>Ever.</em></h2>
+      <div class="ing-list">
+        <div class="ing-row gs-reveal">
+          <span class="ing-n">01</span>
+          <div class="ing-detail"><h4>100% Real Mozzarella &amp; Provolone</h4><p>Grated on site at each restaurant, never pre-shredded.</p></div>
+        </div>
+        <div class="ing-row gs-reveal">
+          <span class="ing-n">02</span>
+          <div class="ing-detail"><h4>Stanislaus Pizza Sauce</h4><p>Fresh-packed tomatoes, never concentrated. House spice blend added daily.</p></div>
+        </div>
+        <div class="ing-row gs-reveal">
+          <span class="ing-n">03</span>
+          <div class="ing-detail"><h4>Handmade Dough Every Morning</h4><p>Made from scratch at each location using All Trumps flour.</p></div>
+        </div>
+        <div class="ing-row gs-reveal">
+          <span class="ing-n">04</span>
+          <div class="ing-detail"><h4>Hormel Pepperoni Only</h4><p>One standard. One brand. No substitutions.</p></div>
+        </div>
+        <div class="ing-row gs-reveal">
+          <span class="ing-n">05</span>
+          <div class="ing-detail"><h4>Produce Cut Fresh Daily</h4><p>Cut at each restaurant every morning. No shortcuts.</p></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
