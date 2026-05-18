@@ -70,12 +70,15 @@
     .deals-h2{font-family:var(--d);font-size:clamp(2rem,3.5vw,3rem);font-weight:500;letter-spacing:-.025em;line-height:1.05;margin-bottom:3.5rem}
     .deals-h2 em{font-style:italic;color:var(--g)}
     .deals-list{border-top:1px solid var(--bdr)}
-    .deal-row{display:grid;grid-template-columns:160px 1fr auto;gap:2rem;align-items:center;padding:1.75rem 2rem;border-bottom:1px solid var(--bdr);transition:background .22s cubic-bezier(.32,.72,0,1)}
+    .deal-row{display:grid;grid-template-columns:120px 1fr 80px;gap:2rem;align-items:center;padding:1.75rem 2rem;border-bottom:1px solid var(--bdr);transition:background .22s cubic-bezier(.32,.72,0,1)}
     .deal-row:hover{background:var(--gp)}
-    .deal-day{font-family:var(--d);font-size:2.2rem;font-weight:500;color:var(--tx);line-height:1}
-    .deal-info h3{font-family:var(--d);font-size:1.15rem;font-weight:600;margin-bottom:.3rem}
-    .deal-info p{font-size:.85rem;color:var(--mu);line-height:1.55;font-weight:300}
+    .deal-day{font-family:var(--d);font-size:2.4rem;font-weight:500;color:var(--tx);line-height:1}
+    .deal-info h3{font-family:var(--d);font-size:1.2rem;font-weight:600;margin-bottom:.35rem}
+    .deal-info p{font-size:.9rem;color:var(--mu);line-height:1.6;font-weight:300}
     .deal-price{font-family:var(--m);font-size:1.5rem;font-weight:500;color:var(--g);white-space:nowrap}
+    .deal-img{width:80px;height:80px;border-radius:6px;overflow:hidden;flex-shrink:0}
+    .deal-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.32,.72,0,1)}
+    .deal-row:hover .deal-img img{transform:scale(1.07)}
 
     /* ── PHOTO ROW ──────────────────────── */
     .photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
@@ -94,12 +97,13 @@
 
     @media(max-width:960px){
       .dark-info-grid{grid-template-columns:1fr}.di-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);padding:3rem 2rem}
-      .deal-row{grid-template-columns:100px 1fr auto;gap:1rem;padding:1.25rem 1rem}
-      .deal-day{font-size:1.4rem}
+      .deal-row{grid-template-columns:80px 1fr 64px;gap:1rem;padding:1.25rem 1rem}
+      .deal-day{font-size:1.6rem}
+      .deal-img{width:64px;height:64px}
       .deal-price{font-size:1.1rem}
       .photo-row{grid-template-columns:1fr}
     }
-    @media(max-width:520px){.deal-row{grid-template-columns:80px 1fr;}.deal-price{grid-column:1/-1;font-size:1.2rem}}
+    @media(max-width:520px){.deal-row{grid-template-columns:80px 1fr;}.deal-price{grid-column:1/-1;font-size:1.2rem}.deal-img{display:none}}
   </style>
 </head>
 <body class="hero-page">
@@ -157,29 +161,33 @@
         <div class="deal-day">$2</div>
         <div class="deal-info">
           <h3>Bread Sticks</h3>
-          <p>Fresh-baked breadsticks made from our handmade dough</p>
+          <p>Fresh-baked from our handmade dough, served with sauce</p>
         </div>
+        <div class="deal-img"><img loading="lazy" src="/images/2.webp" alt="Breadsticks" width="80" height="80"></div>
       </div>
       <div class="deal-row">
         <div class="deal-day">$3</div>
         <div class="deal-info">
-          <h3>8" 2-Topping Pizza — or Side Salad</h3>
-          <p>Personal 8" pizza with two toppings, or a fresh-made side salad. Your choice.</p>
+          <h3>8" 2-Topping Pizza or Side Salad</h3>
+          <p>Personal pizza with two toppings, or a fresh-made side salad</p>
         </div>
+        <div class="deal-img"><img loading="lazy" src="/images/1.webp" alt="8 inch pizza" width="80" height="80"></div>
       </div>
       <div class="deal-row">
         <div class="deal-day">$4</div>
         <div class="deal-info">
           <h3>Cheese Bread</h3>
-          <p>Oven-baked pizza dough loaded with melted mozzarella and provolone</p>
+          <p>Oven-baked dough loaded with melted mozzarella and provolone</p>
         </div>
+        <div class="deal-img"><img loading="lazy" src="/images/cinnamonbread.jpg" alt="Cheese bread" width="80" height="80"></div>
       </div>
       <div class="deal-row">
         <div class="deal-day">$5</div>
         <div class="deal-info">
           <h3>Side Salad &amp; Bread Sticks</h3>
-          <p>A fresh side salad paired with breadsticks — the perfect lunch combo</p>
+          <p>Fresh salad with breadsticks, the perfect lunch pairing</p>
         </div>
+        <div class="deal-img"><img loading="lazy" src="/images/3.webp" alt="Salad and breadsticks" width="80" height="80"></div>
       </div>
     </div>
   </div>
@@ -224,7 +232,7 @@
     <div class="ft-brand"><div class="fn">Riverside Pizza</div><div class="fs">Family Owned &amp; Operated Since 1999</div></div>
     <div class="ft-cols">
       <div class="ft-col"><div class="ft-col-title">Menu</div><ul><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Lunch Specials</a></li><li><a href="gluten-free.html">Gluten Free</a></li><li><a href="catering.html">Catering</a></li></ul></div>
-      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Job Application</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-title">Company</div><ul><li><a href="about.html">About Us</a></li><li><a href="stanislaus.html">Stanislaus</a></li><li><a href="jobs.html">Join the Team</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
       <div class="ft-col"><div class="ft-col-title">Order</div><ul><li><a href="takeout.html">Order Online</a></li><li><a href="locations.html">Store Locator</a></li></ul></div>
     </div>
   </div>
