@@ -693,7 +693,7 @@
   gsap.registerPlugin(ScrollTrigger);
 
   // ── LENIS ────────────────────────────────────
-  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+  const lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 1.1 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);

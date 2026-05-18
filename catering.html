@@ -201,7 +201,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
 <script>
   // ── LENIS SMOOTH SCROLL ──────────────────────
-  const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+  const lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 1.1 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
