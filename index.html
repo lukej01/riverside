@@ -203,7 +203,7 @@
     .ann-photo { position: relative; border-radius: 1.25rem; overflow: hidden; box-shadow: 0 28px 64px rgba(0,0,0,0.13); }
     .ann-photo.owners { aspect-ratio: 4/3; }
     .ann-photo.interior { aspect-ratio: 16/9; }
-    .ann-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ann-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
     .ann-photo::after { content: ''; position: absolute; inset: 1rem; border: 2px solid rgba(30,95,44,0.28); border-radius: 0.5rem; pointer-events: none; }
     .ann-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
     .ann-content .ey { justify-content: flex-start; }
@@ -401,17 +401,16 @@
 <!-- ── HERO SLIDER ────────────────────────────── -->
 <section class="hero" aria-label="Photo slideshow" aria-roledescription="carousel">
   <div class="slide active" style="background-image:url('/images/newpizza.webp')"></div>
-  <div class="slide" style="background-image:url('/images/1.webp')"></div>
   <div class="slide" style="background-image:url('/images/3.webp')"></div>
-  <div class="slide" style="background-image:url('/images/cinnamonbread.jpg')"></div>
-  <div class="slide" style="background-image:url('/images/460149_402099029806157_1433563516_o.webp')"></div>
+  <div class="slide" style="background-image:url('/images/pizza-homepage.webp')"></div>
+  <div class="slide" style="background-image:url('/images/new-wings.webp')"></div>
 
   <div class="hero-overlay">
     <div class="hero-wrap">
       <div class="hero-content">
         <div class="hero-eyebrow">Family Owned &amp; Operated Since 1999</div>
-        <h1 class="hero-h1">Always fresh.<br><em>Always homemade.</em></h1>
-        <p class="hero-tagline">Owners operate every store. Ingredients prepared fresh, daily. Quality and standards that are never compromised.</p>
+        <h1 class="hero-h1">Georgia's pizza,<br><em>since 1999.</em></h1>
+        <p class="hero-tagline">Family owned, family operated. Dough made by hand every morning. Real mozzarella, fresh produce, Stanislaus tomato sauce — nothing less, every time.</p>
         <div class="hero-btns">
           <a href="takeout.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
           <a href="locations.html" class="btn btn-outline-w">Find a Location</a>
@@ -429,7 +428,6 @@
     <button class="dot" aria-label="Go to slide 2" aria-pressed="false"></button>
     <button class="dot" aria-label="Go to slide 3" aria-pressed="false"></button>
     <button class="dot" aria-label="Go to slide 4" aria-pressed="false"></button>
-    <button class="dot" aria-label="Go to slide 5" aria-pressed="false"></button>
   </div>
 </section>
 
@@ -463,6 +461,31 @@
   </div>
 </div>
 
+<!-- ── ANNIVERSARY ────────────────────────────── -->
+<section class="anniversary" id="about">
+  <div class="ann-inner">
+    <div class="ann-photos">
+      <div class="ann-photo owners gs-reveal">
+        <img loading="lazy" src="/images/owners.jpg" alt="Al and Sandy Thompson, founders of Riverside Pizza" width="800" height="600">
+      </div>
+      <div class="ann-photo interior gs-reveal">
+        <img loading="lazy" src="/images/460149_402099029806157_1433563516_o.webp" alt="Inside Riverside Pizza restaurant dining area" width="1920" height="1342">
+      </div>
+    </div>
+    <div class="ann-content">
+      <div class="ann-badge">
+        <span class="ann-badge-num">27</span>
+        <span class="ann-badge-lbl">Years of Excellence</span>
+      </div>
+      <div class="ey gs-reveal">Celebrating 27 Years</div>
+      <h2 class="ann-h gs-reveal">Family owned and operated <em>since 1999.</em></h2>
+      <p class="ann-p gs-reveal">As we proudly celebrate our 27th year, we want to express our deepest gratitude to you — our cherished customers. Your unwavering support and loyalty have been the foundation of our journey, and we couldn't have reached this milestone without you.</p>
+      <p class="ann-p gs-reveal">Thank you for being a part of our story. This anniversary is a celebration of the relationships we've built and the memories we've created together. Here's to many more years of serving you with passion and dedication.</p>
+      <div class="signature gs-reveal">~Al &amp; Sandy Thompson</div>
+    </div>
+  </div>
+</section>
+
 <!-- ── DEALS ──────────────────────────────────── -->
 <section class="deals">
   <div class="deal-section-head">
@@ -491,31 +514,6 @@
         <div class="deal-items">Your choice of Italian sandwich · Baked fresh to order · Available at all locations</div>
         <a href="takeout.html" class="btn btn-white">Order Now <span class="btn-arrow">↗</span></a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── ANNIVERSARY ────────────────────────────── -->
-<section class="anniversary" id="about">
-  <div class="ann-inner">
-    <div class="ann-photos">
-      <div class="ann-photo owners gs-reveal">
-        <img loading="lazy" src="/images/owners.jpg" alt="Al and Sandy Thompson, founders of Riverside Pizza" width="800" height="600">
-      </div>
-      <div class="ann-photo interior gs-reveal">
-        <img loading="lazy" src="/images/460149_402099029806157_1433563516_o.webp" alt="Inside Riverside Pizza restaurant dining area" width="1920" height="1342">
-      </div>
-    </div>
-    <div class="ann-content">
-      <div class="ann-badge">
-        <span class="ann-badge-num">27</span>
-        <span class="ann-badge-lbl">Years of Excellence</span>
-      </div>
-      <div class="ey gs-reveal">Celebrating 27 Years</div>
-      <h2 class="ann-h gs-reveal">Family owned and operated <em>since 1999.</em></h2>
-      <p class="ann-p gs-reveal">As we proudly celebrate our 27th year, we want to express our deepest gratitude to you — our cherished customers. Your unwavering support and loyalty have been the foundation of our journey, and we couldn't have reached this milestone without you.</p>
-      <p class="ann-p gs-reveal">Thank you for being a part of our story. This anniversary is a celebration of the relationships we've built and the memories we've created together. Here's to many more years of serving you with passion and dedication.</p>
-      <div class="signature gs-reveal">~Al &amp; Sandy Thompson</div>
     </div>
   </div>
 </section>
