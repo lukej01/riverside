@@ -91,7 +91,23 @@
     .stan h2 em{font-style:italic;color:rgba(240,173,78,.8)}
     .stan p{font-size:1rem;line-height:1.9;color:rgba(255,255,255,.75);margin-bottom:1.25rem}
     .stan-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
-    @media(max-width:960px){.story .wrap,.stan .wrap{grid-template-columns:1fr}.val-grid{grid-template-columns:1fr}.val-card.full{grid-column:1;grid-template-columns:1fr}}
+    @media(max-width:960px){
+      .story .wrap,.stan .wrap{grid-template-columns:1fr}
+      .val-grid{grid-template-columns:1fr}
+      .val-card.full{grid-column:1;grid-template-columns:1fr}
+      /* Minimalist mobile */
+      .hero{min-height:62vh}
+      .hero-ey{display:none}
+      .hero-desc{font-size:.9rem;line-height:1.7}
+      .story-img{display:none}
+      .story{padding:3rem 0}
+      .values{padding:3rem 0}
+      .val-card{padding:2rem}
+      .val-card.full{gap:1.5rem}
+      .val-img{display:none}
+      .stan{padding:3.5rem 0}
+      .stan-img{display:none}
+    }
   </style>
 </head>
 <body class="hero-page">

@@ -228,15 +228,20 @@
       .btn { width: 100%; min-height: 44px; touch-action: manipulation; justify-content: center; }
       .loc-item { grid-template-columns: 1fr; gap: 0; }
       .loc-item:nth-child(even) { direction: ltr; }
-      .li-map { min-height: 260px; border-right: none; border-bottom: 1px solid var(--bdr); }
-      .loc-item:nth-child(even) .li-map { border-left: none; border-bottom: 1px solid var(--bdr); }
-      .li-content, .loc-item:nth-child(even) .li-content { padding: 2.5rem 2rem; }
+      .li-map { display: none; }
+      .li-content, .loc-item:nth-child(even) .li-content { padding: 2rem 1.5rem; }
       .li-actions { flex-direction: column; }
       .li-phone, .li-dir { min-height: 44px; display: flex; align-items: center; touch-action: manipulation; }
       .cta-strip { padding: 2rem; flex-direction: column; text-align: center; }
       .cta-links { flex-direction: column; width: 100%; }
       .cta-links .btn { width: 100%; }
       footer { padding: 3rem 2rem 2rem; }
+      /* Minimalist mobile */
+      .loc-header { padding: 4rem 0 2.5rem; }
+      .lh-eyebrow { display: none; }
+      .li-sub { display: none; }
+      .loc-list { padding: 2.5rem 0; }
+      .loc-card-wrap { gap: 2rem; }
     }
     @media (max-width: 520px) {
       .li-content, .loc-item:nth-child(even) .li-content { padding: 2rem 1.5rem; }
