@@ -108,7 +108,7 @@
 </section>
 
 <section class="content"><div class="wrap">
-  <img loading="lazy" src="/images/tomatoes.webp" alt="Vine-ripened tomatoes" width="150" height="155">
+  <img loading="lazy" src="/images/tomatoes.webp" alt="Vine-ripened Stanislaus tomatoes" width="800" height="600">
   <div>
     <h2>The Gold Standard <em>in Tomatoes</em></h2>
     <p><strong>Stanislaus Food Products</strong> has been growing and canning premium tomatoes in California's San Joaquin Valley since 1942. Their tomatoes are vine-ripened under the California sun and packed within hours of harvest, locking in that sweet, naturally rich flavor.</p>
@@ -225,8 +225,8 @@ checkNav();
     );
     revealTargets.forEach(el => {
       gsap.fromTo(el,
-        { opacity: 0, y: 32, filter: 'blur(5px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.85, ease: 'power3.out',
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top 90%', once: true }
         }
       );
