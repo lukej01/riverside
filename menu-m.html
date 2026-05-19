@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Menu — Riverside Pizza</title>
+  <script>if(window.innerWidth>960)location.replace('menu.html');</script>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="description" content="Browse the full Riverside Pizza menu — handcrafted pizzas, subs, wings, salads, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="/shared.css">
+  <style>
+    /* ── PAGE HEADER ── */
+    .m-mh {
+      padding: calc(64px + 1.75rem) 1.75rem 1.75rem;
+      background: var(--wh); border-bottom: 1px solid var(--bdr);
+    }
+    .m-mh h1 {
+      font-family: var(--d); font-size: clamp(2rem, 9vw, 3rem);
+      font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 0.5rem;
+    }
+    .m-mh h1 em { font-style: italic; color: var(--g); }
+    .m-mh p { font-size: 0.85rem; color: var(--mu); font-weight: 300; }
+
+    /* ── CATEGORY TABS ── */
+    .m-tabs {
+      position: sticky; top: 64px; z-index: 50;
+      background: var(--cream); border-bottom: 1px solid var(--bdr);
+      display: flex; overflow-x: auto; scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .m-tabs::-webkit-scrollbar { display: none; }
+    .m-tab {
+      font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--mu);
+      padding: 0.9rem 1.25rem; white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      text-decoration: none; flex-shrink: 0;
+      transition: color 0.18s, border-color 0.18s;
+      touch-action: manipulation;
+    }
+    .m-tab.active, .m-tab:active { color: var(--g); border-bottom-color: var(--g); }
+
+    /* ── SECTION HEADER ── */
+    .m-sec-head {
+      padding: 2rem 1.75rem 1.25rem;
+      background: var(--cream); border-bottom: 1px solid var(--bdr);
+      scroll-margin-top: 120px;
+    }
+    .m-sec-head h2 {
+      font-family: var(--d); font-size: 1.6rem; font-weight: 500;
+      letter-spacing: -0.02em; margin-bottom: 0.2rem;
+    }
+    .m-sec-head p { font-size: 0.78rem; color: var(--mu); font-weight: 300; }
+
+    /* ── MENU ITEM ── */
+    .m-item {
+      display: flex; gap: 1rem; align-items: center;
+      padding: 1rem 1.75rem;
+      border-bottom: 1px solid var(--bdr);
+      background: var(--wh);
+    }
+    .m-item-img {
+      width: 70px; height: 70px; flex-shrink: 0;
+      border-radius: 6px; overflow: hidden; background: var(--gp);
+      position: relative;
+    }
+    .m-item-img img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .m-item-body { flex: 1; min-width: 0; }
+    .m-item-name {
+      font-family: var(--d); font-size: 1rem; font-weight: 600;
+      color: var(--tx); margin-bottom: 0.2rem; line-height: 1.2;
+    }
+    .m-item-desc {
+      font-size: 0.76rem; color: var(--mu); font-weight: 300;
+      line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .m-item-price {
+      font-family: var(--m); font-size: 0.85rem; font-weight: 500;
+      color: var(--g); flex-shrink: 0; white-space: nowrap;
+    }
+    .m-item-price small { display: block; font-size: 0.58rem; color: var(--mu); font-weight: 400; margin-top: 0.1rem; }
+
+    /* ── VEGGIE BADGE ── */
+    .m-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.08em;
+      text-transform: uppercase; background: rgba(30,95,44,0.07);
+      color: var(--g); border: 1px solid rgba(30,95,44,0.22);
+      border-radius: 20px; padding: 0.18rem 0.55rem; margin-top: 0.3rem;
+      width: fit-content;
+    }
+
+    /* ── BYO CTA ── */
+    .m-byo {
+      background: var(--gd); padding: 2rem 1.75rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .m-byo-tag {
+      font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(160,220,160,0.8);
+    }
+    .m-byo h3 {
+      font-family: var(--d); font-size: 1.5rem; font-weight: 500;
+      color: white; line-height: 1.15;
+    }
+    .m-byo h3 em { font-style: italic; color: rgba(180,230,180,0.9); }
+    .m-byo p { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+
+    /* ── DEAL BANNER ── */
+    .m-deal-banner {
+      background: var(--g); padding: 1.5rem 1.75rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .m-deal-banner-text { flex: 1; }
+    .m-deal-banner-tag {
+      font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 0.3rem;
+    }
+    .m-deal-banner-name { font-family: var(--d); font-size: 1rem; font-weight: 600; color: white; }
+    .m-deal-banner-price {
+      font-family: var(--d); font-size: 2rem; font-weight: 700;
+      color: white; line-height: 1; flex-shrink: 0;
+    }
+
+    /* ── ORDER BAR ── */
+    .m-order-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+      padding: 0.85rem 1.5rem calc(0.85rem + env(safe-area-inset-bottom));
+      background: rgba(254,249,242,0.97); border-top: 1px solid var(--bdr);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .m-order-bar .btn { width: 100%; justify-content: center; font-size: 0.62rem; }
+
+    /* ── FOOTER ── */
+    .m-footer {
+      background: var(--gd);
+      padding: 2rem 1.75rem calc(5rem + env(safe-area-inset-bottom));
+      text-align: center;
+    }
+    .m-footer-name { font-family: var(--d); font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.75rem; }
+    .m-footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem 1.25rem; margin-bottom: 0.75rem; }
+    .m-footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.42); text-decoration: none; font-weight: 300; }
+    .m-footer-copy { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.16); }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index-m.html" class="logo">
+    <img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </a>
+  <button class="nav-ham" id="navHam" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-overlay" id="mobOverlay">
+  <a href="index-m.html">Home</a>
+  <a href="menu-m.html" aria-current="page">Menu</a>
+  <a href="catering-m.html">Catering</a>
+  <a href="locations-m.html">Locations</a>
+  <a href="about-m.html">About</a>
+  <a href="takeout.html" class="mob-cta">Order Online</a>
+</div>
+
+<div class="m-mh">
+  <h1>Fresh ingredients.<br><em>Handmade daily.</em></h1>
+  <p>Order carryout online or call your nearest location.</p>
+</div>
+
+<!-- CATEGORY TABS -->
+<nav class="m-tabs">
+  <a href="#pizzas" class="m-tab active">Pizzas</a>
+  <a href="#detroit" class="m-tab">Detroit Style</a>
+  <a href="#sandwiches" class="m-tab">Sandwiches</a>
+  <a href="#pasta" class="m-tab">Pasta</a>
+  <a href="#wings" class="m-tab">Wings &amp; Sides</a>
+  <a href="#salads" class="m-tab">Salads</a>
+</nav>
+
+<!-- ── PIZZAS ── -->
+<div class="m-sec-head" id="pizzas">
+  <h2>Premium Pizzas</h2>
+  <p>Large 14" · Original or Thin Crust</p>
+</div>
+
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/2.webp" alt="Favorite 5 Pizza" width="980" height="376"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Favorite 5</div>
+    <div class="m-item-desc">Pepperoni, Italian Sausage, Mushrooms, Onions, Green Peppers</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/3.webp" alt="Supreme Pizza" width="980" height="376"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Supreme</div>
+    <div class="m-item-desc">Pepperoni, Ham, Beef, Sausage, Mushrooms, Onions, Peppers, Olives</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/newpizza.webp" alt="Meatzza Pizza" width="1920" height="1408"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Meatzza</div>
+    <div class="m-item-desc">Pepperoni, Ham, Bacon, Beef, Italian Sausage</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/riverside-special-pizza-scaled.webp" alt="Riverside Special Pizza" width="1920" height="1281"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Riverside Special</div>
+    <div class="m-item-desc">Pepperoni, Mushrooms, Onions, Green Peppers — the house signature since 1999</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/4.webp" alt="Veggie Pizza" width="980" height="376"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Veggie</div>
+    <div class="m-item-desc">Mushrooms, Onions, Green Peppers, Black Olives, Tomatoes</div>
+    <div class="m-badge">Vegetarian</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/Halal-Chicken.webp" alt="Greek Chicken Pizza" width="980" height="376"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Greek Chicken</div>
+    <div class="m-item-desc">Chicken, Feta, Tomatoes, Onions, Black Olives, Banana Peppers</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/pizza-homepage-1.webp" alt="Chicken Trio Pizza" width="375" height="197"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Chicken Trio</div>
+    <div class="m-item-desc">Chicken, Bacon, Tomatoes, Onions, Garlic Sauce Base</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/pizza-homepage.webp" alt="BBQ Chicken Pizza" width="375" height="197"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">BBQ Chicken</div>
+    <div class="m-item-desc">Chicken, Bacon, Onions, BBQ Sauce Base</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/6.webp" alt="Tandoori Chicken Pizza" width="980" height="376"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Tandoori Chicken</div>
+    <div class="m-item-desc">Halal chicken, tandoori paste, onions, peppers</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/glutenfree-new.webp" alt="Hawaiian Chicken Pizza" width="1920" height="1280"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Hawaiian Chicken</div>
+    <div class="m-item-desc">Grilled chicken, ham, pineapple, mozzarella, sweet tomato base</div>
+  </div>
+  <div class="m-item-price">$13.29</div>
+</div>
+
+<!-- Deal banner -->
+<div class="m-deal-banner">
+  <div class="m-deal-banner-text">
+    <div class="m-deal-banner-tag">Carryout Special</div>
+    <div class="m-deal-banner-name">Ultimate Family Meal Deal — 2 Large Pizzas + Breadsticks + Salad</div>
+  </div>
+  <div class="m-deal-banner-price">$25.99</div>
+</div>
+
+<!-- BYO -->
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/pizza-homepage-1.webp" alt="Build Your Own Pizza" width="375" height="197"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Large 1-Topping Pizza</div>
+    <div class="m-item-desc">Original or Thin &amp; Crispy crust, 14"</div>
+  </div>
+  <div class="m-item-price">$7.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/5.webp" alt="Fresh N Fast Pizza" width="980" height="376"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Fresh N Fast</div>
+    <div class="m-item-desc">Pepperoni &amp; Cheese or Just Cheese — ready in minutes</div>
+  </div>
+  <div class="m-item-price">$6.99</div>
+</div>
+
+<div class="m-byo">
+  <div class="m-byo-tag">Build Your Own</div>
+  <h3>Custom pizza,<br><em>your way.</em></h3>
+  <p>Choose size, crust, and toppings at checkout. $1.70 per topping added.</p>
+  <a href="takeout.html" class="btn btn-white">Order Custom Pizza <span class="btn-arrow">↗</span></a>
+</div>
+
+<!-- ── DETROIT STYLE ── -->
+<div class="m-sec-head" id="detroit">
+  <h2>Detroit Style Pan</h2>
+  <p>Sicilian deep dish · 3 creamy cheeses · Crispy caramelized edges</p>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/get-attachment.aspx_11-e1384317042793.webp" alt="Pappa Pan Detroit" width="500" height="332"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Pappa Pan</div>
+    <div class="m-item-desc">Full-sized Detroit square. Cheese or 1 Topping.</div>
+  </div>
+  <div class="m-item-price">$9.49<small>Premium $14.49</small></div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/newpizza-20.webp" alt="Jr Pan Detroit" width="1920" height="1361"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Jr Pan</div>
+    <div class="m-item-desc">Single-serving Detroit pan. Same crispy edge.</div>
+  </div>
+  <div class="m-item-price">$4.99<small>Premium $8.49</small></div>
+</div>
+
+<!-- ── SANDWICHES ── -->
+<div class="m-sec-head" id="sandwiches">
+  <h2>Oven Baked Sandwiches</h2>
+  <p>Fresh-baked pizza dough, loaded with cheese and deli meats</p>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/new-oven-baked-sandwich.webp" alt="Italian Sandwich" width="1000" height="664"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Italian</div>
+    <div class="m-item-desc">Ham, salami, pepperoni, cheese, onion, banana peppers, Italian dressing</div>
+  </div>
+  <div class="m-item-price">$5.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/new-oven-baked-sandwich.webp" alt="Club Sandwich" width="1000" height="664"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Club</div>
+    <div class="m-item-desc">Turkey, ham, bacon, cheese, lettuce, tomato, mayo</div>
+  </div>
+  <div class="m-item-price">$5.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/new-oven-baked-sandwich.webp" alt="Ham and Cheese" width="1000" height="664"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Ham &amp; Cheese</div>
+    <div class="m-item-desc">Thick-cut ham and melted cheese on fresh-baked hoagie</div>
+  </div>
+  <div class="m-item-price">$5.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/new-oven-baked-sandwich.webp" alt="Turkey Sandwich" width="1000" height="664"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Turkey</div>
+    <div class="m-item-desc">Sliced turkey breast with lettuce, tomato, and choice of dressing</div>
+  </div>
+  <div class="m-item-price">$5.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/new-oven-baked-sandwich.webp" alt="Tuna Sandwich" width="1000" height="664"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Tuna</div>
+    <div class="m-item-desc">House tuna salad with lettuce and tomato on toasted hoagie</div>
+  </div>
+  <div class="m-item-price">$5.99</div>
+</div>
+
+<!-- ── PASTA ── -->
+<div class="m-sec-head" id="pasta">
+  <h2>Pasta Dinners</h2>
+  <p>All dinners come with 8 breadsticks</p>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/8401ac89-ec8b-445c-a08a-032c8c58209b.webp" alt="Chicken Parmesan" width="1920" height="1281"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Chicken Parmesan</div>
+    <div class="m-item-desc">Hand breaded chicken on spaghetti with marinara, mozzarella &amp; provolone</div>
+  </div>
+  <div class="m-item-price">$8.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/989b80c4-c84c-428d-b583-5461c31a391f.webp" alt="Meat Lasagna" width="1920" height="1281"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Meat Lasagna</div>
+    <div class="m-item-desc">Layers of noodles, ground beef, marinara, mozzarella &amp; provolone</div>
+  </div>
+  <div class="m-item-price">$8.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/96ab44ac-7437-4742-82c7-388f20aa9c15.webp" alt="Baked Ziti" width="1800" height="1800"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Baked Ziti</div>
+    <div class="m-item-desc">Ziti, marinara, ground beef, melted cheese, Italian sausage link</div>
+  </div>
+  <div class="m-item-price">$8.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/989b80c4-c84c-428d-b583-5461c31a391f.webp" alt="Macaroni and Cheese" width="1920" height="1281"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Macaroni &amp; Cheese</div>
+    <div class="m-item-desc">Baked in cheddar cheese sauce, covered with melted cheddar</div>
+  </div>
+  <div class="m-item-price">$7.99</div>
+</div>
+
+<!-- ── WINGS & SIDES ── -->
+<div class="m-sec-head" id="wings">
+  <h2>Wings &amp; Sides</h2>
+  <p>Always baked, never fried</p>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/new-wings.webp" alt="Jumbo Wings 5pc" width="1000" height="508"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Jumbo Wings (5 pc)</div>
+    <div class="m-item-desc">Mild, Medium, Hot, Extreme, BBQ, Sweet &amp; Spicy, Lemon Pepper, or Teriyaki</div>
+  </div>
+  <div class="m-item-price">$6.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/new-wings.webp" alt="Jumbo Wings 10pc" width="1000" height="508"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Jumbo Wings (10 pc)</div>
+    <div class="m-item-desc">Same great flavors, party-size. Served with ranch or blue cheese.</div>
+  </div>
+  <div class="m-item-price">$12.99</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/new-cheesesticks.webp" alt="Cheese Bread" width="1000" height="752"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Cheese Bread</div>
+    <div class="m-item-desc">10 sticks of fresh baked bread, 2 types of cheese, garlic</div>
+  </div>
+  <div class="m-item-price">$5.79</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/bread-sticks80.webp" alt="Bread Sticks" width="80" height="98"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Bread Sticks</div>
+    <div class="m-item-desc">Garlic, butter &amp; parmesan cheese. Served with dipping sauce.</div>
+  </div>
+  <div class="m-item-price">$3.59</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/cinnamonbread.webp" alt="Cinnamon Bread" width="1900" height="1100"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Cinnamon Bread</div>
+    <div class="m-item-desc">Drizzled with cream cheese icing. Extra icing +$0.50.</div>
+  </div>
+  <div class="m-item-price">$4.99</div>
+</div>
+
+<!-- ── SALADS ── -->
+<div class="m-sec-head" id="salads">
+  <h2>Fresh Salads</h2>
+  <p>Side (serves 1) · Individual (1–2) · Family (3–5)</p>
+</div>
+<div class="m-item">
+  <div class="m-item-img"><img loading="lazy" src="/images/7.webp" alt="Greek Salad" width="574" height="372"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Greek</div>
+    <div class="m-item-desc">Feta, black olives, cucumber, tomatoes, red onion, pepperoncini</div>
+    <div class="m-badge">Vegetarian</div>
+  </div>
+  <div class="m-item-price">From $3.79</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img" style="background:var(--gp);"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Garden</div>
+    <div class="m-item-desc">Romaine, tomato, cucumber, croutons, your choice of dressing</div>
+    <div class="m-badge">Vegetarian</div>
+  </div>
+  <div class="m-item-price">From $3.79</div>
+</div>
+<div class="m-item">
+  <div class="m-item-img" style="background:var(--gp);"></div>
+  <div class="m-item-body">
+    <div class="m-item-name">Chef</div>
+    <div class="m-item-desc">Romaine, ham, turkey, cheese, tomato, cucumber, croutons</div>
+  </div>
+  <div class="m-item-price">From $4.79</div>
+</div>
+
+<footer class="m-footer">
+  <div class="m-footer-name">Riverside Pizza</div>
+  <div class="m-footer-links">
+    <a href="index-m.html">Home</a>
+    <a href="specials.html">Specials</a>
+    <a href="gluten-free.html">Gluten Free</a>
+    <a href="catering-m.html">Catering</a>
+    <a href="locations-m.html">Locations</a>
+  </div>
+  <div class="m-footer-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+</footer>
+
+<!-- STICKY ORDER BAR -->
+<div class="m-order-bar">
+  <a href="takeout.html" class="btn btn-green">Order Online <span class="btn-arrow">↗</span></a>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  const checkNav = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', checkNav, { passive: true });
+  checkNav();
+
+  const navHam = document.getElementById('navHam');
+  const mobOverlay = document.getElementById('mobOverlay');
+  let trapHandler = null;
+  function closeMenu() {
+    navHam.classList.remove('open'); mobOverlay.classList.remove('open');
+    document.body.style.overflow = ''; navHam.setAttribute('aria-label', 'Open menu');
+    if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
+  }
+  function openMenu() {
+    navHam.classList.add('open'); mobOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; navHam.setAttribute('aria-label', 'Close menu');
+    const focusable = Array.from(mobOverlay.querySelectorAll('a'));
+    requestAnimationFrame(() => focusable[0].focus());
+    trapHandler = (e) => {
+      if (e.key === 'Escape') { closeMenu(); navHam.focus(); return; }
+      if (e.key !== 'Tab') return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
+    };
+    document.addEventListener('keydown', trapHandler);
+  }
+  navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
+  mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Highlight active tab on scroll
+  const tabs = document.querySelectorAll('.m-tab');
+  const sections = ['pizzas','detroit','sandwiches','pasta','wings','salads'].map(id => document.getElementById(id));
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((s, i) => { if (s && window.scrollY >= s.offsetTop - 160) current = i; });
+    tabs.forEach((t, i) => t.classList.toggle('active', i === current));
+  }, { passive: true });
+</script>
+</body>
+</html>

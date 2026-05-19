@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>About Us — Riverside Pizza</title>
+  <script>if(window.innerWidth>960)location.replace('about.html');</script>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="description" content="Family-owned since 1999. Real ingredients, handcrafted pizza, 8 locations across Metro Atlanta.">
+  <link rel="preload" as="image" href="/images/460149_402099029806157_1433563516_o.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="/shared.css">
+  <style>
+    /* ── HERO ── */
+    .m-hero {
+      position: relative; height: 62dvh; min-height: 420px;
+      overflow: hidden; display: flex; align-items: flex-end;
+    }
+    .m-hero-bg {
+      position: absolute; inset: 0;
+      background: url('/images/460149_402099029806157_1433563516_o.webp') center top / cover no-repeat;
+      z-index: 0;
+    }
+    .m-hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, rgba(5,13,5,0.94) 0%, rgba(5,13,5,0.52) 45%, rgba(5,13,5,0.1) 80%, transparent 100%),
+        linear-gradient(to bottom, rgba(5,13,5,0.5) 0%, transparent 30%);
+      z-index: 1;
+    }
+    .m-hero-content {
+      position: relative; z-index: 2;
+      padding: 0 1.75rem 3rem; width: 100%;
+    }
+    .m-hero h1 {
+      font-family: var(--d); font-size: clamp(2.2rem, 10vw, 3.5rem);
+      font-weight: 500; color: white; line-height: 1.08;
+      letter-spacing: -0.025em; margin-bottom: 0.75rem;
+    }
+    .m-hero h1 em { font-style: italic; color: rgba(185,232,185,0.9); }
+    .m-hero-sub { font-size: 0.9rem; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.7; }
+
+    /* ── STATS ── */
+    .m-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; background: var(--gd); }
+    .m-stat {
+      padding: 1.75rem 1rem; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .m-stat:last-child { border-right: none; }
+    .m-stat-num {
+      font-family: var(--d); font-size: 1.9rem; font-weight: 700;
+      color: rgba(160,222,160,0.96); line-height: 1;
+    }
+    .m-stat-lbl {
+      font-family: var(--m); font-size: 0.42rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-top: 0.35rem;
+    }
+
+    /* ── STORY ── */
+    .m-story { padding: 2.5rem 1.75rem; background: var(--wh); }
+    .m-story h2 {
+      font-family: var(--d); font-size: clamp(1.5rem, 6vw, 2rem);
+      font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .m-story h2 em { font-style: italic; color: var(--g); }
+    .m-story p { font-size: 0.9rem; line-height: 1.85; color: var(--mu); font-weight: 300; margin-bottom: 1rem; }
+    .m-story p strong { color: var(--tx); font-weight: 600; }
+    .m-story p:last-child { margin-bottom: 0; }
+
+    /* ── VALUES ── */
+    .m-values { background: var(--cream); padding: 2.5rem 1.75rem; }
+    .m-values h2 {
+      font-family: var(--d); font-size: clamp(1.5rem, 6vw, 2rem);
+      font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 1.75rem;
+    }
+    .m-values h2 em { font-style: italic; color: var(--g); }
+    .m-val-list { display: flex; flex-direction: column; gap: 0; }
+    .m-val-item {
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--bdr);
+      display: flex; gap: 1.25rem; align-items: flex-start;
+    }
+    .m-val-item:last-child { border-bottom: 1px solid var(--bdr); }
+    .m-val-num {
+      font-family: var(--m); font-size: 0.44rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--g); min-width: 1.5rem; margin-top: 0.3rem; flex-shrink: 0;
+    }
+    .m-val-item h3 { font-family: var(--d); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .m-val-item p { font-size: 0.85rem; color: var(--mu); line-height: 1.75; font-weight: 300; margin: 0; }
+
+    /* ── STANISLAUS ── */
+    .m-stan { background: var(--g); padding: 2.5rem 1.75rem; }
+    .m-stan-ey {
+      font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;
+    }
+    .m-stan-ey::before { content: ''; width: 1.5rem; height: 1px; background: var(--gold); }
+    .m-stan h2 {
+      font-family: var(--d); font-size: clamp(1.5rem, 6vw, 2rem);
+      font-weight: 500; color: white; line-height: 1.15;
+      letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+    .m-stan h2 em { font-style: italic; color: rgba(240,173,78,0.85); }
+    .m-stan p { font-size: 0.9rem; line-height: 1.85; color: rgba(255,255,255,0.72); font-weight: 300; margin-bottom: 1rem; }
+    .m-stan img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      border-radius: 4px; margin-bottom: 1.25rem;
+    }
+
+    /* ── CTA ── */
+    .m-cta { background: var(--gd); padding: 2.5rem 1.75rem; }
+    .m-cta p { font-family: var(--d); font-style: italic; font-size: 1.1rem; color: white; margin-bottom: 1.25rem; line-height: 1.5; }
+    .m-cta-btns { display: flex; flex-direction: column; gap: 0.75rem; }
+    .m-cta-btns .btn { justify-content: center; }
+
+    /* ── FOOTER ── */
+    .m-footer {
+      background: var(--gd); border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 1.75rem calc(2rem + env(safe-area-inset-bottom));
+      text-align: center;
+    }
+    .m-footer-name { font-family: var(--d); font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.75rem; }
+    .m-footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem 1.25rem; margin-bottom: 1rem; }
+    .m-footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.42); text-decoration: none; font-weight: 300; }
+    .m-footer-copy { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.16); }
+  </style>
+</head>
+<body class="hero-page">
+
+<nav id="nav">
+  <a href="index-m.html" class="logo">
+    <img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </a>
+  <button class="nav-ham" id="navHam" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-overlay" id="mobOverlay">
+  <a href="index-m.html">Home</a>
+  <a href="menu-m.html">Menu</a>
+  <a href="catering-m.html">Catering</a>
+  <a href="locations-m.html">Locations</a>
+  <a href="about-m.html" aria-current="page">About</a>
+  <a href="takeout.html" class="mob-cta">Order Online</a>
+</div>
+
+<!-- HERO -->
+<section class="m-hero">
+  <div class="m-hero-bg"></div>
+  <div class="m-hero-overlay"></div>
+  <div class="m-hero-content">
+    <h1>Family Owned &amp; <em>Proudly Local</em></h1>
+    <p class="m-hero-sub">Since 1999, serving Metro Atlanta handcrafted pizza made with real ingredients and the same standards set on day one.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="m-stats">
+  <div class="m-stat"><div class="m-stat-num">27</div><div class="m-stat-lbl">Years</div></div>
+  <div class="m-stat"><div class="m-stat-num">8</div><div class="m-stat-lbl">Locations</div></div>
+  <div class="m-stat"><div class="m-stat-num">Zero</div><div class="m-stat-lbl">Shortcuts</div></div>
+</div>
+
+<!-- STORY -->
+<section class="m-story">
+  <h2>A Pizza Dream <em>Born in Georgia</em></h2>
+  <p>In 1999, <strong>Al and Sandy Thompson</strong> opened the very first Riverside Pizza in Lawrenceville, Georgia. Their vision was simple: serve the freshest, highest-quality pizza with genuine hospitality.</p>
+  <p>What began as a single storefront has grown into <strong>eight thriving locations</strong> across Metro Atlanta. Every pizza is still made with the same care, the same fresh ingredients, and the same family recipes — the same standards run consistently across every location.</p>
+</section>
+
+<!-- VALUES -->
+<section class="m-values">
+  <h2>Three principles. <em>27 years.</em></h2>
+  <div class="m-val-list">
+    <div class="m-val-item">
+      <div class="m-val-num">01</div>
+      <div>
+        <h3>Community First</h3>
+        <p>We sponsor local teams, hire local staff, and source local produce. Eight locations, eight neighborhoods we call home.</p>
+      </div>
+    </div>
+    <div class="m-val-item">
+      <div class="m-val-num">02</div>
+      <div>
+        <h3>Real Ingredients Only</h3>
+        <p>100% real mozzarella, hand-grated on site. Premium Stanislaus tomatoes. Dough made from scratch every morning.</p>
+      </div>
+    </div>
+    <div class="m-val-item">
+      <div class="m-val-num">03</div>
+      <div>
+        <h3>Built to Last</h3>
+        <p>Every pizza is hand-tossed, every order prepared the same way at all 8 locations. The quality runs consistently whether the founders are in the store or not.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STANISLAUS -->
+<section class="m-stan">
+  <div class="m-stan-ey">Our Secret Ingredient</div>
+  <h2>Stanislaus <em>Premium Tomatoes</em></h2>
+  <img loading="lazy" src="/images/tomatoes.webp" alt="Fresh Stanislaus tomatoes" width="800" height="600">
+  <p>While most pizza shops use cheap canned sauce, we insist on Stanislaus, the gold standard. Grown in California's San Joaquin Valley, vine-ripened and packed within hours of harvest.</p>
+  <p>A rich, sweet, naturally balanced sauce you can taste in every bite.</p>
+  <a href="stanislaus.html" class="btn btn-outline-w">Learn More <span class="btn-arrow">→</span></a>
+</section>
+
+<!-- CTA -->
+<div class="m-cta">
+  <p>27 years. Same family. Same pizza.</p>
+  <div class="m-cta-btns">
+    <a href="takeout.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
+    <a href="menu-m.html" class="btn btn-outline-w">View Menu</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="m-footer">
+  <div class="m-footer-name">Riverside Pizza</div>
+  <div class="m-footer-links">
+    <a href="index-m.html">Home</a>
+    <a href="menu-m.html">Menu</a>
+    <a href="locations-m.html">Locations</a>
+    <a href="catering-m.html">Catering</a>
+    <a href="contact.html">Contact</a>
+    <a href="jobs.html">Jobs</a>
+  </div>
+  <div class="m-footer-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const checkNav = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', checkNav, { passive: true });
+  checkNav();
+
+  const navHam = document.getElementById('navHam');
+  const mobOverlay = document.getElementById('mobOverlay');
+  let trapHandler = null;
+  function closeMenu() {
+    navHam.classList.remove('open'); mobOverlay.classList.remove('open');
+    document.body.style.overflow = ''; navHam.setAttribute('aria-label', 'Open menu');
+    if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
+  }
+  function openMenu() {
+    navHam.classList.add('open'); mobOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; navHam.setAttribute('aria-label', 'Close menu');
+    const focusable = Array.from(mobOverlay.querySelectorAll('a'));
+    requestAnimationFrame(() => focusable[0].focus());
+    trapHandler = (e) => {
+      if (e.key === 'Escape') { closeMenu(); navHam.focus(); return; }
+      if (e.key !== 'Tab') return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
+    };
+    document.addEventListener('keydown', trapHandler);
+  }
+  navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
+  mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
+</body>
+</html>

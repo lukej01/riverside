@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Catering — Riverside Pizza</title>
+  <script>if(window.innerWidth>960)location.replace('catering.html');</script>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="description" content="Riverside Pizza catering for your event. Corporate lunches, parties, and group orders across Metro Atlanta.">
+  <link rel="preload" as="image" href="/images/460149_402099029806157_1433563516_o.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="/shared.css">
+  <style>
+    button, input, textarea, select { font-family: inherit; }
+
+    /* ── HERO ── */
+    .m-hero {
+      position: relative; height: 65dvh; min-height: 440px;
+      overflow: hidden; display: flex; align-items: flex-end;
+    }
+    .m-hero-bg {
+      position: absolute; inset: 0;
+      background: url('/images/460149_402099029806157_1433563516_o.webp') center / cover no-repeat;
+      z-index: 0;
+    }
+    .m-hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(108deg, rgba(8,18,8,0.9) 0%, rgba(8,18,8,0.65) 35%, rgba(8,18,8,0.22) 65%, transparent 90%),
+        linear-gradient(to bottom, rgba(8,18,8,0.5) 0%, transparent 30%);
+      z-index: 1;
+    }
+    .m-hero-content { position: relative; z-index: 2; padding: 0 1.75rem 3rem; width: 100%; }
+    .m-hero-ey {
+      font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(160,210,160,0.85);
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
+    }
+    .m-hero-ey::before { content: ''; width: 1.5rem; height: 1px; background: currentColor; }
+    .m-hero h1 {
+      font-family: var(--d); font-size: clamp(2rem, 9vw, 3.2rem);
+      font-weight: 500; color: white; line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+    .m-hero h1 em { font-style: italic; color: rgba(180,220,180,0.95); }
+
+    /* ── STAT CARD ── */
+    .m-stat-card {
+      background: var(--gd); padding: 2rem 1.75rem;
+      display: flex; gap: 2.5rem; align-items: center;
+    }
+    .m-stat-big {
+      font-family: var(--d); font-size: 3.5rem; font-weight: 700;
+      color: rgba(160,222,160,0.95); line-height: 1; flex-shrink: 0;
+    }
+    .m-stat-text { flex: 1; }
+    .m-stat-label {
+      font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.4rem;
+    }
+    .m-stat-desc { font-size: 0.88rem; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.6; }
+    .m-stat-desc strong { color: white; font-weight: 600; }
+
+    /* ── WHY US ── */
+    .m-why { background: var(--g); }
+    .m-why-item {
+      padding: 2rem 1.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex; gap: 1.25rem;
+    }
+    .m-why-item:last-child { border-bottom: none; }
+    .m-why-num {
+      font-family: var(--d); font-size: 2rem; font-weight: 700;
+      color: rgba(255,255,255,0.15); line-height: 1; flex-shrink: 0; min-width: 2rem;
+    }
+    .m-why-item h3 { font-family: var(--d); font-size: 1.05rem; font-weight: 600; color: white; margin-bottom: 0.35rem; }
+    .m-why-item p { font-size: 0.85rem; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.7; margin: 0; }
+
+    /* ── HOW TO BOOK ── */
+    .m-book { background: var(--wh); padding: 2.5rem 1.75rem; }
+    .m-book h2 {
+      font-family: var(--d); font-size: clamp(1.5rem, 6vw, 2rem);
+      font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+    .m-book h2 em { font-style: italic; color: var(--g); }
+    .m-book-sub { font-size: 0.88rem; color: var(--mu); font-weight: 300; line-height: 1.6; margin-bottom: 2rem; }
+    .m-steps { display: flex; flex-direction: column; }
+    .m-step {
+      display: flex; gap: 1.25rem;
+      padding: 1.5rem 0; border-top: 1px solid var(--bdr);
+    }
+    .m-step:last-child { border-bottom: 1px solid var(--bdr); }
+    .m-step-num {
+      font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--g);
+      min-width: 1.75rem; margin-top: 0.3rem; flex-shrink: 0;
+    }
+    .m-step h4 { font-family: var(--d); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .m-step p { font-size: 0.84rem; color: var(--mu); font-weight: 300; line-height: 1.65; margin: 0; }
+
+    /* ── KEY FACTS ── */
+    .m-facts {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      background: var(--bdr); gap: 1px; margin-top: 2rem; border: 1px solid var(--bdr);
+    }
+    .m-fact { background: var(--cream); padding: 1.25rem 1rem; text-align: center; }
+    .m-fact-label {
+      font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--mu); margin-bottom: 0.35rem;
+    }
+    .m-fact-val { font-family: var(--d); font-size: 1rem; font-weight: 600; color: var(--tx); }
+
+    /* ── CALL DIRECT ── */
+    .m-call { background: var(--cream); padding: 2.5rem 1.75rem; border-top: 1px solid var(--bdr); }
+    .m-call h2 {
+      font-family: var(--d); font-size: 1.4rem; font-weight: 500;
+      letter-spacing: -0.02em; margin-bottom: 0.5rem;
+    }
+    .m-call p { font-size: 0.85rem; color: var(--mu); font-weight: 300; margin-bottom: 1.75rem; line-height: 1.6; }
+    .m-call-list { display: flex; flex-direction: column; }
+    .m-call-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 0; border-bottom: 1px solid var(--bdr); gap: 1rem;
+    }
+    .m-call-item:first-child { border-top: 1px solid var(--bdr); }
+    .m-call-name { font-family: var(--d); font-size: 1rem; font-weight: 600; }
+    .m-call-phone {
+      font-family: var(--m); font-size: 0.9rem; font-weight: 500;
+      color: var(--g); text-decoration: none; min-height: 44px;
+      display: flex; align-items: center; touch-action: manipulation;
+    }
+
+    /* ── FORM ── */
+    .m-form { background: var(--wh); padding: 2.5rem 1.75rem; }
+    .m-form h2 { font-family: var(--d); font-size: 1.4rem; font-weight: 600; margin-bottom: 0.35rem; }
+    .m-form .sub { font-size: 0.85rem; color: var(--mu); margin-bottom: 2rem; line-height: 1.6; }
+    .field { margin-bottom: 1.25rem; }
+    .field label {
+      display: block; font-family: var(--m); font-size: 0.48rem;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--mu); margin-bottom: 0.45rem;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--bdr);
+      font-size: 0.92rem; background: var(--cream);
+      transition: border-color 0.2s; color: var(--tx);
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--g); }
+    .field textarea { resize: vertical; min-height: 90px; }
+    .submit-btn {
+      width: 100%; padding: 1.1rem; background: var(--g); color: white;
+      border: none; border-radius: 5px; font-family: var(--m); font-size: 0.6rem;
+      letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+      transition: background 0.2s; min-height: 52px;
+    }
+    .submit-btn:active { background: var(--gd); }
+    .submit-btn:disabled { opacity: 0.6; }
+
+    /* ── FOOTER ── */
+    .m-footer {
+      background: var(--gd);
+      padding: 2rem 1.75rem calc(2rem + env(safe-area-inset-bottom));
+      text-align: center;
+    }
+    .m-footer-name { font-family: var(--d); font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.75rem; }
+    .m-footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem 1.25rem; margin-bottom: 0.75rem; }
+    .m-footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.42); text-decoration: none; font-weight: 300; }
+    .m-footer-copy { font-family: var(--m); font-size: 0.42rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.16); }
+  </style>
+</head>
+<body class="hero-page">
+
+<nav id="nav">
+  <a href="index-m.html" class="logo">
+    <img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </a>
+  <button class="nav-ham" id="navHam" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-overlay" id="mobOverlay">
+  <a href="index-m.html">Home</a>
+  <a href="menu-m.html">Menu</a>
+  <a href="catering-m.html" aria-current="page">Catering</a>
+  <a href="locations-m.html">Locations</a>
+  <a href="about-m.html">About</a>
+  <a href="takeout.html" class="mob-cta">Order Online</a>
+</div>
+
+<!-- HERO -->
+<section class="m-hero">
+  <div class="m-hero-bg"></div>
+  <div class="m-hero-overlay"></div>
+  <div class="m-hero-content">
+    <div class="m-hero-ey">Large Group Catering · Metro Atlanta</div>
+    <h1>We fed 325 pizzas to Gwinnett Tech.<br><em>We'll feed your group too.</em></h1>
+  </div>
+</section>
+
+<!-- STAT -->
+<div class="m-stat-card">
+  <div class="m-stat-big">325</div>
+  <div class="m-stat-text">
+    <div class="m-stat-label">Our largest order</div>
+    <div class="m-stat-desc">Delivered on time and hot to Gwinnett Technical College, written up in the <strong>Atlanta Journal-Constitution.</strong></div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="m-why">
+  <div class="m-why-item">
+    <div class="m-why-num">01</div>
+    <div>
+      <h3>Owner Operated</h3>
+      <p>Every store is owner-operated, ensuring the highest standards for your large event.</p>
+    </div>
+  </div>
+  <div class="m-why-item">
+    <div class="m-why-num">02</div>
+    <div>
+      <h3>On-Time Guarantee</h3>
+      <p>We coordinate carefully so your food arrives exactly when your event needs it — hot and fresh.</p>
+    </div>
+  </div>
+  <div class="m-why-item">
+    <div class="m-why-num">03</div>
+    <div>
+      <h3>100% Satisfaction</h3>
+      <p>If you're not satisfied, we replace the order or refund your money. Guaranteed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- HOW TO BOOK -->
+<section class="m-book">
+  <h2>Simple to set up. <em>Handled for you.</em></h2>
+  <p class="m-book-sub">Call your nearest location or fill out the form below. We get back to you within one business day.</p>
+  <div class="m-steps">
+    <div class="m-step">
+      <div class="m-step-num">01</div>
+      <div><h4>Contact Us</h4><p>Call any of our 8 locations directly or submit the form with your event details.</p></div>
+    </div>
+    <div class="m-step">
+      <div class="m-step-num">02</div>
+      <div><h4>We Confirm Your Order</h4><p>We'll review your group size, timing, and logistics and confirm within one business day.</p></div>
+    </div>
+    <div class="m-step">
+      <div class="m-step-num">03</div>
+      <div><h4>Hot. On Time. Guaranteed.</h4><p>Your order arrives fresh from the oven, exactly when you need it — or we make it right.</p></div>
+    </div>
+  </div>
+  <div class="m-facts">
+    <div class="m-fact"><div class="m-fact-label">Minimum</div><div class="m-fact-val">5 pizzas</div></div>
+    <div class="m-fact"><div class="m-fact-label">Lead time</div><div class="m-fact-val">48 hours</div></div>
+    <div class="m-fact"><div class="m-fact-label">Sizing</div><div class="m-fact-val">1 per 3 guests</div></div>
+  </div>
+</section>
+
+<!-- CALL DIRECT -->
+<section class="m-call">
+  <h2>Call Us Directly</h2>
+  <p>Each location is owner-operated and happy to handle your catering order personally.</p>
+  <div class="m-call-list">
+    <div class="m-call-item"><span class="m-call-name">Lawrenceville</span><a href="tel:7708221500" class="m-call-phone">770-822-1500</a></div>
+    <div class="m-call-item"><span class="m-call-name">Sugarloaf</span><a href="tel:7707717000" class="m-call-phone">770-771-7000</a></div>
+    <div class="m-call-item"><span class="m-call-name">Suwanee</span><a href="tel:7702719992" class="m-call-phone">770-271-9992</a></div>
+    <div class="m-call-item"><span class="m-call-name">Grayson</span><a href="tel:7706822929" class="m-call-phone">770-682-2929</a></div>
+    <div class="m-call-item"><span class="m-call-name">Hamilton Mill</span><a href="tel:7702718881" class="m-call-phone">770-271-8881</a></div>
+    <div class="m-call-item"><span class="m-call-name">Dacula</span><a href="tel:7709635000" class="m-call-phone">770-963-5000</a></div>
+    <div class="m-call-item"><span class="m-call-name">Johns Creek</span><a href="tel:7703600002" class="m-call-phone">770-360-0002</a></div>
+    <div class="m-call-item"><span class="m-call-name">Cumming</span><a href="tel:4702394243" class="m-call-phone">470-239-4243</a></div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="m-form">
+  <h2>Request Catering</h2>
+  <p class="sub">We'll follow up within one business day to confirm your order.</p>
+  <form id="cateringForm" action="https://formspree.io/f/xbjnqkyw" method="POST">
+    <div class="field"><label for="cname">Your Name</label><input type="text" id="cname" name="cname" required placeholder="Full name"></div>
+    <div class="field"><label for="cphone">Phone</label><input type="tel" id="cphone" name="cphone" required placeholder="(770) 555-1234"></div>
+    <div class="field"><label for="cemail">Email Address</label><input type="email" id="cemail" name="cemail" required placeholder="you@email.com"></div>
+    <div class="field"><label for="cevent">Event Date</label><input type="date" id="cevent" name="cevent" required></div>
+    <div class="field"><label for="cguests">Number of Guests</label><input type="number" id="cguests" name="cguests" required placeholder="e.g. 50" min="1"></div>
+    <div class="field"><label for="clocation">Nearest Location</label>
+      <select id="clocation" name="clocation">
+        <option value="">Choose a location</option>
+        <option>Lawrenceville</option>
+        <option>Sugarloaf (Lawrenceville)</option>
+        <option>Suwanee</option>
+        <option>Grayson</option>
+        <option>Hamilton Mill</option>
+        <option>Dacula</option>
+        <option>Johns Creek</option>
+        <option>Cumming</option>
+      </select>
+    </div>
+    <div class="field"><label for="cnotes">Event Details</label><textarea id="cnotes" name="cnotes" placeholder="Tell us about your event — type of occasion, delivery or pickup, any special requests"></textarea></div>
+    <button type="submit" class="submit-btn">Send Catering Request</button>
+  </form>
+</section>
+
+<footer class="m-footer">
+  <div class="m-footer-name">Riverside Pizza</div>
+  <div class="m-footer-links">
+    <a href="index-m.html">Home</a>
+    <a href="menu-m.html">Menu</a>
+    <a href="locations-m.html">Locations</a>
+    <a href="about-m.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="m-footer-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const checkNav = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', checkNav, { passive: true });
+  checkNav();
+
+  const navHam = document.getElementById('navHam');
+  const mobOverlay = document.getElementById('mobOverlay');
+  let trapHandler = null;
+  function closeMenu() {
+    navHam.classList.remove('open'); mobOverlay.classList.remove('open');
+    document.body.style.overflow = ''; navHam.setAttribute('aria-label', 'Open menu');
+    if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
+  }
+  function openMenu() {
+    navHam.classList.add('open'); mobOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; navHam.setAttribute('aria-label', 'Close menu');
+    const focusable = Array.from(mobOverlay.querySelectorAll('a'));
+    requestAnimationFrame(() => focusable[0].focus());
+    trapHandler = (e) => {
+      if (e.key === 'Escape') { closeMenu(); navHam.focus(); return; }
+      if (e.key !== 'Tab') return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
+    };
+    document.addEventListener('keydown', trapHandler);
+  }
+  navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
+  mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  document.getElementById('cateringForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.submit-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    try {
+      const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
+      if (res.ok) {
+        btn.textContent = 'Request Sent!'; btn.style.background = 'var(--gl)';
+        this.reset();
+        setTimeout(() => { btn.textContent = original; btn.style.background = ''; btn.disabled = false; }, 4000);
+      } else { throw new Error(); }
+    } catch {
+      btn.textContent = 'Try Again'; btn.style.background = '#c0392b'; btn.disabled = false;
+      setTimeout(() => { btn.textContent = original; btn.style.background = ''; }, 3500);
+    }
+  });
+</script>
+</body>
+</html>

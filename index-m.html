@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Riverside Pizza — Order Online</title>
+  <script>if(window.innerWidth>960)location.replace('index.html');</script>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="description" content="Riverside Pizza — Order carryout online. 8 Metro Atlanta locations. Family-owned since 1999.">
+  <link rel="preload" as="image" href="/images/newpizza.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="/shared.css">
+  <style>
+    /* ── HERO ── */
+    .m-hero {
+      position: relative;
+      height: 100dvh;
+      min-height: 580px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .m-hero-bg {
+      position: absolute; inset: 0;
+      background: url('/images/newpizza.webp') center / cover no-repeat;
+      z-index: 0;
+    }
+    .m-hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, rgba(5,13,5,0.95) 0%, rgba(5,13,5,0.6) 40%, rgba(5,13,5,0.12) 75%, transparent 100%),
+        linear-gradient(to bottom, rgba(5,13,5,0.48) 0%, transparent 28%);
+      z-index: 1;
+    }
+    .m-hero-content {
+      position: relative; z-index: 2;
+      padding: 0 1.75rem calc(3.5rem + env(safe-area-inset-bottom));
+      width: 100%;
+    }
+    .m-hero h1 {
+      font-family: var(--d);
+      font-size: clamp(2.8rem, 13vw, 4.5rem);
+      font-weight: 400; color: white;
+      line-height: 1; letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .m-hero h1 em { font-style: italic; color: rgba(185,232,185,0.9); display: block; }
+    .m-hero-btns { display: flex; flex-direction: column; gap: 0.75rem; }
+    .m-hero-btns .btn { justify-content: center; }
+
+    /* ── QUICK STRIP ── */
+    .m-strip {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      background: var(--cream); border-bottom: 1px solid var(--bdr);
+    }
+    .m-strip-btn {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.5rem; padding: 1.5rem 0.5rem;
+      border-right: 1px solid var(--bdr);
+      text-decoration: none; touch-action: manipulation;
+      transition: background 0.15s;
+    }
+    .m-strip-btn:last-child { border-right: none; }
+    .m-strip-btn:active { background: var(--gp); }
+    .m-strip-icon {
+      width: 22px; height: 22px;
+      stroke: var(--g); fill: none;
+      stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .m-strip-label {
+      font-family: var(--m); font-size: 0.46rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--mu);
+    }
+
+    /* ── STATS ── */
+    .m-stats { display: grid; grid-template-columns: 1fr 1fr; background: var(--gd); }
+    .m-stat {
+      padding: 2rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      text-align: center;
+    }
+    .m-stat:nth-child(2n) { border-right: none; }
+    .m-stat:nth-child(3), .m-stat:nth-child(4) { border-bottom: none; }
+    .m-stat-num {
+      font-family: var(--d); font-size: 2.25rem; font-weight: 700;
+      color: rgba(160,222,160,0.96); line-height: 1;
+    }
+    .m-stat-lbl {
+      font-family: var(--m); font-size: 0.46rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.42); margin-top: 0.4rem;
+    }
+
+    /* ── DEALS ── */
+    .m-deals { background: var(--wh); }
+    .m-deals-head { padding: 3rem 1.75rem 1.75rem; }
+    .m-deals-head h2 {
+      font-family: var(--d); font-size: clamp(1.6rem, 7vw, 2.2rem);
+      font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;
+    }
+    .m-deals-head h2 em { font-style: italic; color: var(--g); }
+    .m-deal-card {
+      position: relative; min-height: 280px;
+      display: flex; align-items: flex-end; overflow: hidden;
+    }
+    .m-deal-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .m-deal-grad {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(14,32,14,0.96) 0%, rgba(14,32,14,0.52) 55%, rgba(14,32,14,0.08) 100%);
+    }
+    .m-deal-body { position: relative; z-index: 2; padding: 1.75rem; width: 100%; }
+    .m-deal-price {
+      font-family: var(--d); font-size: 3rem; font-weight: 700;
+      color: white; line-height: 1;
+    }
+    .m-deal-name {
+      font-family: var(--d); font-size: 1.15rem; font-weight: 500;
+      color: white; margin: 0.25rem 0 0.5rem;
+    }
+    .m-deal-items {
+      font-size: 0.8rem; color: rgba(255,255,255,0.62);
+      font-weight: 300; line-height: 1.6; margin-bottom: 1.25rem;
+    }
+    .m-deal-body .btn { justify-content: center; width: 100%; }
+
+    /* ── LOCATIONS ── */
+    .m-locs {
+      background: var(--cream);
+      padding: 3rem 0 calc(3rem + env(safe-area-inset-bottom) + 72px);
+    }
+    .m-locs-head { padding: 0 1.75rem 1.75rem; }
+    .m-locs-head h2 {
+      font-family: var(--d); font-size: clamp(1.6rem, 7vw, 2.2rem);
+      font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;
+    }
+    .m-locs-head h2 em { font-style: italic; color: var(--g); }
+    .m-loc-list { display: flex; flex-direction: column; }
+    .m-loc-item {
+      padding: 1.25rem 1.75rem;
+      border-top: 1px solid var(--bdr);
+      background: var(--wh);
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .m-loc-item:last-child { border-bottom: 1px solid var(--bdr); }
+    .m-loc-name { font-family: var(--d); font-size: 1.15rem; font-weight: 600; color: var(--tx); }
+    .m-loc-hours {
+      font-family: var(--m); font-size: 0.48rem;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--g);
+    }
+    .m-loc-phone {
+      font-family: var(--m); font-size: 1rem; font-weight: 500;
+      color: var(--g); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      min-height: 44px; touch-action: manipulation;
+    }
+    .m-loc-actions { display: flex; gap: 0.75rem; margin-top: 0.25rem; }
+    .m-loc-btn {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      min-height: 44px; font-family: var(--m); font-size: 0.48rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 4px; touch-action: manipulation;
+      text-decoration: none; font-weight: 500;
+    }
+    .m-loc-btn-order { background: var(--g); color: white; }
+    .m-loc-btn-order:active { background: var(--gd); }
+    .m-loc-btn-dir { background: transparent; color: var(--g); border: 1px solid var(--g); }
+    .m-loc-btn-dir:active { background: var(--gp); }
+
+    /* ── FOOTER ── */
+    .m-footer {
+      background: var(--gd);
+      padding: 2.5rem 1.75rem calc(2.5rem + env(safe-area-inset-bottom));
+      text-align: center;
+    }
+    .m-footer-name { font-family: var(--d); font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 0.35rem; }
+    .m-footer-sub {
+      font-family: var(--m); font-size: 0.44rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28); margin-bottom: 1.5rem;
+    }
+    .m-footer-links {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 0.35rem 1.25rem; margin-bottom: 1.75rem;
+    }
+    .m-footer-links a {
+      font-size: 0.85rem; color: rgba(255,255,255,0.45);
+      text-decoration: none; font-weight: 300; transition: color 0.2s;
+    }
+    .m-footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .m-footer-copy {
+      font-family: var(--m); font-size: 0.44rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.16);
+    }
+
+    /* ── STICKY ORDER BAR ── */
+    .m-order-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+      padding: 0.85rem 1.5rem calc(0.85rem + env(safe-area-inset-bottom));
+      background: rgba(254,249,242,0.97); border-top: 1px solid var(--bdr);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      transform: translateY(100%); transition: transform 0.4s var(--ease);
+    }
+    .m-order-bar.visible { transform: translateY(0); }
+    .m-order-bar .btn { width: 100%; justify-content: center; font-size: 0.62rem; }
+  </style>
+</head>
+<body class="hero-page">
+
+<nav id="nav">
+  <a href="index-m.html" class="logo">
+    <img src="/images/Untitled-1.webp" alt="Riverside Pizza" width="250" height="116">
+    <div class="logo-text">
+      <span class="logo-name">Riverside Pizza</span>
+      <span class="logo-sub">Est. 1999 · Metro Atlanta</span>
+    </div>
+  </a>
+  <button class="nav-ham" id="navHam" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-overlay" id="mobOverlay">
+  <a href="index-m.html">Home</a>
+  <a href="menu-m.html">Menu</a>
+  <a href="catering-m.html">Catering</a>
+  <a href="locations-m.html">Locations</a>
+  <a href="about-m.html">About</a>
+  <a href="takeout.html" class="mob-cta">Order Online</a>
+</div>
+
+<!-- HERO -->
+<section class="m-hero">
+  <div class="m-hero-bg"></div>
+  <div class="m-hero-overlay"></div>
+  <div class="m-hero-content">
+    <h1>Georgia's pizza.<br><em>Since 1999.</em></h1>
+    <div class="m-hero-btns">
+      <a href="takeout.html" class="btn btn-green">Order Online <span class="btn-arrow">↗</span></a>
+      <a href="menu-m.html" class="btn btn-outline-w">View Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK STRIP -->
+<div class="m-strip">
+  <a href="takeout.html" class="m-strip-btn">
+    <svg class="m-strip-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span class="m-strip-label">Order Now</span>
+  </a>
+  <a href="menu-m.html" class="m-strip-btn">
+    <svg class="m-strip-icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <span class="m-strip-label">View Menu</span>
+  </a>
+  <a href="locations-m.html" class="m-strip-btn">
+    <svg class="m-strip-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <span class="m-strip-label">Find Us</span>
+  </a>
+</div>
+
+<!-- STATS -->
+<div class="m-stats">
+  <div class="m-stat"><div class="m-stat-num">27</div><div class="m-stat-lbl">Years Family Owned</div></div>
+  <div class="m-stat"><div class="m-stat-num">8</div><div class="m-stat-lbl">Atlanta Locations</div></div>
+  <div class="m-stat"><div class="m-stat-num">Daily</div><div class="m-stat-lbl">Dough Made Fresh</div></div>
+  <div class="m-stat"><div class="m-stat-num">100%</div><div class="m-stat-lbl">Real Mozzarella</div></div>
+</div>
+
+<!-- DEALS -->
+<section class="m-deals">
+  <div class="m-deals-head">
+    <h2>Deals worth <em>sharing.</em></h2>
+  </div>
+  <div class="m-deal-card">
+    <div class="m-deal-bg" style="background-image:url('/images/get-attachment.aspx_11-e1384317042793.webp')"></div>
+    <div class="m-deal-grad"></div>
+    <div class="m-deal-body">
+      <div class="m-deal-price">$25.99</div>
+      <div class="m-deal-name">Ultimate Family Meal Deal</div>
+      <div class="m-deal-items">2 Large 1-Topping Pizzas · Breadsticks &amp; Sauce · Family Size Salad</div>
+      <a href="takeout.html" class="btn btn-white">Order Now <span class="btn-arrow">↗</span></a>
+    </div>
+  </div>
+  <div class="m-deal-card">
+    <div class="m-deal-bg" style="background-image:url('/images/new-oven-baked-sandwich.webp')"></div>
+    <div class="m-deal-grad"></div>
+    <div class="m-deal-body">
+      <div class="m-deal-price">$5.99</div>
+      <div class="m-deal-name">Oven Baked Italian Sandwich</div>
+      <div class="m-deal-items">Choice of Italian sandwich · Baked fresh to order · All locations</div>
+      <a href="takeout.html" class="btn btn-white">Order Now <span class="btn-arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="m-locs">
+  <div class="m-locs-head">
+    <h2>8 Locations across <em>Metro Atlanta.</em></h2>
+  </div>
+  <div class="m-loc-list">
+    <div class="m-loc-item">
+      <div class="m-loc-name">Lawrenceville</div>
+      <div class="m-loc-hours">Open Daily · 10:30am – 10pm</div>
+      <a href="tel:7708221500" class="m-loc-phone">770-822-1500</a>
+      <div class="m-loc-actions">
+        <a href="https://order.toasttab.com/online/riverside-pizza-riverside-2100-riverside-pkwy-suite-110" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-order">Order Carryout</a>
+        <a href="https://www.google.com/maps?q=2100+Riverside+Pkwy,+Lawrenceville,+GA" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-dir">Directions</a>
+      </div>
+    </div>
+    <div class="m-loc-item">
+      <div class="m-loc-name">Sugarloaf</div>
+      <div class="m-loc-hours">Open Daily · 10:30am – 10pm</div>
+      <a href="tel:7707717000" class="m-loc-phone">770-771-7000</a>
+      <div class="m-loc-actions">
+        <a href="https://order.toasttab.com/online/riverside-pizza-sugarloaf-3330-sugarloaf-pkwy-sw" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-order">Order Carryout</a>
+        <a href="https://www.google.com/maps?q=3330+Sugarloaf+Pkwy,+Lawrenceville,+GA" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-dir">Directions</a>
+      </div>
+    </div>
+    <div class="m-loc-item">
+      <div class="m-loc-name">Suwanee</div>
+      <div class="m-loc-hours">Open Daily · 10:30am – 10pm</div>
+      <a href="tel:7702719992" class="m-loc-phone">770-271-9992</a>
+      <div class="m-loc-actions">
+        <a href="https://order.toasttab.com/online/riversidepizzasuwanee" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-order">Order Carryout</a>
+        <a href="https://www.google.com/maps?q=991+Peachtree+Industrial+Blvd+Suwanee,+GA" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-dir">Directions</a>
+      </div>
+    </div>
+    <div class="m-loc-item">
+      <div class="m-loc-name">Grayson</div>
+      <div class="m-loc-hours">Open Daily · 10:30am – 10pm</div>
+      <a href="tel:7706822929" class="m-loc-phone">770-682-2929</a>
+      <div class="m-loc-actions">
+        <a href="https://order.toasttab.com/online/riverside-pizza-grayson-1845-grayson-hwy-1400" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-order">Order Carryout</a>
+        <a href="https://www.google.com/maps?q=1845+Grayson+Hwy,+Grayson,+GA" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-dir">Directions</a>
+      </div>
+    </div>
+    <div class="m-loc-item">
+      <div class="m-loc-name">Hamilton Mill</div>
+      <div class="m-loc-hours">Open Daily · 10:30am – 10pm</div>
+      <a href="tel:7702718881" class="m-loc-phone">770-271-8881</a>
+      <div class="m-loc-actions">
+        <a href="tel:7702718881" class="m-loc-btn m-loc-btn-order">Call to Order</a>
+        <a href="https://www.google.com/maps?q=Riverside+Pizza,+2463+Hamilton+Mill+Parkway+%23320,+Dacula,+GA" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-dir">Directions</a>
+      </div>
+    </div>
+    <div class="m-loc-item">
+      <div class="m-loc-name">Dacula</div>
+      <div class="m-loc-hours">Open Daily · 10:30am – 10pm</div>
+      <a href="tel:7709635000" class="m-loc-phone">770-963-5000</a>
+      <div class="m-loc-actions">
+        <a href="https://order.toasttab.com/online/riverside-pizza-dacula-ga-2515-fence-rd-ne-170" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-order">Order Carryout</a>
+        <a href="https://www.google.com/maps?q=2515+Fence+Rd,+Dacula,+GA" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-dir">Directions</a>
+      </div>
+    </div>
+    <div class="m-loc-item">
+      <div class="m-loc-name">Johns Creek</div>
+      <div class="m-loc-hours">Open Daily · 10:30am – 10pm</div>
+      <a href="tel:7703600002" class="m-loc-phone">770-360-0002</a>
+      <div class="m-loc-actions">
+        <a href="https://order.toasttab.com/online/riverside-pizza-johnscreek" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-order">Order Carryout</a>
+        <a href="https://www.google.com/maps?q=11877+Douglas+Road,+Johns+Creek,+GA" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-dir">Directions</a>
+      </div>
+    </div>
+    <div class="m-loc-item">
+      <div class="m-loc-name">Cumming</div>
+      <div class="m-loc-hours">Open Daily · 10:30am – 10pm</div>
+      <a href="tel:4702394243" class="m-loc-phone">470-239-4243</a>
+      <div class="m-loc-actions">
+        <a href="https://order.toasttab.com/online/riverside-pizza-cumming-ga-3030-old-atlanta-rd-suite-800" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-order">Order Carryout</a>
+        <a href="https://www.google.com/maps/place/3030+Old+Atlanta+Rd,+Cumming,+GA+30041" target="_blank" rel="noopener" class="m-loc-btn m-loc-btn-dir">Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="m-footer">
+  <div class="m-footer-name">Riverside Pizza</div>
+  <div class="m-footer-sub">Family Owned &amp; Operated Since 1999</div>
+  <div class="m-footer-links">
+    <a href="menu-m.html">Menu</a>
+    <a href="specials.html">Specials</a>
+    <a href="catering-m.html">Catering</a>
+    <a href="about-m.html">About</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="contact.html">Contact</a>
+    <a href="gluten-free.html">Gluten Free</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+  <div class="m-footer-copy">© 2026 Riverside Pizza · All Rights Reserved</div>
+</footer>
+
+<!-- STICKY ORDER BAR -->
+<div class="m-order-bar" id="mOrderBar">
+  <a href="takeout.html" class="btn btn-green">Order Online — Find Your Location <span class="btn-arrow">↗</span></a>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  const checkNav = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', checkNav, { passive: true });
+  checkNav();
+
+  const navHam = document.getElementById('navHam');
+  const mobOverlay = document.getElementById('mobOverlay');
+  let trapHandler = null;
+  function closeMenu() {
+    navHam.classList.remove('open'); mobOverlay.classList.remove('open');
+    document.body.style.overflow = ''; navHam.setAttribute('aria-label', 'Open menu');
+    if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
+  }
+  function openMenu() {
+    navHam.classList.add('open'); mobOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; navHam.setAttribute('aria-label', 'Close menu');
+    const focusable = Array.from(mobOverlay.querySelectorAll('a'));
+    requestAnimationFrame(() => focusable[0].focus());
+    trapHandler = (e) => {
+      if (e.key === 'Escape') { closeMenu(); navHam.focus(); return; }
+      if (e.key !== 'Tab') return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
+    };
+    document.addEventListener('keydown', trapHandler);
+  }
+  navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
+  mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  const mOrderBar = document.getElementById('mOrderBar');
+  const heroH = document.querySelector('.m-hero').offsetHeight;
+  window.addEventListener('scroll', () => {
+    mOrderBar.classList.toggle('visible', window.scrollY > heroH * 0.7);
+  }, { passive: true });
+</script>
+</body>
+</html>
