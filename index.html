@@ -383,12 +383,26 @@
       .cta-links { flex-direction: column; width: 100%; }
       .cta-links .btn { width: 100%; justify-content: center; }
     }
+    /* ── TESTIMONIALS ──────────────────────────── */
+    .testimonials { padding: 7rem 0; background: var(--cream); }
+    .test-head { max-width: 1280px; margin: 0 auto; padding: 0 5rem 4rem; }
+    .test-grid { max-width: 1280px; margin: 0 auto; padding: 0 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .test-card { background: var(--wh); border: 1px solid var(--bdr); padding: 3rem; display: flex; flex-direction: column; }
+    .test-stars { color: var(--g); font-size: 0.9rem; letter-spacing: 0.15em; margin-bottom: 1.5rem; }
+    .test-q { font-family: var(--d); font-style: italic; font-size: 1.05rem; line-height: 1.75; color: var(--tx); flex: 1; margin-bottom: 2rem; }
+    .test-by { font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mu); padding-top: 1.25rem; border-top: 1px solid var(--bdr); }
+
+    @media (max-width: 960px) {
+      .test-head { padding: 0 2rem 2.5rem; }
+      .test-grid { padding: 0 2rem; grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 390px) {
       .hero-h1 { font-size: 2.1rem; }
       .hero-tagline { font-size: 0.88rem; line-height: 1.65; }
       .stat-num { font-size: 2rem; }
     }
-  
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -658,6 +672,31 @@
     <div class="loc-card gs-stagger"><div class="loc-name">Dacula</div><div class="loc-sub">Kroger Center</div><div class="loc-hours">10:30am &ndash; 10pm</div><div class="loc-addr">Fence Rd. @ Dacula Rd., Kroger Center<br>Dacula, GA 30019</div><a href="tel:7709635000" class="loc-phone">770-963-5000</a><a href="https://www.google.com/maps?q=2515+Fence+Rd,+Dacula,+GA" target="_blank" rel="noopener noreferrer" class="loc-dir">Get Directions</a><a href="takeout.html" class="loc-order">Order Online</a></div>
     <div class="loc-card gs-stagger"><div class="loc-name">Johns Creek</div><div class="loc-sub">Douglas Road</div><div class="loc-hours">10:30am &ndash; 10pm</div><div class="loc-addr">11877 Douglas Rd @ Jonesbridge<br>Johns Creek, GA 30005</div><a href="tel:7703600002" class="loc-phone">770-360-0002</a><a href="https://www.google.com/maps?q=11877+Douglas+Road,+Johns+Creek,+GA" target="_blank" rel="noopener noreferrer" class="loc-dir">Get Directions</a><a href="takeout.html" class="loc-order">Order Online</a></div>
     <div class="loc-card gs-stagger"><div class="loc-name">Cumming</div><div class="loc-sub">Down the Street from Publix</div><div class="loc-hours">10:30am &ndash; 10pm</div><div class="loc-addr">3030 Old Atlanta Rd. @ Sharon Rd.<br>Cumming, GA 30041</div><a href="tel:4702394243" class="loc-phone">470-239-4243</a><a href="https://www.google.com/maps/place/3030+Old+Atlanta+Rd,+Cumming,+GA+30041" target="_blank" rel="noopener noreferrer" class="loc-dir">Get Directions</a><a href="takeout.html" class="loc-order">Order Online</a></div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ──────────────────────────── -->
+<section class="testimonials">
+  <div class="test-head gs-reveal">
+    <div class="sec-ey">What Our Regulars Say</div>
+    <h2 class="sec-h">27 years of <em>loyal customers.</em></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card gs-reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-q">We've been coming to Riverside every Friday night for over 12 years. The pizza tastes exactly the same as the first time we ordered. That consistency is everything.</p>
+      <div class="test-by">Lisa M. &nbsp;·&nbsp; Suwanee, GA &nbsp;·&nbsp; 12-year customer</div>
+    </div>
+    <div class="test-card gs-reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-q">I lived in New York for 7 years and had tons of famous NY-style pizza. I just moved to Georgia and this is probably the best pizza I've ever had — and the most affordable.</p>
+      <div class="test-by">A Former New Yorker &nbsp;·&nbsp; Metro Atlanta</div>
+    </div>
+    <div class="test-card gs-reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-q">We used Riverside to cater our office lunch for 60 people. Everything arrived hot and on time, and every single person asked for the name. Already booked them again.</p>
+      <div class="test-by">David K. &nbsp;·&nbsp; Office Manager &nbsp;·&nbsp; Lawrenceville</div>
+    </div>
   </div>
 </section>
 

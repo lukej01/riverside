@@ -86,9 +86,42 @@
     .wi-p { font-size: 0.88rem; line-height: 1.75; color: rgba(255,255,255,0.6); font-weight: 300; }
     @media(max-width:960px){.why-grid{grid-template-columns:1fr}.why-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);padding:3rem 2rem}}
 
+    /* ── BOOKING SECTION ────────────────────────── */
+    .book-sec { padding: 8rem 0; background: var(--wh); }
+    .book-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: start; }
+    .book-h { font-family: var(--d); font-size: clamp(2rem,3vw,3rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.25rem; }
+    .book-h em { font-style: italic; color: var(--g); }
+    .book-p { font-size: 1rem; line-height: 1.8; color: var(--mu); font-weight: 300; margin-bottom: 2.5rem; }
+    .book-steps { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--bdr); }
+    .bs-item { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.5rem 0; border-bottom: 1px solid var(--bdr); }
+    .bs-num { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g); min-width: 1.75rem; margin-top: 0.3rem; flex-shrink: 0; }
+    .bs-item h4 { font-family: var(--d); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .bs-item p { font-size: 0.85rem; line-height: 1.65; color: var(--mu); font-weight: 300; margin: 0; }
+    .book-notes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--bdr); border: 1px solid var(--bdr); margin-top: 2.5rem; }
+    .bn-item { background: var(--cream); padding: 1.25rem 1.5rem; }
+    .bn-label { display: block; font-family: var(--m); font-size: 0.43rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mu); margin-bottom: 0.4rem; }
+    .bn-val { font-family: var(--d); font-size: 1.1rem; font-weight: 600; color: var(--tx); }
+    .form-card { background: var(--wh); border: 1px solid var(--bdr); padding: 3rem; }
+    .form-card h2 { font-family: var(--d); font-size: 1.6rem; font-weight: 600; margin-bottom: 0.35rem; }
+    .form-card .sub { font-size: 0.88rem; color: var(--mu); margin-bottom: 2.5rem; line-height: 1.6; }
+    .field { margin-bottom: 1.5rem; }
+    .field label { display: block; font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mu); margin-bottom: 0.5rem; }
+    .field input, .field select, .field textarea { width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--bdr); font-size: 0.92rem; background: var(--cream); transition: border-color 0.2s; color: var(--tx); font-family: inherit; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--g); }
+    .field textarea { resize: vertical; min-height: 90px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .submit-btn { width: 100%; padding: 1.1rem; background: var(--g); color: #fff; border: none; border-radius: 5px; font-family: var(--m); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.2s, opacity 0.2s; }
+    .submit-btn:hover { background: var(--gd); transform: translateY(-1px); }
+    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
     @media (max-width: 960px) {
       .story-inner { grid-template-columns: 1fr; gap: 3rem; }
       .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .book-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .book-sec { padding: 5rem 0; }
+      .book-notes { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -173,11 +206,71 @@
   </div>
 </section>
 
+<!-- ── BOOKING SECTION ──────────────────────── -->
+<section class="book-sec">
+  <div class="wrap book-inner">
+    <div class="gs-reveal">
+      <div class="sec-eyebrow">How to Book</div>
+      <h2 class="book-h">Simple to set up. <em>Handled for you.</em></h2>
+      <p class="book-p">Call your nearest location or fill out the form. We get back to you within one business day to lock in the details.</p>
+      <div class="book-steps">
+        <div class="bs-item">
+          <div class="bs-num">01</div>
+          <div><h4>Contact Us</h4><p>Call any of our 8 locations directly or submit the form with your event details.</p></div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-num">02</div>
+          <div><h4>We Confirm Your Order</h4><p>We'll review your group size, timing, and delivery logistics and confirm within one business day.</p></div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-num">03</div>
+          <div><h4>Hot. On Time. Guaranteed.</h4><p>We handle the rest. Your order arrives fresh from the oven, exactly when you need it — or we make it right.</p></div>
+        </div>
+      </div>
+      <div class="book-notes">
+        <div class="bn-item"><span class="bn-label">Minimum order</span><span class="bn-val">5 pizzas</span></div>
+        <div class="bn-item"><span class="bn-label">Lead time</span><span class="bn-val">48 hours</span></div>
+        <div class="bn-item"><span class="bn-label">Sizing guide</span><span class="bn-val">1 pizza per 3 guests</span></div>
+      </div>
+    </div>
+    <div class="form-card gs-reveal">
+      <h2>Request Catering</h2>
+      <p class="sub">We'll follow up within one business day to confirm your order.</p>
+      <form id="cateringForm" action="https://formspree.io/f/xbjnqkyw" method="POST">
+        <div class="field-row">
+          <div class="field"><label for="cname">Your Name</label><input type="text" id="cname" name="cname" required placeholder="Full name"></div>
+          <div class="field"><label for="cphone">Phone</label><input type="tel" id="cphone" name="cphone" required placeholder="(770) 555-1234"></div>
+        </div>
+        <div class="field"><label for="cemail">Email Address</label><input type="email" id="cemail" name="cemail" required placeholder="you@email.com"></div>
+        <div class="field-row">
+          <div class="field"><label for="cevent">Event Date</label><input type="date" id="cevent" name="cevent" required></div>
+          <div class="field"><label for="cguests">Group Size</label><input type="number" id="cguests" name="cguests" required placeholder="e.g. 50" min="10"></div>
+        </div>
+        <div class="field"><label for="clocation">Nearest Location</label>
+          <select id="clocation" name="clocation" required>
+            <option value="">Select a location</option>
+            <option value="lawrenceville">Lawrenceville</option>
+            <option value="sugarloaf">Sugarloaf (Lawrenceville)</option>
+            <option value="suwanee">Suwanee</option>
+            <option value="grayson">Grayson</option>
+            <option value="hamilton-mill">Hamilton Mill</option>
+            <option value="dacula">Dacula</option>
+            <option value="johns-creek">Johns Creek</option>
+            <option value="cumming">Cumming</option>
+          </select>
+        </div>
+        <div class="field"><label for="cnotes">Event Details / Special Requests</label><textarea id="cnotes" name="cnotes" placeholder="Tell us about your event, any dietary needs, delivery address, etc."></textarea></div>
+        <button type="submit" class="submit-btn">Send Catering Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 <div class="cta-strip">
-  <div class="cta-text">Ready to feed your crew? Let's talk.</div>
+  <div class="cta-text">Questions? Call any of our 8 locations directly.</div>
   <div class="cta-links">
-    <a href="contact.html" class="btn btn-white">Get in Touch</a>
-    <a href="locations.html" class="btn btn-outline-w">Find a Location</a>
+    <a href="locations.html" class="btn btn-white">Find a Location</a>
+    <a href="menu.html" class="btn btn-outline-w">View Menu</a>
   </div>
 </div>
 
@@ -265,6 +358,33 @@
   }
   navHam.addEventListener('click', () => mobOverlay.classList.contains('open') ? closeMenu() : openMenu());
   mobOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
+<script>
+  document.getElementById('cateringForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.submit-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Request Received — We\'ll be in touch!';
+        btn.style.background = 'var(--gl)';
+        this.reset();
+        setTimeout(() => { btn.textContent = original; btn.style.background = ''; btn.disabled = false; }, 5000);
+      } else { throw new Error(); }
+    } catch {
+      btn.textContent = 'Something went wrong — try again';
+      btn.style.background = '#c0392b';
+      btn.disabled = false;
+      setTimeout(() => { btn.textContent = original; btn.style.background = ''; }, 3500);
+    }
+  });
 </script>
 </body>
 </html>
