@@ -344,6 +344,20 @@
     .mob-order-bar.visible { transform: translateY(0); }
     .mob-order-bar .btn { width: 100%; justify-content: center; font-size: 0.62rem; }
 
+    /* ── MOBILE QUICK STRIP ─────────────────────── */
+    .mob-quick-strip { display: none; background: var(--gd); }
+    .mqs-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+    .mqs-btn {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.45rem; padding: 1.4rem 0.5rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      text-decoration: none; transition: background 0.18s; touch-action: manipulation;
+    }
+    .mqs-btn:last-child { border-right: none; }
+    .mqs-btn:active { background: rgba(255,255,255,0.1); }
+    .mqs-icon { width: 22px; height: 22px; stroke: rgba(160,222,160,0.9); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .mqs-label { font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.72); }
+
     /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 960px) {
       .mob-order-bar { display: block; }
@@ -377,6 +391,36 @@
       .loc-head { padding: 0 2rem 2.5rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .loc-grid { padding: 0 2rem; grid-template-columns: 1fr 1fr; }
       footer { padding: 3.5rem 2rem calc(3.5rem + env(safe-area-inset-bottom) + 80px); }
+
+      /* ── Mobile-only streamlining ── */
+      .mob-quick-strip { display: block; }
+      .slider-arrows { display: none; }
+      .marquee { display: none; }
+      .ingredients { display: none; }
+      .gallery-section { display: none; }
+      .guar-press { display: none; }
+      .loc-sub { display: none; }
+      .loc-addr { display: none; }
+      .loc-dir { display: none; }
+      /* Shorter hero so content below peeks */
+      .hero { height: 78dvh; min-height: 520px; }
+      /* Tighter section padding */
+      .deals { padding: 4rem 0; }
+      .anniversary { padding: 4rem 0; }
+      .guarantee { padding: 4rem 0; }
+      .locations { padding: 4rem 0; }
+      /* Shorter deal cards */
+      .deal-card { min-height: 300px; }
+      .deal-price { font-size: 3rem; }
+      /* Tighter proof row */
+      .ann-proof { gap: 1rem; padding: 1.25rem 0; }
+      .ap-item strong { font-size: 1.6rem; }
+      /* Quote panel less padded */
+      .quote-panel { padding: 2rem; }
+      /* Location cards — essentials only */
+      .loc-card { padding: 1.25rem; }
+      .loc-phone { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.75rem; }
+      .loc-order { font-size: 0.52rem; }
     }
     @media (max-width: 520px) {
       .loc-grid { grid-template-columns: 1fr; }
@@ -467,6 +511,24 @@
   </div>
   <div class="hero-badge">8 Locations · Metro Atlanta</div>
 </section>
+
+<!-- ── MOBILE QUICK ACTIONS (desktop: hidden) ─── -->
+<div class="mob-quick-strip" aria-label="Quick navigation">
+  <div class="mqs-inner">
+    <a href="takeout.html" class="mqs-btn">
+      <svg class="mqs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="mqs-label">Order Now</span>
+    </a>
+    <a href="menu.html" class="mqs-btn">
+      <svg class="mqs-icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <span class="mqs-label">View Menu</span>
+    </a>
+    <a href="locations.html" class="mqs-btn">
+      <svg class="mqs-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span class="mqs-label">Find Us</span>
+    </a>
+  </div>
+</div>
 
 <!-- ── STATS ──────────────────────────────────── -->
 <div class="stats">

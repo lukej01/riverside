@@ -152,25 +152,28 @@
     @media (max-width: 960px) {
       .menu-header { padding: 4rem 0 2.5rem; }
       .menu-header-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .mh-image { height: 280px; }
+      .mh-image { height: 220px; }
+      .mh-title { font-size: clamp(2.5rem, 9vw, 4rem); }
       .menu-nav { padding: 0; }
       .mn-list { padding: 0 1.5rem; gap: 0; }
       .mn-link { padding: 0 1rem; font-size: 0.58rem; }
       .menu-section { padding: 4rem 0; }
       .ms-title { font-size: 2.2rem; }
-      .menu-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .m-item { padding: 1.25rem; gap: 1rem; border-radius: 10px; }
+      .ms-head { margin-bottom: 2rem; }
+      .menu-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .m-item { padding: 1rem; gap: 1rem; border-radius: 8px; }
       .m-item:hover { transform: none; box-shadow: none; }
-      .m-img { width: 110px; min-height: 110px; }
-      .m-name { font-size: 1.15rem; }
-      .m-highlight { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem; }
-      .m-hl-price { text-align: center; }
+      .m-img { width: 96px; min-height: 96px; border-radius: 5px; }
+      .m-name { font-size: 1.1rem; }
+      .m-desc { font-size: 0.82rem; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+      .m-highlight { flex-direction: column; text-align: center; gap: 1rem; padding: 1.75rem; margin-top: 2rem; border-radius: 6px; }
+      .m-hl-title { font-size: 1.75rem; }
+      .m-hl-price { font-size: 2.5rem; text-align: center; }
       .btn { min-height: 44px; touch-action: manipulation; }
-      .cta-strip { padding: 2rem; flex-direction: column; text-align: center; }
       footer { padding: 3rem 2rem 2rem; }
-      /* BYO responsive */
-      .byo-inner { grid-template-columns: 1fr; }
-      .byo-col + .byo-col { border-left: none; border-top: 1px solid var(--bdr); }
+      /* BYO: hide the interactive builder on mobile, show a direct order link instead */
+      .byo-builder { display: none; }
+      .byo-mobile-cta { display: flex !important; }
     }
     @media (max-width: 520px) {
       .m-item { flex-direction: column; }
@@ -486,6 +489,14 @@
         </div>
       </div>
       <!-- /BYO BUILDER -->
+
+      <!-- Mobile fallback: shown only when BYO builder is hidden -->
+      <div class="byo-mobile-cta" style="display:none;grid-column:1/-1;background:var(--gd);padding:2.5rem;border-radius:10px;flex-direction:column;align-items:flex-start;gap:1.25rem;">
+        <div style="font-family:var(--m);font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(160,220,160,0.8);">Build Your Own</div>
+        <div style="font-family:var(--d);font-size:1.6rem;font-weight:500;color:white;line-height:1.15;">Custom pizza, your way.<br><em style="color:rgba(180,230,180,0.9);">From $7.99.</em></div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.6);font-weight:300;">Choose size, crust, and toppings at checkout. $1.70 per topping.</div>
+        <a href="takeout.html" class="btn btn-white">Order Custom Pizza <span class="btn-arrow">↗</span></a>
+      </div>
 
     </div>
   </div>

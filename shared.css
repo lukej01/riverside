@@ -149,6 +149,7 @@ body.hero-page #nav:not(.scrolled) .nav-links a[aria-current="page"]::after { ba
 .mob-overlay a:nth-child(3) { transition-delay: 0.18s; }
 .mob-overlay a:nth-child(4) { transition-delay: 0.24s; }
 .mob-overlay a:nth-child(5) { transition-delay: 0.30s; }
+.mob-overlay a:nth-child(6) { transition-delay: 0.36s; }
 .mob-overlay a.mob-cta {
   font-family: var(--m); font-size: 0.6rem; letter-spacing: 0.14em;
   text-transform: uppercase; background: var(--g); color: white;
