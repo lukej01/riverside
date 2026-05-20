@@ -55,33 +55,32 @@
     button,input,textarea,select { font-family:inherit; }
 
     /* ── HERO ── */
-    .page-hero { position:relative; min-height:60vh; display:flex; align-items:flex-end; padding-bottom:5rem; overflow:hidden; }
-    .hero-bg-img { position:absolute; inset:0; background-image:url('/images/460149_402099029806157_1433563516_o.webp'); background-size:cover; background-position:center; z-index:0; }
-    .page-hero-overlay { position:absolute; inset:0; background:linear-gradient(108deg, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.60) 30%, rgba(8,8,8,0.22) 60%, transparent 84%); z-index:1; }
+    .page-hero { position:relative; min-height:72vh; display:flex; align-items:flex-end; padding-bottom:5rem; overflow:hidden; }
+    .hero-bg-img { position:absolute; inset:0; background-image:url('/images/460149_402099029806157_1433563516_o.webp'); background-size:cover; background-position:center 30%; z-index:0; }
+    .page-hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.42) 45%, rgba(0,0,0,0.12) 100%); z-index:1; }
     .page-hero .wrap { position:relative; z-index:2; padding:0 5rem; padding-top:120px; }
-    .ph-ey { font-family:var(--m); font-size:.57rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(160,220,160,.85); display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
-    .ph-ey::before { content:''; width:1.5rem; height:1px; background:rgba(160,220,160,.85); }
-    .ph-h { font-family:var(--d); font-size:clamp(2.5rem,4.5vw,4rem); font-weight:500; color:#fff; line-height:1.08; margin-bottom:1rem; }
-    .ph-h em { font-style:italic; color:rgba(180,230,180,.95); }
-    .ph-sub { font-size:1rem; line-height:1.75; color:rgba(255,255,255,.7); max-width:50ch; font-weight:300; }
+    .ph-ey { font-family:var(--m); font-size:.57rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.58); display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
+    .ph-ey::before { content:''; width:1.5rem; height:1px; background:rgba(255,255,255,.45); }
+    .ph-h { font-family:var(--d); font-size:clamp(2.8rem,5.5vw,5rem); font-weight:500; color:#fff; line-height:1.05; margin-bottom:1rem; }
+    .ph-h em { font-style:italic; color:white; }
+    .ph-sub { font-size:1rem; line-height:1.75; color:rgba(255,255,255,.75); max-width:50ch; font-weight:300; }
 
-    /* ── PERKS ── */
-    .perks { background:var(--wh); border-bottom:1px solid var(--bdr); display:grid; grid-template-columns:1fr 1fr; }
-    .perks-img { position:relative; min-height:420px; overflow:hidden; }
-    .perks-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-    .perks-body { padding:clamp(3rem,5vw,5rem); }
-    .perks-head { margin-bottom:2.5rem; }
+    /* ── WHY WORK HERE ── */
+    .why-sec { background:var(--wh); display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--bdr); }
+    .why-photo { position:relative; min-height:560px; overflow:hidden; }
+    .why-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top center; }
+    .why-body { padding:clamp(3.5rem,5.5vw,5.5rem); display:flex; flex-direction:column; justify-content:center; }
     .sec-ey { font-family:var(--m); font-size:.5rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mu); display:flex; align-items:center; gap:.75rem; margin-bottom:.85rem; }
     .sec-ey::before { content:''; width:1.75rem; height:1px; background:var(--mu); }
     .sec-h { font-family:var(--d); font-size:clamp(2rem,3vw,3rem); font-weight:500; letter-spacing:-.02em; line-height:1.08; }
     .sec-h em { font-style:italic; color:var(--g); }
-    .perks-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--bdr); border:1px solid var(--bdr); }
-    .perk { padding:1.75rem; background:var(--wh); transition:background .22s; }
-    .perk:hover { background:var(--gp); }
-    .perk-icon { width:36px; height:36px; background:var(--gp); display:flex; align-items:center; justify-content:center; margin-bottom:.85rem; border-radius:4px; }
-    .perk-icon svg { width:18px; height:18px; stroke:var(--g); fill:none; stroke-width:2; }
-    .perk h3 { font-family:var(--d); font-size:1rem; font-weight:600; margin-bottom:.3rem; }
-    .perk p { font-size:.82rem; color:var(--mu); line-height:1.6; font-weight:300; }
+    .why-intro { font-size:.95rem; color:var(--mu); line-height:1.8; margin:1.5rem 0 2.5rem; font-weight:300; max-width:52ch; }
+    .why-list { display:flex; flex-direction:column; }
+    .why-item { display:flex; gap:1.5rem; align-items:flex-start; padding:1.1rem 0; border-top:1px solid var(--bdr); }
+    .why-item:last-child { border-bottom:1px solid var(--bdr); }
+    .why-n { font-family:var(--m); font-size:.46rem; letter-spacing:.12em; text-transform:uppercase; color:var(--g); min-width:1.8rem; margin-top:.2rem; flex-shrink:0; }
+    .why-detail strong { font-family:var(--d); font-size:1.05rem; font-weight:600; display:block; margin-bottom:.2rem; }
+    .why-detail p { font-size:.82rem; color:var(--mu); line-height:1.65; font-weight:300; margin:0; }
 
     /* ── APPLICATION ── */
     .apply-sec { padding:clamp(4rem,6vw,6rem) 0; }
@@ -109,13 +108,13 @@
     .submit-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
 
     @media(max-width:960px) {
+      .page-hero { min-height:55vh; }
       .page-hero .wrap { padding:0 2rem; padding-top:100px; }
-      .perks { grid-template-columns:1fr; }
-      .perks-img { min-height:280px; }
+      .why-sec { grid-template-columns:1fr; }
+      .why-photo { min-height:300px; }
       .apply-sec .wrap { grid-template-columns:1fr; }
       .submit-btn { min-height:52px; font-size:.7rem; }
     }
-    @media(max-width:520px) { .perks-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body class="hero-page">
@@ -145,35 +144,32 @@
   </div>
 </section>
 
-<section class="perks">
-  <div class="perks-img gs-reveal">
+<section class="why-sec">
+  <div class="why-photo gs-reveal">
     <img loading="lazy" src="/images/owners.jpg" alt="Al and Sandy Thompson, owners of Riverside Pizza" width="800" height="600">
   </div>
-  <div class="perks-body">
-    <div class="perks-head gs-reveal">
+  <div class="why-body">
+    <div class="gs-reveal">
       <div class="sec-ey">Why Work With Us</div>
-      <h2 class="sec-h">Real benefits, <em>real people.</em></h2>
+      <h2 class="sec-h">Not a chain. <em>A family.</em></h2>
     </div>
-    <div class="perks-grid">
-      <div class="perk gs-reveal">
-        <div class="perk-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-        <h3>Flexible Hours</h3>
-        <p>We work around your schedule, whether it's school, family, or another job.</p>
+    <p class="why-intro gs-reveal">Every store is run by people who actually care. You'll know your manager, work alongside a real team, and get recognized when you do good work. That's not something you find at every restaurant.</p>
+    <div class="why-list">
+      <div class="why-item gs-reveal">
+        <span class="why-n">01</span>
+        <div class="why-detail"><strong>Flexible scheduling</strong><p>We work around school, family, or a second job. No guesswork.</p></div>
       </div>
-      <div class="perk gs-reveal">
-        <div class="perk-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
-        <h3>Free Meals</h3>
-        <p>Enjoy a free meal every shift. Because great pizza is for everyone.</p>
+      <div class="why-item gs-reveal">
+        <span class="why-n">02</span>
+        <div class="why-detail"><strong>Free meal every shift</strong><p>Good pizza for everyone on the team, every day you work.</p></div>
       </div>
-      <div class="perk gs-reveal">
-        <div class="perk-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3>Family Culture</h3>
-        <p>Owners operate every store. You're part of the family, not just a number.</p>
+      <div class="why-item gs-reveal">
+        <span class="why-n">03</span>
+        <div class="why-detail"><strong>Real path to management</strong><p>We promote from within. Crew to shift lead to manager — it happens here.</p></div>
       </div>
-      <div class="perk gs-reveal">
-        <div class="perk-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-        <h3>Room to Grow</h3>
-        <p>From crew to management, we promote from within and invest in your future.</p>
+      <div class="why-item gs-reveal">
+        <span class="why-n">04</span>
+        <div class="why-detail"><strong>Owners you can talk to</strong><p>Al and Sandy are in the stores. You're not a number at a corporate chain.</p></div>
       </div>
     </div>
   </div>
