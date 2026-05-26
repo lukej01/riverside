@@ -40,7 +40,6 @@
   <meta name="twitter:title" content="Lunch Specials — Riverside Pizza">
   <meta name="twitter:description" content="Daily lunch specials at Riverside Pizza. Great deals on pizza, subs, and more.">
   <meta name="twitter:image" content="https://riversidepizza.net/images/newpizza.jpg">
-  <link rel="preload" as="image" href="/images/get-attachment.aspx_11-e1384317042793.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -48,20 +47,19 @@
   <link rel="stylesheet" href="/shared.css">
   <style>
 
-    /* ── HERO ────────────────────────────── */
-    .hero{position:relative;min-height:65vh;display:flex;align-items:flex-end;padding-bottom:5rem;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;background-image:url('/images/get-attachment.aspx_11-e1384317042793.webp');background-size:cover;background-position:center;z-index:-2}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(108deg,rgba(8,8,8,0.88) 0%,rgba(8,8,8,0.65) 30%,rgba(8,8,8,0.28) 60%,transparent 82%);z-index:-1}
-    .hero-content{max-width:900px}
-    .hero-eyebrow{font-family:var(--m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.62);display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
-    .hero-eyebrow::before{content:'';width:2rem;height:1px;background:rgba(255,255,255,.45)}
-    .hero-h1{font-family:var(--d);font-size:clamp(3rem,6vw,5.5rem);font-weight:500;letter-spacing:-.025em;line-height:.95;color:white;margin-bottom:1.5rem}
-    .hero-h1 em{font-style:italic;color:white}
-    .hero-sub{font-size:1.05rem;color:rgba(255,255,255,.72);line-height:1.75;max-width:52ch;font-weight:300}
+    /* ── PAGE HEADER ────────────────────── */
+    .page-header{background:var(--wh);padding:6rem 0 5rem;border-bottom:1px solid var(--bdr);overflow:hidden;position:relative}
+    .ph-deco{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--d);font-size:clamp(10rem,20vw,18rem);font-weight:700;color:var(--gp);line-height:1;pointer-events:none;user-select:none;letter-spacing:-.05em}
+    .ph-content{position:relative;z-index:1;max-width:680px}
+    .ph-eyebrow{font-family:var(--m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
+    .ph-eyebrow::before{content:'';width:2rem;height:1px;background:var(--mu)}
+    .ph-h1{font-family:var(--d);font-size:clamp(3.5rem,7vw,6rem);font-weight:500;letter-spacing:-.03em;line-height:.95;color:var(--tx);margin-bottom:1.5rem}
+    .ph-h1 em{font-style:italic;color:var(--g)}
+    .ph-sub{font-size:1.05rem;color:var(--mu);line-height:1.75;max-width:52ch;font-weight:300}
+    .ph-time{display:inline-flex;align-items:center;gap:.75rem;margin-top:2rem;padding:.7rem 1.4rem;border:1px solid var(--bdr);border-radius:4px}
+    .ph-time-label{font-family:var(--m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu)}
+    .ph-time-val{font-family:var(--d);font-size:1.1rem;font-weight:600;color:var(--tx)}
 
-    /* ── HOURS BAND ─────────────────────── */
-    .hours-band{background:var(--g);padding:1.1rem 0;text-align:center}
-    .hours-band p{font-family:var(--m);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.92)}
 
     /* ── DEALS SECTION ──────────────────── */
     .deals{padding:6rem 0;background:var(--wh)}
@@ -106,7 +104,7 @@
     @media(max-width:520px){.deal-row{grid-template-columns:80px 1fr;}.deal-price{grid-column:1/-1;font-size:1.2rem}.deal-img{display:none}}
   </style>
 </head>
-<body class="hero-page">
+<body>
 
 <nav id="nav">
   <a href="index.html" class="logo">
@@ -138,21 +136,20 @@
   <a href="takeout.html" class="mob-cta">Order Online</a>
 </div>
 
-<section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-overlay"></div>
-  <div class="wrap" style="width:100%">
-    <div class="hero-content gs-reveal">
-      <div class="hero-eyebrow">Available 11am – 2pm Daily</div>
-      <h1 class="hero-h1">Lunch <em>Specials.</em></h1>
-      <p class="hero-sub">Carryout lunch deals at all 8 locations — fresh ingredients, unbeatable prices every day.</p>
+<section class="page-header">
+  <div class="ph-deco" aria-hidden="true">$3</div>
+  <div class="wrap">
+    <div class="ph-content gs-reveal">
+      <div class="ph-eyebrow">Carryout Only · All 8 Locations</div>
+      <h1 class="ph-h1">Lunch <em>Specials.</em></h1>
+      <p class="ph-sub">Fresh ingredients, unbeatable prices. Every day of the week.</p>
+      <div class="ph-time">
+        <span class="ph-time-label">Available</span>
+        <span class="ph-time-val">11:00 AM – 2:00 PM Daily</span>
+      </div>
     </div>
   </div>
 </section>
-
-<div class="hours-band">
-  <p>Available Mon – Sun &nbsp;·&nbsp; 11:00 AM – 2:00 PM &nbsp;·&nbsp; All 8 Locations &nbsp;·&nbsp; Carryout Only</p>
-</div>
 
 <section class="deals">
   <div class="wrap">
@@ -259,11 +256,6 @@
   const checkNav = () => nav.classList.toggle('scrolled', window.scrollY > 60);
   window.addEventListener('scroll', checkNav, { passive: true });
   checkNav();
-
-  gsap.to('#heroBg', {
-    y: '20%', ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
-  });
 
   gsap.utils.toArray('.gs-reveal').forEach(el => {
     gsap.fromTo(el,

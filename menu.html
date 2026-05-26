@@ -68,7 +68,8 @@
     /* ── MENU CONTENT ───────────────────────────── */
     .menu-section { padding: 6rem 0; border-bottom: 1px solid var(--bdr); scroll-margin-top: 80px; }
     .menu-section:nth-child(even) { background: var(--cream); }
-    .ms-head { margin-bottom: 3.5rem; }
+    .ms-head { margin-bottom: 3.5rem; display: flex; align-items: flex-start; gap: 2.5rem; }
+    .ms-num { font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.2em; color: var(--mu); opacity: 0.5; padding-top: 0.6rem; flex-shrink: 0; }
     .ms-title { font-family: var(--d); font-size: 3rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
     .ms-desc { font-size: 0.9rem; color: var(--mu); font-weight: 300; }
 
@@ -160,7 +161,8 @@
       .mn-link { padding: 0 1rem; font-size: 0.58rem; }
       .menu-section { padding: 4rem 0; }
       .ms-title { font-size: 2.2rem; }
-      .ms-head { margin-bottom: 2rem; }
+      .ms-head { margin-bottom: 2rem; gap: 1.25rem; }
+      .ms-num { padding-top: 0.35rem; }
       .menu-grid { grid-template-columns: 1fr; gap: 1rem; }
       .m-item { padding: 1rem; gap: 1rem; border-radius: 8px; }
       .m-item:hover { transform: none; box-shadow: none; }
@@ -263,8 +265,9 @@
 <section class="menu-section" id="pizzas">
   <div class="wrap">
     <div class="ms-head gs-reveal">
-      <h2 class="ms-title">Premium Pizzas</h2>
-      <p class="ms-desc">Large 14" • Choose Original or Thin Crust</p>
+      <div class="ms-num">01</div>
+      <div><h2 class="ms-title">Premium Pizzas</h2>
+      <p class="ms-desc">Large 14" • Choose Original or Thin Crust</p></div>
     </div>
     <div class="menu-grid">
 
@@ -508,8 +511,9 @@
 <section class="menu-section" id="detroit">
   <div class="wrap">
     <div class="ms-head gs-reveal">
-      <h2 class="ms-title">Detroit Style Pan</h2>
-      <p class="ms-desc">Sicilian deep dish with 3 creamy cheeses — crispy caramelized edges</p>
+      <div class="ms-num">02</div>
+      <div><h2 class="ms-title">Detroit Style Pan</h2>
+      <p class="ms-desc">Sicilian deep dish with 3 creamy cheeses — crispy caramelized edges</p></div>
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
@@ -540,8 +544,9 @@
 <section class="menu-section" id="sandwiches">
   <div class="wrap">
     <div class="ms-head gs-reveal">
-      <h2 class="ms-title">Oven Baked Sandwiches</h2>
-      <p class="ms-desc">Fresh baked pizza dough, loaded with cheese and your favorite deli meats.</p>
+      <div class="ms-num">03</div>
+      <div><h2 class="ms-title">Oven Baked Sandwiches</h2>
+      <p class="ms-desc">Fresh baked pizza dough, loaded with cheese and your favorite deli meats.</p></div>
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
@@ -592,8 +597,9 @@
 <section class="menu-section" id="pasta">
   <div class="wrap">
     <div class="ms-head gs-reveal">
-      <h2 class="ms-title">Pasta Dinners</h2>
-      <p class="ms-desc">All dinners come with an 8-piece order of bread sticks</p>
+      <div class="ms-num">04</div>
+      <div><h2 class="ms-title">Pasta Dinners</h2>
+      <p class="ms-desc">All dinners come with an 8-piece order of bread sticks</p></div>
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
@@ -636,8 +642,9 @@
 <section class="menu-section" id="wings">
   <div class="wrap">
     <div class="ms-head gs-reveal">
-      <h2 class="ms-title">Wings & Sides</h2>
-      <p class="ms-desc">Always baked, never fried</p>
+      <div class="ms-num">05</div>
+      <div><h2 class="ms-title">Wings & Sides</h2>
+      <p class="ms-desc">Always baked, never fried</p></div>
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
@@ -688,8 +695,9 @@
 <section class="menu-section" id="salads">
   <div class="wrap">
     <div class="ms-head gs-reveal">
-      <h2 class="ms-title">Fresh Salads</h2>
-      <p class="ms-desc">Side (serves 1) • Individual (1–2) • Family (3–5)</p>
+      <div class="ms-num">06</div>
+      <div><h2 class="ms-title">Fresh Salads</h2>
+      <p class="ms-desc">Side (serves 1) • Individual (1–2) • Family (3–5)</p></div>
     </div>
     <div class="menu-grid">
       <div class="m-item gs-reveal">
