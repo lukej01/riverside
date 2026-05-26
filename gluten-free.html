@@ -50,12 +50,12 @@
     /* ── HERO ── */
     .hero { position:relative; min-height:65vh; display:flex; align-items:flex-end; padding-bottom:5rem; overflow:hidden; }
     .hero-bg { position:absolute; inset:0; background-image:url('/images/glutenfree-new.webp'); background-size:cover; background-position:center; z-index:-2; }
-    .hero-overlay { position:absolute; inset:0; background:linear-gradient(108deg,rgba(8,18,8,0.88) 0%,rgba(8,18,8,0.65) 30%,rgba(8,18,8,0.28) 60%,transparent 82%); z-index:-1; }
+    .hero-overlay { position:absolute; inset:0; background:linear-gradient(108deg,rgba(8,8,8,0.88) 0%,rgba(8,8,8,0.65) 30%,rgba(8,8,8,0.28) 60%,transparent 82%); z-index:-1; }
     .hero-content { max-width:900px; }
-    .hero-eyebrow { font-family:var(--m); font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(160,210,160,0.9); display:flex; align-items:center; gap:.8rem; margin-bottom:1.5rem; }
-    .hero-eyebrow::before { content:''; width:2rem; height:1px; background:currentColor; }
+    .hero-eyebrow { font-family:var(--m); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.62); display:flex; align-items:center; gap:.8rem; margin-bottom:1.5rem; }
+    .hero-eyebrow::before { content:''; width:2rem; height:1px; background:rgba(255,255,255,.45); }
     .hero-h1 { font-family:var(--d); font-size:clamp(3rem,6vw,5.5rem); font-weight:500; letter-spacing:-.025em; line-height:.95; color:white; margin-bottom:1.5rem; }
-    .hero-h1 em { font-style:italic; color:rgba(180,220,180,.95); }
+    .hero-h1 em { font-style:italic; color:white; }
     .hero-sub { font-size:1.05rem; color:rgba(255,255,255,.72); line-height:1.75; max-width:52ch; font-weight:300; }
 
     /* ── STORY ── */
@@ -74,7 +74,7 @@
     /* ── PHOTO STRIP ── */
     .photo-strip { position:relative; aspect-ratio:21/9; overflow:hidden; }
     .photo-strip img { width:100%; height:100%; object-fit:cover; }
-    .strip-overlay { position:absolute; inset:0; background:rgba(8,18,8,.48); display:flex; align-items:center; justify-content:center; }
+    .strip-overlay { position:absolute; inset:0; background:rgba(0,0,0,.46); display:flex; align-items:center; justify-content:center; }
     .strip-text { font-family:var(--d); font-size:clamp(1.5rem,3vw,2.8rem); font-style:italic; color:white; text-align:center; letter-spacing:-.01em; }
 
     /* ── WARNING BAND ── */
@@ -85,26 +85,27 @@
 
     /* ── GF MENU ── */
     .gf-menu { padding:6rem 0; background:var(--cream); }
-    .sec-eyebrow { font-family:var(--m); font-size:.5rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mu); display:flex; align-items:center; gap:.75rem; margin-bottom:.85rem; }
+    .sec-eyebrow { font-family:var(--m); font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; color:var(--mu); display:flex; align-items:center; gap:.75rem; margin-bottom:.85rem; }
     .sec-eyebrow::before { content:''; width:1.75rem; height:1px; background:var(--mu); }
     .gf-h2 { font-family:var(--d); font-size:clamp(2rem,3.5vw,3rem); font-weight:500; letter-spacing:-.025em; line-height:1.05; margin-bottom:3rem; }
     .gf-h2 em { font-style:italic; color:var(--g); }
-    .gf-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
-    .gf-card { background:var(--wh); border:1px solid var(--bdr); overflow:hidden; transition:transform .25s var(--ease),box-shadow .25s var(--ease); }
-    .gf-card:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,.07); }
-    .gf-card-img { position:relative; padding-top:56%; overflow:hidden; }
-    .gf-card-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease); }
-    .gf-card:hover .gf-card-img img { transform:scale(1.04); }
-    .gf-card-body { padding:1.5rem; }
-    .gf-badge { font-family:var(--m); font-size:.46rem; letter-spacing:.15em; text-transform:uppercase; background:var(--gp); color:var(--g); padding:.35rem .8rem; border-radius:9999px; border:1px solid var(--gm); display:inline-block; margin-bottom:.85rem; }
-    .gf-card h3 { font-family:var(--d); font-size:1.1rem; font-weight:600; margin-bottom:.3rem; }
-    .gf-card p { font-size:.8rem; color:var(--mu); line-height:1.55; margin-bottom:.75rem; }
-    .gf-price { font-family:var(--m); font-size:.9rem; font-weight:500; color:var(--g); }
+    .gf-cols { display:grid; grid-template-columns:1fr 1fr; gap:3px; background:var(--bdr); border:1px solid var(--bdr); }
+    .gf-col { background:var(--wh); padding:0; }
+    .gf-col-head { padding:2rem 2.5rem 1.5rem; border-bottom:1px solid var(--bdr); }
+    .gf-col-head h3 { font-family:var(--d); font-size:1.4rem; font-weight:500; margin-bottom:.3rem; }
+    .gf-col-head p { font-size:.82rem; color:var(--mu); font-weight:300; }
+    .gf-item { display:flex; justify-content:space-between; align-items:baseline; padding:1.1rem 2.5rem; border-bottom:1px solid var(--bdr); gap:1rem; transition:background .18s; }
+    .gf-item:last-child { border-bottom:none; }
+    .gf-item:hover { background:var(--gp); }
+    .gf-item-name { font-family:var(--d); font-size:1rem; font-weight:600; }
+    .gf-item-desc { font-size:.78rem; color:var(--mu); font-weight:300; margin-top:.15rem; }
+    .gf-item-price { font-family:var(--m); font-size:.72rem; font-weight:500; color:var(--g); white-space:nowrap; flex-shrink:0; }
 
     @media(max-width:960px) {
       .story-inner { grid-template-columns:1fr; gap:3rem; }
       .warn-band { padding:2.5rem 2rem; flex-direction:column; gap:1.5rem; }
       .photo-strip { aspect-ratio:16/9; }
+      .gf-cols { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -155,7 +156,7 @@
 <section class="story">
   <div class="wrap story-inner">
     <div class="story-img gs-reveal">
-      <img loading="lazy" src="/images/glutenfree-new.webp" alt="Gluten-free pizza at Riverside" width="1920" height="1280">
+      <img loading="lazy" src="/images/newpizza.webp" alt="Pizza at Riverside made with real mozzarella" width="1920" height="1408">
     </div>
     <div class="gs-reveal">
       <h2 class="story-h2">Real crust. <em>Real pizza.</em></h2>
@@ -187,40 +188,62 @@
 
 <section class="gf-menu">
   <div class="wrap">
-    <div class="sec-eyebrow gs-reveal">Gluten Free Items</div>
-    <h2 class="gf-h2 gs-reveal">Gluten Free <em>Menu</em></h2>
-    <div class="gf-grid">
-      <div class="gf-card gs-reveal">
-        <div class="gf-card-img"><img loading="lazy" src="/images/glutenfree-new.webp" alt="GF Cheese Pizza" width="1920" height="1280"></div>
-        <div class="gf-card-body"><span class="gf-badge">GF Crust</span><h3>GF Cheese Pizza</h3><p>10" with whole-milk mozzarella &amp; Stanislaus sauce</p><div class="gf-price">$9.49</div></div>
+    <div class="sec-eyebrow gs-reveal">What You Can Order</div>
+    <h2 class="gf-h2 gs-reveal">The gluten-free <em>menu.</em></h2>
+  </div>
+  <div class="wrap" style="padding-left:0;padding-right:0;max-width:100%">
+    <div class="gf-cols gs-reveal">
+      <div class="gf-col">
+        <div class="gf-col-head">
+          <h3>Gluten-Free Crust Pizzas</h3>
+          <p>10" personal size · available at all 8 locations · any toppings from our menu</p>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Cheese Pizza</div><div class="gf-item-desc">Stanislaus sauce, whole-milk mozzarella</div></div>
+          <div class="gf-item-price">$9.49</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Pepperoni Pizza</div><div class="gf-item-desc">Stanislaus sauce, mozzarella, Hormel pepperoni</div></div>
+          <div class="gf-item-price">$9.49</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Veggie Pizza</div><div class="gf-item-desc">Fresh-cut seasonal vegetables, mozzarella</div></div>
+          <div class="gf-item-price">$9.49</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Meat Lovers Pizza</div><div class="gf-item-desc">Pepperoni, sausage, ham, and bacon</div></div>
+          <div class="gf-item-price">$9.49</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Build Your Own</div><div class="gf-item-desc">Any toppings from our full menu on a GF crust</div></div>
+          <div class="gf-item-price">Starting at $9.49</div>
+        </div>
       </div>
-      <div class="gf-card gs-reveal">
-        <div class="gf-card-img"><img loading="lazy" src="/images/1.webp" alt="GF Pepperoni Pizza" width="980" height="376"></div>
-        <div class="gf-card-body"><span class="gf-badge">GF Crust</span><h3>GF Pepperoni Pizza</h3><p>10" with premium pepperoni on our GF crust</p><div class="gf-price">$9.49</div></div>
-      </div>
-      <div class="gf-card gs-reveal">
-        <div class="gf-card-img"><img loading="lazy" src="/images/3.webp" alt="GF Veggie Pizza" width="980" height="376"></div>
-        <div class="gf-card-body"><span class="gf-badge">GF Crust</span><h3>GF Veggie Pizza</h3><p>10" loaded with fresh seasonal vegetables</p><div class="gf-price">$9.49</div></div>
-      </div>
-      <div class="gf-card gs-reveal">
-        <div class="gf-card-img"><img loading="lazy" src="/images/newpizza.webp" alt="GF Meat Lovers" width="980" height="376"></div>
-        <div class="gf-card-body"><span class="gf-badge">GF Crust</span><h3>GF Meat Lovers</h3><p>10" with pepperoni, sausage, ham &amp; bacon</p><div class="gf-price">$9.49</div></div>
-      </div>
-      <div class="gf-card gs-reveal">
-        <div class="gf-card-img"><img loading="lazy" src="/images/1.webp" alt="Traditional Wings" width="980" height="376"></div>
-        <div class="gf-card-body"><span class="gf-badge">Naturally GF</span><h3>Traditional Wings</h3><p>Bone-in wings, no breading, choice of sauce</p><div class="gf-price">See menu</div></div>
-      </div>
-      <div class="gf-card gs-reveal">
-        <div class="gf-card-img"><img loading="lazy" src="/images/3.webp" alt="Greek Salad" width="980" height="376"></div>
-        <div class="gf-card-body"><span class="gf-badge">Naturally GF</span><h3>Greek Salad</h3><p>Romaine, feta, olives, pepperoncini, house dressing</p><div class="gf-price">See menu</div></div>
-      </div>
-      <div class="gf-card gs-reveal">
-        <div class="gf-card-img"><img loading="lazy" src="/images/3.webp" alt="Caesar Salad" width="980" height="376"></div>
-        <div class="gf-card-body"><span class="gf-badge">Naturally GF</span><h3>Caesar Salad</h3><p>Romaine, Parmesan, housemade Caesar dressing</p><div class="gf-price">See menu</div></div>
-      </div>
-      <div class="gf-card gs-reveal">
-        <div class="gf-card-img"><img loading="lazy" src="/images/3.webp" alt="Tossed Salad" width="980" height="376"></div>
-        <div class="gf-card-body"><span class="gf-badge">Naturally GF</span><h3>Tossed Salad</h3><p>Mixed greens, tomato, cucumber, red onion</p><div class="gf-price">See menu</div></div>
+      <div class="gf-col">
+        <div class="gf-col-head">
+          <h3>Naturally Gluten-Free</h3>
+          <p>No substitution needed · made without gluten ingredients</p>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Traditional Wings</div><div class="gf-item-desc">Bone-in, unbreaded, choice of sauce</div></div>
+          <div class="gf-item-price">See menu</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Greek Salad</div><div class="gf-item-desc">Romaine, feta, olives, pepperoncini, house dressing</div></div>
+          <div class="gf-item-price">See menu</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Caesar Salad</div><div class="gf-item-desc">Romaine, Parmesan, housemade Caesar dressing</div></div>
+          <div class="gf-item-price">See menu</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Tossed Salad</div><div class="gf-item-desc">Mixed greens, tomato, cucumber, red onion</div></div>
+          <div class="gf-item-price">See menu</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Iceberg Salad</div><div class="gf-item-desc">Classic iceberg with house dressing</div></div>
+          <div class="gf-item-price">See menu</div>
+        </div>
       </div>
     </div>
   </div>

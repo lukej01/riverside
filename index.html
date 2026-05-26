@@ -272,24 +272,23 @@
     .ing-detail h4 { font-family: var(--d); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; }
     .ing-detail p { font-size: 0.82rem; line-height: 1.65; color: var(--mu); font-weight: 300; margin: 0; }
 
-    /* ── GALLERY ───────────────────────────────── */
-    .gallery-section { background: var(--cream); overflow: hidden; }
-    .gallery-inner { padding: 6rem 0; }
+    /* ── PHOTO GRID ──────────────────────────────── */
+    .gallery-section { background: var(--cream); }
+    .gallery-inner { padding: 6rem 0 0; }
     .gallery-label { padding: 0 0 2.5rem 5rem; }
     .gallery-label .sec-h { font-size: clamp(1.8rem, 2.8vw, 3rem); font-weight: 500; }
-    .gallery-track {
-      display: flex; gap: 10px; padding: 0 5rem; overflow-x: auto;
-      -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      padding-bottom: 2rem; cursor: grab;
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      grid-template-rows: 38vh 38vh;
+      gap: 4px;
     }
-    .gallery-track::-webkit-scrollbar { display: none; }
-    .gallery-item { flex-shrink: 0; height: 56vh; width: auto; position: relative; overflow: hidden; border-radius: 3px; }
-    .gallery-item img { height: 100%; width: auto; object-fit: cover; display: block; transition: transform 0.6s var(--ease); }
-    .gallery-item:hover img { transform: scale(1.04); }
-    .gallery-item.wide { width: min(700px, 80vw); height: 56vh; }
-    .gallery-item.wide img { width: 100%; height: 100%; }
-    .gallery-hint { padding: 1.25rem 0 0 5rem; font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mu); display: flex; align-items: center; gap: 0.5rem; }
-    .gallery-hint::before { content: ''; width: 1rem; height: 1px; background: var(--mu); }
+    .pg-a { grid-row: 1 / 3; overflow: hidden; }
+    .pg-b { grid-column: 2; grid-row: 1; overflow: hidden; }
+    .pg-c { grid-column: 3; grid-row: 1; overflow: hidden; }
+    .pg-d { grid-column: 2 / 4; grid-row: 2; overflow: hidden; }
+    .photo-grid div img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s var(--ease); }
+    .photo-grid div:hover img { transform: scale(1.04); }
 
     /* ── GUARANTEE ─────────────────────────────── */
     .guarantee { background: var(--gd); padding: 8rem 0; }
@@ -302,7 +301,7 @@
     .guar-bold { font-family: var(--d); font-size: 1.2rem; font-weight: 600; color: rgba(180,232,180,0.95); padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
     .guar-btns { margin-top: 2.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .guar-press { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
-    .gp-label { font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(160,222,160,0.6); margin-bottom: 0.5rem; }
+    .gp-label { font-family: var(--m); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.5rem; }
     .gp-outlet { font-family: var(--d); font-size: 1.25rem; font-weight: 500; color: white; margin-bottom: 0.35rem; }
     .gp-context { font-size: 0.82rem; color: rgba(255,255,255,0.5); font-weight: 300; line-height: 1.5; }
     .quote-panel { border: 1px solid rgba(255,255,255,0.11); padding: 3rem; border-radius: 4px; }
@@ -381,11 +380,11 @@
       .ingredients { padding: 5rem 0; }
       .ing-layout { padding: 0 2rem; grid-template-columns: 1fr; gap: 2.5rem; }
       .ing-ph-sec { display: none; }
-      .gallery-inner { padding: 5rem 0; }
-      .gallery-track { padding: 0 2rem; gap: 8px; }
-      .gallery-item { height: 44vh; }
+      .gallery-inner { padding: 5rem 0 0; }
       .gallery-label { padding: 0 0 2rem 2rem; }
-      .gallery-hint { padding-left: 2rem; }
+      .photo-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 30vh 30vh 30vh; }
+      .pg-a { grid-row: 1 / 3; }
+      .pg-d { grid-column: 1 / 3; grid-row: 3; }
       .guarantee { padding: 5rem 0; }
       .guar-inner { padding: 0 2rem; grid-template-columns: 1fr; gap: 3rem; }
       .locations { padding: 5rem 0; }
@@ -531,8 +530,8 @@
     <div class="hero-wrap">
       <div class="hero-content">
         <div class="hero-eyebrow"><span></span>Family Owned · 8 Metro Atlanta Locations<span></span></div>
-        <h1 class="hero-h1">Georgia's pizza.<br><em>Since 1999.</em></h1>
-        <p class="hero-tagline">Handmade dough every morning. 100% real mozzarella. Fresh-cut produce daily. One family. Eight locations. Same standard every time.</p>
+        <h1 class="hero-h1">Made fresh,<br><em>every morning.</em></h1>
+        <p class="hero-tagline">Handmade dough. 100% real mozzarella. Fresh-cut produce daily. One family. 8 locations. 27 years.</p>
         <div class="hero-btns">
           <a href="takeout.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
           <a href="menu.html" class="hero-text-link">View Menu <span>→</span></a>
@@ -703,24 +702,19 @@
   </div>
 </section>
 
-<!-- ── GALLERY ─────────────────────────────────── -->
+<!-- ── PHOTO GRID ──────────────────────────────── -->
 <section class="gallery-section" id="gallery">
   <div class="gallery-inner">
     <div class="gallery-label">
       <div class="sec-ey gs-reveal">From Our Kitchen</div>
       <h2 class="sec-h gs-reveal">Fresh out of the oven, <em>every time.</em></h2>
     </div>
-    <div class="gallery-track" id="galleryTrack">
-      <div class="gallery-item wide"><img loading="lazy" src="/images/460149_402099029806157_1433563516_o.webp" alt="Inside a Riverside Pizza restaurant dining area" width="1920" height="1342"></div>
-      <div class="gallery-item"><img loading="lazy" src="/images/1.webp" alt="Freshly baked Riverside Pizza with toppings" width="980" height="376"></div>
-      <div class="gallery-item tall"><img loading="lazy" src="/images/2.webp" alt="Riverside Pizza kitchen preparing fresh dough" width="980" height="376"></div>
-      <div class="gallery-item"><img loading="lazy" src="/images/3.webp" alt="Hot pizza coming out of the oven at Riverside Pizza" width="980" height="376"></div>
-      <div class="gallery-item tall"><img loading="lazy" src="/images/4.webp" alt="Classic pepperoni pizza at Riverside Pizza" width="980" height="376"></div>
-      <div class="gallery-item"><img loading="lazy" src="/images/5.webp" alt="Specialty pizza with fresh ingredients" width="980" height="376"></div>
-      <div class="gallery-item"><img loading="lazy" src="/images/6.webp" alt="Riverside Pizza family dining experience" width="980" height="376"></div>
-      <div class="gallery-item"><img loading="lazy" src="/images/cinnamonbread.jpg" alt="Homemade cinnamon bread from Riverside Pizza" width="1900" height="1100"></div>
-    </div>
-    <div class="gallery-hint">Drag to explore</div>
+  </div>
+  <div class="photo-grid">
+    <div class="pg-a"><img loading="lazy" src="/images/460149_402099029806157_1433563516_o.webp" alt="Inside a Riverside Pizza restaurant" width="1920" height="1342"></div>
+    <div class="pg-b"><img loading="lazy" src="/images/new-cheesesticks.webp" alt="Fresh-baked cheesesticks at Riverside Pizza" width="1000" height="752"></div>
+    <div class="pg-c"><img loading="lazy" src="/images/new-wings.webp" alt="Wings at Riverside Pizza" width="1000" height="508"></div>
+    <div class="pg-d"><img loading="lazy" src="/images/newpizza-20.webp" alt="Riverside Pizza made fresh daily" width="1920" height="1361"></div>
   </div>
 </section>
 
@@ -898,38 +892,6 @@
   window.addEventListener('scroll', checkNav, { passive: true });
   checkNav();
 
-  // ── GALLERY AUTO-SCROLL + DRAG ───────────────
-  const track = document.getElementById('galleryTrack');
-  let scrollFloat = 0, autoId = null, hovered = false;
-
-  function autoScroll() {
-    if (!hovered) {
-      const max = track.scrollWidth - track.clientWidth;
-      if (max > 10) {
-        scrollFloat += 0.85;
-        track.scrollLeft = scrollFloat;
-        if (track.scrollLeft >= max - 2) { scrollFloat = 0; track.scrollLeft = 0; }
-      }
-    } else {
-      scrollFloat = track.scrollLeft;
-    }
-    autoId = requestAnimationFrame(autoScroll);
-  }
-
-  // Only run RAF when gallery is visible — saves battery on mobile
-  const galleryObserver = new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting) {
-      if (!autoId) autoId = requestAnimationFrame(autoScroll);
-    } else {
-      if (autoId) { cancelAnimationFrame(autoId); autoId = null; }
-    }
-  }, { rootMargin: '200px' });
-  galleryObserver.observe(document.querySelector('.gallery-section'));
-
-  track.addEventListener('mouseenter', () => hovered = true);
-  track.addEventListener('mouseleave', () => hovered = false);
-  track.addEventListener('touchstart', () => hovered = true, { passive: true });
-  track.addEventListener('touchend',   () => hovered = false, { passive: true });
 
   // ── MOBILE NAV (focus trap + Escape) ─────────
   const navHam     = document.getElementById('navHam');
