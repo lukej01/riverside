@@ -201,8 +201,7 @@
     .loc-list { padding: 5rem 0; background: var(--wh); }
     .loc-card-wrap { display: flex; flex-direction: column; gap: 4rem; }
     .loc-item { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; border: 1px solid var(--bdr); background: var(--cream); }
-    .loc-item:nth-child(even) { direction: rtl; }
-    .loc-item:nth-child(even) > * { direction: ltr; }
+    .loc-item:nth-child(even) .li-map { order: 1; }
     
     .li-map { height: 100%; min-height: 400px; width: 100%; filter: grayscale(40%) contrast(1.1) brightness(1.1); border-right: 1px solid var(--bdr); }
     .loc-item:nth-child(even) .li-map { border-right: none; border-left: 1px solid var(--bdr); }
