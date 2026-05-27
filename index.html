@@ -128,12 +128,17 @@
     .hero-wrap { width: 100%; max-width: 860px; }
     .hero-content { display: flex; flex-direction: column; align-items: center; }
 
+    @keyframes hero-enter {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     .hero-eyebrow {
       font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.28em;
       text-transform: uppercase; color: rgba(255,255,255,0.68);
       display: inline-flex; align-items: center; gap: 1.25rem;
       margin-bottom: 2rem;
-      opacity: 0; transform: translateY(18px);
+      animation: hero-enter 0.9s 0.2s both cubic-bezier(0.22,1,0.36,1);
     }
     .hero-eyebrow span { width: 2.5rem; height: 1px; background: currentColor; display: block; flex-shrink: 0; }
 
@@ -141,18 +146,19 @@
       font-family: var(--d); font-size: clamp(4rem, 9vw, 9.5rem);
       font-weight: 400; letter-spacing: -0.03em; line-height: 0.9;
       color: white; margin-bottom: 2rem;
-      opacity: 0; transform: translateY(28px);
+      animation: hero-enter 1s 0.45s both cubic-bezier(0.22,1,0.36,1);
     }
     .hero-h1 em { font-style: italic; color: white; }
 
     .hero-tagline {
       font-size: 1rem; font-weight: 300; line-height: 1.75;
       color: rgba(255,255,255,0.82); max-width: 50ch; margin-bottom: 2.75rem;
-      opacity: 0; transform: translateY(18px);
+      animation: hero-enter 0.85s 0.65s both cubic-bezier(0.22,1,0.36,1);
     }
     .hero-btns {
       display: flex; gap: 1.5rem; justify-content: center; align-items: center;
-      opacity: 0; transform: translateY(18px); flex-wrap: wrap;
+      flex-wrap: wrap;
+      animation: hero-enter 0.75s 0.8s both cubic-bezier(0.22,1,0.36,1);
     }
     .hero-text-link {
       font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase;
@@ -220,7 +226,7 @@
     .deal-card { position: relative; overflow: hidden; min-height: 500px; display: flex; align-items: flex-end; }
     .deal-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.7s var(--ease); }
     .deal-card:hover .deal-bg { transform: scale(1.045); }
-    .deal-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.93) 0%, rgba(0,0,0,0.52) 55%, rgba(0,0,0,0.08) 100%); }
+    .deal-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%); }
     .deal-body { position: relative; z-index: 2; padding: 2.5rem 3rem; width: 100%; }
     .deal-tag { font-family: var(--m); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(160,222,160,0.85); margin-bottom: 0.5rem; }
     .deal-price { font-family: var(--d); font-size: 4rem; font-weight: 700; color: white; line-height: 1; }
@@ -807,13 +813,6 @@
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
-
-  // ── HERO ENTRANCE ────────────────────────────
-  const tl = gsap.timeline({ delay: 0.3 });
-  tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' })
-    .to('.hero-h1',      { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }, '-=0.55')
-    .to('.hero-tagline', { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' }, '-=0.65')
-    .to('.hero-btns',    { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, '-=0.55');
 
   // ── HERO SLIDER ──────────────────────────────
   const slides = Array.from(document.querySelectorAll('.slide'));

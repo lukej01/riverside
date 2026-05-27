@@ -198,7 +198,7 @@ body.hero-page #nav:not(.scrolled) .nav-links a[aria-current="page"]::after { ba
 
 /* ── CTA STRIP ── */
 .cta-strip {
-  background: var(--tx); padding: 3.5rem clamp(2rem,5vw,5rem);
+  background: var(--gd); padding: 3.5rem clamp(2rem,5vw,5rem);
   display: flex; justify-content: space-between; align-items: center; gap: 2rem;
 }
 .cta-text { font-family: var(--d); font-size: clamp(1.2rem,2.5vw,1.6rem); font-style: italic; color: white; }
