@@ -86,6 +86,27 @@
     .m-price { font-family: var(--m); font-size: 0.95rem; font-weight: 500; color: var(--g); white-space: nowrap; }
     .m-subprice { font-size: 0.65rem; color: var(--mu); display: block; margin-top: 0.2rem; }
 
+    /* ── GLUTEN FREE SECTION ───────────────────── */
+    .gf-section { padding: 6rem 0; border-bottom: 1px solid var(--bdr); scroll-margin-top: 80px; }
+    .gf-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: var(--bdr); border: 1px solid var(--bdr); margin-top: 3.5rem; }
+    .gf-col { background: var(--wh); }
+    .gf-col-head { padding: 2rem 2.5rem 1.5rem; border-bottom: 1px solid var(--bdr); }
+    .gf-col-head h3 { font-family: var(--d); font-size: 1.4rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .gf-col-head p { font-size: 0.82rem; color: var(--mu); font-weight: 300; }
+    .gf-item { display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 2.5rem; border-bottom: 1px solid var(--bdr); gap: 1rem; transition: background 0.18s; }
+    .gf-item:last-child { border-bottom: none; }
+    .gf-item:hover { background: var(--gp); }
+    .gf-item-name { font-family: var(--d); font-size: 1rem; font-weight: 600; }
+    .gf-item-desc { font-size: 0.78rem; color: var(--mu); font-weight: 300; margin-top: 0.15rem; }
+    .gf-item-price { font-family: var(--m); font-size: 0.72rem; font-weight: 500; color: var(--g); white-space: nowrap; flex-shrink: 0; }
+    .gf-callout { margin-top: 2.5rem; padding: 1.75rem 2rem; background: var(--gp); border: 1px solid rgba(30,95,44,0.18); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+    .gf-callout-text { font-size: 0.9rem; color: var(--tx); line-height: 1.6; font-weight: 300; }
+    .gf-callout-text strong { font-weight: 500; }
+    @media (max-width: 960px) {
+      .gf-cols { grid-template-columns: 1fr; }
+      .gf-callout { flex-direction: column; align-items: flex-start; }
+    }
+
     /* ── VEGGIE BADGE ──────────────────────────── */
     .badge-veggie {
       display: inline-flex; align-items: center; gap: 0.3rem;
@@ -257,6 +278,7 @@
       <li><a href="#pasta" class="mn-link">Pasta</a></li>
       <li><a href="#wings" class="mn-link">Wings & Sides</a></li>
       <li><a href="#salads" class="mn-link">Salads</a></li>
+      <li><a href="#gluten-free" class="mn-link">Gluten Free</a></li>
     </ul>
   </div>
 </nav>
@@ -752,6 +774,75 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GLUTEN FREE ═══════════════════════════════════════════════ -->
+<section class="gf-section" id="gluten-free">
+  <div class="wrap">
+    <div class="ms-head gs-reveal">
+      <div class="ms-num">07</div>
+      <div><h2 class="ms-title">Gluten Free</h2>
+      <p class="ms-desc">10" GF crust available at all 8 locations · any toppings from our full menu</p></div>
+    </div>
+    <div class="gf-cols gs-reveal">
+      <div class="gf-col">
+        <div class="gf-col-head">
+          <h3>GF Crust Pizzas</h3>
+          <p>10" personal size · available at all 8 locations</p>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Cheese Pizza</div><div class="gf-item-desc">Stanislaus sauce, whole-milk mozzarella</div></div>
+          <div class="gf-item-price">$9.49</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Pepperoni Pizza</div><div class="gf-item-desc">Stanislaus sauce, mozzarella, Hormel pepperoni</div></div>
+          <div class="gf-item-price">$9.49</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Veggie Pizza</div><div class="gf-item-desc">Fresh-cut seasonal vegetables, mozzarella</div></div>
+          <div class="gf-item-price">$9.49</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Meat Lovers Pizza</div><div class="gf-item-desc">Pepperoni, sausage, ham, and bacon</div></div>
+          <div class="gf-item-price">$9.49</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Build Your Own</div><div class="gf-item-desc">Any toppings from our full menu on a GF crust</div></div>
+          <div class="gf-item-price">From $9.49</div>
+        </div>
+      </div>
+      <div class="gf-col">
+        <div class="gf-col-head">
+          <h3>Naturally Gluten Free</h3>
+          <p>No substitutions needed — these are already GF</p>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Traditional Wings</div><div class="gf-item-desc">Always baked, never fried · choice of sauce</div></div>
+          <div class="gf-item-price">From $8.99</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Greek Salad</div><div class="gf-item-desc">Feta, tomatoes, red onions, olives, banana peppers</div></div>
+          <div class="gf-item-price">From $3.99</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Caesar Salad</div><div class="gf-item-desc">Lettuce, parmesan, house Caesar dressing</div></div>
+          <div class="gf-item-price">From $3.99</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Tossed Salad</div><div class="gf-item-desc">Lettuce, carrots, cabbage, tomatoes, red onions</div></div>
+          <div class="gf-item-price">From $3.99</div>
+        </div>
+        <div class="gf-item">
+          <div><div class="gf-item-name">Iceberg Salad</div><div class="gf-item-desc">Iceberg lettuce, tomatoes, choice of dressing</div></div>
+          <div class="gf-item-price">From $3.99</div>
+        </div>
+      </div>
+    </div>
+    <div class="gf-callout gs-reveal">
+      <div class="gf-callout-text"><strong>Shared kitchen notice:</strong> Our GF crust is prepared in the same kitchen as regular dough. Not suitable for celiac disease — gluten-sensitive guests only.</div>
+      <a href="gluten-free.html" class="btn btn-outline-g" style="flex-shrink:0">Full GF Page →</a>
     </div>
   </div>
 </section>
