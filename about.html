@@ -50,15 +50,22 @@
   <link rel="stylesheet" href="/shared.css">
   <style>
 
-    .hero{position:relative;min-height:70vh;display:flex;align-items:flex-end;padding-bottom:6rem;overflow:hidden}
+    @keyframes hero-enter{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .hero{position:relative;min-height:100dvh;display:flex;align-items:flex-end;padding-bottom:7rem;overflow:hidden}
     .hero-bg{position:absolute;inset:0;background-image:url('/images/460149_402099029806157_1433563516_o.webp');background-size:cover;background-position:center top;z-index:0}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(108deg,rgba(8,8,8,0.86) 0%,rgba(8,8,8,0.62) 28%,rgba(8,8,8,0.24) 58%,transparent 82%);z-index:1}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(108deg,rgba(8,8,8,0.88) 0%,rgba(8,8,8,0.64) 28%,rgba(8,8,8,0.26) 58%,transparent 82%);z-index:1}
     .hero .wrap{position:relative;z-index:2;padding-top:90px}
-    .hero-ey{font-family:var(--m);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,0.58);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+    .hero-ey{font-family:var(--m);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,0.58);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;animation:hero-enter .9s .1s both cubic-bezier(.22,1,.36,1)}
     .hero-ey::before{content:'';width:2rem;height:1px;background:rgba(255,255,255,0.4)}
-    .hero h1{font-family:var(--d);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:500;color:#fff;line-height:1.08;margin-bottom:1.5rem}
+    .hero h1{font-family:var(--d);font-size:clamp(3rem,6vw,6rem);font-weight:500;color:#fff;line-height:.97;margin-bottom:1.75rem;animation:hero-enter 1s .25s both cubic-bezier(.22,1,.36,1)}
     .hero h1 em{font-style:italic;color:white}
-    .hero-desc{font-size:1.1rem;color:rgba(255,255,255,.75);max-width:560px;line-height:1.8}
+    .hero-desc{font-size:1.05rem;color:rgba(255,255,255,.72);max-width:540px;line-height:1.85;animation:hero-enter .85s .4s both cubic-bezier(.22,1,.36,1)}
+    .hero-proof{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.1);margin-top:3.5rem;animation:hero-enter .75s .55s both cubic-bezier(.22,1,.36,1)}
+    .hp-item{padding:1.4rem 2.5rem 0;border-right:1px solid rgba(255,255,255,.1)}
+    .hp-item:first-child{padding-left:0}
+    .hp-item:last-child{border-right:none}
+    .hp-num{font-family:var(--d);font-size:1.9rem;font-weight:700;color:white;line-height:1}
+    .hp-lbl{font-family:var(--m);font-size:.44rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem}
 
     .story{padding:clamp(5rem,8vw,8rem) 0;background:var(--wh)}
     .story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,5vw,6rem);align-items:center}
@@ -70,19 +77,19 @@
     .story p{font-size:1rem;line-height:1.9;color:var(--mu);margin-bottom:1.25rem}
     .story p strong{color:var(--tx);font-weight:600}
 
-    .values{padding:clamp(5rem,8vw,8rem) 0;background:var(--cream)}
+    .values{padding:clamp(5rem,8vw,8rem) 0;background:var(--gd)}
     .val-head{margin-bottom:clamp(3rem,5vw,4.5rem)}
-    .val-head h2{font-family:var(--d);font-size:clamp(2rem,3vw,3rem);font-weight:500;margin-bottom:1rem;letter-spacing:-0.02em}
-    .val-head h2 em{font-style:italic;color:var(--g)}
-    .val-head p{font-size:1rem;color:var(--mu);max-width:500px;line-height:1.75}
-    .val-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:3px}
-    .val-card{background:var(--wh);border:1px solid var(--bdr);padding:3rem;transition:background .25s,border-color .25s;display:flex;flex-direction:column;gap:1.5rem}
-    .val-card:hover{background:var(--gp);border-color:var(--g)}
-    .val-card.full{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-    .val-num{font-family:var(--m);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g)}
-    .val-card h3{font-family:var(--d);font-size:1.6rem;font-weight:500;margin-bottom:.5rem;letter-spacing:-.02em}
-    .val-card p{font-size:.9rem;color:var(--mu);line-height:1.85;font-weight:300}
-    .val-img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px}
+    .val-head .sec-ey{color:rgba(255,255,255,.45)}
+    .val-head .sec-ey::before{background:rgba(255,255,255,.35)}
+    .val-head h2{font-family:var(--d);font-size:clamp(2rem,3vw,3rem);font-weight:500;margin-bottom:1rem;letter-spacing:-0.02em;color:white}
+    .val-head h2 em{font-style:italic;color:rgba(255,255,255,.6)}
+    .val-head p{font-size:1rem;color:rgba(255,255,255,.55);max-width:500px;line-height:1.75;font-weight:300}
+    .val-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .val-item{padding:3.5rem 3rem;border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:1.5rem}
+    .val-item:last-child{border-right:none}
+    .val-num{font-family:var(--d);font-size:3rem;font-weight:700;color:rgba(255,255,255,.1);line-height:1}
+    .val-item h3{font-family:var(--d);font-size:1.4rem;font-weight:500;color:white;letter-spacing:-.02em}
+    .val-item p{font-size:.88rem;color:rgba(255,255,255,.58);line-height:1.78;font-weight:300}
 
     .stan{padding:clamp(5rem,8vw,8rem) 0;background:var(--g)}
     .stan .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,5vw,6rem);align-items:center}
@@ -95,17 +102,16 @@
     @media(max-width:960px){
       .story .wrap,.stan .wrap{grid-template-columns:1fr}
       .val-grid{grid-template-columns:1fr}
-      .val-card.full{grid-column:1;grid-template-columns:1fr}
       /* Minimalist mobile */
-      .hero{min-height:62vh}
+      .hero{min-height:72dvh}
       .hero-ey{display:none}
       .hero-desc{font-size:.9rem;line-height:1.7}
+      .hero-proof{display:none}
       .story-img{display:none}
       .story{padding:3rem 0}
       .values{padding:3rem 0}
-      .val-card{padding:2rem}
-      .val-card.full{gap:1.5rem}
-      .val-img{display:none}
+      .val-item{padding:2.5rem 2rem;border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+      .val-item:last-child{border-bottom:none}
       .stan{padding:3.5rem 0}
       .stan-img{display:none}
     }
@@ -136,6 +142,11 @@
     <div class="hero-ey">Our Story</div>
     <h1>Family Owned &amp;<br><em>Proudly Local</em></h1>
     <p class="hero-desc">Since 1999, the Thompson family has been serving Metro Atlanta handcrafted pizza made with real ingredients, proven recipes, and the same standards set on day one.</p>
+    <div class="hero-proof">
+      <div class="hp-item"><div class="hp-num">27</div><div class="hp-lbl">Years in Business</div></div>
+      <div class="hp-item"><div class="hp-num">8</div><div class="hp-lbl">Metro Atlanta Locations</div></div>
+      <div class="hp-item"><div class="hp-num">1999</div><div class="hp-lbl">Founded in Lawrenceville</div></div>
+    </div>
   </div>
 </section>
 
@@ -154,27 +165,20 @@
     <p>Every decision we make comes back to the same values that opened our first store in 1999.</p>
   </div>
   <div class="val-grid">
-    <div class="val-card">
+    <div class="val-item">
       <div class="val-num">01</div>
-      <div>
-        <h3>Community First</h3>
-        <p>We sponsor local teams, hire local staff, and source local produce. Eight locations, eight neighborhoods we call home.</p>
-      </div>
+      <h3>Community First</h3>
+      <p>We sponsor local teams, hire local staff, and source local produce. Eight locations, eight neighborhoods we call home.</p>
     </div>
-    <div class="val-card">
+    <div class="val-item">
       <div class="val-num">02</div>
-      <div>
-        <h3>Real Ingredients Only</h3>
-        <p>100% real mozzarella, hand-grated on site. Premium Stanislaus tomatoes. Dough made from scratch every morning. We never cut corners.</p>
-      </div>
+      <h3>Real Ingredients Only</h3>
+      <p>100% real mozzarella, hand-grated on site. Premium Stanislaus tomatoes. Dough made from scratch every morning. We never cut corners.</p>
     </div>
-    <div class="val-card full">
-      <div>
-        <div class="val-num">03</div>
-        <h3>Built to Last</h3>
-        <p>Every pizza is hand-tossed, every sub is oven-baked, every order prepared the same way at all 8 locations. The Thompson family built the standards, trained the teams, and put the systems in place — so the quality runs consistently whether they're in the store or not.</p>
-      </div>
-      <img loading="lazy" src="/images/1.webp" alt="Riverside Pizza handcrafted" class="val-img" width="980" height="376">
+    <div class="val-item">
+      <div class="val-num">03</div>
+      <h3>Built to Last</h3>
+      <p>Every pizza is hand-tossed, every sub is oven-baked, every order prepared the same way at all 8 locations. The same standards. Every time.</p>
     </div>
   </div>
 </div></section>

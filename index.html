@@ -104,103 +104,29 @@
   <link rel="stylesheet" href="/shared.css">
   <style>
     /* ── HERO ──────────────────────────────────── */
-    .hero { position: relative; height: 100dvh; overflow: hidden; }
-    .slide {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      opacity: 0; will-change: opacity;
-    }
-    .slide.active { opacity: 1; }
-
-    /* Layered vignette — heavy bottom, soft edges, center breathes */
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: 2;
-      background:
-        linear-gradient(to top, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.18) 20%, transparent 42%),
-        linear-gradient(to bottom, rgba(0,0,0,0.48) 0%, transparent 22%),
-        radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.22) 100%);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 7rem 2rem 8rem;
-    }
-
-    .hero-wrap { width: 100%; max-width: 860px; }
-    .hero-content { display: flex; flex-direction: column; align-items: center; }
+    .hero { display: grid; grid-template-columns: 58fr 42fr; min-height: 100dvh; overflow: hidden; }
+    .hero-left { background: var(--gd); display: flex; flex-direction: column; justify-content: flex-end; padding: 0 clamp(3rem,6vw,6rem) clamp(4rem,7vw,7rem); padding-top: clamp(8rem,12vw,12rem); }
+    .hero-right { position: relative; overflow: hidden; }
+    .hero-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
     @keyframes hero-enter {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .hero-eyebrow {
-      font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.28em;
-      text-transform: uppercase; color: rgba(255,255,255,0.68);
-      display: inline-flex; align-items: center; gap: 1.25rem;
-      margin-bottom: 2rem;
-      animation: hero-enter 0.9s 0.2s both cubic-bezier(0.22,1,0.36,1);
-    }
-    .hero-eyebrow span { width: 2.5rem; height: 1px; background: currentColor; display: block; flex-shrink: 0; }
-
-    .hero-h1 {
-      font-family: var(--d); font-size: clamp(4rem, 9vw, 9.5rem);
-      font-weight: 400; letter-spacing: -0.03em; line-height: 0.9;
-      color: white; margin-bottom: 2rem;
-      animation: hero-enter 1s 0.45s both cubic-bezier(0.22,1,0.36,1);
-    }
-    .hero-h1 em { font-style: italic; color: white; }
-
-    .hero-tagline {
-      font-size: 1rem; font-weight: 300; line-height: 1.75;
-      color: rgba(255,255,255,0.82); max-width: 50ch; margin-bottom: 2.75rem;
-      animation: hero-enter 0.85s 0.65s both cubic-bezier(0.22,1,0.36,1);
-    }
-    .hero-btns {
-      display: flex; gap: 1.5rem; justify-content: center; align-items: center;
-      flex-wrap: wrap;
-      animation: hero-enter 0.75s 0.8s both cubic-bezier(0.22,1,0.36,1);
-    }
-    .hero-text-link {
-      font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,255,255,0.58); text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      transition: color 0.2s, gap 0.2s;
-    }
+    .hero-tag { font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.45); display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2.5rem; animation: hero-enter 0.9s 0.1s both cubic-bezier(0.22,1,0.36,1); }
+    .hero-tag::before { content: ''; width: 2rem; height: 1px; background: currentColor; flex-shrink: 0; }
+    .hero-h1 { font-family: var(--d); font-size: clamp(3.5rem,6.5vw,8rem); font-weight: 500; letter-spacing: -0.03em; line-height: 0.92; color: white; margin-bottom: 3rem; animation: hero-enter 1s 0.25s both cubic-bezier(0.22,1,0.36,1); }
+    .hero-h1 em { font-style: italic; }
+    .hero-btns { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; margin-bottom: 4rem; animation: hero-enter 0.85s 0.4s both cubic-bezier(0.22,1,0.36,1); }
+    .hero-text-link { font-family: var(--m); font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s, gap 0.2s; }
     .hero-text-link:hover { color: white; gap: 0.6rem; }
-
-    /* Arrows — centered on sides */
-    .slider-arrows {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      left: 0; right: 0; z-index: 3;
-      display: flex; justify-content: space-between;
-      padding: 0 1.75rem; pointer-events: none;
-    }
-    .sarrow {
-      pointer-events: all;
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-      color: white; width: 48px; height: 48px; cursor: pointer; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.22s, border-color 0.22s; touch-action: manipulation;
-      opacity: 0.7;
-    }
-    .sarrow:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); opacity: 1; }
-
-    /* Dots — centered at bottom */
-    .slider-dots {
-      position: absolute; bottom: 2.25rem; left: 50%; transform: translateX(-50%);
-      z-index: 3; display: flex; gap: 0.5rem; align-items: center;
-    }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.35s var(--ease); border: none; padding: 0; position: relative; touch-action: manipulation; }
-    .dot::before { content: ''; position: absolute; inset: -14px -10px; }
-    .dot.active { background: white; width: 24px; border-radius: 4px; }
-
-    /* Location badge — bottom right */
-    .hero-badge {
-      position: absolute; bottom: 2rem; right: 2rem; z-index: 3;
-      font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,255,255,0.38); display: flex; align-items: center; gap: 0.5rem;
-    }
-    .hero-badge::before { content: ''; width: 1.2rem; height: 1px; background: currentColor; }
+    .hero-stats { display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,0.1); animation: hero-enter 0.75s 0.55s both cubic-bezier(0.22,1,0.36,1); }
+    .hs-item { padding: 1.5rem 2.5rem 0; border-right: 1px solid rgba(255,255,255,0.1); }
+    .hs-item:first-child { padding-left: 0; }
+    .hs-item:last-child { border-right: none; }
+    .hs-num { font-family: var(--d); font-size: 2rem; font-weight: 700; color: white; line-height: 1; }
+    .hs-lbl { font-family: var(--m); font-size: 0.46rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.35rem; }
 
     /* ── STATS ─────────────────────────────────── */
     .stats { background: var(--gd); display: grid; grid-template-columns: repeat(4,1fr); }
@@ -367,12 +293,10 @@
     /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 960px) {
       .mob-order-bar { display: block; }
-      .hero-overlay { padding: 6rem 1.5rem 7rem; }
-      .hero-h1 { font-size: clamp(3rem, 10vw, 5rem); }
-      .hero-tagline { font-size: 0.9rem; }
-      .slider-arrows { padding: 0 0.75rem; }
-      .sarrow { width: 40px; height: 40px; }
-      .hero-badge { display: none; }
+      .hero { grid-template-columns: 1fr; grid-template-rows: auto 45vw; min-height: unset; }
+      .hero-left { padding: clamp(6rem,14vw,8rem) clamp(1.5rem,5vw,3rem) clamp(2.5rem,5vw,3.5rem); }
+      .hero-right { min-height: 45vw; }
+      .hero-stats { display: none; }
       .stats { grid-template-columns: 1fr 1fr; }
       .stat:nth-child(2) { border-right: none; }
       .deals .wrap { grid-template-columns: 1fr; }
@@ -402,18 +326,13 @@
 
       /* Remove sections not needed for mobile intent */
       .mob-quick-strip { display: block; }
-      .slider-arrows { display: none; }
       .marquee { display: none; }
       .ingredients { display: none; }
       .gallery-section { display: none; }
       .guar-press { display: none; }
 
-      /* Hero — headline + CTA only, strip the tagline */
-      .hero { height: 78dvh; min-height: 520px; }
-      .hero-overlay { padding: 4.5rem 2rem 5.5rem; align-items: center; justify-content: center; }
-      .hero-tagline { display: none; }
+      /* Hero */
       .hero-h1 { font-size: clamp(2.8rem, 10vw, 4.5rem); margin-bottom: 2rem; }
-      .hero-eyebrow { margin-bottom: 1.25rem; font-size: 0.46rem; }
 
       /* Stats — breathe */
       .stat { padding: 1.75rem 1rem; }
@@ -467,7 +386,6 @@
     }
     @media (max-width: 520px) {
       .loc-grid { grid-template-columns: 1fr; }
-      .hero-overlay { padding: 4rem 1.75rem 4rem; }
       .hero-btns { flex-direction: column; align-items: flex-start; }
       .hero-btns .btn { width: 100%; max-width: 320px; justify-content: center; }
       .cta-links { flex-direction: column; width: 100%; }
@@ -477,7 +395,7 @@
       .loc-card { border-radius: 0; }
     }
     @media (max-width: 390px) {
-      .hero-h1 { font-size: 2.4rem; }
+      .hero-h1 { font-size: 2.2rem; }
       .stat-num { font-size: 2rem; }
       .mqs-label { font-size: 0.44rem; }
     }
@@ -525,38 +443,24 @@
   <a href="takeout.html" class="mob-cta">Order Online</a>
 </div>
 
-<!-- ── HERO SLIDER ────────────────────────────── -->
-<section class="hero" aria-label="Photo slideshow" aria-roledescription="carousel">
-  <div class="slide active" style="background-image:url('/images/newpizza.webp')"></div>
-  <div class="slide" style="background-image:url('/images/3.webp')"></div>
-  <div class="slide" style="background-image:url('/images/pizza-homepage.webp')"></div>
-  <div class="slide" style="background-image:url('/images/new-wings.webp')"></div>
-
-  <div class="hero-overlay">
-    <div class="hero-wrap">
-      <div class="hero-content">
-        <div class="hero-eyebrow"><span></span>Family Owned · 8 Metro Atlanta Locations<span></span></div>
-        <h1 class="hero-h1">Made fresh,<br><em>every morning.</em></h1>
-        <p class="hero-tagline">Handmade dough. 100% real mozzarella. Fresh-cut produce daily. One family. 8 locations. 27 years.</p>
-        <div class="hero-btns">
-          <a href="takeout.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
-          <a href="menu.html" class="hero-text-link">View Menu <span>→</span></a>
-        </div>
-      </div>
+<!-- ── HERO ───────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Family Owned · Metro Atlanta · Est. 1999</div>
+    <h1 class="hero-h1">Made fresh,<br><em>every morning.</em></h1>
+    <div class="hero-btns">
+      <a href="takeout.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
+      <a href="menu.html" class="hero-text-link">View Menu <span>→</span></a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs-item"><div class="hs-num">27</div><div class="hs-lbl">Years Family Owned</div></div>
+      <div class="hs-item"><div class="hs-num">8</div><div class="hs-lbl">Metro Atlanta Locations</div></div>
+      <div class="hs-item"><div class="hs-num">1999</div><div class="hs-lbl">Year We Opened</div></div>
     </div>
   </div>
-
-  <div class="slider-arrows" role="group" aria-label="Slideshow controls">
-    <button class="sarrow" id="prev" aria-label="Previous slide">&#8592;</button>
-    <button class="sarrow" id="next" aria-label="Next slide">&#8594;</button>
+  <div class="hero-right">
+    <img src="/images/newpizza.webp" alt="Handcrafted pizza at Riverside Pizza" width="1920" height="1408" fetchpriority="high">
   </div>
-  <div class="slider-dots" id="dots" role="group" aria-label="Slide indicators">
-    <button class="dot active" aria-label="Go to slide 1" aria-pressed="true"></button>
-    <button class="dot" aria-label="Go to slide 2" aria-pressed="false"></button>
-    <button class="dot" aria-label="Go to slide 3" aria-pressed="false"></button>
-    <button class="dot" aria-label="Go to slide 4" aria-pressed="false"></button>
-  </div>
-  <div class="hero-badge">8 Locations · Metro Atlanta</div>
 </section>
 
 <!-- ── MOBILE QUICK ACTIONS (desktop: hidden) ─── -->
@@ -813,32 +717,6 @@
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
-
-  // ── HERO SLIDER ──────────────────────────────
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const dots   = Array.from(document.querySelectorAll('.dot'));
-  let cur = 0, timer;
-
-  function goTo(n) {
-    clearTimeout(timer);
-    const prev = slides[cur];
-    cur = ((n % slides.length) + slides.length) % slides.length;
-    const next = slides[cur];
-    gsap.set(next, { opacity: 0, zIndex: 2, scale: 1.04 });
-    gsap.set(prev, { zIndex: 1 });
-    gsap.to(next, { opacity: 1, scale: 1, duration: 1.5, ease: 'power2.inOut' });
-    gsap.to(prev, { opacity: 0, duration: 1.5, ease: 'power2.inOut', onComplete: () => gsap.set(prev, { zIndex: 0 }) });
-    dots.forEach((d, i) => {
-      d.classList.toggle('active', i === cur);
-      d.setAttribute('aria-pressed', i === cur ? 'true' : 'false');
-    });
-    timer = setTimeout(() => goTo(cur + 1), 5500);
-  }
-
-  timer = setTimeout(() => goTo(1), 5500);
-  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
-  document.getElementById('prev').addEventListener('click', () => goTo(cur - 1));
-  document.getElementById('next').addEventListener('click', () => goTo(cur + 1));
 
   // ── STATS COUNTERS ───────────────────────────
   document.querySelectorAll('[data-target]').forEach(el => {

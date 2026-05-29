@@ -47,54 +47,61 @@
   <style>
     button,input,textarea,select { font-family: inherit; }
 
-    /* ── HERO ── */
-    .page-hero { position:relative; min-height:60vh; display:flex; align-items:flex-end; padding-bottom:5rem; overflow:hidden; }
-    .page-hero-overlay { position:absolute; inset:0; background:linear-gradient(108deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.62) 30%, rgba(8,8,8,0.24) 60%, transparent 84%); z-index:1; }
-    .hero-bg-img { position:absolute; inset:0; background:url('/images/460149_402099029806157_1433563516_o.webp') center/cover; z-index:0; }
-    .page-hero .wrap { position:relative; z-index:2; padding:0 5rem; padding-top:120px; }
-    .ph-ey { font-family:var(--m); font-size:.57rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.58); display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
-    .ph-ey::before { content:''; width:1.5rem; height:1px; background:rgba(255,255,255,.45); }
-    .ph-h { font-family:var(--d); font-size:clamp(2.5rem,4.5vw,4rem); font-weight:500; color:#fff; line-height:1.08; margin-bottom:1rem; }
-    .ph-h em { font-style:italic; color:white; }
-    .ph-sub { font-size:1rem; line-height:1.75; color:rgba(255,255,255,.7); max-width:50ch; font-weight:300; }
+    @keyframes hero-enter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
-    /* ── CONTACT ── */
-    .contact-sec { padding:clamp(4rem,6vw,6rem) 0; }
-    .contact-sec .wrap { display:grid; grid-template-columns:1fr 1fr; gap:clamp(3rem,5vw,5rem); align-items:start; }
+    /* ── HERO ── */
+    .page-hero { background:var(--gd); padding:clamp(7rem,10vw,10rem) 0 clamp(4rem,6vw,6rem); }
+    .page-hero .wrap { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:end; }
+    .ph-left { }
+    .ph-ey { font-family:var(--m); font-size:.57rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.45); display:flex; align-items:center; gap:.75rem; margin-bottom:1.5rem; animation:hero-enter .9s .1s both cubic-bezier(.22,1,.36,1); }
+    .ph-ey::before { content:''; width:1.5rem; height:1px; background:rgba(255,255,255,.35); }
+    .ph-h { font-family:var(--d); font-size:clamp(2.8rem,5vw,5.5rem); font-weight:500; color:#fff; line-height:.97; margin-bottom:1.5rem; animation:hero-enter 1s .25s both cubic-bezier(.22,1,.36,1); }
+    .ph-h em { font-style:italic; color:rgba(255,255,255,.7); }
+    .ph-sub { font-size:.95rem; line-height:1.8; color:rgba(255,255,255,.55); max-width:44ch; font-weight:300; animation:hero-enter .85s .4s both cubic-bezier(.22,1,.36,1); }
+    .ph-phones { margin-top:2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.08); animation:hero-enter .75s .5s both cubic-bezier(.22,1,.36,1); }
+    .ph-loc { background:var(--gd); padding:.9rem 1.25rem; transition:background .2s; }
+    .ph-loc:hover { background:rgba(255,255,255,.05); }
+    .ph-loc-name { font-family:var(--m); font-size:.44rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:.3rem; }
+    .ph-loc-num { font-family:var(--d); font-size:1rem; font-weight:600; color:white; }
+    .ph-loc-num a { color:inherit; }
+    .ph-right { animation:hero-enter .85s .35s both cubic-bezier(.22,1,.36,1); }
 
     /* ── FORM ── */
-    .form-card { background:var(--wh); border:1px solid var(--bdr); padding:clamp(2rem,3vw,3rem); }
-    .form-card h2 { font-family:var(--d); font-size:1.5rem; font-weight:600; margin-bottom:.35rem; }
-    .form-card .sub { font-size:.88rem; color:var(--mu); margin-bottom:2.5rem; line-height:1.6; }
+    .form-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); padding:clamp(2rem,3vw,3rem); }
+    .form-card h2 { font-family:var(--d); font-size:1.5rem; font-weight:600; margin-bottom:.35rem; color:white; }
+    .form-card .sub { font-size:.88rem; color:rgba(255,255,255,.45); margin-bottom:2.5rem; line-height:1.6; }
     .field { margin-bottom:1.5rem; }
-    .field label { display:block; font-family:var(--m); font-size:.5rem; letter-spacing:.15em; text-transform:uppercase; color:var(--mu); margin-bottom:.5rem; }
-    .field input,.field select,.field textarea { width:100%; padding:.85rem 1rem; border:1px solid var(--bdr); font-size:.92rem; background:var(--cream); transition:border-color .2s; color:var(--tx); }
-    .field input:focus,.field select:focus,.field textarea:focus { outline:none; border-color:var(--g); }
-    .field textarea { resize:vertical; min-height:130px; }
-    .submit-btn { width:100%; padding:1.1rem; background:var(--g); color:#fff; border:none; border-radius:5px; font-family:var(--m); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:background .2s,transform .2s,opacity .2s; }
-    .submit-btn:hover { background:var(--gl); transform:translateY(-1px); }
+    .field label { display:block; font-family:var(--m); font-size:.5rem; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:.5rem; }
+    .field input,.field select,.field textarea { width:100%; padding:.85rem 1rem; border:1px solid rgba(255,255,255,.12); font-size:.92rem; background:rgba(255,255,255,.06); transition:border-color .2s; color:white; font-family:inherit; }
+    .field input::placeholder,.field textarea::placeholder { color:rgba(255,255,255,.3); }
+    .field input:focus,.field select:focus,.field textarea:focus { outline:none; border-color:rgba(255,255,255,.4); }
+    .field select option { background:var(--gd); color:white; }
+    .field textarea { resize:vertical; min-height:120px; }
+    .submit-btn { width:100%; padding:1.1rem; background:white; color:var(--gd); border:none; border-radius:5px; font-family:var(--m); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:background .2s,transform .2s,opacity .2s; font-weight:500; }
+    .submit-btn:hover { background:var(--cream); transform:translateY(-1px); }
     .submit-btn:active { transform:scale(.98); }
     .submit-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
 
-    /* ── INFO ── */
-    .info-side h2 { font-family:var(--d); font-size:1.5rem; font-weight:600; margin-bottom:.5rem; }
-    .info-side .sub { font-size:.88rem; color:var(--mu); margin-bottom:2.5rem; line-height:1.6; }
-    .loc-list { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--bdr); }
-    .loc-item { padding:1.25rem 1.5rem; background:var(--wh); transition:background .2s; }
+    /* ── LOCATIONS BELOW ── */
+    .contact-locs { padding:4rem 0 6rem; background:var(--wh); }
+    .contact-locs .wrap h2 { font-family:var(--d); font-size:clamp(1.5rem,2.5vw,2.2rem); font-weight:500; margin-bottom:2rem; letter-spacing:-.02em; }
+    .contact-locs .wrap h2 em { font-style:italic; color:var(--g); }
+    .loc-list { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--bdr); border:1px solid var(--bdr); }
+    .loc-item { padding:1.5rem; background:var(--wh); transition:background .2s; }
     .loc-item:hover { background:var(--gp); }
-    .loc-item h3 { font-family:var(--d); font-size:1rem; font-weight:600; margin-bottom:.25rem; }
-    .loc-item p { font-size:.78rem; color:var(--mu); line-height:1.5; margin-bottom:.25rem; }
-    .loc-item a { font-family:var(--m); font-size:.52rem; letter-spacing:.1em; color:var(--g); font-weight:500; }
+    .loc-item h3 { font-family:var(--d); font-size:.95rem; font-weight:600; margin-bottom:.25rem; }
+    .loc-item p { font-size:.78rem; color:var(--mu); line-height:1.5; margin-bottom:.4rem; }
+    .loc-item a { font-family:var(--m); font-size:.54rem; letter-spacing:.1em; color:var(--g); font-weight:500; }
 
     @media(max-width:960px) {
-      .contact-sec .wrap { grid-template-columns:1fr; }
-      .page-hero .wrap,.contact-sec .wrap { padding:0 2rem; }
+      .page-hero .wrap { grid-template-columns:1fr; gap:3rem; }
+      .ph-phones { grid-template-columns:1fr 1fr; }
+      .loc-list { grid-template-columns:1fr 1fr; }
+      .contact-locs { padding:3rem 0 4rem; }
+    }
+    @media(max-width:520px) {
+      .ph-phones { grid-template-columns:1fr; }
       .loc-list { grid-template-columns:1fr; }
-      .submit-btn { min-height:52px; font-size:.7rem; }
-      /* Minimalist mobile */
-      .page-hero { min-height:50vh; padding-bottom:3.5rem; }
-      .ph-ey { display:none; }
-      .contact-sec { padding:3rem 0; }
     }
   </style>
 </head>
@@ -117,43 +124,54 @@
 </div>
 
 <section class="page-hero">
-  <div class="page-hero-overlay"></div>
-  <div class="hero-bg-img"></div>
   <div class="wrap">
-    <div class="ph-ey gs-reveal">Get in Touch</div>
-    <h1 class="ph-h gs-reveal">We'd love to <em>hear from you.</em></h1>
-    <p class="ph-sub gs-reveal">Have a question, feedback, or catering inquiry? Reach out and we'll get back to you as soon as possible.</p>
+    <div class="ph-left">
+      <div class="ph-ey">Get in Touch</div>
+      <h1 class="ph-h">We'd love to<br><em>hear from you.</em></h1>
+      <p class="ph-sub">Have a question, feedback, or catering inquiry? Call any location directly or send us a message below.</p>
+      <div class="ph-phones">
+        <div class="ph-loc"><div class="ph-loc-name">Lawrenceville</div><div class="ph-loc-num"><a href="tel:7708221500">770-822-1500</a></div></div>
+        <div class="ph-loc"><div class="ph-loc-name">Sugarloaf</div><div class="ph-loc-num"><a href="tel:7707717000">770-771-7000</a></div></div>
+        <div class="ph-loc"><div class="ph-loc-name">Suwanee</div><div class="ph-loc-num"><a href="tel:7702719992">770-271-9992</a></div></div>
+        <div class="ph-loc"><div class="ph-loc-name">Grayson</div><div class="ph-loc-num"><a href="tel:7706822929">770-682-2929</a></div></div>
+        <div class="ph-loc"><div class="ph-loc-name">Hamilton Mill</div><div class="ph-loc-num"><a href="tel:7702718881">770-271-8881</a></div></div>
+        <div class="ph-loc"><div class="ph-loc-name">Dacula</div><div class="ph-loc-num"><a href="tel:7709635000">770-963-5000</a></div></div>
+        <div class="ph-loc"><div class="ph-loc-name">Johns Creek</div><div class="ph-loc-num"><a href="tel:7703600002">770-360-0002</a></div></div>
+        <div class="ph-loc"><div class="ph-loc-name">Cumming</div><div class="ph-loc-num"><a href="tel:4702394243">470-239-4243</a></div></div>
+      </div>
+    </div>
+    <div class="ph-right">
+      <div class="form-card">
+        <h2>Send a Message</h2>
+        <p class="sub">We typically respond within 24 hours.</p>
+        <form id="contactForm" action="https://formspree.io/f/xbjnqkyw" method="POST">
+          <div class="field"><label for="name">Your Name</label><input type="text" id="name" name="name" required placeholder="Full name"></div>
+          <div class="field"><label for="email">Email Address</label><input type="email" id="email" name="email" required placeholder="you@email.com"></div>
+          <div class="field"><label for="phone">Phone (Optional)</label><input type="tel" id="phone" name="phone" placeholder="(770) 555-1234"></div>
+          <div class="field"><label for="location">Regarding Location</label>
+            <select id="location" name="location">
+              <option value="">General Inquiry</option>
+              <option value="lawrenceville">Lawrenceville</option>
+              <option value="sugarloaf">Sugarloaf (Lawrenceville)</option>
+              <option value="suwanee">Suwanee</option>
+              <option value="grayson">Grayson</option>
+              <option value="hamilton-mill">Hamilton Mill</option>
+              <option value="dacula">Dacula</option>
+              <option value="johns-creek">Johns Creek</option>
+              <option value="cumming">Cumming</option>
+            </select>
+          </div>
+          <div class="field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="How can we help you?"></textarea></div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="contact-sec"><div class="wrap">
-  <div class="form-card gs-reveal">
-    <h2>Send Us a Message</h2>
-    <p class="sub">We typically respond within 24 hours.</p>
-    <form id="contactForm" action="https://formspree.io/f/xbjnqkyw" method="POST">
-      <div class="field"><label for="name">Your Name</label><input type="text" id="name" name="name" required placeholder="Full name"></div>
-      <div class="field"><label for="email">Email Address</label><input type="email" id="email" name="email" required placeholder="you@email.com"></div>
-      <div class="field"><label for="phone">Phone (Optional)</label><input type="tel" id="phone" name="phone" placeholder="(770) 555-1234"></div>
-      <div class="field"><label for="location">Regarding Location</label>
-        <select id="location" name="location">
-          <option value="">General Inquiry</option>
-          <option value="lawrenceville">Lawrenceville</option>
-          <option value="sugarloaf">Sugarloaf (Lawrenceville)</option>
-          <option value="suwanee">Suwanee</option>
-          <option value="grayson">Grayson</option>
-          <option value="hamilton-mill">Hamilton Mill</option>
-          <option value="dacula">Dacula</option>
-          <option value="johns-creek">Johns Creek</option>
-          <option value="cumming">Cumming</option>
-        </select>
-      </div>
-      <div class="field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="How can we help you?"></textarea></div>
-      <button type="submit" class="submit-btn">Send Message</button>
-    </form>
-  </div>
-  <div class="info-side gs-reveal">
-    <h2>Call Us Directly</h2>
-    <p class="sub">Each location is owner-operated and happy to help with orders, catering, or questions.</p>
+<section class="contact-locs">
+  <div class="wrap">
+    <h2>All <em>8 Locations</em></h2>
     <div class="loc-list">
       <div class="loc-item"><h3>Lawrenceville</h3><p>2100 Riverside Pkwy</p><a href="tel:7708221500">770-822-1500</a></div>
       <div class="loc-item"><h3>Sugarloaf</h3><p>3330 Sugarloaf Pkwy</p><a href="tel:7707717000">770-771-7000</a></div>
@@ -165,7 +183,7 @@
       <div class="loc-item"><h3>Cumming</h3><p>3030 Old Atlanta Rd</p><a href="tel:4702394243">470-239-4243</a></div>
     </div>
   </div>
-</div></section>
+</section>
 
 <div class="cta-strip">
   <div class="cta-text">Ready to order? Find your nearest location.</div>

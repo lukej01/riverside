@@ -54,16 +54,24 @@
   <style>
     button,input,textarea,select { font-family:inherit; }
 
+    @keyframes hero-enter{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
     /* ── HERO ── */
-    .page-hero { position:relative; min-height:72vh; display:flex; align-items:flex-end; padding-bottom:5rem; overflow:hidden; }
+    .page-hero { position:relative; min-height:100dvh; display:flex; align-items:flex-end; padding-bottom:7rem; overflow:hidden; }
     .hero-bg-img { position:absolute; inset:0; background-image:url('/images/460149_402099029806157_1433563516_o.webp'); background-size:cover; background-position:center 30%; z-index:0; }
-    .page-hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.42) 45%, rgba(0,0,0,0.12) 100%); z-index:1; }
+    .page-hero-overlay { position:absolute; inset:0; background:linear-gradient(108deg,rgba(8,8,8,0.9) 0%,rgba(8,8,8,0.65) 30%,rgba(8,8,8,0.28) 58%,transparent 82%); z-index:1; }
     .page-hero .wrap { position:relative; z-index:2; padding:0 5rem; padding-top:120px; }
-    .ph-ey { font-family:var(--m); font-size:.57rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.58); display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
+    .ph-ey { font-family:var(--m); font-size:.57rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.58); display:flex; align-items:center; gap:.75rem; margin-bottom:1.25rem; animation:hero-enter .9s .1s both cubic-bezier(.22,1,.36,1); }
     .ph-ey::before { content:''; width:1.5rem; height:1px; background:rgba(255,255,255,.45); }
-    .ph-h { font-family:var(--d); font-size:clamp(2.8rem,5.5vw,5rem); font-weight:500; color:#fff; line-height:1.05; margin-bottom:1rem; }
+    .ph-h { font-family:var(--d); font-size:clamp(3rem,6vw,6.5rem); font-weight:500; color:#fff; line-height:.97; margin-bottom:1.5rem; animation:hero-enter 1s .25s both cubic-bezier(.22,1,.36,1); }
     .ph-h em { font-style:italic; color:white; }
-    .ph-sub { font-size:1rem; line-height:1.75; color:rgba(255,255,255,.75); max-width:50ch; font-weight:300; }
+    .ph-sub { font-size:1rem; line-height:1.8; color:rgba(255,255,255,.72); max-width:52ch; font-weight:300; animation:hero-enter .85s .4s both cubic-bezier(.22,1,.36,1); }
+    .ph-perks { display:flex; gap:0; border-top:1px solid rgba(255,255,255,.1); margin-top:3.5rem; animation:hero-enter .75s .55s both cubic-bezier(.22,1,.36,1); }
+    .ph-perk { padding:1.4rem 2.5rem 0; border-right:1px solid rgba(255,255,255,.1); }
+    .ph-perk:first-child { padding-left:0; }
+    .ph-perk:last-child { border-right:none; }
+    .ph-perk-title { font-family:var(--d); font-size:1rem; font-weight:600; color:white; margin-bottom:.2rem; }
+    .ph-perk-sub { font-family:var(--m); font-size:.44rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); }
 
     /* ── WHY WORK HERE ── */
     .why-sec { background:var(--wh); display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--bdr); }
@@ -108,8 +116,9 @@
     .submit-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
 
     @media(max-width:960px) {
-      .page-hero { min-height:55vh; }
+      .page-hero { min-height:72dvh; }
       .page-hero .wrap { padding:0 2rem; padding-top:100px; }
+      .ph-perks { display:none; }
       .why-sec { grid-template-columns:1fr; }
       .why-photo { min-height:300px; }
       .apply-sec .wrap { grid-template-columns:1fr; }
@@ -139,9 +148,14 @@
   <div class="page-hero-overlay"></div>
   <div class="hero-bg-img"></div>
   <div class="wrap">
-    <div class="ph-ey gs-reveal">Careers</div>
-    <h1 class="ph-h gs-reveal">Join the <em>Riverside family.</em></h1>
-    <p class="ph-sub gs-reveal">We're always looking for great people who share our passion for quality food and community. Apply today at any of our 8 Metro Atlanta locations.</p>
+    <div class="ph-ey">Careers</div>
+    <h1 class="ph-h">Join the <em>Riverside family.</em></h1>
+    <p class="ph-sub">We're always looking for great people who share our passion for quality food and community. Apply today across any of our 8 Metro Atlanta locations.</p>
+    <div class="ph-perks">
+      <div class="ph-perk"><div class="ph-perk-title">Free meal every shift</div><div class="ph-perk-sub">For every team member</div></div>
+      <div class="ph-perk"><div class="ph-perk-title">Flexible scheduling</div><div class="ph-perk-sub">Around school and family</div></div>
+      <div class="ph-perk"><div class="ph-perk-title">Promote from within</div><div class="ph-perk-sub">Crew to manager, for real</div></div>
+    </div>
   </div>
 </section>
 
