@@ -103,89 +103,45 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap"></noscript>
   <link rel="stylesheet" href="/shared.css">
   <style>
-    /* ── HERO ──────────────────────────────────── */
+    /* ── HERO (catering-style: clean, readable) ── */
     .hero {
-      position: relative; height: 100dvh; min-height: 600px;
-      display: flex; align-items: flex-end; overflow: hidden;
+      position: relative; min-height: 100dvh; display: flex; align-items: flex-end;
+      padding-bottom: 6rem; overflow: hidden;
     }
     .hero-bg {
-      position: absolute; inset: -12% 0 0 0; z-index: 0;
-      will-change: transform;
-    }
-    .hero-bg img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center 40%;
-      transform: scale(1.15); will-change: transform;
+      position: absolute; inset: 0; z-index: -2;
+      background-image: url('/images/newpizza.webp');
+      background-size: cover; background-position: center 40%;
     }
     .hero-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(35deg, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.68) 28%, rgba(8,8,8,0.22) 55%, transparent 78%);
+      position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(108deg, rgba(8,8,8,0.86) 0%, rgba(8,8,8,0.62) 28%, rgba(8,8,8,0.24) 58%, transparent 82%);
     }
     .hero-inner {
       position: relative; z-index: 2;
       width: 100%; max-width: 1280px; margin: 0 auto;
-      padding: 0 clamp(2rem,5vw,5rem) clamp(3.5rem,5vw,5.5rem);
-      display: flex; align-items: flex-end; justify-content: space-between; gap: 4rem;
+      padding: 0 clamp(2rem,5vw,5rem);
     }
-    .hero-content { max-width: 680px; }
-
-    /* Line-level text reveal (SplitText-style masks) */
-    .hero-line { display: block; overflow: hidden; padding-bottom: 0.1em; }
-    .hero-line > span { display: block; will-change: transform; transform: translateY(115%); }
-
-    .hero-tag {
-      font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: rgba(255,255,255,0.48);
+    .hero-content { max-width: 900px; }
+    .hero-eyebrow {
+      font-family: var(--m); font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.58); display: flex; align-items: center; gap: 0.8rem;
       margin-bottom: 1.5rem;
-      opacity: 0;
     }
+    .hero-eyebrow::before { content: ''; width: 2rem; height: 1px; background: currentColor; }
     .hero-h1 {
-      font-family: var(--d); font-size: clamp(3.2rem,7vw,6.5rem); font-weight: 700;
-      letter-spacing: -0.03em; line-height: 0.92; color: white;
-      margin-bottom: 1.75rem;
+      font-family: var(--d); font-size: clamp(3rem,6vw,6rem); font-weight: 500;
+      letter-spacing: -0.025em; line-height: 0.95; color: white;
+      margin-bottom: 1.5rem;
     }
-    .hero-h1 em { font-style: italic; font-weight: 400; }
+    .hero-h1 em { font-style: italic; color: white; }
     .hero-sub {
-      font-size: clamp(0.88rem,1.2vw,1.05rem); font-weight: 300;
-      color: rgba(255,255,255,0.55); line-height: 1.8; max-width: 44ch;
+      font-size: clamp(0.92rem,1.2vw,1.08rem); font-weight: 300;
+      color: rgba(255,255,255,0.6); line-height: 1.8; max-width: 48ch;
       margin-bottom: 2.5rem;
-      opacity: 0;
     }
     .hero-btns {
       display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
-      opacity: 0;
-    }
-    .hero-text-link {
-      font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.5); display: inline-flex; align-items: center; gap: 0.4rem;
-      transition: color 0.2s, gap 0.22s;
-    }
-    .hero-text-link:hover { color: white; gap: 0.65rem; }
-
-    .hero-aside {
-      flex-shrink: 0; text-align: right;
-      opacity: 0;
-    }
-    .hero-aside-num {
-      font-family: var(--d); font-size: clamp(4rem,6vw,7rem); font-weight: 700;
-      color: white; line-height: 0.85; letter-spacing: -0.03em;
-    }
-    .hero-aside-lbl {
-      font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35); margin-top: 0.5rem;
-    }
-
-    /* Film grain texture (fixed, pointer-events: none — per performance skill) */
-    .grain {
-      position: fixed; inset: 0; z-index: 50; pointer-events: none;
-      mix-blend-mode: overlay; opacity: 0.025;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") repeat;
-    }
-
-    /* Reduced-motion: show everything immediately, no transforms */
-    @media (prefers-reduced-motion: reduce) {
-      .hero-tag, .hero-sub, .hero-btns, .hero-aside { opacity: 1; }
-      .hero-line > span { transform: none; }
-      .hero-bg img { transform: none; }
     }
 
     /* ── STATS ─────────────────────────────────── */
@@ -357,9 +313,7 @@
     /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 960px) {
       .mob-order-bar { display: block; }
-      .hero { height: 80dvh; min-height: 500px; }
-      .hero-inner { flex-direction: column; align-items: flex-start; gap: 0; }
-      .hero-aside { display: none; }
+      .hero { min-height: 72dvh; padding-bottom: 4rem; }
       .hero-sub { display: none; }
       .stats { grid-template-columns: 1fr 1fr; }
       .stat:nth-child(2) { border-right: none; }
@@ -397,7 +351,7 @@
 
       /* Hero */
       .hero-h1 { font-size: clamp(2.6rem, 9vw, 4rem); margin-bottom: 1.5rem; }
-      .hero-tag { margin-bottom: 1rem; }
+      .hero-eyebrow { margin-bottom: 1rem; }
 
       /* Stats — breathe */
       .stat { padding: 1.75rem 1rem; }
@@ -512,32 +466,20 @@
 
 <!-- ── HERO ───────────────────────────────────── -->
 <section class="hero">
-  <div class="hero-bg">
-    <img src="/images/newpizza.webp" alt="Handcrafted pizza at Riverside Pizza" width="1920" height="1408" fetchpriority="high">
-  </div>
+  <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-tag">Est. 1999 · 8 Metro Atlanta Locations</div>
-      <h1 class="hero-h1">
-          <span class="hero-line"><span>Made fresh,</span></span>
-          <span class="hero-line"><span><em>every morning.</em></span></span>
-        </h1>
+      <div class="hero-eyebrow">Est. 1999 · 8 Metro Atlanta Locations</div>
+      <h1 class="hero-h1">Made fresh,<br><em>every morning.</em></h1>
       <p class="hero-sub">Handmade dough. Real mozzarella. Stanislaus tomatoes. The same family, the same standards, for 27 years.</p>
       <div class="hero-btns">
         <a href="takeout.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
-        <a href="menu.html" class="hero-text-link">View Menu <span>→</span></a>
+        <a href="menu.html" class="btn btn-outline-w">View Menu</a>
       </div>
-    </div>
-    <div class="hero-aside">
-      <div class="hero-aside-num">27</div>
-      <div class="hero-aside-lbl">Years</div>
     </div>
   </div>
 </section>
-
-<!-- Film grain overlay -->
-<div class="grain" aria-hidden="true"></div>
 
 <!-- ── MOBILE QUICK ACTIONS (desktop: hidden) ─── -->
 <div class="mob-quick-strip" aria-label="Quick navigation">
@@ -794,69 +736,11 @@
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
-  // ── HERO ENTRANCE + SCROLL (all skills stacked) ─────
-  const heroMM = gsap.matchMedia();
-
-  heroMM.add('(prefers-reduced-motion: no-preference)', () => {
-    // Initial states (GSAP autoAlpha manages opacity + visibility)
-    gsap.set('.hero-tag', { autoAlpha: 0, y: 20 });
-    gsap.set('.hero-line > span', { yPercent: 115 });
-    gsap.set('.hero-sub', { autoAlpha: 0, y: 24 });
-    gsap.set('.hero-btns', { autoAlpha: 0, y: 20 });
-    gsap.set('.hero-aside', { autoAlpha: 0, x: 30 });
-
-    // Counter prep — start at 0, animate to 27
-    const asideNum = document.querySelector('.hero-aside-num');
-    if (asideNum) asideNum.textContent = '0';
-
-    // ── Choreographed entrance timeline (gsap-timeline + gsap-core)
-    const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-
-    heroTl
-      // Ken Burns zoom-out on hero image
-      .to('.hero-bg img', { scale: 1, duration: 2.8, ease: 'power2.out' }, 0)
-      // Eyebrow tag fades up
-      .to('.hero-tag', { autoAlpha: 1, y: 0, duration: 0.9 }, 0.2)
-      // Line-by-line headline reveal (SplitText-style mask effect)
-      .to('.hero-line > span', {
-        yPercent: 0, duration: 1.2, stagger: 0.15, ease: 'expo.out'
-      }, 0.35)
-      // Subtitle fades up
-      .to('.hero-sub', { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out' }, 0.75)
-      // CTA buttons reveal
-      .to('.hero-btns', { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.9)
-      // Aside slides in from right
-      .to('.hero-aside', { autoAlpha: 1, x: 0, duration: 0.8, ease: 'power3.out' }, 0.95);
-
-    // Counter animation — "27" counts up with the aside reveal
-    if (asideNum) {
-      const counter = { val: 0 };
-      heroTl.to(counter, {
-        val: 27, duration: 2, ease: 'power2.out',
-        onUpdate() { asideNum.textContent = Math.round(counter.val); }
-      }, 0.95);
-    }
-
-    // ── Multi-layer scroll parallax (gsap-scrolltrigger)
-    // Background moves DOWN (slower), creating depth
-    gsap.to('.hero-bg', {
-      yPercent: 18, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-    });
-
-    // Hero content floats UP and fades as you scroll
-    gsap.to('.hero-inner', {
-      y: -80, autoAlpha: 0, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: '15% top', end: '55% top', scrub: true }
-    });
-  });
-
-  // Reduced motion — just show everything, no animation
-  heroMM.add('(prefers-reduced-motion: reduce)', () => {
-    gsap.set('.hero-bg img', { scale: 1 });
-    gsap.set('.hero-tag, .hero-sub, .hero-btns, .hero-aside', { autoAlpha: 1 });
-    gsap.set('.hero-line > span', { yPercent: 0 });
-  });
+  // ── HERO ENTRANCE (clean, like catering) ─────
+  gsap.from('.hero-eyebrow', { autoAlpha: 0, y: 16, duration: 0.8, delay: 0.15, ease: 'power3.out' });
+  gsap.from('.hero-h1', { autoAlpha: 0, y: 24, duration: 0.9, delay: 0.3, ease: 'power3.out' });
+  gsap.from('.hero-sub', { autoAlpha: 0, y: 20, duration: 0.8, delay: 0.5, ease: 'power3.out' });
+  gsap.from('.hero-btns', { autoAlpha: 0, y: 16, duration: 0.7, delay: 0.65, ease: 'power3.out' });
 
   // ── STATS COUNTERS ───────────────────────────
   document.querySelectorAll('[data-target]').forEach(el => {
