@@ -109,22 +109,19 @@
       display: flex; align-items: flex-end; overflow: hidden;
     }
     .hero-bg {
-      position: absolute; inset: -8% 0 0 0; z-index: 0;
+      position: absolute; inset: -12% 0 0 0; z-index: 0;
       will-change: transform;
     }
     .hero-bg img {
       width: 100%; height: 100%; object-fit: cover; object-position: center 40%;
-      animation: hero-drift 20s cubic-bezier(0.25,0.1,0.25,1) both;
-    }
-    @keyframes hero-drift {
-      from { transform: scale(1.06); }
-      to   { transform: scale(1); }
+      transform: scale(1.15); will-change: transform;
     }
     .hero::after {
       content: ''; position: absolute; inset: 0; z-index: 1;
       background:
-        linear-gradient(to top, rgba(10,8,6,0.88) 0%, rgba(10,8,6,0.5) 28%, rgba(10,8,6,0.08) 55%, transparent 70%),
-        linear-gradient(to right, rgba(10,8,6,0.35) 0%, transparent 50%);
+        linear-gradient(to top, rgba(14,10,6,0.95) 0%, rgba(14,10,6,0.55) 22%, rgba(14,10,6,0.12) 48%, transparent 72%),
+        radial-gradient(ellipse at 28% 82%, rgba(14,10,6,0.45) 0%, transparent 55%),
+        linear-gradient(170deg, rgba(14,10,6,0.25) 0%, transparent 40%);
     }
     .hero-inner {
       position: relative; z-index: 2;
@@ -134,33 +131,31 @@
     }
     .hero-content { max-width: 680px; }
 
-    @keyframes hero-enter {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* Line-level text reveal (SplitText-style masks) */
+    .hero-line { display: block; overflow: hidden; padding-bottom: 0.1em; }
+    .hero-line > span { display: block; will-change: transform; transform: translateY(115%); }
 
     .hero-tag {
       font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.25em; text-transform: uppercase;
       color: rgba(255,255,255,0.48);
       margin-bottom: 1.5rem;
-      animation: hero-enter 0.8s 0.2s both cubic-bezier(0.22,1,0.36,1);
+      opacity: 0;
     }
     .hero-h1 {
       font-family: var(--d); font-size: clamp(3.2rem,7vw,6.5rem); font-weight: 700;
       letter-spacing: -0.03em; line-height: 0.92; color: white;
       margin-bottom: 1.75rem;
-      animation: hero-enter 1s 0.35s both cubic-bezier(0.22,1,0.36,1);
     }
     .hero-h1 em { font-style: italic; font-weight: 400; }
     .hero-sub {
       font-size: clamp(0.88rem,1.2vw,1.05rem); font-weight: 300;
       color: rgba(255,255,255,0.55); line-height: 1.8; max-width: 44ch;
       margin-bottom: 2.5rem;
-      animation: hero-enter 0.85s 0.5s both cubic-bezier(0.22,1,0.36,1);
+      opacity: 0;
     }
     .hero-btns {
       display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
-      animation: hero-enter 0.8s 0.6s both cubic-bezier(0.22,1,0.36,1);
+      opacity: 0;
     }
     .hero-text-link {
       font-family: var(--m); font-size: 0.48rem; letter-spacing: 0.12em; text-transform: uppercase;
@@ -171,7 +166,7 @@
 
     .hero-aside {
       flex-shrink: 0; text-align: right;
-      animation: hero-enter 0.7s 0.75s both cubic-bezier(0.22,1,0.36,1);
+      opacity: 0;
     }
     .hero-aside-num {
       font-family: var(--d); font-size: clamp(4rem,6vw,7rem); font-weight: 700;
@@ -180,6 +175,20 @@
     .hero-aside-lbl {
       font-family: var(--m); font-size: 0.44rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: rgba(255,255,255,0.35); margin-top: 0.5rem;
+    }
+
+    /* Film grain texture (fixed, pointer-events: none — per performance skill) */
+    .grain {
+      position: fixed; inset: 0; z-index: 50; pointer-events: none;
+      mix-blend-mode: overlay; opacity: 0.04;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") repeat;
+    }
+
+    /* Reduced-motion: show everything immediately, no transforms */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-tag, .hero-sub, .hero-btns, .hero-aside { opacity: 1; }
+      .hero-line > span { transform: none; }
+      .hero-bg img { transform: none; }
     }
 
     /* ── STATS ─────────────────────────────────── */
@@ -512,7 +521,10 @@
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-tag">Est. 1999 · 8 Metro Atlanta Locations</div>
-      <h1 class="hero-h1">Made fresh,<br><em>every morning.</em></h1>
+      <h1 class="hero-h1">
+          <span class="hero-line"><span>Made fresh,</span></span>
+          <span class="hero-line"><span><em>every morning.</em></span></span>
+        </h1>
       <p class="hero-sub">Handmade dough. Real mozzarella. Stanislaus tomatoes. The same family, the same standards, for 27 years.</p>
       <div class="hero-btns">
         <a href="takeout.html" class="btn btn-white">Order Online <span class="btn-arrow">↗</span></a>
@@ -525,6 +537,9 @@
     </div>
   </div>
 </section>
+
+<!-- Film grain overlay -->
+<div class="grain" aria-hidden="true"></div>
 
 <!-- ── MOBILE QUICK ACTIONS (desktop: hidden) ─── -->
 <div class="mob-quick-strip" aria-label="Quick navigation">
@@ -781,10 +796,68 @@
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
-  // ── HERO PARALLAX ───────────────────────────
-  gsap.to('.hero-bg img', {
-    y: '12%', ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+  // ── HERO ENTRANCE + SCROLL (all skills stacked) ─────
+  const heroMM = gsap.matchMedia();
+
+  heroMM.add('(prefers-reduced-motion: no-preference)', () => {
+    // Initial states (GSAP autoAlpha manages opacity + visibility)
+    gsap.set('.hero-tag', { autoAlpha: 0, y: 20 });
+    gsap.set('.hero-line > span', { yPercent: 115 });
+    gsap.set('.hero-sub', { autoAlpha: 0, y: 24 });
+    gsap.set('.hero-btns', { autoAlpha: 0, y: 20 });
+    gsap.set('.hero-aside', { autoAlpha: 0, x: 30 });
+
+    // Counter prep — start at 0, animate to 27
+    const asideNum = document.querySelector('.hero-aside-num');
+    if (asideNum) asideNum.textContent = '0';
+
+    // ── Choreographed entrance timeline (gsap-timeline + gsap-core)
+    const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+    heroTl
+      // Ken Burns zoom-out on hero image
+      .to('.hero-bg img', { scale: 1, duration: 2.8, ease: 'power2.out' }, 0)
+      // Eyebrow tag fades up
+      .to('.hero-tag', { autoAlpha: 1, y: 0, duration: 0.9 }, 0.2)
+      // Line-by-line headline reveal (SplitText-style mask effect)
+      .to('.hero-line > span', {
+        yPercent: 0, duration: 1.2, stagger: 0.15, ease: 'expo.out'
+      }, 0.35)
+      // Subtitle fades up
+      .to('.hero-sub', { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out' }, 0.75)
+      // CTA buttons reveal
+      .to('.hero-btns', { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.9)
+      // Aside slides in from right
+      .to('.hero-aside', { autoAlpha: 1, x: 0, duration: 0.8, ease: 'power3.out' }, 0.95);
+
+    // Counter animation — "27" counts up with the aside reveal
+    if (asideNum) {
+      const counter = { val: 0 };
+      heroTl.to(counter, {
+        val: 27, duration: 2, ease: 'power2.out',
+        onUpdate() { asideNum.textContent = Math.round(counter.val); }
+      }, 0.95);
+    }
+
+    // ── Multi-layer scroll parallax (gsap-scrolltrigger)
+    // Background moves DOWN (slower), creating depth
+    gsap.to('.hero-bg', {
+      yPercent: 18, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // Hero content floats UP and fades as you scroll
+    gsap.to('.hero-inner', {
+      y: -80, autoAlpha: 0, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: '15% top', end: '55% top', scrub: true }
+    });
+  });
+
+  // Reduced motion — just show everything, no animation
+  heroMM.add('(prefers-reduced-motion: reduce)', () => {
+    gsap.set('.hero-bg img', { scale: 1 });
+    gsap.set('.hero-tag, .hero-sub, .hero-btns, .hero-aside', { autoAlpha: 1 });
+    gsap.set('.hero-line > span', { yPercent: 0 });
   });
 
   // ── STATS COUNTERS ───────────────────────────
