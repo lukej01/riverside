@@ -3,8 +3,7 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/order", "destination": "/takeout", "permanent": false },
-    { "source": "/menu/takeout", "destination": "/takeout", "permanent": false },
-    { "source": "/locations", "destination": "/takeout", "permanent": true }
+    { "source": "/menu/takeout", "destination": "/takeout", "permanent": false }
   ],
   "headers": [
     {
